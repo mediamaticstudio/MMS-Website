@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* User provided colors */
+    --primary-dark: #652b32;
+    /* Updated to match text/theme */
+    --primary-mid: #652b32;
+    --primary-light: #9a5a2a;
+
+    --cream-bg: #faf3e0;
+    /* Updated bg */
+    --card-bg: #fff8eb;
+    /* Slightly lighter than bg for contrast */
+
+    --text-light: #faf3e0;
+    /* Restored to light cream for contrast on dark backgrounds */
+    --text-muted: rgba(101, 43, 50, 0.65);
+    --text-dark: #652b32;
+    /* Updated text */
+
+    --border-soft: rgba(101, 43, 50, 0.15);
+    --input-bg: #fff6df;
+    /* Updated input bg */
+
+    --btn-bg: #652b32;
+    --btn-hover: #652b32;
+
+    --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+    /* Mapped system colors */
+    --background: var(--cream-bg);
+    --foreground: var(--text-dark);
+
+    --card: var(--card-bg);
+    --card-foreground: var(--text-dark);
+
+    --popover: var(--card-bg);
+    --popover-foreground: var(--text-dark);
+
+    --primary: var(--btn-bg);
+    --primary-foreground: var(--text-light);
+
+    --secondary: var(--primary-light);
+    --secondary-foreground: var(--text-dark);
+
+    --muted: var(--input-bg);
+    --muted-foreground: var(--text-dark);
+
+    --accent: var(--primary-mid);
+    --accent-foreground: var(--text-light);
+
+    --destructive: #ef4444;
+    --destructive-foreground: white;
+
+    --border: var(--border-soft);
+    --input: var(--input-bg);
+    --ring: var(--primary-dark);
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gold: var(--primary-light);
+    --brown: #3d1c1c;
+
+    --font-display: 'Poppins', system-ui, sans-serif;
+    --font-body: 'Poppins', system-ui, sans-serif;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, var(--cream-bg) 0%, var(--card-bg) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-mid) 100%);
+
+    /* Shadows */
+    /* --shadow-soft is defined above */
+    --shadow-strong: 0 20px 60px -15px rgba(101, 43, 50, 0.3);
+    --shadow-glow: 0 0 40px rgba(154, 90, 42, 0.3);
+
+    /* Sidebar */
+    --sidebar-background: var(--primary-dark);
+    --sidebar-foreground: var(--text-light);
+    --sidebar-primary: var(--primary-light);
+    --sidebar-primary-foreground: var(--text-dark);
+    --sidebar-accent: var(--primary-mid);
+    --sidebar-accent-foreground: var(--text-light);
+    --sidebar-border: var(--border-soft);
+    --sidebar-ring: var(--primary-light);
+  }
+
+  /* Dark mode overrides removed to enforce consistent theme */
+  .dark {
+    /* Optional: Provide dark mode alternations if needed, for now using root defaults */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 14px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /*
+     STRICT FONT SIZE RULE
+     Apply 14px to standard text elements EXCEPT:
+     1. Inside #home (Hero/Home section is 100% protected)
+     2. h1 and h2 tags (Protected)
+     3. Elements with specific protection classes
+  */
+  p:not(#home *):not([class*="text-"]),
+  span:not(#home *):not(.hero-char):not([class*="text-"]),
+  li:not(#home *):not([class*="text-"]),
+  a:not(#home *):not([class*="text-"]),
+  small:not(#home *):not([class*="text-"]),
+  label:not(#home *):not([class*="text-"]),
+  div:not(#home *):not([class*="text-"]):not(:has(*)) {
+    font-size: 14px;
+  }
+
+  /* RESCUING PROTECTED CONTENT FROM GLOBAL 14PX */
+  .undo-14px {
+    font-size: 18px !important;
+    letter-spacing: 0.2em !important;
+  }
+
+  p.undo-14px {
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+    opacity: 0.8 !important;
+  }
+
+  .large-number {
+    font-size: 6rem !important;
+    opacity: 0.08 !important;
+  }
+
+  .protected-headline-char {
+    font-size: inherit !important;
+  }
+
+  /* FONT FAMILY FOR HEADINGS (EXCEPT HERO) */
+  :not(#home) h1,
+  :not(#home) h2,
+  :not(#home) h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Poppins", sans-serif;
+    text-wrap: balance;
+  }
+
+  /* GLOBAL BODY FONT (EXCEPT HERO) */
+  :not(#home) p,
+  :not(#home) li,
+  :not(#home) span,
+  :not(#home) a {
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* BRAND BACKGROUND SCOPED RULE */
+  .bg-\[\#652b32\] {
+    @apply text-white;
+  }
+
+  /* PROTECTED ELEMENTS - PRESERVING EXACT SCALES */
+  /* Crafting identities that resonate... */
+  .protected-text-resonate {
+    font-size: clamp(1rem, 2vw, 1.5rem) !important;
+  }
+
+  /* Branding is the process... */
+  .protected-branding-quote {
+    font-size: clamp(1rem, 2vw, 1.5rem) !important;
+  }
+
+  /* Why Branding Matters Bullets - Preserve original weights/scales */
+  .brand-bullet-text {
+    font-size: clamp(0.9rem, 1.5vw, 1.25rem) !important;
+  }
+
+  img {
+    content-visibility: auto;
+    image-rendering: -webkit-optimize-contrast;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* GPU Acceleration for animations */
+  .will-change-transform {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
+@layer components {
+
+  /* Text reveal animation */
+  .text-reveal {
+    @apply overflow-hidden;
+  }
+
+  .text-reveal-inner {
+    @apply inline-block;
+    transform: translateY(100%);
+  }
+
+  /* Magnetic button effect */
+  .magnetic-btn {
+    @apply relative inline-flex items-center justify-center overflow-hidden transition-all duration-300;
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Duplicate text effect like madewithgsap */
+  .text-duplicate {
+    @apply relative;
+  }
+
+  .text-duplicate::after {
+    content: attr(data-text);
+    @apply absolute left-0 top-0 opacity-20;
+    transform: translate(2px, 2px);
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* Underline animation */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-[2px] bg-foreground transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Marquee */
+  .marquee {
+    animation: marquee 20s linear infinite;
+  }
+
+  /* Stagger children */
+  .stagger-children>* {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+}
+
+@layer utilities {
+
+  /* Clip path animations */
+  .clip-reveal {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  .clip-revealed {
+    clip-path: inset(0 0% 0 0);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes reveal-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background: var(--background);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 60;
+}
+
+.service-dropdown.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gif-invert: 1;
+  }
+}
