@@ -6,14 +6,17 @@ interface PageProps {
   };
 }
 
-// Tell Next.js what blog pages should be generated
 export async function generateStaticParams() {
-  return [
-    { slug: "seo-tips" },
-    { slug: "nextjs-guide" },
-    { slug: "web-design" },
-    { slug: "digital-marketing" }
-  ];
+  const res = await fetch(
+    "https://blog.mediamaticstudio.com/wp-json/wp/v2/posts",
+    { cache: "force-cache" }
+  );
+
+  const posts = await res.json();
+
+  return posts.map((post: any) => ({
+    slug: post.slug,
+  }));
 }
 
 export default function BlogPostPage({ params }: PageProps) {
