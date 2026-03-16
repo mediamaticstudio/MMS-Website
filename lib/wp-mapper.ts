@@ -81,8 +81,11 @@ export function mapWPPostToBlogPost(wpPost: any): BlogPost {
     };
 }
 
-// Fallback: Parse FAQs from HTML content if ACF is missing
-function parseFAQsFromContent(html: string): { question: string; answer: string }[] {
+/**
+ * Fallback: Parse FAQs from HTML content if ACF is missing
+ * Note: This requires 'document' (browser environment)
+ */
+export function parseFAQsFromContent(html: string): { question: string; answer: string }[] {
     if (!html || typeof document === 'undefined') return [];
 
     const faqs: { question: string; answer: string }[] = [];

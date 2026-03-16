@@ -123,7 +123,7 @@ export default function RootLayout({
     const localBusinessSchema = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "Mediamaticstudio",
+        "name": "MediaMatic Studio",
         "email": "support@mediamaticstudio.com",
         "url": "https://www.mediamaticstudio.com/",
         "areaServed": ["Coimbatore", "Bangalore"],
@@ -161,11 +161,27 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
+                {/* Existing Zi Scripts */}
                 <Script id="zi-script-1" strategy="afterInteractive">
                     {`window[(function(_q4r,_v0){var _5NdSm='';for(var _Sx5BBl=0;_Sx5BBl<_q4r.length;_Sx5BBl++){var _OcvR=_q4r[_Sx5BBl].charCodeAt();_OcvR-=_v0;_OcvR+=61;_OcvR%=94;_OcvR!=_Sx5BBl;_5NdSm==_5NdSm;_OcvR+=33;_v0>1;_5NdSm+=String.fromCharCode(_OcvR)}return _5NdSm})(atob('LXojRUI9ODZHfDhM'), 49)] = '27eeb4490b1770733563';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_Su6,_x3){var _OP7QB='';for(var _g6OuXI=0;_g6OuXI<_Su6.length;_g6OuXI++){var _A75M=_Su6[_g6OuXI].charCodeAt();_A75M-=_x3;_A75M!=_g6OuXI;_OP7QB==_OP7QB;_A75M+=61;_A75M%=94;_A75M+=33;_x3>5;_OP7QB+=String.fromCharCode(_A75M)}return _OP7QB})(atob('O0dHQ0ZrYGA9Rl9NPF5GNkU8Q0dGXzZCQGBNPF5HNDpfPUY='), 49)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });`}
                 </Script>
                 <Script id="zi-script-2" strategy="afterInteractive">
                     {`window[(function(_Evx,_Vy){var _F8ULL='';for(var _bFZ7sA=0;_bFZ7sA<_Evx.length;_bFZ7sA++){_Vy>9;var _6k42=_Evx[_bFZ7sA].charCodeAt();_6k42-=_Vy;_6k42+=61;_6k42!=_bFZ7sA;_6k42%=94;_6k42+=33;_F8ULL==_F8ULL;_F8ULL+=String.fromCharCode(_6k42)}return _F8ULL})(atob('bFtiJiN8d3UoXXct'), 18)] = '4b0a2077401742813171';     var zi = document.createElement('script');     (zi.type = 'text/javascript'),     (zi.async = true),     (zi.src = (function(_N5C,_mJ){var _DvyAz='';for(var _D32yf5=0;_D32yf5<_N5C.length;_D32yf5++){var _z2Zo=_N5C[_D32yf5].charCodeAt();_z2Zo-=_mJ;_z2Zo!=_D32yf5;_z2Zo+=61;_DvyAz==_DvyAz;_z2Zo%=94;_mJ>3;_z2Zo+=33;_DvyAz+=String.fromCharCode(_z2Zo)}return _DvyAz})(atob('cyEhe35FOjp1fjkndDh+bn10eyF+OW56eDondDghbHI5dX4='), 11)),     document.readyState === 'complete'?document.body.appendChild(zi):     window.addEventListener('load', function(){         document.body.appendChild(zi)     });`}
+                </Script>
+
+                {/* Tawk.to Live Chat */}
+                <Script id="tawk-script" strategy="afterInteractive">
+                    {`
+                        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+                        (function(){
+                            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+                            s1.async=true;
+                            s1.src='https://embed.tawk.to/674eb78d2480f5b4f5a6fd07/1ie5nq1no';
+                            s1.charset='UTF-8';
+                            s1.setAttribute('crossorigin','*');
+                            s0.parentNode.insertBefore(s1,s0);
+                        })();
+                    `}
                 </Script>
             </head>
             <body className={cn(poppins.variable, "font-body antialiased")}>

@@ -109,7 +109,7 @@ const HeroSection = ({ onAuditClick }: { onAuditClick: () => void }) => (
                     variants={fadeUp}
                     className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#faf3e0] leading-tight mb-6 md:mb-8 font-display"
                 >
-                    Best SEO Services Company That Ranks, <span className="text-[#FACC15]">Converts & Grow Your Business</span>
+                    Best SEO Services Company That Ranks, <span className="text-[#FACC15]">Converts & Grows Your Business</span>
                 </motion.h1>
 
                 <motion.div variants={fadeUp} className="space-y-4 mb-8 md:mb-10 text-sm md:text-lg text-[#faf3e0]/70 max-w-3xl leading-relaxed">
@@ -124,7 +124,7 @@ const HeroSection = ({ onAuditClick }: { onAuditClick: () => void }) => (
                 <motion.div variants={fadeUp}>
                     <button
                         onClick={onAuditClick}
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#faf3e0] text-[#652b32] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-white transition-all text-sm md:text-base"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#faf3e0] text-black px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-white transition-all text-sm md:text-base"
                     >
                         Get Your Free SEO Audit <ArrowRight size={18} />
                     </button>
@@ -144,11 +144,11 @@ const ServicesSection = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-4xl md:text-6xl font-black text-[#652b32] mb-8 font-heading leading-tight tracking-tight uppercase">
+                <h2 className="text-4xl md:text-6xl font-black text-black mb-8 font-heading leading-tight tracking-tight uppercase">
                     The professional SEO services we offer <br className="hidden md:block" />
                     for Higher Rankings & More Leads
                 </h2>
-                <p className="text-base md:text-lg text-[#652b32]/60 max-w-4xl mx-auto leading-relaxed font-medium">
+                <p className="text-base md:text-lg text-black/60 max-w-4xl mx-auto leading-relaxed font-medium">
                     From the lack of scaling up brands effectively to consolidating all aspects of their marketing under one roof, we have the solutions to meet these challenges head-on. Contact our SEO agency, and we will work to develop a customized plan uniquely tailored to meet your specific requirements.
                 </p>
             </motion.div>
@@ -174,10 +174,10 @@ const ServicesSection = () => (
                         <div className="w-16 h-16 rounded-2xl bg-[#652b32]/5 flex items-center justify-center mb-8 group-hover:bg-[#faf3e0]/10 transition-colors">
                             <s.icon size={28} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
                         </div>
-                        <h3 className="text-2xl font-black text-[#652b32] mb-4 font-heading group-hover:text-white leading-tight uppercase tracking-tight">
+                        <h3 className="text-2xl font-black text-black mb-4 font-heading group-hover:text-white leading-tight uppercase tracking-tight">
                             {s.title}
                         </h3>
-                        <p className="text-[#652b32]/60 leading-relaxed text-sm group-hover:text-white/80 font-medium">
+                        <p className="text-black/60 leading-relaxed text-sm group-hover:text-white/80 font-medium">
                             {s.desc}
                         </p>
                     </motion.div>
@@ -198,10 +198,10 @@ const StrategiesSection = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#652b32] mb-4 font-display">
-                    What dedicated <span className="text-[#652b32]">SEO strategies do we deliver?</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 font-display">
+                    What dedicated <span className="text-black">SEO strategies do we deliver?</span>
                 </h2>
-                <p className="text-lg text-[#652b32]/70 max-w-3xl mx-auto">
+                <p className="text-lg text-black/70 max-w-3xl mx-auto">
                     Increase your online presence and drive more qualified traffic your way with our strategic SEO services. Our proven process allows you to tap into the power of organic search to reach your target audience.
                 </p>
             </motion.div>
@@ -223,10 +223,10 @@ const StrategiesSection = () => (
                         <div className="w-16 h-16 rounded-full bg-[#652b32]/5 group-hover:bg-[#faf3e0]/10 flex items-center justify-center mx-auto mb-6 transition-colors">
                             <s.icon size={32} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
                         </div>
-                        <h3 className="text-xl font-bold mb-3 text-[#652b32] group-hover:text-[#faf3e0] font-display">
+                        <h3 className="text-xl font-bold mb-3 text-black group-hover:text-[#faf3e0] font-display">
                             {s.title}
                         </h3>
-                        <p className="text-[#652b32]/70 group-hover:text-[#faf3e0]/80 leading-relaxed text-sm">{s.desc}</p>
+                        <p className="text-black/70 group-hover:text-[#faf3e0]/80 leading-relaxed text-sm">{s.desc}</p>
                     </motion.div>
                 ))}
             </div>
@@ -244,10 +244,10 @@ const ProcessSection = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#652b32] mb-4 font-display">
-                    Our Proven Process for <span className="text-[#652b32]">SEO services Success</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 font-display">
+                    Our Proven Process for <span className="text-black">SEO services Success</span>
                 </h2>
-                <p className="text-lg text-[#652b32]/70 max-w-3xl mx-auto">
+                <p className="text-lg text-black/70 max-w-3xl mx-auto">
                     Seeking to increase your presence on search engine results pages? The SEO experts of one of the best SEO companies can assist in identifying issues, prioritizing solutions, and optimizing elements to increase organic traffic and share of voice.
                 </p>
             </motion.div>
@@ -272,12 +272,12 @@ const ProcessSection = () => (
                         transition={{ delay: i * 0.08, duration: 0.5 }}
                     >
                         <div className="w-12 h-12 rounded-lg bg-[#652b32]/5 flex items-center justify-center mb-4 group-hover:bg-[#FACC15]/20 transition-colors">
-                            <p.icon size={24} className="text-[#652b32] group-hover:text-[#FACC15]" />
+                            <p.icon size={24} className="text-black group-hover:text-[#FACC15]" />
                         </div>
-                        <h3 className="text-lg font-bold text-[#652b32] mb-2 font-display group-hover:text-[#faf3e0]">
+                        <h3 className="text-lg font-bold text-black mb-2 font-display group-hover:text-[#faf3e0]">
                             {p.title}
                         </h3>
-                        <p className="text-[#652b32]/70 text-sm leading-relaxed group-hover:text-[#faf3e0]/80">{p.desc}</p>
+                        <p className="text-black/70 text-sm leading-relaxed group-hover:text-[#faf3e0]/80">{p.desc}</p>
                     </motion.div>
                 ))}
             </div>
@@ -295,10 +295,10 @@ const IndustriesSection = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#652b32] mb-4 font-display">
-                    Industries We Serve with <span className="text-[#652b32]">SEO (Search Engine Optimization) Services</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 font-display">
+                    Industries We Serve with <span className="text-black">SEO (Search Engine Optimization) Services</span>
                 </h2>
-                <div className="text-lg text-[#652b32]/70 max-w-4xl mx-auto space-y-4 text-center">
+                <div className="text-lg text-black/70 max-w-4xl mx-auto space-y-4 text-center">
                     <p>
                         With MediaMatic, the best SEO optimization company, we help businesses across various industries develop a brand that resonates with their consumers, all within the context of the specialized nature of the industry. Find out how we can help grow your online traffic and leads today. Our local SEO marketing agency services help drive local traffic to your brick-and-mortar franchise businesses.
                     </p>
@@ -332,10 +332,10 @@ const IndustriesSection = () => (
                             <ind.icon size={20} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
                         </div>
                         <div>
-                            <h3 className="font-bold text-[#652b32] group-hover:text-white mb-1 font-display">
+                            <h3 className="font-bold text-black group-hover:text-white mb-1 font-display">
                                 {ind.title}
                             </h3>
-                            <p className="text-[#652b32]/70 group-hover:text-white/80 text-[10px] leading-relaxed">{ind.desc}</p>
+                            <p className="text-black/70 group-hover:text-white/80 text-[10px] leading-relaxed">{ind.desc}</p>
                         </div>
                     </motion.div>
                 ))}
@@ -345,18 +345,16 @@ const IndustriesSection = () => (
 );
 
 const StatsSection = () => (
-    <section className="py-16 px-4 bg-primary text-primary-foreground">
-        <div className="container mx-auto max-w-5xl">
+    <section className="py-16 md:py-20 bg-[#652b32] text-[#faf3e0]">
+        <div className="container mx-auto px-6 max-w-6xl">
             <motion.div
-                className="text-center mb-10"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold font-display">
-                    Our Current Stats
-                </h2>
+                <h2 className="text-2xl md:text-3xl font-bold font-display">Our Current Stats</h2>
             </motion.div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
@@ -373,16 +371,22 @@ const StatsSection = () => (
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.5 }}
                     >
-                        <div className="text-4xl md:text-5xl font-bold text-[#FACC15] mb-2 font-display">
-                            {s.value}
-                        </div>
-                        <div className="text-primary-foreground/80 text-sm font-medium">{s.label}</div>
+                        <div className="text-4xl md:text-5xl font-bold text-[#FACC15] mb-2 font-display">{s.value}</div>
+                        <div className="text-[#faf3e0]/80 text-sm font-medium">{s.label}</div>
                     </motion.div>
                 ))}
             </div>
         </div>
     </section>
 );
+
+const faqsData = [
+    { q: "Why are SEO services essential for business success?", a: "SEO is one of the most effective digital marketing tactics for increasing sales, building credibility, building brand awareness, and gaining a competitive advantage." },
+    { q: "What results can businesses expect from MediamaticStudio's SEO services?", a: "With MediamaticStudio's SEO services, you will receive a tailored approach for your business, helping you set apart from your competitors." },
+    { q: "Why should I hire a professional SEO services company instead of doing SEO myself?", a: "Hiring professional SEO services offers numerous advantages; it saves time and optimizes resources, including access to expert counsel." },
+    { q: "What SEO strategies does Mediamatic Studio use to rank competitive keywords?", a: "A keyword strategy is an SEO strategy used to plan for identifying and employing the appropriate words and phrases that your target audience types into search engines." },
+    { q: "Why should businesses choose MediamaticStudio over other SEO optimization companies?", a: "Because it has demonstrated growth results, is completely transparent, uses innovative techniques, and specializes in its services." },
+];
 
 const FAQSection = () => (
     <section className="py-16 md:py-20 px-4 bg-background relative overflow-hidden">
@@ -405,7 +409,7 @@ const FAQSection = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#652b32] mb-4 font-display">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 font-display">
                     Frequently Asked <span className="text-[#FACC15]">Questions</span>
                 </h2>
             </motion.div>
@@ -417,22 +421,16 @@ const FAQSection = () => (
                 transition={{ duration: 0.7 }}
             >
                 <Accordion type="single" collapsible className="space-y-3">
-                    {[
-                        { q: "Why are SEO services essential for business success?", a: "SEO is one of the most effective digital marketing tactics for increasing sales, building credibility, building brand awareness, and gaining a competitive advantage." },
-                        { q: "What results can businesses expect from MediamaticStudio's SEO services?", a: "With MediamaticStudio's SEO services, you will receive a tailored approach for your business, helping you set apart from your competitors." },
-                        { q: "Why should I hire a professional SEO services company instead of doing SEO myself?", a: "Hiring professional SEO services offers numerous advantages; it saves time and optimizes resources, including access to expert counsel." },
-                        { q: "What SEO strategies does Mediamatic Studio use to rank competitive keywords?", a: "A keyword strategy is an SEO strategy used to plan for identifying and employing the appropriate words and phrases that your target audience types into search engines." },
-                        { q: "Why should businesses choose MediamaticStudio over other SEO optimization companies?", a: "Because it has demonstrated growth results, is completely transparent, uses innovative techniques, and specializes in its services." },
-                    ].map((faq, i) => (
+                    {faqsData.map((faq, i) => (
                         <AccordionItem
                             key={i}
                             value={`faq-${i}`}
                             className="border border-[#652b32]/10 rounded-xl px-6 bg-[#fff8eb] data-[state=open]:shadow-md transition-shadow"
                         >
-                            <AccordionTrigger className="text-left font-semibold text-[#652b32] hover:no-underline py-5">
+                            <AccordionTrigger className="text-left font-semibold text-black hover:no-underline py-5">
                                 {faq.q}
                             </AccordionTrigger>
-                            <AccordionContent className="text-[#652b32]/70 leading-relaxed pb-5">
+                            <AccordionContent className="text-black/70 leading-relaxed pb-5">
                                 {faq.a}
                             </AccordionContent>
                         </AccordionItem>
@@ -472,7 +470,7 @@ const CTASection = ({ onAuditClick }: { onAuditClick: () => void }) => (
                 </div>
                 <button
                     onClick={onAuditClick}
-                    className="inline-flex items-center gap-2 bg-[#faf3e0] text-[#652b32] px-8 py-3.5 rounded-full font-semibold shadow-xl hover:bg-white transition-all text-base"
+                    className="inline-flex items-center gap-2 bg-[#faf3e0] text-black px-8 py-3.5 rounded-full font-semibold shadow-xl hover:bg-white transition-all text-base"
                 >
                     Get Started Today <ArrowRight size={18} />
                 </button>
@@ -484,14 +482,6 @@ const CTASection = ({ onAuditClick }: { onAuditClick: () => void }) => (
 export function SEOServicesClient() {
     const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
     const handleAuditClick = () => setIsAuditModalOpen(true);
-
-    const faqs = [
-        { q: "Why are SEO services essential for business success?", a: "SEO is one of the most effective digital marketing tactics for increasing sales, building credibility, building brand awareness, and gaining a competitive advantage." },
-        { q: "What results can businesses expect from MediamaticStudio's SEO services?", a: "With MediamaticStudio's SEO services, you will receive a tailored approach for your business, helping you set apart from your competitors." },
-        { q: "Why should I hire a professional SEO services company instead of doing SEO myself?", a: "Hiring professional SEO services offers numerous advantages; it saves time and optimizes resources, including access to expert counsel." },
-        { q: "What SEO strategies does Mediamatic Studio use to rank competitive keywords?", a: "A keyword strategy is an SEO strategy used to plan for identifying and employing the appropriate words and phrases that your target audience types into search engines." },
-        { q: "Why should businesses choose MediamaticStudio over other SEO optimization companies?", a: "Because it has demonstrated growth results, is completely transparent, uses innovative techniques, and specializes in its services." },
-    ];
 
     return (
         <div className="min-h-screen bg-background font-sans">
@@ -508,10 +498,11 @@ export function SEOServicesClient() {
                     ]),
                     generateServiceSchema({
                         name: "Search Engine Optimization (SEO) Services",
-                        description: "Professional SEO, Local SEO, and e-commerce SEO services for higher search rankings and organic growth."
+                        description: "Professional SEO, Local SEO, and e-commerce SEO services for higher search rankings and organic growth.",
+                        serviceType: "SEO"
                     }),
                     generateOrganizationSchema(),
-                    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
+                    generateFAQSchema(faqsData.map(f => ({ question: f.q, answer: f.a })))
                 ]}
             />
 
@@ -531,3 +522,4 @@ export function SEOServicesClient() {
         </div>
     );
 }
+

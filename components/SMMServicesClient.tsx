@@ -160,7 +160,7 @@ const HeroSection = ({ onAuditClick }: { onAuditClick: () => void }) => {
 };
 
 const ExpectationsSection = () => (
-    <section className="py-16 md:py-20 px-4 bg-background">
+    <section className="py-16 md:py-20 px-4 bg-[#faf3e0]">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-20"
@@ -215,7 +215,7 @@ const ExpectationsSection = () => (
 );
 
 const WhyChooseSection = () => (
-    <section className="py-16 md:py-20 px-4 bg-secondary/50">
+    <section className="py-16 md:py-20 px-4 bg-[#faf3e0]">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-16"
@@ -250,7 +250,7 @@ const WhyChooseSection = () => (
 );
 
 const PlatformsSection = () => (
-    <section className="py-16 md:py-20 px-4 bg-background">
+    <section className="py-16 md:py-20 px-4 bg-[#faf3e0]">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-16"
@@ -348,7 +348,7 @@ const StrategiesSection = () => (
 );
 
 const ProcessSection = () => (
-    <section className="py-16 md:py-20 px-4 bg-background">
+    <section className="py-16 md:py-20 px-4 bg-[#faf3e0]">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-16"
@@ -395,7 +395,7 @@ const ProcessSection = () => (
 );
 
 const IndustriesSection = () => (
-    <section className="py-16 md:py-20 px-4 bg-secondary/30">
+    <section className="py-16 md:py-20 px-4 bg-[#faf3e0]">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-16"
@@ -428,7 +428,7 @@ const IndustriesSection = () => (
                 ].map((ind, i) => (
                     <motion.div
                         key={ind.title}
-                        className="flex items-start gap-4 p-5 rounded-xl bg-[#fff8eb] border border-[#652b32]/10 hover:shadow-md hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300 group"
+                        className="flex items-start gap-4 p-5 rounded-xl bg-[#faf3e0] border border-[#652b32]/10 hover:shadow-md hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300 group"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -451,33 +451,34 @@ const IndustriesSection = () => (
 );
 
 const StatsSection = () => (
-    <section className="py-16 px-6 bg-[#652b32] text-[#faf3e0]">
-        <div className="container mx-auto max-w-5xl">
+    <section className="py-16 md:py-20 bg-[#652b32] text-[#faf3e0]">
+        <div className="container mx-auto px-6 max-w-6xl">
             <motion.div
-                className="text-center mb-10"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold font-display uppercase">Our Performance Stats</h2>
+                <h2 className="text-2xl md:text-3xl font-bold font-display">Our Current Stats</h2>
             </motion.div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
-                    { value: "500+", label: "Social Campaigns" },
-                    { value: "10M+", label: "Reach Delivered" },
-                    { value: "85%", label: "Avg. Engagement Lift" },
-                    { value: "24/7", label: "Active Monitoring" },
+                    { value: "2+", label: "Branch Offices" },
+                    { value: "118+", label: "Web & App Projects" },
+                    { value: "75+", label: "Corporate Video Shoots" },
+                    { value: "124+", label: "Digital Marketing" },
                 ].map((s, i) => (
                     <motion.div
                         key={s.label}
                         className="text-center"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
                         viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.5 }}
                     >
-                        <div className="text-4xl font-bold text-[#FACC15] mb-2 font-display">{s.value}</div>
-                        <div className="text-sm font-medium opacity-80 uppercase tracking-widest">{s.label}</div>
+                        <div className="text-4xl md:text-5xl font-bold text-[#FACC15] mb-2 font-display">{s.value}</div>
+                        <div className="text-[#faf3e0]/80 text-sm font-medium">{s.label}</div>
                     </motion.div>
                 ))}
             </div>
@@ -486,7 +487,7 @@ const StatsSection = () => (
 );
 
 const FAQSection = () => (
-    <section className="py-16 md:py-20 px-4 bg-background relative overflow-hidden">
+    <section className="py-16 md:py-20 px-4 bg-[#faf3e0] relative overflow-hidden">
         <div className="container mx-auto max-w-3xl relative z-10">
             <motion.div
                 className="text-center mb-12"
@@ -516,7 +517,7 @@ const FAQSection = () => (
                         <AccordionItem
                             key={i}
                             value={`faq-${i}`}
-                            className="border border-[#652b32]/10 rounded-xl px-6 bg-[#fff8eb] data-[state=open]:shadow-md transition-shadow"
+                            className="border border-[#652b32]/10 rounded-xl px-6 bg-[#faf3e0] data-[state=open]:shadow-md transition-shadow"
                         >
                             <AccordionTrigger className="text-left font-semibold text-[#652b32] hover:no-underline py-5 font-display">
                                 {faq.q}
@@ -550,7 +551,7 @@ const SMMServicesClient = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-background font-body">
+        <div className="min-h-screen bg-[#faf3e0] font-body">
             <SEO
                 title="Social Media Marketing Company – Get More Leads Today"
                 description="Hire an expert social media marketing Company to boost brand reach, attract customers, and business growth. Contact us today."
@@ -609,3 +610,4 @@ const SMMServicesClient = () => {
 
 export { SMMServicesClient };
 export default SMMServicesClient;
+

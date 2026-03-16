@@ -13,6 +13,7 @@ interface ServiceData {
     description: string;
     icon?: string;
     price?: string;
+    serviceType?: string;
 }
 
 interface BlogPostData {
@@ -108,7 +109,7 @@ export function generateServiceSchema(service: ServiceData) {
             "name": "MediaMatic Studio",
             "url": "https://mediamaticstudio.com"
         },
-        "serviceType": service.name,
+        "serviceType": service.serviceType || service.name,
         ...(service.price && { "offers": { "@type": "Offer", "price": service.price } })
     };
 }

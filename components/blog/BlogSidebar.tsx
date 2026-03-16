@@ -1,27 +1,29 @@
-'use client'
+"use client";
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Link from "next/link";
-import { fetchRecentPosts, fetchBlogPostBySlug } from "@/lib/api";
+import Image from "next/image";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Calendar } from "lucide-react";
+import { fetchRecentPosts, fetchBlogPostBySlug } from "@/services/api";
 import styles from "@/app/blog/Blog.module.css";
 import BlogContactForm from "./BlogContactForm";
-import Image from "next/image";
+import logo from "@/public/assets/LOGO-blog.png";
 
 interface BlogSidebarProps {
     currentSlug?: string;
     showRecent?: boolean;
     showContact?: boolean;
-    variant?: 'card' | 'ghost';
+    variant?: "card" | "ghost";
 }
 
 const BlogSidebar = ({
     currentSlug,
     showRecent = true,
     showContact = true,
-    variant = 'card'
+    variant = "card",
 }: BlogSidebarProps) => {
     const queryClient = useQueryClient();
+
     const { data: allPosts = [], isLoading: loading } = useQuery({
         queryKey: ["recent-posts"],
         queryFn: () => fetchRecentPosts(4),
@@ -40,22 +42,20 @@ const BlogSidebar = ({
     };
 
     const recentPosts = currentSlug
-        ? allPosts.filter((p: any) => p.slug !== currentSlug).slice(0, 3)
-        : allPosts.slice(0, 3);
-
-    const logo = "/assets/LOGO-blog.png";
+        ? (allPosts as any[]).filter((p) => p.slug !== currentSlug).slice(0, 3)
+        : (allPosts as any[]).slice(0, 3);
 
     return (
         <aside className="space-y-8">
             {/* Recent Posts */}
             {showRecent && (
-                <div className={variant === 'card' ? styles.sidebarCard : ""}>
+                <div className={variant === "card" ? styles.sidebarCard : ""}>
                     <h3 className="text-xl font-bold mb-6 text-[#652b32]">Recent Posts</h3>
                     {loading ? (
-                        <div className="text-center py-4 text-[#652b32]/60">Loading...</div>
+                        <div className="text-center py-4 text-[#652b32]/50">Loading...</div>
                     ) : (
                         <div className="space-y-4">
-                            {recentPosts.map((post: any) => (
+                            {recentPosts.map((post) => (
                                 <Link
                                     key={post.slug}
                                     href={`/blog/${post.slug}/`}
@@ -64,17 +64,21 @@ const BlogSidebar = ({
                                 >
                                     <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-[#652b32]/5 relative">
                                         <Image
-                                            src={post.featured_image?.includes("unsplash") ? logo : (post.featured_image || logo)}
+                                            src={
+                                                post.featured_image?.includes("unsplash")
+                                                    ? logo
+                                                    : post.featured_image || logo
+                                            }
                                             alt={post.title}
                                             fill
                                             className="object-cover group-hover:scale-110 transition-transform duration-300"
                                         />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <h4 className="font-bold text-sm text-[#652b32] line-clamp-2 transition-colors">
+                                        <h4 className="font-bold text-sm text-gray-900 line-clamp-2 group-hover:text-[#652b32] transition-colors">
                                             {post.title}
                                         </h4>
-                                        <div className="flex items-center gap-2 mt-2 text-xs text-[#652b32]/60">
+                                        <div className="flex items-center gap-2 mt-2 text-xs text-gray-500">
                                             <Calendar className="w-3 h-3" />
                                             <span>{post.publish_date}</span>
                                         </div>

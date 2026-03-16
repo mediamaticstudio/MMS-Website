@@ -74,27 +74,32 @@ export const Header = () => {
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
+        const sections = navLinks.filter(link => link.id).map(link => link.id!);
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        };
+
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        
+        sections.forEach(id => {
+            const section = document.getElementById(id);
+            if (section) observer.observe(section);
+        });
+
         const onScroll = () => {
             const currentScrollY = window.scrollY;
             const isHomePage = pathname === "/";
-
-            // Detect active section for ScrollSpy
-            if (isScrollSpyPage) {
-                const sections = navLinks
-                    .filter(link => link.id)
-                    .map(link => document.getElementById(link.id!));
-
-                let currentSection = activeSection;
-                sections.forEach(section => {
-                    if (section) {
-                        const rect = section.getBoundingClientRect();
-                        if (rect.top <= 150) {
-                            currentSection = section.id;
-                        }
-                    }
-                });
-                setActiveSection(currentSection);
-            }
 
             // Determine direction for hiding
             if (isScrollSpyPage && currentScrollY > lastScrollY.current && currentScrollY > 100) {
@@ -109,8 +114,12 @@ export const Header = () => {
 
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
-    }, [pathname, activeSection, isScrollSpyPage]);
+        
+        return () => {
+            observer.disconnect();
+            window.removeEventListener("scroll", onScroll);
+        };
+    }, [pathname, isScrollSpyPage]);
 
     /* Mobile menu animation */
     useEffect(() => {
@@ -209,7 +218,7 @@ export const Header = () => {
         ${isVisible ? "translate-y-0" : "-translate-y-full"}
         ${isScrolled ? "bg-[#fff8eb] shadow-lg" : "bg-transparent"}`}
             >
-                <div className="container mx-auto px-6">
+                <div className="container mx-auto px-6 text-[#652b32]">
                     <nav className="flex items-center justify-between h-20">
                         {/* Logo ONLY */}
                         <a
@@ -256,7 +265,7 @@ export const Header = () => {
                                                 e.preventDefault();
                                                 handleNavClick(link.href, (link as any).isSubPage);
                                             }}
-                                            className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-primary transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${(activeSection === link.id || (link.id === "services" && pathname.startsWith("/services/") && !pathname.includes("digital-marketing-agency") && !(pathname.includes("-company") && !pathname.includes("website-development-agency"))) || (link.id === "digital-marketing" && (pathname.includes("digital-marketing-agency") || pathname.includes("-company"))) || (link.id === "studio" && pathname.includes("podcast-recording-studio-in-Coimbatore/"))) ? "after:w-full text-primary font-bold" : "after:w-0"}`}
+                                            className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-[#652b32] transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${(activeSection === link.id || (link.id === "services" && pathname.startsWith("/services/") && !pathname.includes("digital-marketing-agency") && !(pathname.includes("-company") && !pathname.includes("website-development-agency"))) || (link.id === "digital-marketing" && (pathname.includes("digital-marketing-agency") || pathname.includes("-company"))) || (link.id === "studio" && pathname.includes("podcast-recording-studio-in-Coimbatore/"))) ? "after:w-full text-[#652b32] font-bold" : "after:w-0"}`}
                                         >
                                             {link.label} <ChevronDown size={14} />
                                         </a>
@@ -323,7 +332,7 @@ export const Header = () => {
                                             e.preventDefault();
                                             handleNavClick(link.href, (link as any).isSubPage);
                                         }}
-                                        className={`relative text-[12px] xl:text-[13px] uppercase tracking-wider whitespace-nowrap after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full ${(link.id && activeSection === link.id) || (!isScrollSpyPage && link.isSubPage && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)))) ? "after:w-full text-primary font-bold" : "after:w-0"}`}
+                                        className={`relative text-[12px] xl:text-[13px] uppercase tracking-wider whitespace-nowrap after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full ${(link.id && activeSection === link.id) || (!isScrollSpyPage && link.isSubPage && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)))) ? "after:w-full text-[#652b32] font-bold" : "after:w-0"}`}
                                     >
                                         {link.label}
                                     </a>
@@ -484,3 +493,4 @@ export const Header = () => {
         </>
     );
 };
+

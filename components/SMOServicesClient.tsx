@@ -131,7 +131,7 @@ const HeroSection = ({ onAuditClick }: { onAuditClick: () => void }) => {
 };
 
 const IntroSection = () => (
-    <section className="py-16 bg-background overflow-hidden font-body">
+    <section className="py-16 bg-[#faf3e0] overflow-hidden font-body">
         <div className="container mx-auto px-6 max-w-7xl">
             <div className="grid md:grid-cols-2 gap-16 items-center">
                 <motion.div
@@ -233,7 +233,7 @@ const WhyNeedsSMO = () => (
 );
 
 const ServicesSection = () => (
-    <section className="py-16 md:py-24 px-4 bg-secondary/50 font-body">
+    <section className="py-16 md:py-24 px-4 bg-[#faf3e0] font-body">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-20"
@@ -309,7 +309,7 @@ const ServicesSection = () => (
 );
 
 const BenefitsSection = () => (
-    <section className="py-16 md:py-24 px-4 bg-background font-body">
+    <section className="py-16 md:py-24 px-4 bg-[#faf3e0] font-body">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-16"
@@ -388,7 +388,7 @@ const WhyChooseUs = () => (
 );
 
 const IndustriesSection = () => (
-    <section className="py-16 md:py-24 px-4 bg-secondary/30 font-body">
+    <section className="py-16 md:py-24 px-4 bg-[#faf3e0] font-body">
         <div className="container mx-auto max-w-6xl">
             <motion.div
                 className="text-center mb-16"
@@ -451,7 +451,7 @@ const IndustriesSection = () => (
 );
 
 const StatsSection = () => (
-    <section className="py-16 md:py-20 bg-[#652b32] text-[#faf3e0] font-body">
+    <section className="py-16 md:py-20 bg-[#652b32] text-[#faf3e0]">
         <div className="container mx-auto px-6 max-w-6xl">
             <motion.div
                 className="text-center mb-12"
@@ -460,9 +460,7 @@ const StatsSection = () => (
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
             >
-                <h2 className="text-2xl md:text-3xl font-bold font-display">
-                    Our Current Stats
-                </h2>
+                <h2 className="text-2xl md:text-3xl font-bold font-display">Our Current Stats</h2>
             </motion.div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {[
@@ -479,9 +477,7 @@ const StatsSection = () => (
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.5 }}
                     >
-                        <div className="text-4xl md:text-5xl font-bold text-[#FACC15] mb-2 font-display">
-                            {s.value}
-                        </div>
+                        <div className="text-4xl md:text-5xl font-bold text-[#FACC15] mb-2 font-display">{s.value}</div>
                         <div className="text-[#faf3e0]/80 text-sm font-medium">{s.label}</div>
                     </motion.div>
                 ))}
@@ -491,7 +487,7 @@ const StatsSection = () => (
 );
 
 const FAQSection = () => (
-    <section className="py-16 md:py-24 px-4 bg-background relative overflow-hidden font-body">
+    <section className="py-16 md:py-24 px-4 bg-[#faf3e0] relative overflow-hidden font-body">
         <div className="container mx-auto max-w-3xl relative z-10">
             <motion.div
                 className="text-center mb-12"
@@ -553,7 +549,7 @@ export function SMOServicesClient() {
     ];
 
     return (
-        <div className="min-h-screen bg-background font-body">
+        <div className="min-h-screen bg-[#faf3e0] font-body">
             <SEO
                 title="Social Media Optimization Company - Grow Your Brand"
                 description="Work professional social media optimization company to improve engagement, strengthen brand presence and growth. Get started now."
@@ -609,3 +605,4 @@ export function SMOServicesClient() {
         </div>
     );
 }
+

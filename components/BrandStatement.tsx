@@ -156,7 +156,7 @@ export const BrandStatement = () => {
                         </h2>
                     </div>
                     <div ref={line2Ref} className="overflow-hidden">
-                        <h2 className="font-display text-[clamp(1.8rem,10vw,7rem)] font-black leading-[1.1] italic text-[#faf3e0]/70 tracking-tight">
+                        <h2 className="font-display text-[clamp(1.8rem,10vw,7rem)] font-black leading-[1.1] italic text-[#facc15]/70 tracking-tight">
                             {renderTextWithChars("WE MANAGE")}
                         </h2>
                     </div>
@@ -253,3 +253,4 @@ export const BrandStatement = () => {
         </section>
     );
 };
+

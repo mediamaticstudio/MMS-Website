@@ -297,7 +297,7 @@ export const Hero = () => {
                     className="font-display text-[clamp(2.2rem,10vw,8rem)] leading-[1] md:leading-[0.9] tracking-tight text-[#652b32] font-bold will-change-transform transform-gpu"
                 >
                     <span className="hero-line block will-change-transform">
-                        <span className="inline-block relative">
+                        <span className="inline-block relative text-[#652b32]">
                             MediaMat
                             <span className="relative inline-block">
                                 <span ref={letterIRef} className="inline-block will-change-transform">i</span>
@@ -324,7 +324,7 @@ export const Hero = () => {
                         </span>
                     </span>
                     <span className="hero-line block will-change-transform">
-                        <span className="inline-block relative">
+                        <span className="inline-block relative text-[#652b32]">
                             Studi
                             <span className="relative inline-block ml-[0.02em]">
                                 <span ref={letterORef} className="inline-block will-change-transform">o</span>
@@ -354,18 +354,19 @@ export const Hero = () => {
                 {/* Subtitle */}
                 <p
                     ref={subtitleRef}
-                    className="mt-8 text-lg md:text-xl text-[#652b32]/70 max-w-xl mx-auto font-body will-change-transform"
+                    className="mt-8 text-lg md:text-xl text-[#652b32] max-w-xl mx-auto font-body will-change-transform"
                 >
                     Crafting digital experiences that resonate. <br className="hidden md:block" />
                     <span className="text-[#652b32] font-semibold block md:inline mt-2 md:mt-0">Branding • Design • Strategy</span>
                 </p>
 
                 <div ref={iconsBottomRef} className="flex justify-center gap-6 md:gap-12 mt-8 md:mt-12">
-                    <Globe className="hero-icon float-down w-8 h-8 md:w-12 md:h-12 text-[#652b32]/60 will-change-transform" />
-                    <Code className="hero-icon float-up w-8 h-8 md:w-12 md:h-12 text-[#652b32]/60 will-change-transform" />
-                    <Settings className="hero-icon float-down w-8 h-8 md:w-12 md:h-12 text-[#652b32]/60 will-change-transform" />
+                    <Globe className="hero-icon float-down w-8 h-8 md:w-12 md:h-12 text-[#652b32] will-change-transform" />
+                    <Code className="hero-icon float-up w-8 h-8 md:w-12 md:h-12 text-[#652b32] will-change-transform" />
+                    <Settings className="hero-icon float-down w-8 h-8 md:w-12 md:h-12 text-[#652b32] will-change-transform" />
                 </div>
             </div>
         </section>
     );
 };
+

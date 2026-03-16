@@ -1,19 +1,21 @@
-'use client'
+"use client";
 
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, Clapperboard, ArrowRight, Sparkles, CheckCircle2, PlayCircle, Layers, Monitor } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowLeft, Clapperboard, CheckCircle, ArrowRight } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const features = [
-    { title: "2D & 3D Animation", slug: "2d-3d", icon: Layers, desc: "A timeless art form and depth adding realism using cutting-edge technology." },
-    { title: "Explainer Videos", slug: "explainer", icon: PlayCircle, desc: "Simplify complex ideas through engaging visual narratives that capture attention." },
-    { title: "Concept Development", slug: "concept", icon: Sparkles, desc: "Creative concepts and professional storyboarding for your video projects." },
-    { title: "Script & Production", slug: "scripting", icon: Monitor, desc: "Professional script writing and full production services for animated content." },
+    { title: "2D Animation", desc: "A timeless art form known for its simplicity and charm. Ideal for characters and stories with a classic feel." },
+    { title: "3D Animation", desc: "Adds depth and realism using cutting-edge technology. Lifelike characters and breathtaking environments." },
+    { title: "Explainer Videos", desc: "Simplify complex ideas through engaging visual narratives that capture attention." },
+    { title: "Branding Videos", desc: "Strengthen your brand identity with customized motion graphics and visual storytelling." },
 ];
 
 const comparisonData = [
@@ -35,22 +37,23 @@ const benefits = [
     "Unmatched creativity and innovation",
 ];
 
-export function AnimationClient() {
+const AnimationClient = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const router = useRouter();
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+
         const ctx = gsap.context(() => {
             gsap.fromTo(
-                ".hero-content > *",
+                ".service-hero-content > *",
                 { y: 50, opacity: 0 },
                 {
                     y: 0,
                     opacity: 1,
                     stagger: 0.15,
-                    duration: 1,
-                    ease: "power4.out",
-                    delay: 0.3
+                    duration: 0.8,
+                    ease: "power3.out",
                 }
             );
 
@@ -61,11 +64,11 @@ export function AnimationClient() {
                     y: 0,
                     opacity: 1,
                     stagger: 0.2,
-                    duration: 1,
+                    duration: 0.7,
                     ease: "power3.out",
                     scrollTrigger: {
-                        trigger: ".content-section",
-                        start: "top 90%",
+                        trigger: ".content-blocks",
+                        start: "top 95%",
                     },
                 }
             );
@@ -75,92 +78,77 @@ export function AnimationClient() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background font-sans">
+        <div className="min-h-screen bg-background overflow-hidden w-full">
             <main ref={sectionRef}>
-                <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 bg-[#652b32] text-white overflow-hidden">
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                        <div className="absolute top-1/4 right-[5%] w-96 h-96 bg-yellow-400/5 rounded-full blur-[100px] animate-pulse" />
-                        <div className="absolute bottom-1/4 left-1/4 w-[600px] h-[600px] bg-white/5 rounded-full blur-[150px]" />
-                    </div>
-
-                    <div className="container mx-auto px-6 relative z-10">
-                        <button
-                            onClick={() => router.push("/")}
-                            className="inline-flex items-center gap-3 text-white/60 hover:text-yellow-400 mb-12 transition-all font-black uppercase tracking-[0.2em] text-[11px] group"
+                {/* HERO */}
+                <section className="pt-24 pb-16 md:pt-40 md:pb-24 bg-[#652b32] text-[#faf3e0] relative">
+                    <div className="container mx-auto px-6">
+                        <Link
+                            href="/#services"
+                            className="inline-flex items-center gap-2 mb-8 opacity-70 hover:opacity-100 transition-opacity"
                         >
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Home
-                        </button>
+                            <ArrowLeft size={18} /> Back
+                        </Link>
 
-                        <div className="hero-content max-w-5xl">
-                            <div className="inline-flex items-center gap-4 mb-10 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                                <Clapperboard className="w-6 h-6 text-yellow-400" />
-                                <span className="text-[12px] font-black uppercase tracking-[0.3em] text-white/90">Creative Production</span>
+                        <div className="service-hero-content max-w-4xl relative z-10">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-white/10 flex items-center justify-center">
+                                    <Clapperboard className="w-6 h-6 md:w-7 md:h-7" />
+                                </div>
+                                <span className="uppercase tracking-widest text-[10px] md:text-sm font-bold">
+                                    Creative Service
+                                </span>
                             </div>
 
-                            <h1 className="font-heading text-5xl md:text-8xl font-black leading-[1.05] mb-10 tracking-tight uppercase">
-                                2D & 3D <br />
-                                <span className="text-yellow-400 italic font-medium lowercase">Animation</span>
+                            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                                2D & 3D{" "}
+                                <span className="italic font-normal text-primary-foreground/70">
+                                    Animation
+                                </span>
                             </h1>
 
-                            <p className="text-xl md:text-3xl text-white/70 leading-relaxed max-w-3xl font-medium mb-12">
-                                Transforming complex ideas into <span className="text-white border-b-2 border-yellow-400/30">compelling visual stories</span> that capture hearts and minds.
+                            <p className="text-base md:text-xl opacity-80 leading-relaxed max-w-2xl">
+                                Animated Videos for Business: Transform Your Brand Identity with Creative Animation. At MediaMatic Studio, we transform complex ideas into compelling visual stories.
                             </p>
-
-                            <button
-                                onClick={() => router.push("/get-quote")}
-                                className="inline-flex items-center gap-4 bg-yellow-400 text-[#652b32] px-12 py-6 rounded-full font-black uppercase tracking-[0.15em] text-sm hover:bg-white transition-all active:scale-95 shadow-2xl group"
-                            >
-                                Start Your Story <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
                         </div>
                     </div>
+                    {/* Background Accent */}
+                    <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none" />
                 </section>
 
-                <section className="py-24 md:py-40 bg-white">
-                    <div className="container mx-auto px-6 max-w-7xl content-section">
-                        <div className="grid lg:grid-cols-2 gap-24 items-start mb-32">
-                            <div className="space-y-16">
+                {/* CONTENT & COMPARISON */}
+                <section className="py-16 md:py-24 px-4 bg-background">
+                    <div className="container mx-auto max-w-6xl">
+                        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                            <div className="content-blocks space-y-8">
                                 <div className="content-block">
-                                    <h2 className="font-heading text-3xl md:text-5xl font-black text-[#652b32] mb-8 uppercase tracking-tight">What We Do</h2>
-                                    <p className="text-xl text-[#652b32]/60 leading-relaxed font-bold italic border-l-8 border-yellow-400 pl-10 py-4 mb-12">
-                                        "We specialize in high-quality animation that translates your business goals into cinematic masterpieces."
-                                    </p>
-                                    <p className="text-lg text-[#652b32]/70 leading-relaxed font-medium">
-                                        Our team of creative professionals specializes in 2D & 3D animation, explainer videos, branding videos, and more. From concept development and storyboarding to final production, we handle everything.
+                                    <h2 className="text-2xl md:text-3xl font-bold mb-4 text-[#652b32]">What We Do</h2>
+                                    <p className="text-foreground/70 leading-relaxed">
+                                        Our team of creative professionals specializes in high-quality 2D & 3D animation videos, explainer videos, branding videos, and more. We offer customized solutions tailored to meet your specific business goals—from concept development and storyboarding to final production.
                                     </p>
                                 </div>
-
-                                <div className="grid sm:grid-cols-2 gap-6">
+                                <div className="grid sm:grid-cols-2 gap-4">
                                     {features.map((f, i) => (
-                                        <div
-                                            key={i}
-                                            onClick={() => router.push(`/services/animation/${f.slug}/`)}
-                                            className="p-8 rounded-[2.5rem] bg-[#faf3e0] border border-[#652b32]/5 shadow-sm hover:shadow-2xl transition-all duration-500 group cursor-pointer"
-                                        >
-                                            <div className="w-14 h-14 rounded-2xl bg-[#652b32]/5 flex items-center justify-center mb-6 group-hover:bg-[#652b32] transition-colors">
-                                                <f.icon className="w-6 h-6 text-[#652b32] group-hover:text-yellow-400 transition-colors" />
-                                            </div>
-                                            <h4 className="font-black text-[#652b32] uppercase tracking-tight text-lg mb-2">{f.title}</h4>
-                                            <p className="text-[#652b32]/60 text-sm font-medium leading-relaxed">{f.desc}</p>
-                                            <div className="mt-6 flex items-center gap-2 text-[#652b32]/40 group-hover:text-[#652b32] font-black uppercase tracking-widest text-[10px] transition-colors">
-                                                Explore <ArrowRight className="w-3.5 h-3.5" />
-                                            </div>
+                                        <div key={i} className="p-5 rounded-2xl bg-secondary/30 border border-border/50">
+                                            <CheckCircle className="text-[#652b32] w-5 h-5 mb-3" />
+                                            <h4 className="font-bold text-sm mb-1">{f.title}</h4>
+                                            <p className="text-[11px] text-foreground/60 leading-normal">{f.desc}</p>
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
-                            <div className="lg:sticky lg:top-32">
-                                <div className="relative p-1 md:p-12 rounded-[4rem] bg-[#652b32] text-white shadow-[0_50px_100px_-20px_rgba(101,43,50,0.4)] overflow-hidden">
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-3xl" />
-                                    <h3 className="font-heading text-3xl font-black mb-10 uppercase tracking-tight">Why Animation Works</h3>
-                                    <div className="space-y-6">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-[#652b32]/5 rounded-[2rem] -rotate-2 -z-10" />
+                                <div className="bg-white p-6 md:p-10 rounded-[2rem] shadow-xl border border-border/50">
+                                    <h3 className="text-xl font-bold mb-6 text-[#652b32]">Why Animation Works</h3>
+                                    <div className="space-y-4">
                                         {benefits.map((benefit, i) => (
-                                            <div key={i} className="flex gap-5 group/item">
-                                                <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 group-hover/item:bg-yellow-400 transition-colors">
-                                                    <CheckCircle2 className="w-4 h-4 text-white group-hover/item:text-[#652b32]" />
+                                            <div key={i} className="flex gap-3">
+                                                <div className="w-5 h-5 rounded-full bg-[#FACC15]/20 flex-shrink-0 flex items-center justify-center mt-1">
+                                                    <div className="w-1.5 h-1.5 rounded-full bg-[#652b32]" />
                                                 </div>
-                                                <p className="text-lg text-white/70 font-medium leading-tight group-hover/item:text-white transition-colors">{benefit}</p>
+                                                <p className="text-sm text-foreground/70 leading-relaxed">{benefit}</p>
                                             </div>
                                         ))}
                                     </div>
@@ -168,27 +156,30 @@ export function AnimationClient() {
                             </div>
                         </div>
 
-                        <div className="mt-40">
-                            <div className="text-center mb-20">
-                                <h2 className="font-heading text-4xl md:text-7xl font-black text-[#652b32] mb-8 uppercase tracking-tight leading-tight">2D <span className="text-yellow-600">vs</span> 3D</h2>
-                                <div className="h-1.5 w-40 bg-yellow-400 mx-auto rounded-full" />
+                        {/* COMPARISON TABLE */}
+                        <div className="mt-24">
+                            <div className="text-center mb-12">
+                                <h2 className="text-2xl md:text-4xl font-bold text-[#652b32] mb-4">2D vs 3D Animation</h2>
+                                <p className="text-foreground/60 max-w-2xl mx-auto">
+                                    Compare the strengths of each medium to find the perfect fit for your brand's next project.
+                                </p>
                             </div>
 
-                            <div className="overflow-x-auto rounded-[3.5rem] shadow-2xl border border-[#652b32]/5">
-                                <table className="w-full border-collapse bg-white min-w-[800px]">
+                            <div className="overflow-x-auto pb-6">
+                                <table className="w-full border-collapse bg-white rounded-3xl overflow-hidden shadow-2xl border border-[#652b32]/10 min-w-[600px]">
                                     <thead>
-                                        <tr className="bg-[#652b32] text-white">
-                                            <th className="py-10 px-12 text-left font-black uppercase tracking-[0.2em] text-xs">Feature</th>
-                                            <th className="py-10 px-12 text-left font-black uppercase tracking-[0.2em] text-xs">2D Animation</th>
-                                            <th className="py-10 px-12 text-left font-black uppercase tracking-[0.2em] text-xs">3D Animation</th>
+                                        <tr className="bg-[#652b32] text-[#faf3e0]">
+                                            <th className="py-6 px-8 text-left font-bold uppercase tracking-wider text-xs">Feature</th>
+                                            <th className="py-6 px-8 text-left font-bold uppercase tracking-wider text-xs">2D Animation</th>
+                                            <th className="py-6 px-8 text-left font-bold uppercase tracking-wider text-xs">3D Animation</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-[#652b32]/10">
                                         {comparisonData.map((row, i) => (
-                                            <tr key={i} className="hover:bg-[#faf3e0]/50 transition-colors group">
-                                                <td className="py-8 px-12 font-black text-[#652b32] uppercase tracking-tighter text-sm">{row.feature}</td>
-                                                <td className="py-8 px-12 text-[#652b32]/60 font-medium group-hover:text-[#652b32] transition-colors">{row.d2}</td>
-                                                <td className="py-8 px-12 text-[#652b32]/60 font-medium group-hover:text-[#652b32] transition-colors">{row.d3}</td>
+                                            <tr key={i} className="hover:bg-[#652b32]/[0.02] transition-colors group">
+                                                <td className="py-5 px-8 font-bold text-[#652b32] text-sm">{row.feature}</td>
+                                                <td className="py-5 px-8 text-foreground/70 text-sm group-hover:text-foreground transition-colors">{row.d2}</td>
+                                                <td className="py-5 px-8 text-foreground/70 text-sm group-hover:text-foreground transition-colors">{row.d3}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -196,23 +187,22 @@ export function AnimationClient() {
                             </div>
                         </div>
 
-                        <div className="mt-40 text-center">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                        {/* CALL TO ACTION */}
+                        <div className="mt-20 text-center">
+                            <button
+                                onClick={() => {
+                                    router.push("/contact-us/");
+                                }}
+                                className="inline-flex items-center gap-3 bg-[#652b32] text-[#faf3e0] px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:scale-105 transition-all active:scale-95"
                             >
-                                <button
-                                    onClick={() => router.push("/get-quote")}
-                                    className="inline-flex items-center gap-5 bg-[#652b32] text-white px-14 py-7 rounded-full font-black uppercase tracking-[0.2em] text-sm hover:bg-yellow-600 transition-all active:scale-95 shadow-2xl group"
-                                >
-                                    Start Your Animation Project <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </motion.div>
+                                Start Your Animation Project <ArrowRight size={20} />
+                            </button>
                         </div>
                     </div>
                 </section>
             </main>
         </div>
     );
-}
+};
+
+export default AnimationClient;

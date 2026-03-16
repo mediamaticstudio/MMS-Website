@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { SEMServicesClient } from "@/components/SEMServicesClient";
+import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
     title: "Best SEM & PPC Agency in Coimbatore | Paid Media Experts",
@@ -16,5 +17,22 @@ export const metadata: Metadata = {
 };
 
 export default function SEMServicesPage() {
-    return <SEMServicesClient />;
+    const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "SEM & PPC Services",
+        "description": "Expert search engine marketing and PPC advertising services in Coimbatore.",
+        "provider": {
+            "@type": "Organization",
+            "name": "MediaMatic Studio",
+            "url": "https://mediamaticstudio.com"
+        }
+    };
+
+    return (
+        <>
+            <StructuredData data={serviceSchema} />
+            <SEMServicesClient />
+        </>
+    );
 }

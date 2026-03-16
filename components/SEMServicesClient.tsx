@@ -19,7 +19,12 @@ import {
     Factory,
     Car,
     Dumbbell,
-    CalendarDays
+    CalendarDays,
+    Scale,
+    HardHat,
+    Sprout,
+    Truck,
+    Mail,
 } from "lucide-react";
 import {
     Accordion,
@@ -29,12 +34,10 @@ import {
 } from "@/components/ui/accordion";
 import { RecentBlog } from "@/components/RecentBlog";
 import { MarketingAuditDialog } from "@/components/MarketingAuditDialog";
-import { useState } from "react";
+import { Footer } from "@/components/Footer";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { generateBreadcrumbSchema, generateServiceSchema, generateOrganizationSchema, generateFAQSchema } from "@/lib/seo-schemas";
-import { SEO } from "@/components/SEO";
 
 const fadeUp = {
     hidden: { opacity: 0, y: 40 },
@@ -50,443 +53,513 @@ const cardVariants = {
     }),
 };
 
+// ─── Stats Section ────────────────────────────────────────────────────────────
+const StatsSection = () => (
+    <section className="py-16 md:py-20 bg-[#652b32] text-[#faf3e0]">
+        <div className="container mx-auto px-6 max-w-6xl">
+            <motion.div
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                <h2 className="text-2xl md:text-3xl font-bold font-display">Our Current Stats</h2>
+            </motion.div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {[
+                    { value: "2+", label: "Branch Offices" },
+                    { value: "118+", label: "Web & App Projects" },
+                    { value: "75+", label: "Corporate Video Shoots" },
+                    { value: "124+", label: "Digital Marketing" },
+                ].map((s, i) => (
+                    <motion.div
+                        key={s.label}
+                        className="text-center"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                    >
+                        <div className="text-4xl md:text-5xl font-bold text-[#FACC15] mb-2 font-display">{s.value}</div>
+                        <div className="text-[#faf3e0]/80 text-sm font-medium">{s.label}</div>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ─── Hero Section ─────────────────────────────────────────────────────────────
+const HeroSection = ({ onAuditClick }: { onAuditClick: () => void }) => (
+    <section className="relative overflow-hidden py-16 md:py-24 lg:py-32 px-4 md:px-12 bg-[#652b32]">
+        <div className="absolute top-16 right-[15%] opacity-20 animate-pulse pointer-events-none">
+            <Sparkles size={32} className="text-[#faf3e0]" />
+        </div>
+        <div className="absolute top-[30%] right-[8%] opacity-15 pointer-events-none">
+            <Star size={24} className="text-[#FACC15]" fill="#FACC15" />
+        </div>
+        <div className="absolute top-[20%] right-[25%] opacity-10 pointer-events-none">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+                <circle cx="60" cy="60" r="50" stroke="#faf3e0" strokeWidth="1" strokeDasharray="6 6" />
+            </svg>
+        </div>
+        <div className="absolute bottom-16 right-[20%] opacity-10 pointer-events-none">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <rect x="10" y="10" width="60" height="60" rx="12" stroke="#faf3e0" strokeWidth="1" strokeDasharray="4 4" />
+            </svg>
+        </div>
+
+        <div className="container mx-auto max-w-6xl relative z-10">
+            <Link
+                href="/services/digital-marketing-agency/"
+                className="inline-flex items-center gap-2 text-[#faf3e0]/60 hover:text-[#faf3e0] transition-colors font-medium group mb-8 md:mb-12"
+            >
+                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Digital Marketing
+            </Link>
+
+            <motion.div
+                className="text-left max-w-4xl"
+                initial="hidden"
+                animate="visible"
+                variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+            >
+                <motion.div
+                    variants={fadeUp}
+                    className="inline-flex items-center gap-3 rounded-full border border-[#faf3e0]/30 bg-[#faf3e0]/10 px-4 py-2 md:px-5 md:py-2.5 mb-6 md:mb-8 font-heading"
+                >
+                    <Image src="/assets/digital/sem.png" alt="SEM" width={20} height={20} className="brightness-0 invert" />
+                    <span className="text-[10px] md:text-sm font-bold uppercase tracking-widest text-[#faf3e0]/90">SEM &amp; Paid Media</span>
+                </motion.div>
+
+                <motion.h1
+                    variants={fadeUp}
+                    className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-[#faf3e0] leading-tight mb-6 md:mb-8 font-display"
+                >
+                    Search Engine Marketing Companies Specializing in <span className="text-[#FACC15]">PPC &amp; Paid Media</span>
+                </motion.h1>
+
+                <motion.div variants={fadeUp} className="space-y-6 text-sm md:text-lg text-[#faf3e0]/70 max-w-4xl mb-8 md:mb-10 leading-relaxed text-left">
+                    <p>
+                        In the modern ruthless digital world, businesses need to be visible and show quantifiable growth instantly. Leading search engine marketing firms concentrate on performance-driven campaigns that turn intent into income because of this. Precision targeting, audience data, and clever bidding models are all combined at Mediamaticstudio to produce lucrative paid ads.
+                    </p>
+                    <p>
+                        Our strategy, as one of the growth-oriented search engine marketing firms, guarantees that businesses show up in front of consumers who are prepared to buy at the appropriate moment, optimizing reach, engagement, and return on investment.
+                    </p>
+                    <div className="bg-[#faf3e0]/5 border-l-4 border-[#FACC15] p-6 rounded-r-xl">
+                        <p className="font-bold text-[#faf3e0] mb-2 text-xl">Scale Faster with Mediamaticstudio&apos;s Social Engine Marketing in Digital Marketing</p>
+                        <p>Launch data-driven pay per click campaigns that attract high-intent traffic, boost conversions, and deliver measurable ROI. Our efficient campaigns get backed by audience intent mapping, competitive analysis and analytics. Our group creates scalable funnels that convert clicks into long-term clients.</p>
+                    </div>
+                </motion.div>
+
+                <motion.div variants={fadeUp}>
+                    <button
+                        onClick={onAuditClick}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#faf3e0] text-[#652b32] px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-white transition-all text-sm md:text-base"
+                    >
+                        Request a Free SEM Consultation <ArrowRight size={18} />
+                    </button>
+                </motion.div>
+            </motion.div>
+        </div>
+    </section>
+);
+
+// ─── Why SEM Section ──────────────────────────────────────────────────────────
+const WhySEMSection = () => (
+    <section className="py-16 bg-background">
+        <div className="container mx-auto px-6 max-w-7xl text-[#652b32]">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 font-display">
+                        What Is Search Engine Marketing &amp; How Does It Drive <span className="text-[#FACC15]">Instant Visibility?</span>
+                    </h2>
+                    <div className="space-y-4 text-muted-foreground leading-relaxed">
+                        <p>
+                            Search engine marketing is a paid strategy whereby your brand appears first when consumers are searching related goods or services. Organic SEO takes time which is not the case with paid advertisements where the exposure is immediate.
+                        </p>
+                        <p>
+                            Through smart bidding, extension of adverts, and key-word targeting, businesses are likely to capture high-intent customers at the decision stage. Well-planned campaign ensures optimized ad copy, compelling landing pages and continuous testing of A/B.
+                        </p>
+                        <p>
+                            This is a method that can see organizations increase site traffic, record measurable conversions within several days, and achieve traction instantly with this methodical approach to marketing through search engines.
+                        </p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="grid grid-cols-2 gap-4"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                >
+                    {[
+                        { label: "Immediate Results", icon: Zap },
+                        { label: "High Intent Traffic", icon: Target },
+                        { label: "Measurable ROI", icon: BarChart3 },
+                        { label: "Precision Targeting", icon: MousePointerClick },
+                    ].map((item, i) => (
+                        <div
+                            key={i}
+                            className="p-6 rounded-2xl bg-[#652b32] text-[#faf3e0] flex flex-col items-center justify-center text-center hover:bg-[#faf3e0] hover:text-[#652b32] transition-all duration-300 group cursor-default shadow-md hover:shadow-xl"
+                        >
+                            <item.icon size={32} className="mb-4 text-[#FACC15] group-hover:text-[#652b32] transition-colors" />
+                            <span className="text-sm font-bold uppercase tracking-tighter">{item.label}</span>
+                        </div>
+                    ))}
+                </motion.div>
+            </div>
+        </div>
+    </section>
+);
+
+// ─── Paid Marketing Support Section ──────────────────────────────────────────
+const PaidMarketingSupport = () => (
+    <section className="py-16 md:py-24 px-4 bg-[#652b32] text-[#faf3e0]">
+        <div className="container mx-auto max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+                <motion.div
+                    className="order-2 md:order-1"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-[#faf3e0]/10 aspect-video flex items-center justify-center bg-[#faf3e0]/5 group">
+                        <Rocket size={120} className="text-[#FACC15] opacity-20 group-hover:scale-110 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#652b32] via-transparent to-transparent opacity-60" />
+                        <div className="absolute bottom-8 left-8 right-8">
+                            <h3 className="text-xl font-bold mb-2 font-display">Qualified Leads</h3>
+                            <p className="text-sm opacity-80">Steady generation for long-term growth</p>
+                        </div>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="order-1 md:order-2"
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                >
+                    <h2 className="text-3xl md:text-5xl font-bold mb-8 font-display">
+                        How Paid Advertising Marketing Supports <span className="text-[#FACC15]">Brand &amp; Lead Generation</span>
+                    </h2>
+                    <div className="space-y-6 text-[#faf3e0]/80 leading-relaxed text-lg">
+                        <p>
+                            Along with the qualified leads, strategic paid advertising marketing enhances brand credibility. By targeting specific demographic, interests and search targets, businesses can acquire audiences with the highest likelihood of conversion.
+                        </p>
+                        <p>
+                            Also, paid advertisements reinforce brand recognition by being repeated in search engines and display networks. The prospects are developed until they are ready to take action with the help of proper funnel optimization and retargeting strategies.
+                        </p>
+                        <p>
+                            This performance-based approach guarantees that marketing funds are allocated to initiatives that produce genuine engagement, improved recall, and steady lead generation for long-term company expansion.
+                        </p>
+                    </div>
+                </motion.div>
+            </div>
+        </div>
+    </section>
+);
+
+// ─── Services Section ─────────────────────────────────────────────────────────
+const ServicesSection = () => (
+    <section className="py-16 md:py-24 px-4 bg-secondary/50">
+        <div className="container mx-auto max-w-6xl text-[#652b32]">
+            <motion.div
+                className="text-center mb-16"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-display">
+                    Our Search Engine Marketing &amp; <span className="text-[#FACC15]">Paid Advertising Services</span>
+                </h2>
+                <div className="text-lg text-muted-foreground max-w-4xl mx-auto space-y-4">
+                    <p>
+                        We offer all-inclusive solutions that promote quantifiable performance. We develop organized sponsored funnels, maximize bidding tactics, and guarantee clear reporting as seasoned search engine marketing companies.
+                    </p>
+                    <p>Our services are centered on ROI scaling across several platforms, conversion optimization, and traffic quality.</p>
+                </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                    { icon: MousePointerClick, title: "Pay Per Click (PPC) Advertising", desc: "Our PPC campaigns will aim at transforming the high-intent search queries to leads or sales. We carry out competition benchmarking, keyword analysis and continuous bid optimization in order to reduce the cost per acquisition. The performance of all campaigns is monitored to ensure that there is a consistent improvement and a consistent growth." },
+                    { icon: Globe, title: "Google Ads Campaign Management", desc: "We manage the entire Google Ads ecosystem consisting of search, display, shopping and remarketing campaigns. Our employees will ensure systematic targeting and conversion monitoring on measurable outcomes, including the creation of accounts and the advanced division of audiences." },
+                    { icon: Monitor, title: "Bing Ads Management", desc: "Our Bing Ads solutions will help marketers access untapped populations because there is less competition and it is more cost-effective. We maximize the device targeting, ad creatives, and keyword strategies to achieve more reach and profitability." },
+                    { icon: Settings, title: "Paid Campaign Management", desc: "Our comprehensive paid campaign management guarantees that campaign performance and corporate goals are in line. In order to constantly improve the results of all paid media, we are focused on testing, analytics, and optimization." },
+                ].map((s, i) => (
+                    <motion.div
+                        key={s.title}
+                        className="p-10 rounded-3xl bg-[#faf3e0] border border-border hover:shadow-xl hover:bg-[#652b32] transition-all duration-500 group"
+                        custom={i}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={cardVariants}
+                    >
+                        <div className="w-16 h-16 rounded-2xl bg-[#652b32]/5 flex items-center justify-center mb-6 group-hover:bg-[#faf3e0]/10 transition-colors">
+                            <s.icon size={32} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-[#652b32] mb-4 font-display group-hover:text-[#faf3e0]">{s.title}</h3>
+                        <p className="text-[#652b32]/80 leading-relaxed group-hover:text-[#faf3e0]/90">{s.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ─── Benefits Section ─────────────────────────────────────────────────────────
+const BenefitsSection = () => (
+    <section className="py-16 md:py-24 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl text-[#652b32]">
+            <motion.div
+                className="text-center mb-16"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+            >
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 font-display">
+                    The Role of <span className="text-[#FACC15]">Paid Media Marketing</span> Services in Business Performance
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+                    In the case of businesses that seek to compete in the digital market, instant visibility, quantifiable growth, and scalable revenue potential is ensured through effective paid advertising.
+                </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {[
+                    { title: "Drive High-Intent Traffic", desc: "The high intent users who are actively seeking solutions have better conversion rates. The primary elements of our campaigns are geo-targeting, custom placements of ads, and transactional keywords. This will ensure that firms attract consumers who are ready to take action." },
+                    { title: "Improve Lead Quality & Conversion Rates", desc: "We target the parameters to reach serious decision-makers and buyers in a bid to ensure that the adverts are received by people. Persuasive messages, A/B testing, and optimization of the landing page provide more user experience and result in a better quality of the leads and the conversion rates." },
+                    { title: "Accelerate Sales & Revenue Growth", desc: "We develop revenue-focused funnels that boost average order value and deal closing by fusing remarketing tactics with performance data." },
+                    { title: "Optimize Marketing Spend Efficiency", desc: "The allocation of budget is done through real-time analysis of data. We keep track of the rates of clicks, cost per click and returns continuously to ensure that the funds are only allocated to the campaigns that are working." },
+                    { title: "Enhance Brand Visibility & Market Reach", desc: "Positioning of brands on search results and partner networks is strategic, placing brands on prime spots. Regular exposure creates the credibility, awareness, and brand power in the competitive markets over time." },
+                    { title: "Enable Data-Driven Decision Making", desc: "Analytics and conversion tracking support each campaign. Optimization choices are guided by insights from performance reports, guaranteeing ongoing development and more intelligent marketing expenditures." },
+                    { title: "Support Scalable Business Growth", desc: "Our paid frameworks are designed to scale alongside business expansion. Due to the demand, the campaigns are modified to fit the best of the markets and audience segments." },
+                    { title: "Strengthen Competitive Advantage", desc: "Competitor keywords and high-value search terms enable the businesses to be competitive in the crowded industry. This is a proactive positioning that will guarantee more visibility and customer acquisition." },
+                ].map((item, i) => (
+                    <motion.div
+                        key={i}
+                        className="flex flex-col gap-3 p-6 rounded-2xl bg-[#faf3e0] hover:bg-[#652b32] transition-all duration-300 group cursor-default"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                    >
+                        <div className="h-1 bg-[#652b32] w-12 rounded-full mb-2 group-hover:bg-[#FACC15] group-hover:w-full transition-all" />
+                        <h4 className="font-bold text-lg font-display text-[#652b32] group-hover:text-[#faf3e0]">{item.title}</h4>
+                        <p className="text-sm text-[#652b32]/70 group-hover:text-[#faf3e0]/80 leading-relaxed">{item.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ─── Benefits Audit Section ───────────────────────────────────────────────────
+const BenefitsAuditSection = () => (
+    <section className="py-16 md:py-24 px-4 bg-[#faf3e0]">
+        <div className="container mx-auto max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+                <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-3xl md:text-5xl font-bold text-[#652b32] mb-8 font-display">
+                        Measurable Benefits of Search Engine Marketing Strategy for <span className="text-[#FACC15]">Scaling Businesses</span>
+                    </h2>
+                    <div className="space-y-6 text-[#652b32]/80 text-lg leading-relaxed">
+                        <p>
+                            The organised search engine marketing strategy offers quantifiable outcomes in the form of increased traffic, generation of leads and enhanced sales. Businesses are able to trace all the clicks and conversions with high accuracy and finesse through precise targeting and high-level analytics.
+                        </p>
+                        <p>
+                            Adjustments in the campaign are founded on the performance information and it is optimized continuously. The strategy minimizes marketing risks and enhances predictability.
+                        </p>
+                        <p>
+                            Between better brand awareness and quicker ROI, SEM assists growing companies to take over the search engine results, generate qualified leads, and win over competition in local and international markets.
+                        </p>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    className="p-1 md:p-12 rounded-[3rem] bg-[#652b32] text-[#faf3e0] relative shadow-2xl overflow-hidden"
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#FACC15]/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+                    <h3 className="text-2xl md:text-3xl font-bold mb-8 font-display">A Results Focused Search Engine Marketing Agency Built by Mediamaticstudio</h3>
+                    <div className="space-y-6 text-sm md:text-base opacity-95">
+                        <p>
+                            Mediamaticstudio is a transparency and accountable performance-based search engine marketing agency. Our areas of interest are strategic plan, excellence in execution and optimization of ROI.
+                        </p>
+                        <p>
+                            The firm has a combination of creative ad copy, structured bidding strategies and continuous analytics that help us to maximize returns. We are also not focused on vanity metrics unlike traditional agencies.
+                        </p>
+                    </div>
+                </motion.div>
+            </div>
+        </div>
+    </section>
+);
+
+// ─── Industries Section ───────────────────────────────────────────────────────
+const IndustriesSection = () => (
+    <section className="py-16 md:py-24 px-4 bg-secondary/30">
+        <div className="container mx-auto max-w-6xl">
+            <motion.div
+                className="text-center mb-16"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-display">
+                    Industries We Serve with <span className="text-[#FACC15]">SEM</span> (Search Engine Marketing) Services
+                </h2>
+                <div className="text-lg text-muted-foreground max-w-4xl mx-auto space-y-4 text-center">
+                    <p>Our SEM (Search Engine Marketing) Services will be customized to suit various industries that aim at quantifiable online development.</p>
+                    <p>Our market analysis, screening of market trends, audiences and competition levels enable us to develop specific campaigns that provide high impact visibility and stability in performance across sectors.</p>
+                </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+                {[
+                    { icon: Building2, title: "Real Estate", desc: "Create qualified property inquiries through geo-targeted campaigns and buyer-intent keywords." },
+                    { icon: Plane, title: "Travel & Tourism", desc: "Capture seasonal demand and increase bookings with high-converting paid search campaigns." },
+                    { icon: Factory, title: "Manufacturing", desc: "Reach B2B buyers and distributors using niche industry keyword targeting." },
+                    { icon: Car, title: "Automotive", desc: "Use localized paid marketing to increase dealership visits and car queries." },
+                    { icon: Dumbbell, title: "Sports & Fitness", desc: "Use interest-based targeting to boost product sales and memberships." },
+                    { icon: Zap, title: "Energy & Utilities", desc: "Use strategic paid visibility to advertise services and establish credibility." },
+                    { icon: Sprout, title: "Agriculture & Agri Tech", desc: "Use targeted digital advertisements to establish a connection with distributors and farmers." },
+                    { icon: HardHat, title: "Construction", desc: "Make project queries using high-intent commercial keywords." },
+                    { icon: Scale, title: "Legal & Law Firms", desc: "Attract clients seeking immediate legal assistance via search-based campaigns." },
+                    { icon: Mail, title: "Media & Publishing", desc: "Increase readership and subscriptions through optimized paid traffic." },
+                    { icon: CalendarDays, title: "Event Management", desc: "Use marketing funnels to increase ticket sales and registrations." },
+                    { icon: Sparkles, title: "Beauty & Wellness", desc: "Use localized ad targeting to increase appointments and product sales." },
+                    { icon: Truck, title: "Logistics & Warehouse Management", desc: "Use industry-focused keyword advertising to generate B2B leads." },
+                ].map((ind, i) => (
+                    <motion.div
+                        key={ind.title}
+                        className="flex items-start gap-4 p-5 rounded-xl bg-background border border-border hover:shadow-md hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 group"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05, duration: 0.4 }}
+                    >
+                        <div className="w-10 h-10 rounded-lg bg-[#652b32]/5 flex items-center justify-center shrink-0 group-hover:bg-[#faf3e0]/10 transition-colors">
+                            <ind.icon size={20} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
+                        </div>
+                        <div>
+                            <h3 className="font-bold text-foreground group-hover:text-primary-foreground mb-1 font-display">{ind.title}</h3>
+                            <p className="text-muted-foreground group-hover:text-primary-foreground/80 text-[10px] leading-relaxed">{ind.desc}</p>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
+// ─── FAQ Section ──────────────────────────────────────────────────────────────
+const FAQSection = () => (
+    <section className="py-16 md:py-24 px-4 bg-background relative overflow-hidden">
+        <div className="container mx-auto max-w-3xl relative z-10 text-[#652b32]">
+            <motion.div
+                className="text-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 font-display">
+                    Frequently Asked <span className="text-[#FACC15]">Questions</span>
+                </h2>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+            >
+                <Accordion type="single" collapsible className="space-y-3">
+                    {[
+                        { q: "1. How do search engine marketing companies help businesses grow faster?", a: "They develop paid campaigns that can create instant exposure, reach and engage high-intent users and turn traffic into quantifiable revenue via streamlined bidding and analytics." },
+                        { q: "2. What makes Mediamaticstudio different from other search engine marketing agencies?", a: "Our campaigns are ROI-oriented, we report and love clear business objectives." },
+                        { q: "3. How does Mediamaticstudio's pay per click advertising deliver faster ROI?", a: "Through transactional keywords, bids optimization and the constant improvement of the campaign in relation to performance data." },
+                        { q: "4. How do google ads marketing companies track conversions and results?", a: "By tracking conversion using conversion tracking tools, analytics dashboards and in-depth performance reports which quantify clicks, leads and revenue impact." },
+                        { q: "5. Why should businesses choose Mediamaticstudio as their paid advertising agency?", a: "Our growth, cost, and strategic implementation are highly valued according to the measurable growth, cost efficiency, and strategic implementation." },
+                        { q: "6. How long does it take to see results from Mediamaticstudio's paid advertising marketing?", a: "The majority of companies observe a growth in traffic and generation of leads in the initial few weeks of the campaign." },
+                    ].map((faq, i) => (
+                        <AccordionItem
+                            key={i}
+                            value={`faq-${i}`}
+                            className="border border-border rounded-xl px-6 bg-card data-[state=open]:shadow-md transition-shadow"
+                        >
+                            <AccordionTrigger className="text-left font-semibold text-foreground hover:no-underline py-5">
+                                {faq.q}
+                            </AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground leading-relaxed pb-5">
+                                {faq.a}
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            </motion.div>
+        </div>
+    </section>
+);
+
+// ─── Main Component ───────────────────────────────────────────────────────────
 export function SEMServicesClient() {
     const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
     const handleAuditClick = () => setIsAuditModalOpen(true);
 
-    const faqs = [
-        { q: "What results can businesses expect with Search Engine Marketing?", a: "With SEM, you will receive immediate results for your business, including specialized campaigns that lead to quantifiable success." },
-        { q: "Why should you choose MediamaticStudio as your Search Engine Marketing Agency?", a: "Because we have a results-driven strategy where we do research, implementation, and reporting of your outcomes." },
-    ];
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
-        <div className="min-h-screen bg-background font-sans">
-            <SEO
-                title="Search Engine Marketing (SEM) Agency - Boost Visibility"
-                description="Higher traffic and sales with our search engine marketing agency. We design SEM campaigns that drive immediate results. Contact us now."
-                canonical="/search-engine-marketing-company/"
-                structuredData={[
-                    generateBreadcrumbSchema([
-                        { name: "Home", url: "/" },
-                        { name: "Services", url: "/services/" },
-                        { name: "Digital Marketing", url: "/services/digital-marketing-agency/" },
-                        { name: "SEM", url: "/search-engine-marketing-company/" }
-                    ]),
-                    generateServiceSchema({
-                        name: "Search Engine Marketing (SEM) Services",
-                        description: "Professional PPC, Google Ads, and paid search marketing for immediate online visibility and ROI."
-                    }),
-                    generateOrganizationSchema(),
-                    generateFAQSchema(faqs.map(f => ({ question: f.q, answer: f.a })))
-                ]}
-            />
-            {/* Hero Section */}
-            <section className="relative overflow-hidden py-24 md:py-32 px-6 md:px-12 bg-[#652b32] text-[#faf3e0]">
-                <div className="absolute top-16 right-[15%] opacity-20 animate-pulse pointer-events-none">
-                    <Sparkles size={60} className="text-[#faf3e0]" />
-                </div>
-                <div className="absolute top-[30%] right-[8%] opacity-15 pointer-events-none">
-                    <Star size={40} className="text-[#FACC15]" fill="#FACC15" />
-                </div>
-                <div className="absolute bottom-16 right-[20%] opacity-10 pointer-events-none">
-                    <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
-                        <circle cx="60" cy="60" r="50" stroke="#faf3e0" strokeWidth="1" strokeDasharray="8 8" />
-                    </svg>
-                </div>
-
-                <div className="container mx-auto max-w-7xl relative z-10">
-                    <Link
-                        href="/services/digital-marketing-agency/"
-                        className="inline-flex items-center gap-3 text-[#faf3e0]/60 hover:text-[#faf3e0] transition-colors font-black uppercase tracking-[0.2em] text-[11px] group mb-12"
-                    >
-                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Digital Marketing
-                    </Link>
-
-                    <motion.div
-                        className="text-left max-w-5xl"
-                        initial="hidden"
-                        animate="visible"
-                        variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
-                    >
-                        <motion.div variants={fadeUp} className="inline-flex items-center gap-4 rounded-full border border-[#faf3e0]/30 bg-[#faf3e0]/10 px-6 py-3 mb-10">
-                            <Image src="/assets/digital/sem.png" alt="SEM" width={24} height={24} className="brightness-0 invert" />
-                            <span className="text-xs font-black uppercase tracking-[0.25em] text-[#faf3e0]/90">SEM & Paid Media</span>
-                        </motion.div>
-
-                        <motion.h1
-                            variants={fadeUp}
-                            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-[#faf3e0] leading-[1.05] mb-10 tracking-tight font-heading"
-                        >
-                            Search Engine Marketing Companies Specializing in <span className="text-[#FACC15]">PPC & Paid Media</span>
-                        </motion.h1>
-
-                        <motion.div variants={fadeUp} className="space-y-8 mb-12 text-lg md:text-2xl text-[#faf3e0]/70 max-w-5xl leading-relaxed font-medium">
-                            <p>
-                                In the modern ruthless digital world, businesses need to be visible and show quantifiable growth instantly. Leading search engine marketing firms concentrate on performance-driven campaigns that turn intent into income.
-                            </p>
-                            <div className="bg-[#faf3e0]/5 border-l-8 border-[#FACC15] p-10 rounded-3xl shadow-2xl backdrop-blur-sm">
-                                <p className="font-black text-white mb-4 text-2xl uppercase tracking-tight">Scale Faster with Mediamaticstudio</p>
-                                <p className="text-white/80 not-italic">Launch data-driven pay per click campaigns that attract high-intent traffic, boost conversions, and deliver measurable ROI. Our efficient campaigns get backed by audience intent mapping and competitive analysis.</p>
-                            </div>
-                        </motion.div>
-
-                        <motion.div variants={fadeUp}>
-                            <button
-                                onClick={handleAuditClick}
-                                className="inline-flex items-center justify-center gap-4 bg-[#FACC15] text-[#652b32] px-12 py-6 rounded-full font-black uppercase tracking-[0.15em] text-sm shadow-2xl hover:bg-white transition-all active:scale-95 group"
-                            >
-                                Free SEM Consultation <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Why SEM Section */}
-            <section className="py-24 md:py-32 bg-white">
-                <div className="container mx-auto px-6 max-w-7xl">
-                    <div className="grid lg:grid-cols-2 gap-20 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h2 className="text-3xl md:text-6xl font-black text-[#652b32] mb-10 font-heading leading-tight tracking-tight uppercase">
-                                What Is Search Engine Marketing & How Does It Drive <span className="text-yellow-600">Instant Visibility?</span>
-                            </h2>
-                            <div className="space-y-6 text-[#652b32]/60 leading-relaxed text-lg font-medium">
-                                <p>
-                                    Search engine marketing is a paid strategy whereby your brand appears first when consumers are searching related goods or services. Organic SEO takes time which is not the case with paid advertisements where the exposure is immediate.
-                                </p>
-                                <p>
-                                    Well-planned campaign ensures optimized ad copy, compelling landing pages and continuous testing of A/B.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            className="grid grid-cols-2 gap-6"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            {[
-                                { label: "Immediate Results", icon: Zap },
-                                { label: "High Intent Traffic", icon: Target },
-                                { label: "Measurable ROI", icon: BarChart3 },
-                                { label: "Precision Targeting", icon: MousePointerClick }
-                            ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    className="p-10 rounded-[2.5rem] bg-[#652b32] text-white flex flex-col items-center justify-center text-center hover:bg-[#faf3e0] hover:text-[#652b32] transition-all duration-500 group shadow-2xl"
-                                    whileHover={{ y: -10 }}
-                                >
-                                    <item.icon size={48} className="mb-6 text-[#FACC15] group-hover:text-[#652b32] transition-colors" />
-                                    <span className="text-xs font-black uppercase tracking-widest leading-tight">{item.label}</span>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Paid Marketing Support Section */}
-            <section className="py-24 md:py-32 px-6 bg-[#652b32] text-[#faf3e0]">
-                <div className="container mx-auto max-w-7xl">
-                    <div className="grid lg:grid-cols-2 gap-20 items-center">
-                        <motion.div
-                            className="order-2 lg:order-1 relative"
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 aspect-video flex items-center justify-center bg-white/5 group">
-                                <Rocket size={160} className="text-[#FACC15] opacity-10 group-hover:scale-110 transition-transform duration-1000" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#652b32] via-transparent to-transparent opacity-60" />
-                                <div className="absolute bottom-12 left-12">
-                                    <h3 className="text-3xl font-black mb-2 font-heading uppercase tracking-tight text-white">Qualified Leads</h3>
-                                    <p className="text-lg text-white/60 font-medium tracking-tight">Steady generation for long-term growth</p>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            className="order-1 lg:order-2 text-center lg:text-left"
-                            initial={{ opacity: 0, x: 40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h2 className="text-4xl md:text-6xl font-black mb-10 font-heading leading-tight tracking-tight uppercase">
-                                How Paid Marketing Supports <span className="text-[#FACC15]">Brand Growth</span>
-                            </h2>
-                            <div className="space-y-6 text-white/70 leading-relaxed text-lg font-medium">
-                                <p>
-                                    Along with the qualified leads, strategic paid advertising marketing enhances brand credibility. By targeting specific demographic, interests and search targets, businesses can acquire audiences with the highest likelihood of conversion.
-                                </p>
-                                <p>
-                                    This performance-based approach guarantees that marketing funds are allocated to initiatives that produce genuine engagement and steady lead generation.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-24 md:py-32 px-6 bg-background">
-                <div className="container mx-auto max-w-7xl">
-                    <motion.div
-                        className="text-center mb-20"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <h2 className="text-4xl md:text-6xl font-black text-[#652b32] mb-8 font-heading leading-tight tracking-tight uppercase">
-                            SEM & <span className="text-[#FACC15]">Paid Advertising</span>
-                        </h2>
-                        <p className="text-base md:text-lg text-[#652b32]/60 max-w-4xl mx-auto leading-relaxed font-medium">
-                            Higher traffic and sales with our search engine marketing agency. We design SEM campaigns that drive immediate results.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {[
-                            { icon: MousePointerClick, title: "Pay Per Click (PPC) Advertising", desc: "Our PPC campaigns transform high-intent queries to sales. We carry out competition benchmarking, keyword analysis and continuous bid optimization." },
-                            { icon: Globe, title: "Google Ads Management", desc: "We manage the entire Google Ads ecosystem: search, display, shopping and remarketing. Our focus is on systematic targeting and conversion monitoring." },
-                            { icon: Monitor, title: "Bing Ads Management", desc: "Our Bing solutions help access untapped populations because there is less competition. We maximize device targeting and ad creatives for profitability." },
-                            { icon: Settings, title: "Paid Campaign Management", desc: "Our comprehensive management guarantees that performance and corporate goals are in line. We focus on testing, analytics, and ROI optimization." },
-                        ].map((s, i) => (
-                            <motion.div
-                                key={s.title}
-                                className="p-12 rounded-[3.5rem] bg-[#fff8eb] border border-[#652b32]/5 hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 group cursor-pointer"
-                                custom={i}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={cardVariants}
-                            >
-                                <div className="w-20 h-20 rounded-3xl bg-[#652b32]/5 flex items-center justify-center mb-10 group-hover:bg-[#faf3e0]/10 transition-colors">
-                                    <s.icon size={40} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
-                                </div>
-                                <h3 className="text-3xl font-black text-[#652b32] mb-6 font-heading group-hover:text-white leading-tight uppercase tracking-tight">
-                                    {s.title}
-                                </h3>
-                                <p className="text-[#652b32]/60 leading-relaxed text-lg group-hover:text-white/80 font-medium">
-                                    {s.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Benefits Grid Section */}
-            <section className="py-24 md:py-32 px-6 bg-white">
-                <div className="container mx-auto max-w-7xl">
-                    <motion.div
-                        className="text-center mb-24"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-4xl md:text-7xl font-black text-[#652b32] mb-10 font-heading leading-tight tracking-tight uppercase">
-                            The Role of <span className="text-yellow-600">Paid Media</span>
-                        </h2>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {[
-                            { title: "High-Intent Traffic", desc: "Users seeking solutions have better conversion rates. We use geo-targeting and transactional keywords." },
-                            { title: "Lead Quality", desc: "Reach serious decision-makers and buyers. A/B testing provides better user experience and results." },
-                            { title: "Revenue Growth", desc: "Revenue-focused funnels that boost deal closing by fusing remarketing tactics with performance data." },
-                            { title: "Spend Efficiency", desc: "Budget allocation through real-time analysis. We track CTR, CPC and returns continuously." },
-                            { title: "Brand Visibility", desc: "Strategic positioning on search results. Regular exposure creates credibility and brand power." },
-                            { title: "Data Decisions", desc: "Optimization choices are guided by performance reports, guaranteeing smarter marketing expenditures." },
-                            { title: "Scalable Growth", desc: "Paid frameworks designed to scale with expansion. Campaigns modified to fit markets." },
-                            { title: "Competitive Edge", desc: "High-value search terms enable businesses to be proactive in crowded industries." },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                className="flex flex-col gap-6 p-10 rounded-[2.5rem] bg-[#faf3e0]/50 border border-[#652b32]/5 hover:bg-[#652b32] hover:text-white transition-all duration-500 group shadow-lg"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.05 }}
-                                whileHover={{ y: -10 }}
-                            >
-                                <div className="h-1.5 bg-[#652b32] w-16 rounded-full group-hover:bg-yellow-400 group-hover:w-full transition-all duration-500" />
-                                <h4 className="font-black text-xl font-heading uppercase tracking-tight leading-tight">{item.title}</h4>
-                                <p className="text-[#652b32]/60 group-hover:text-white/70 text-sm leading-relaxed font-medium">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Benefits Strategy Section */}
-            <section className="py-24 md:py-32 px-6 bg-[#faf3e0]">
-                <div className="container mx-auto max-w-7xl">
-                    <div className="grid lg:grid-cols-2 gap-20 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, x: -40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h2 className="text-3xl md:text-6xl font-black text-[#652b32] mb-10 font-heading leading-tight tracking-tight uppercase">
-                                Measurable Benefits for <span className="text-yellow-600">Scaling</span>
-                            </h2>
-                            <div className="space-y-8 text-[#652b32]/60 text-xl leading-relaxed font-medium italic">
-                                <p>
-                                    Adjustments in the campaign are founded on the performance information and it is optimized continuously. The strategy minimizes marketing risks and enhances predictability.
-                                </p>
-                                <p>
-                                    Between better brand awareness and quicker ROI, SEM assists growing companies to take over search engine results.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            className="bg-[#652b32] p-16 md:p-24 rounded-[4rem] text-[#faf3e0] relative shadow-[0_50px_100px_-20px_rgba(101,43,50,0.4)]"
-                            initial={{ opacity: 0, x: 40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#FACC15] rounded-[2.5rem] flex items-center justify-center rotate-12 shadow-2xl">
-                                <BarChart3 size={60} className="text-[#652b32]" />
-                            </div>
-                            <h3 className="text-3xl md:text-4xl font-black mb-10 font-heading uppercase tracking-tight leading-tight">A Results Focused SEM Agency</h3>
-                            <div className="space-y-8 text-lg opacity-80 leading-relaxed font-medium">
-                                <p>
-                                    Mediamaticstudio is a transparency and accountable performance-based SEM agency. Our areas of interest are strategic plan and excellence in execution.
-                                </p>
-                                <p className="font-black text-white not-italic uppercase tracking-[0.2em] text-xs pt-8 border-t border-white/10">
-                                    Maximizing returns through high-level analytics.
-                                </p>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Industries Section */}
-            <section className="py-24 md:py-32 px-6 bg-white">
-                <div className="container mx-auto max-w-7xl">
-                    <motion.div
-                        className="text-center mb-24"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-4xl md:text-7xl font-black text-[#652b32] mb-10 font-heading leading-tight tracking-tight uppercase">
-                            Industries We <span className="text-yellow-600">Serve</span>
-                        </h2>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {[
-                            { icon: Building2, title: "Real Estate", desc: "Create qualified property inquiries through geo-targeted campaigns." },
-                            { icon: Plane, title: "Travel & Tourism", desc: "Capture seasonal demand and increase bookings with paid search." },
-                            { icon: Factory, title: "Manufacturing", desc: "Reach B2B buyers and distributors using industry keyword targeting." },
-                            { icon: Car, title: "Automotive", desc: "Use localized paid marketing to increase dealership visits." },
-                            { icon: Dumbbell, title: "Sports & Fitness", desc: "Use interest-based targeting to boost product sales." },
-                            { icon: Zap, title: "Energy & Utilities", desc: "Use strategic paid visibility to establish credibility." },
-                            { icon: Building2, title: "Legal & Law Firms", desc: "Attract clients seeking immediate legal assistance." },
-                            { icon: CalendarDays, title: "Event Management", desc: "Use marketing funnels to increase ticket sales and registrations." },
-                        ].map((ind, i) => (
-                            <motion.div
-                                key={ind.title}
-                                className="flex flex-col gap-8 p-10 rounded-[2.5rem] bg-[#faf3e0]/50 border border-[#652b32]/5 hover:bg-[#652b32] hover:text-white transition-all duration-500 group shadow-lg"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.05 }}
-                            >
-                                <div className="w-14 h-14 rounded-2xl bg-[#652b32]/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                                    <ind.icon size={28} className="text-[#652b32] group-hover:text-yellow-400" />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-black mb-4 font-heading leading-tight uppercase tracking-tight">
-                                        {ind.title}
-                                    </h3>
-                                    <p className="text-[#652b32]/60 group-hover:text-white/70 text-sm leading-relaxed font-medium">{ind.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* FAQ Section */}
-            <section className="py-24 md:py-32 px-6 bg-[#faf3e0]">
-                <div className="container mx-auto max-w-4xl">
-                    <motion.div
-                        className="text-center mb-20"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-3xl md:text-6xl font-black text-[#652b32] font-heading leading-tight tracking-tight uppercase">
-                            Frequently Asked <span className="text-yellow-600">Questions</span>
-                        </h2>
-                    </motion.div>
-
-                    <Accordion type="single" collapsible className="space-y-6">
-                        {[
-                            { q: "How do SEM companies help businesses grow faster?", a: "They develop paid campaigns that create instant exposure, reach high-intent users and turn traffic into revenue via streamlined bidding." },
-                            { q: "What makes Mediamaticstudio different?", a: "Our campaigns are ROI-oriented, we report clearly and focus on absolute business objectives." },
-                            { q: "How does PPC deliver faster ROI?", a: "Through transactional keywords, bids optimization and constant improvement in relation to performance data." },
-                            { q: "How do you track conversions?", a: "By using conversion tracking tools, analytics dashboards and in-depth performance reports quantifying every metric." },
-                            { q: "Why choose Mediamaticstudio?", a: "Our growth, cost, and strategic implementation are highly valued for measurable success." },
-                        ].map((faq, i) => (
-                            <AccordionItem
-                                key={i}
-                                value={`faq-${i}`}
-                                className="border border-[#652b32]/5 rounded-[2rem] px-10 bg-white hover:shadow-xl transition-all duration-500"
-                            >
-                                <AccordionTrigger className="text-left font-black text-[#652b32] hover:no-underline py-8 text-lg font-heading no-underline">
-                                    {faq.q}
-                                </AccordionTrigger>
-                                <AccordionContent className="text-[#652b32]/60 leading-relaxed pb-8 text-base font-medium">
-                                    {faq.a}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
-                    </Accordion>
-                </div>
-            </section>
+        <div className="min-h-screen bg-background font-body">
+            <HeroSection onAuditClick={handleAuditClick} />
+            <WhySEMSection />
+            <PaidMarketingSupport />
+            <ServicesSection />
+            <BenefitsSection />
+            <BenefitsAuditSection />
+            <IndustriesSection />
+            <StatsSection />
+            <FAQSection />
 
             {/* Bottom CTA */}
-            <section className="py-24 md:py-40 px-6 bg-[#652b32] text-[#faf3e0] text-center">
-                <div className="container mx-auto max-w-5xl">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
+            <section className="relative overflow-hidden py-16 md:py-24 px-4 bg-[#652b32] text-[#faf3e0] text-center">
+                <div className="container mx-auto max-w-4xl relative z-10">
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6 font-display">
+                        Ready to Grow with <span className="text-[#FACC15]">Strategic Search Engine Marketing?</span>
+                    </h2>
+                    <p className="text-lg text-[#faf3e0]/80 mb-10 leading-relaxed">
+                        Implement data-driven search engine marketing campaigns with Mediamaticstudio to generate quantifiable traffic, qualified leads, and scalable revenue development.
+                    </p>
+                    <button
+                        onClick={handleAuditClick}
+                        className="inline-flex items-center gap-2 bg-[#faf3e0] text-[#652b32] px-10 py-4 rounded-full font-bold shadow-2xl hover:bg-white transition-all text-lg group"
                     >
-                        <h2 className="text-4xl md:text-8xl font-black mb-12 font-heading leading-tight tracking-tight uppercase">
-                            Ready to <span className="text-[#FACC15]">Scale?</span>
-                        </h2>
-                        <p className="text-xl md:text-2xl text-white/80 max-w-4xl mx-auto mb-20 font-medium leading-relaxed italic">
-                            Implement data-driven search engine marketing campaigns with Mediamaticstudio to generate quantifiable traffic and scalable revenue.
-                        </p>
-                        <button
-                            onClick={handleAuditClick}
-                            className="inline-flex items-center gap-4 bg-[#FACC15] text-[#652b32] px-12 py-6 rounded-full font-black uppercase tracking-[0.15em] text-sm shadow-2xl hover:bg-white transition-all active:scale-95 group"
-                        >
-                            Request Free Strategy Consult <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
-                    </motion.div>
+                        Request Your Free Strategy Consultation Today <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
                 </div>
             </section>
 
             <RecentBlog />
+            <Footer />
 
             <MarketingAuditDialog
                 isOpen={isAuditModalOpen}

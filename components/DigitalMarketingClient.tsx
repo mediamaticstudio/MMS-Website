@@ -243,7 +243,7 @@ export function DigitalMarketingClient() {
                         </h1>
 
                         <p className="text-[#faf3e0]/80 text-lg md:text-xl leading-relaxed max-w-3xl mb-10 font-medium">
-                            A data-driven digital marketing agency assists companies to expand quicker, target the appropriate market, and build qualified leads. We are a strategy-driven, creatively-driven, data-driven campaign company focused on achieving measurable success on shows of all sizes at Mediamatic Studio.
+                            A data-driven digital marketing agency assists companies to expand faster, target the appropriate market, and build qualified leads. We are a strategy-driven, creatively-driven, data-driven campaign company focused on achieving measurable success for businesses of all sizes at Mediamatic Studio.
                         </p>
 
                         <button
@@ -319,7 +319,7 @@ export function DigitalMarketingClient() {
                                 <h3 className="text-lg font-black text-white group-hover:text-[#652b32] mb-4 transition-colors font-heading leading-tight">
                                     {item.title}
                                 </h3>
-                                <p className="text-white/70 text-sm leading-relaxed group-hover:text-[#652b32]/80 transition-colors font-medium">
+                                <p className="text-white/70 text-sm leading-relaxed group-hover:text-[#652b32] transition-colors font-medium">
                                     {item.desc}
                                 </p>
                             </div>
@@ -444,3 +444,4 @@ export function DigitalMarketingClient() {
         </div>
     );
 }
+

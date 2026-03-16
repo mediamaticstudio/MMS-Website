@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 import { toast } from "sonner";
@@ -6,10 +6,10 @@ import { Loader2, Send, User, Mail, Phone, MessageSquare } from "lucide-react";
 import styles from "@/app/blog/Blog.module.css";
 
 interface BlogContactFormProps {
-    variant?: 'card' | 'ghost';
+    variant?: "card" | "ghost";
 }
 
-const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
+const BlogContactForm = ({ variant = "card" }: BlogContactFormProps) => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -19,22 +19,19 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
     const [isSending, setIsSending] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSending(true);
-
         try {
             const response = await fetch("https://mediamaticstudio.com/api/contact/send/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
             });
-
             if (!response.ok) throw new Error("Failed to send message");
-
             toast.success("Message sent successfully!");
             setFormData({ name: "", email: "", phone: "", message: "" });
         } catch (error) {
@@ -45,10 +42,14 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
     };
 
     return (
-        <div className={variant === 'card' ? styles.sidebarCard : "relative"}>
+        <div className={variant === "card" ? styles.sidebarCard : "relative"}>
             <div className="mb-8">
-                <h3 className="text-2xl md:text-3xl font-black text-[#652b32] mb-2 tracking-tight">Get in Touch</h3>
-                <p className="text-[#652b32]/60 text-sm font-medium">Have questions? We'd love to hear from you.</p>
+                <h3 className="text-2xl md:text-3xl font-black text-[#652b32] mb-2 tracking-tight">
+                    Get in Touch
+                </h3>
+                <p className="text-[#652b32]/60 text-sm font-medium">
+                    Have questions? We&apos;d love to hear from you.
+                </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -59,7 +60,7 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
                         </div>
                         <input
                             type="text"
-                            id="name"
+                            name="name"
                             placeholder="Your Name"
                             required
                             value={formData.name}
@@ -73,7 +74,7 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
                         </div>
                         <input
                             type="email"
-                            id="email"
+                            name="email"
                             placeholder="Your Email"
                             required
                             value={formData.email}
@@ -89,7 +90,7 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
                     </div>
                     <input
                         type="tel"
-                        id="phone"
+                        name="phone"
                         placeholder="Phone Number"
                         required
                         value={formData.phone}
@@ -103,7 +104,7 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
                         <MessageSquare size={18} />
                     </div>
                     <textarea
-                        id="message"
+                        name="message"
                         placeholder="Your Message..."
                         required
                         rows={5}
@@ -118,7 +119,11 @@ const BlogContactForm = ({ variant = 'card' }: BlogContactFormProps) => {
                     disabled={isSending}
                     className={`w-full py-4 rounded-xl font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 transition-all active:scale-[0.98] shadow-lg shadow-[#652b32]/10 ${styles.button}`}
                 >
-                    {isSending ? <Loader2 className="w-4 h-4 animate-spin text-white" /> : <Send className="w-4 h-4 text-white" />}
+                    {isSending ? (
+                        <Loader2 className="w-4 h-4 animate-spin text-white" />
+                    ) : (
+                        <Send className="w-4 h-4 text-white" />
+                    )}
                     {isSending ? "Sending..." : "Send Message"}
                 </button>
             </form>

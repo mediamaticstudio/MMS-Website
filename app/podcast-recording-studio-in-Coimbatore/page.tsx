@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { PodcastStudioClient } from "@/components/PodcastStudioClient";
+import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
     title: "Best Podcast Recording Studio In Coimbatore | 4K Video & Audio",
@@ -16,5 +17,22 @@ export const metadata: Metadata = {
 };
 
 export default function PodcastStudioPage() {
-    return <PodcastStudioClient />;
+    const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Podcast Recording Studio",
+        "description": "Professional podcast recording studio in Coimbatore with 4K video and cinematic lighting.",
+        "provider": {
+            "@type": "Organization",
+            "name": "MediaMatic Studio",
+            "url": "https://mediamaticstudio.com"
+        }
+    };
+
+    return (
+        <>
+            <StructuredData data={serviceSchema} />
+            <PodcastStudioClient />
+        </>
+    );
 }

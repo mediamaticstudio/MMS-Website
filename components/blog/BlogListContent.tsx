@@ -1,41 +1,58 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { fetchBlogPosts } from "@/lib/api";
+import { fetchBlogPosts } from "@/services/api";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
+import { generateCollectionPageSchema, generateBreadcrumbSchema } from "@/lib/seo-schemas";
 
-export default function BlogListContent() {
+const BlogListContent = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-
     const initialPage = parseInt(searchParams.get("page") || "1", 10);
     const [page, setPage] = useState(initialPage);
 
-    // Fetch posts
     const { data, isLoading, isError, error, isFetching } = useQuery({
         queryKey: ["blog-posts", page],
         queryFn: () => fetchBlogPosts(page),
         staleTime: 0,
         gcTime: 1000 * 60 * 30,
+        refetchInterval: false,
         refetchOnWindowFocus: true,
         refetchOnMount: true,
     });
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
-
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
         router.push(`?page=${newPage}`);
-        window.scrollTo({ top: 0, behavior: 'auto' });
+        window.scrollTo({ top: 0, behavior: "auto" });
     };
 
     return (
         <main className="min-h-screen bg-[#faf3e0] py-20 md:py-28">
+            {/* Structured Data */}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateCollectionPageSchema({
+                        name: "MediaMatic Studio Blog",
+                        description: "Latest insights and stories about digital marketing, web design, and animation.",
+                        url: `/blog/${page > 1 ? `?page=${page}` : ""}`,
+                        itemCount: data?.posts.length
+                    }))
+                }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateBreadcrumbSchema([
+                        { name: "Home", url: "/" },
+                        { name: "Blog", url: "/blog/" }
+                    ]))
+                }}
+            />
             {/* Background Pattern */}
             <div
                 className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -65,10 +82,15 @@ export default function BlogListContent() {
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#652b32] leading-tight mb-4">
                         Latest Insights
                     </h1>
+                    {data && (
+                        <p className="text-[9px] text-[#652b32]/30 uppercase tracking-widest font-bold mb-8">
+                            Our latest stories and insights
+                        </p>
+                    )}
                     <div className="w-24 h-[1.5px] bg-[#652b32]/30 mx-auto rounded-full" />
                 </div>
 
-                {/* Content Area */}
+                {/* Content */}
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center py-32 space-y-4">
                         <Loader2 className="w-12 h-12 text-[#652b32] animate-spin" />
@@ -76,7 +98,9 @@ export default function BlogListContent() {
                     </div>
                 ) : isError ? (
                     <div className="text-center py-20">
-                        <p className="text-red-500 font-bold mb-4">{error instanceof Error ? error.message : "Failed to load posts"}</p>
+                        <p className="text-red-500 font-bold mb-4">
+                            {error instanceof Error ? error.message : "Failed to load posts"}
+                        </p>
                         <button
                             onClick={() => window.location.reload()}
                             className="px-6 py-3 bg-[#652b32] text-white rounded-lg font-bold hover:bg-[#4a1f25] transition-all"
@@ -109,11 +133,9 @@ export default function BlogListContent() {
                                 >
                                     <ArrowLeft size={20} />
                                 </button>
-
                                 <span className="text-sm font-bold text-[#652b32] tracking-widest">
                                     PAGE {page} OF {data.totalPages}
                                 </span>
-
                                 <button
                                     onClick={() => handlePageChange(page + 1)}
                                     disabled={page >= data.totalPages}
@@ -129,4 +151,6 @@ export default function BlogListContent() {
             </div>
         </main>
     );
-}
+};
+
+export default BlogListContent;

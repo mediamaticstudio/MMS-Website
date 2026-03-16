@@ -102,11 +102,11 @@ const Designing = () => {
             <div className="min-h-screen bg-background w-full">
                 <main ref={sectionRef}>
                     {/* Hero */}
-                    <section className="pt-32 pb-20 bg-primary text-primary-foreground">
+                    <section className="pt-32 pb-20 bg-primary text-[#faf3e0] -foreground">
                         <div className="container mx-auto px-6">
                             <Link
                                 href="/#services"
-                                className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground mb-8"
+                                className="flex items-center gap-2 text-[#652b32]-foreground/70 hover:text-[#652b32]-foreground mb-8"
                             >
                                 <ArrowLeft size={18} /> Back
                             </Link>
@@ -117,19 +117,19 @@ const Designing = () => {
                                     <div className="w-14 h-14 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
                                         <Palette className="w-7 h-7" />
                                     </div>
-                                    <span className="text-sm uppercase tracking-[0.2em] text-primary-foreground/60">
+                                    <span className="text-sm uppercase tracking-[0.2em] text-[#652b32]-foreground/60">
                                         Service
                                     </span>
                                 </div>
 
                                 <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold mb-6">
                                     Designing{" "}
-                                    <span className="italic font-normal text-primary-foreground/70">
+                                    <span className="italic font-normal text-[#652b32]-foreground/70">
                                         Services
                                     </span>
                                 </h1>
 
-                                <p className="text-xl text-primary-foreground/80 max-w-2xl">
+                                <p className="text-xl text-[#652b32]-foreground/80 max-w-2xl">
                                     Design That Tells Your Story. Logos, branding, and marketing visuals crafted to speak directly to your audience.
                                 </p>
                             </div>
@@ -138,9 +138,9 @@ const Designing = () => {
 
                     {/* Content */}
                     <section className="py-20">
-                        <div className="container mx-auto px-6 max-w-6xl content-section space-y-14">
+                        <div className="container mx-auto px-6 max-w-6xl content-section space-y-14 text-[#652b32]">
                             <div className="content-block">
-                                <p className="text-lg text-foreground/70 leading-relaxed">
+                                <p className="text-lg text-[#652b32] leading-relaxed">
                                     We create visuals that don't just look good, but also communicate your brand's core values. Our design philosophy is centered around storytelling and audience engagement.
                                 </p>
                             </div>
@@ -199,7 +199,7 @@ const Designing = () => {
                                                 ?.scrollIntoView({ behavior: "smooth" });
                                         }, 150);
                                     }}
-                                    className="mt-10 inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold"
+                                    className="mt-10 inline-flex items-center gap-2 bg-primary text-[#faf3e0] px-8 py-3 rounded-full font-semibold"
                                 >
                                     Get Started <ArrowRight size={18} />
                                 </button>
@@ -213,3 +213,4 @@ const Designing = () => {
 };
 
 export default Designing;
+

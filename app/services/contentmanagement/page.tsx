@@ -91,7 +91,7 @@ const ContentManagement = () => {
 
                 <main ref={sectionRef}>
                     {/* Hero Section */}
-                    <section className="pt-32 pb-20 bg-primary text-primary-foreground relative overflow-hidden">
+                    <section className="pt-32 pb-20 bg-primary text-[#faf3e0] -foreground relative overflow-hidden">
                         <div className="absolute inset-0 opacity-10">
                             <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-accent/30 blur-3xl" />
                         </div>
@@ -99,7 +99,7 @@ const ContentManagement = () => {
                         <div className="container mx-auto px-6 relative z-10">
                             <Link
                                 href="/#services"
-                                className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground mb-8 transition-colors"
+                                className="flex items-center gap-2 text-[#faf3e0]-foreground/70 hover:text-[#faf3e0]-foreground mb-8 transition-colors"
                             >
                                 <ArrowLeft size={18} /> Back
                             </Link>
@@ -110,14 +110,14 @@ const ContentManagement = () => {
                                     <div className="w-14 h-14 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
                                         <FileText className="w-7 h-7" />
                                     </div>
-                                    <span className="text-sm uppercase tracking-[0.2em] text-primary-foreground/60">Service</span>
+                                    <span className="text-sm uppercase tracking-[0.2em] text-[#652b32]-foreground/60">Service</span>
                                 </div>
 
-                                <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-bold mb-6">
-                                    Content <span className="italic font-normal text-primary-foreground/70">Management</span>
+                                <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-bold mb-6 text-[#faf3e0]">
+                                    Content <span className="italic font-normal text-[#faf3e0] -foreground/70">Management</span>
                                 </h1>
 
-                                <p className="text-xl text-primary-foreground/80 leading-relaxed max-w-2xl">
+                                <p className="text-xl text-[#652b32]-foreground/80 leading-relaxed max-w-2xl">
                                     Expert content writers delivering high-quality content writing services.
                                 </p>
                             </div>
@@ -127,7 +127,7 @@ const ContentManagement = () => {
                     {/* Content */}
                     <section className="py-20">
                         <div className="container mx-auto px-6">
-                            <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+                            <div className="grid lg:grid-cols-2 gap-16 max-w-6xl mx-auto text-[#652b32]">
                                 {/* Left - Description */}
                                 <div className="content-blocks space-y-8">
                                     <div className="content-block">
@@ -208,7 +208,7 @@ const ContentManagement = () => {
                                                     ?.scrollIntoView({ behavior: "smooth" });
                                             }, 150);
                                         }}
-                                        className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors"
+                                        className="inline-flex items-center gap-2 bg-primary text-[#faf3e0] px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors"
                                     >
                                         Get Started <ArrowRight size={18} />
                                     </button>
@@ -223,3 +223,4 @@ const ContentManagement = () => {
 };
 
 export default ContentManagement;
+

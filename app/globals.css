@@ -21,14 +21,15 @@
     --text-dark: #652b32;
     /* Updated text */
 
-    --border-soft: rgba(101, 43, 50, 0.15);
+    --border: 353 40% 28%;
+    /* #652b32 in HSL */
     --input-bg: #fff6df;
     /* Updated input bg */
 
     --btn-bg: #652b32;
     --btn-hover: #652b32;
 
-    --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-soft: 0 20px 40px rgba(101, 43, 50, 0.15);
 
     /* Mapped system colors */
     --background: var(--cream-bg);
@@ -55,7 +56,6 @@
     --destructive: #ef4444;
     --destructive-foreground: white;
 
-    --border: var(--border-soft);
     --input: var(--input-bg);
     --ring: var(--primary-dark);
 
@@ -95,10 +95,6 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-
   html {
     scroll-behavior: auto;
   }
@@ -109,6 +105,56 @@
     line-height: 1.7;
     overflow-x: hidden;
   }
+
+  /* =====================================================
+     GLOBAL BRAND COLOR OVERRIDE
+     Replace ALL black / dark-gray text with brand color #652b32
+     Covers every Tailwind dark-text utility class used across the project.
+     This is the single-source-of-truth for brand text color enforcement.
+     ===================================================== */
+
+  /* Gray family */
+  .text-black,
+  .text-gray-950,
+  .text-gray-900,
+  .text-gray-800,
+  .text-gray-700 {
+    color: #652b32 !important;
+  }
+
+  /* Zinc family (used in some components) */
+  .text-zinc-950,
+  .text-zinc-900,
+  .text-zinc-800,
+  .text-zinc-700 {
+    color: #652b32 !important;
+  }
+
+  /* Slate family */
+  .text-slate-950,
+  .text-slate-900,
+  .text-slate-800,
+  .text-slate-700 {
+    color: #652b32 !important;
+  }
+
+  /* Neutral family */
+  .text-neutral-950,
+  .text-neutral-900,
+  .text-neutral-800,
+  .text-neutral-700 {
+    color: #652b32 !important;
+  }
+
+  /* Stone family */
+  .text-stone-950,
+  .text-stone-900,
+  .text-stone-800,
+  .text-stone-700 {
+    color: #652b32 !important;
+  }
+
+
 
   /*
      STRICT FONT SIZE RULE
@@ -341,7 +387,7 @@
   min-width: 240px;
   background: var(--background);
   border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 40px rgba(101, 43, 50, 0.15);
   opacity: 0;
   transform: translateY(10px);
   pointer-events: none;

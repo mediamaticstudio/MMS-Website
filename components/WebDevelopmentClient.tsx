@@ -2,20 +2,21 @@
 
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowLeft, Monitor, CheckCircle, ArrowRight, Smartphone, Globe, ShoppingCart, Layout, Code2, Zap } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowLeft, Monitor, CheckCircle, ArrowRight } from "lucide-react";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 const features = [
-    { name: "Mobile App Development", slug: "mobile-app" },
-    { name: "Website Development", slug: "website" },
-    { name: "E-Commerce Solutions", slug: "ecommerce" },
-    { name: "Custom Web Applications", slug: "custom-web" },
-    { name: "UI/UX Design", slug: "ui-ux" },
-    { name: "Responsive Design", slug: "responsive" },
+    "Mobile App Development",
+    "Website Development",
+    "E-Commerce Solutions",
+    "Custom Web Applications",
+    "UI/UX Design",
+    "Responsive Design",
 ];
 
 export function WebDevelopmentClient() {
@@ -23,18 +24,13 @@ export function WebDevelopmentClient() {
     const router = useRouter();
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: "auto" });
+
         const ctx = gsap.context(() => {
             gsap.fromTo(
-                ".hero-content > *",
+                ".service-hero-content > *",
                 { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    stagger: 0.15,
-                    duration: 1,
-                    ease: "power4.out",
-                    delay: 0.3
-                }
+                { y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: "power3.out" }
             );
 
             gsap.fromTo(
@@ -44,12 +40,9 @@ export function WebDevelopmentClient() {
                     y: 0,
                     opacity: 1,
                     stagger: 0.2,
-                    duration: 1,
+                    duration: 0.7,
                     ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".content-section",
-                        start: "top 90%",
-                    },
+                    scrollTrigger: { trigger: ".content-section", start: "top 95%" },
                 }
             );
 
@@ -60,12 +53,9 @@ export function WebDevelopmentClient() {
                     x: 0,
                     opacity: 1,
                     stagger: 0.1,
-                    duration: 0.8,
+                    duration: 0.6,
                     ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".features-list",
-                        start: "top 95%",
-                    },
+                    scrollTrigger: { trigger: ".features-list", start: "top 95%" },
                 }
             );
         }, sectionRef);
@@ -74,152 +64,130 @@ export function WebDevelopmentClient() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background font-sans">
+        <div className="min-h-screen bg-background">
             <main ref={sectionRef}>
-                <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 bg-[#652b32] text-white overflow-hidden text-left">
-                    <div className="absolute inset-x-0 top-0 h-full opacity-5 pointer-events-none select-none overflow-hidden font-mono text-[10px] leading-none whitespace-pre p-20">
-                        {Array.from({ length: 40 }).map((_, i) => (
-                            <div key={i} className="mb-4">
-                                {`const app = express(); app.use(cors()); app.get('/api/v1/growth', (req, res) => { return res.json({ success: true, revenue: Infinity }); });`}
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="container mx-auto px-6 relative z-10">
-                        <button
-                            onClick={() => router.push("/")}
-                            className="inline-flex items-center gap-3 text-white/60 hover:text-yellow-400 mb-12 transition-all font-black uppercase tracking-[0.2em] text-[11px] group"
+                {/* Hero */}
+                <section className="pt-32 pb-20 bg-primary text-primary-foreground">
+                    <div className="container mx-auto px-6">
+                        <Link
+                            href="/#services"
+                            className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground mb-8 transition-colors"
                         >
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Home
-                        </button>
+                            <ArrowLeft size={18} /> Back
+                        </Link>
 
-                        <div className="hero-content max-w-5xl">
-                            <div className="inline-flex items-center gap-4 mb-10 px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                                <Code2 className="w-6 h-6 text-yellow-400" />
-                                <span className="text-[12px] font-black uppercase tracking-[0.3em] text-white/90">Full Stack Solutions</span>
+                        <div className="service-hero-content max-w-4xl">
+                            <div className="inline-flex items-center gap-3 mb-6">
+                                <div className="w-14 h-14 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
+                                    <Monitor className="w-7 h-7" />
+                                </div>
+                                <span className="text-sm uppercase tracking-[0.2em] text-primary-foreground/60">
+                                    Service
+                                </span>
                             </div>
 
-                            <h1 className="font-heading text-5xl md:text-8xl font-black leading-[1.05] mb-10 tracking-tight uppercase">
-                                Web & App <br />
-                                <span className="text-yellow-400 italic font-medium lowercase">Development</span>
+                            <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold mb-6">
+                                Web &amp; App{" "}
+                                <span className="italic font-normal text-primary-foreground/70">
+                                    Development
+                                </span>
                             </h1>
 
-                            <p className="text-xl md:text-3xl text-white/70 leading-relaxed max-w-3xl font-medium mb-12">
-                                Your one-stop digital partner for <span className="text-white border-b-2 border-yellow-400/30">cutting-edge</span> web and mobile experiences that scale.
+                            <p className="text-xl text-primary-foreground/80 max-w-2xl">
+                                Your one-stop digital solution for cutting-edge web and mobile experiences.
                             </p>
-
-                            <button
-                                onClick={() => router.push("/get-quote")}
-                                className="inline-flex items-center gap-4 bg-yellow-400 text-[#652b32] px-12 py-6 rounded-full font-black uppercase tracking-[0.15em] text-sm hover:bg-white transition-all active:scale-95 shadow-2xl group"
-                            >
-                                Build Your Future <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
                         </div>
                     </div>
                 </section>
 
-                <section className="py-24 md:py-40 bg-white">
-                    <div className="container mx-auto px-6 max-w-7xl content-section">
-                        <div className="grid lg:grid-cols-2 gap-24 items-start">
-                            <div className="space-y-12">
-                                <div className="content-block">
-                                    <h2 className="font-heading text-4xl md:text-6xl font-black text-[#652b32] mb-10 uppercase tracking-tight">Your Digital <br /> <span className="text-yellow-600">Dream Team</span></h2>
-                                    <p className="text-xl text-[#652b32]/60 font-medium leading-relaxed mb-8">
-                                        We are not just another tech company — we are your strategic partner helping businesses worldwide build powerful digital products.
-                                    </p>
-                                    <p className="text-lg text-[#652b32]/60 font-medium leading-relaxed">
-                                        Whether you are launching a killer app or a high-performing website, we have your back. From startups to global enterprises, we understand what it takes to succeed online.
-                                    </p>
-                                </div>
+                {/* Content */}
+                <section className="py-20">
+                    <div className="container mx-auto px-6 max-w-6xl content-section space-y-14 text-[#652b32]">
 
-                                <div className="grid sm:grid-cols-2 gap-8">
-                                    {[
-                                        { title: "Mobile Apps", desc: "From food delivery platforms to fitness trackers, we design apps users love.", icon: Smartphone, slug: "mobile-app" },
-                                        { title: "Websites", desc: "Clean design, mobile-friendly layouts, and focus on customer conversion.", icon: Globe, slug: "website" },
-                                        { title: "E-Commerce", desc: "Scale your store with robust payment integrations and seamless UX.", icon: ShoppingCart, slug: "ecommerce" },
-                                        { title: "UI/UX Design", desc: "Visual storytelling through interactive and intuitive user interfaces.", icon: Layout, slug: "ui-ux" }
-                                    ].map((card, i) => (
-                                        <div
-                                            key={i}
-                                            onClick={() => router.push(`/services/web-development/${card.slug}/`)}
-                                            className="content-block p-12 rounded-[3.5rem] bg-[#fff8eb] border border-[#652b32]/5 hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 group cursor-pointer"
-                                        >
-                                            <div className="w-16 h-16 rounded-2xl bg-[#652b32]/5 flex items-center justify-center mb-10 group-hover:bg-[#faf3e0]/10 transition-colors">
-                                                <card.icon className="w-8 h-8 text-[#652b32] group-hover:text-yellow-400 transition-colors" />
-                                            </div>
-                                            <h3 className="font-heading text-2xl font-black text-[#652b32] mb-6 group-hover:text-white uppercase tracking-tight leading-tight">{card.title}</h3>
-                                            <p className="text-[#652b32]/60 group-hover:text-white/80 text-base font-medium leading-relaxed">{card.desc}</p>
-                                            <div className="mt-8 flex items-center gap-2 text-[#652b32]/40 group-hover:text-yellow-400 font-black uppercase tracking-widest text-[10px] transition-colors">
-                                                Learn More <ArrowRight className="w-4 h-4" />
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                        <div className="content-block">
+                            <p className="text-lg text-foreground/70 leading-relaxed">
+                                Your go-to digital partner right here in India. We are not just another
+                                tech company — we are your digital dream team helping businesses
+                                worldwide build powerful digital products.
+                            </p>
+                        </div>
 
-                            <div className="lg:sticky lg:top-32 space-y-16">
-                                <div>
-                                    <h3 className="font-heading text-2xl font-black text-[#652b32] mb-10 uppercase tracking-widest border-b border-[#652b32]/10 pb-4">Core Specifications</h3>
-                                    <div className="features-list grid gap-4">
-                                        {features.map((item, i) => (
-                                            <div
-                                                key={i}
-                                                onClick={() => router.push(`/services/web-development/${item.slug}/`)}
-                                                className="feature-item flex items-center gap-6 p-6 bg-white rounded-[2rem] border border-[#652b32]/5 shadow-sm hover:shadow-xl hover:bg-[#652b32] hover:text-white transition-all duration-500 group cursor-pointer"
-                                            >
-                                                <div className="w-12 h-12 rounded-2xl bg-[#652b32]/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                                                    <CheckCircle className="w-6 h-6 text-[#652b32] group-hover:text-yellow-400 transition-colors" />
-                                                </div>
-                                                <span className="font-black uppercase tracking-tight text-sm">{item.name}</span>
-                                                <ArrowRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+                        <div className="content-block">
+                            <p className="text-foreground/70 leading-relaxed">
+                                Whether you are launching a killer app or a high-performing website,
+                                we have your back. From startups to global enterprises, we understand
+                                what it takes to succeed online.
+                            </p>
+                        </div>
 
-                                <div className="p-12 rounded-[4rem] bg-[#652b32] text-white shadow-2xl relative overflow-hidden group">
-                                    <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-400/10 rounded-full -mr-20 -mt-20 blur-3xl group-hover:bg-yellow-400/20 transition-all duration-1000" />
-                                    <h3 className="font-heading text-2xl font-black mb-10 uppercase tracking-tight text-yellow-400 flex items-center gap-4">
-                                        <Zap className="fill-current" /> Why Choose Us?
-                                    </h3>
-                                    <p className="text-xl text-white/70 font-medium leading-relaxed mb-10">
-                                        Budget-friendly pricing, world-class quality, and a deep understanding of the global digital ecosystem.
-                                    </p>
-                                    <button
-                                        onClick={() => router.push("/get-quote")}
-                                        className="w-full inline-flex items-center justify-center gap-4 bg-white text-[#652b32] px-10 py-6 rounded-full font-black uppercase tracking-[0.2em] text-sm hover:bg-yellow-400 hover:text-[#652b32] transition-all active:scale-95 group shadow-2xl"
+                        <div className="content-block">
+                            <h2 className="font-display text-2xl font-bold mb-3">Mobile Apps That Rock</h2>
+                            <p className="text-foreground/70">
+                                From food delivery platforms to fitness trackers, we design mobile
+                                apps that users love and businesses depend on.
+                            </p>
+                        </div>
+
+                        <div className="content-block">
+                            <h2 className="font-display text-2xl font-bold mb-3">Websites That Convert</h2>
+                            <p className="text-foreground/70">
+                                Clean design, mobile-friendly layouts, and conversion-focused
+                                development — your digital storefront done right.
+                            </p>
+                        </div>
+
+                        <div className="content-block">
+                            <h2 className="font-display text-2xl font-bold mb-3">Design That Tells Your Story</h2>
+                            <p className="text-foreground/70">
+                                Logos, branding, and marketing visuals crafted to speak directly
+                                to your audience.
+                            </p>
+                        </div>
+
+                        <div className="content-block">
+                            <h2 className="font-display text-2xl font-bold mb-4">What Sets Us Apart</h2>
+                            <p className="text-foreground/70">
+                                Budget-friendly pricing, world-class quality, and a deep
+                                understanding of the global digital ecosystem.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 className="font-display text-xl font-bold mb-6">Our Services Include</h3>
+                            <div className="features-list grid sm:grid-cols-2 gap-4">
+                                {features.map((item, i) => (
+                                    <div
+                                        key={i}
+                                        className="feature-item flex items-center gap-3 p-4 bg-card border rounded-xl"
                                     >
-                                        Launch Now <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                                    </button>
-                                </div>
+                                        <CheckCircle className="w-5 h-5 text-accent" />
+                                        <span>{item}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                    </div>
-                </section>
 
-                <section className="py-24 md:py-40 bg-[#faf3e0] text-center relative overflow-hidden">
-                    <div className="container mx-auto px-6 relative z-10">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                        >
-                            <h2 className="font-heading text-4xl md:text-8xl font-black text-[#652b32] mb-12 uppercase tracking-tight leading-tight">
-                                Code <br /> with <span className="text-yellow-600">Passion</span>
-                            </h2>
-                            <p className="text-xl text-[#652b32]/60 max-w-3xl mx-auto mb-16 font-bold italic translate-y-[-10px]">
-                                Ready to build high-performing digital storefronts that convert visitors into loyal customers?
-                            </p>
+                        <div className="text-center content-block">
                             <button
-                                onClick={() => router.push("/get-quote")}
-                                className="inline-flex items-center gap-5 bg-[#652b32] text-white px-14 py-7 rounded-full font-black uppercase tracking-[0.2em] text-sm hover:bg-yellow-600 transition-all active:scale-95 shadow-2xl group"
+                                onClick={() => {
+                                    router.push("/");
+                                    setTimeout(() => {
+                                        document
+                                            .getElementById("contact")
+                                            ?.scrollIntoView({ behavior: "smooth" });
+                                    }, 150);
+                                }}
+                                className="mt-10 inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold"
                             >
-                                Talk to Developers <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
+                                Get Started <ArrowRight size={18} />
                             </button>
-                        </motion.div>
+                        </div>
+
                     </div>
                 </section>
             </main>
+
+
         </div>
     );
 }

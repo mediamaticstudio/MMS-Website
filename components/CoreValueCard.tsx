@@ -32,3 +32,4 @@ const CoreValueCard = memo(({ icon: Icon, title, description, index }: CoreValue
 CoreValueCard.displayName = "CoreValueCard";
 
 export default CoreValueCard;
+

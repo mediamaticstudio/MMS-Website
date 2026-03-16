@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { SMOServicesClient } from "@/components/SMOServicesClient";
+import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
     title: "Best SMO Services Company in Coimbatore | Profile Optimization",
@@ -16,5 +17,22 @@ export const metadata: Metadata = {
 };
 
 export default function SMOServicesPage() {
-    return <SMOServicesClient />;
+    const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Social Media Optimization (SMO)",
+        "description": "Expert social media optimization services in Coimbatore to enhance brand visibility and engagement.",
+        "provider": {
+            "@type": "Organization",
+            "name": "MediaMatic Studio",
+            "url": "https://mediamaticstudio.com"
+        }
+    };
+
+    return (
+        <>
+            <StructuredData data={serviceSchema} />
+            <SMOServicesClient />
+        </>
+    );
 }

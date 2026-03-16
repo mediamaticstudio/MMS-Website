@@ -124,7 +124,7 @@ const Animation = () => {
 
                                 <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
                                     2D & 3D{" "}
-                                    <span className="italic font-normal text-[#FACC15]">
+                                    <span className="italic font-normal text-primary-foreground/70">
                                         Animation
                                     </span>
                                 </h1>
@@ -140,7 +140,7 @@ const Animation = () => {
 
                     {/* CONTENT & COMPARISON */}
                     <section className="py-16 md:py-24 px-4 bg-background">
-                        <div className="container mx-auto max-w-6xl">
+                        <div className="container mx-auto max-w-6xl text-[#652b32]">
                             <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
                                 <div className="content-blocks space-y-8">
                                     <div className="content-block">
@@ -229,3 +229,4 @@ const Animation = () => {
 };
 
 export default Animation;
+

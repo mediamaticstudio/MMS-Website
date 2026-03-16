@@ -1,10 +1,11 @@
-'use client'
+"use client";
 
 import Link from "next/link";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { useQueryClient } from "@tanstack/react-query";
-import { fetchBlogPostBySlug } from "@/lib/api";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { fetchBlogPostBySlug } from "@/services/api";
+import logo from "@/public/assets/LOGO-blog.png";
 
 interface BlogCardProps {
     post: {
@@ -36,65 +37,59 @@ const BlogCard = ({ post }: BlogCardProps) => {
     return (
         <Link
             href={`/blog/${post.slug}/`}
-            className="group bg-[#fff8eb] shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full rounded-[2.5rem] overflow-hidden border border-[#652b32]/5"
+            className="group hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full bg-white rounded-lg overflow-hidden shadow"
             onMouseEnter={prefetchPost}
         >
             {/* Featured Image */}
             <div className="aspect-[16/9] overflow-hidden relative bg-[#652b32]/5 flex items-center justify-center">
-                <div className="absolute top-6 left-6 z-10">
-                    <span className="px-4 py-1.5 bg-white/95 backdrop-blur-sm text-[#652b32] text-[10px] font-black uppercase tracking-[0.2em] rounded-full shadow-md border border-[#652b32]/5">
+                <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1 bg-white/95 backdrop-blur-sm text-[#652b32] text-[10px] font-black uppercase tracking-[0.15em] rounded-full shadow-md border border-[#652b32]/5">
                         {post.category}
                     </span>
                 </div>
-                <Image
+                <img
                     src={post.featured_image}
                     alt={post.title}
-                    fill
-                    className="object-contain group-hover:scale-110 transition-transform duration-1000 ease-out"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000 ease-out"
                     loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#652b32]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#652b32]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
 
             {/* Content */}
-            <div className="p-10 flex flex-col flex-1">
+            <div className="p-5 flex flex-col flex-1">
                 {/* Meta Info */}
-                <div className="flex items-center gap-6 text-[11px] text-[#652b32]/40 mb-4 font-black uppercase tracking-widest">
-                    <div className="flex items-center gap-2">
-                        <Calendar className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-4 text-[10px] sm:text-xs text-gray-500 mb-2">
+                    <div className="flex items-center gap-1.5">
+                        <Calendar className="w-3 h-3 md:w-3.5 md:h-3.5" />
                         <span>{post.publish_date}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-1.5">
+                        <Clock className="w-3 h-3 md:w-3.5 md:h-3.5" />
                         <span>{post.read_time}</span>
                     </div>
                 </div>
 
                 {/* Title */}
-                <h2 className="text-xl font-black text-[#652b32] mb-4 group-hover:text-[#652b32] transition-colors line-clamp-2 leading-[1.3] tracking-tight uppercase font-heading">
+                <h2 className="text-lg font-black text-[#652b32] mb-2 transition-colors line-clamp-2 leading-[1.3] tracking-tight">
                     {post.title}
                 </h2>
 
                 {/* Excerpt */}
-                <p className="text-[#652b32]/60 text-sm mb-8 line-clamp-3 leading-relaxed flex-1 font-medium">
+                <p className="text-gray-500 text-[13px] mb-4 line-clamp-3 leading-relaxed flex-1 font-medium">
                     {post.excerpt}
                 </p>
 
                 {/* Footer */}
-                <div className="mt-auto pt-6 border-t border-[#652b32]/10 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <div className="relative w-8 h-8">
-                            <Image
-                                src="/assets/LOGO-blog.png"
-                                alt={post.author.name}
-                                fill
-                                className="rounded-full object-cover ring-2 ring-[#652b32]/5"
-                            />
+                <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-gray-100">
+                            <Image src={logo} alt={post.author.name} fill className="object-cover" />
                         </div>
-                        <span className="text-[11px] font-black uppercase tracking-tight text-[#652b32]">{post.author.name}</span>
+                        <span className="text-[10px] font-semibold text-gray-700">{post.author.name}</span>
                     </div>
-                    <div className="w-9 h-9 rounded-xl bg-[#652b32]/5 flex items-center justify-center group-hover:bg-[#652b32] group-hover:text-white transition-all">
-                        <ArrowRight className="w-4 h-4 text-[#652b32]/40 group-hover:text-yellow-400 group-hover:translate-x-0.5 transition-all" />
+                    <div className="w-7 h-7 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#652b32]/10 group-hover:translate-x-1 transition-all">
+                        <ArrowRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#652b32]" />
                     </div>
                 </div>
             </div>

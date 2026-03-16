@@ -105,7 +105,7 @@ export default function SubServicePage({ params }: PageProps) {
     ];
 
     return (
-        <div className="min-h-screen bg-background font-sans">
+        <div className="min-h-screen bg-[#faf3e0] font-sans">
             <Script
                 id="subservice-jsonld"
                 type="application/ld+json"
@@ -142,11 +142,11 @@ export default function SubServicePage({ params }: PageProps) {
                 </section>
 
                 {/* Overview Section */}
-                <section className="py-24 md:py-40 bg-white">
+                <section className="py-24 md:py-40 bg-[#faf3e0]">
                     <div className="container mx-auto px-6 max-w-7xl">
                         <div className="grid lg:grid-cols-2 gap-24 items-start font-medium">
                             <div>
-                                <h2 className="font-heading text-4xl md:text-6xl font-black text-[#652b32] mb-10 uppercase tracking-tight">Experience <span className="text-yellow-600">Excellence</span></h2>
+                                <h2 className="font-heading text-4xl md:text-6xl font-black text-[#652b32] mb-10 uppercase tracking-tight">Experience <span className="text-[#FACC15]">Excellence</span></h2>
                                 <p className="text-lg text-[#652b32]/60 leading-relaxed mb-8">
                                     {subService.longDescription}
                                 </p>
@@ -168,11 +168,11 @@ export default function SubServicePage({ params }: PageProps) {
                     <section className="py-24 md:py-40 bg-[#faf3e0]">
                         <div className="container mx-auto px-6 max-w-7xl text-center">
                             <h2 className="font-heading text-4xl md:text-8xl font-black text-[#652b32] mb-24 uppercase tracking-tight leading-tight">
-                                Key <br /> <span className="text-yellow-600">Benefits</span>
+                                Key <br /> <span className="text-[#FACC15]">Benefits</span>
                             </h2>
                             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                                 {subService.benefits.map((benefit, index) => (
-                                    <div key={index} className="flex gap-6 p-8 bg-white/50 border border-[#652b32]/5 rounded-[2.5rem] text-left hover:bg-[#652b32] hover:text-white transition-all duration-500 group shadow-lg">
+                                    <div key={index} className="flex gap-6 p-8 bg-white/80 border border-[#652b32]/5 rounded-[2.5rem] text-left hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-500 group shadow-lg">
                                         <div className="w-12 h-12 rounded-2xl bg-[#652b32]/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
                                             <CheckCircle className="w-6 h-6 text-[#652b32] group-hover:text-yellow-400 transition-colors" />
                                         </div>
@@ -188,7 +188,7 @@ export default function SubServicePage({ params }: PageProps) {
 
                 {/* Related Services Section */}
                 {relatedSubServices.length > 0 && (
-                    <section className="py-24 md:py-40 bg-white">
+                    <section className="py-24 md:py-40 bg-[#faf3e0]">
                         <div className="container mx-auto px-6 max-w-7xl">
                             <h2 className="font-heading text-3xl md:text-5xl font-black text-[#652b32] mb-16 text-center uppercase tracking-tight">
                                 Other {service.name}
@@ -227,7 +227,7 @@ export default function SubServicePage({ params }: PageProps) {
                         </p>
                         <Link
                             href="/get-quote/"
-                            className="inline-flex items-center gap-5 bg-yellow-400 text-[#652b32] px-14 py-7 rounded-full font-black uppercase tracking-[0.2em] text-sm hover:bg-white transition-all active:scale-95 shadow-2xl group"
+                            className="inline-flex items-center gap-5 bg-[#FACC15] text-[#652b32] px-14 py-7 rounded-full font-black uppercase tracking-[0.2em] text-sm hover:bg-[#faf3e0] transition-all active:scale-95 shadow-2xl group"
                         >
                             Get a Free Quote <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
                         </Link>
@@ -246,7 +246,7 @@ export default function SubServicePage({ params }: PageProps) {
                                     <Link
                                         key={svc.slug}
                                         href={`/services/${svc.slug}/`}
-                                        className="p-10 bg-white rounded-[3rem] border border-[#652b32]/5 hover:border-yellow-400 transition-all duration-500 shadow-xl group"
+                                        className="p-10 bg-white/80 rounded-[3rem] border border-[#652b32]/5 hover:border-[#FACC15] transition-all duration-500 shadow-xl group"
                                     >
                                         <h3 className="font-heading text-xl font-black text-[#652b32] mb-4 uppercase tracking-tight">{svc.name}</h3>
                                         <p className="text-xs text-[#652b32]/60 font-bold">

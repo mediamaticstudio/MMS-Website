@@ -31,3 +31,4 @@ const StatsCard = memo(({ value, label, index }: StatsCardProps) => {
 StatsCard.displayName = "StatsCard";
 
 export default StatsCard;
+

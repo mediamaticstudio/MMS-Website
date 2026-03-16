@@ -220,12 +220,12 @@ export const About = () => {
                 <div className="container mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
                     {/* LEFT CONTENT */}
                     <div>
-                        <span className="text-sm font-semibold tracking-wider text-[#fdf3b7]">
+                        <span className="text-sm font-semibold tracking-wider text-[#facc15]">
                             About Us
                         </span>
 
                         <h1 className="text-4xl md:text-6xl font-extrabold mt-4 mb-6 leading-tight text-[#fdf3b7]">
-                            MediaMatic Studio
+                            MediaMatic <span className="text-[#facc15]">Studio</span>
                         </h1>
 
                         <p className="mb-6 max-w-xl text-[#fdf3b7]/90">
@@ -270,7 +270,7 @@ export const About = () => {
                         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                             <div>
                                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-6 md:mb-8 text-[#fdf3b7] leading-tight">
-                                    Our Legacy
+                                    Our <span className="text-[#facc15]">Legacy</span>
                                 </h2>
                                 <div className="space-y-4 md:space-y-6 text-[#fdf3b7]/90">
                                     <p className="leading-relaxed">
@@ -289,26 +289,26 @@ export const About = () => {
                                 whileHover="hover"
                                 className="bg-[#652b32] p-6 lg:p-8 rounded-3xl border border-[#fdf3b7]/20 hover:border-[#fdf3b7]/40 shadow-xl"
                             >
-                                <h3 className="text-xl lg:text-2xl font-bold mb-6 text-[#fdf3b7]">Our Journey</h3>
+                                <h3 className="text-xl lg:text-2xl font-bold mb-6 text-[#facc15]">Our Journey</h3>
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-4 group">
                                         <div className="w-3 h-3 bg-[#fdf3b7] rounded-full group-hover:scale-125 transition-transform"></div>
-                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#fdf3b7] transition-colors">2017</span>
+                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#facc15] transition-colors">2017</span>
                                         <span className="text-[#fdf3b7]/70 group-hover:text-[#fdf3b7] transition-colors">- Start-Up</span>
                                     </div>
                                     <div className="flex items-center gap-4 group">
                                         <div className="w-3 h-3 bg-[#fdf3b7] rounded-full group-hover:scale-125 transition-transform"></div>
-                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#fdf3b7] transition-colors">2023</span>
+                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#facc15] transition-colors">2023</span>
                                         <span className="text-[#fdf3b7]/70 group-hover:text-[#fdf3b7] transition-colors">- Registered as Proprietorship Firm</span>
                                     </div>
                                     <div className="flex items-center gap-4 group">
                                         <div className="w-3 h-3 bg-[#fdf3b7] rounded-full group-hover:scale-125 transition-transform"></div>
-                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#fdf3b7] transition-colors">2024</span>
+                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#facc15] transition-colors">2024</span>
                                         <span className="text-[#fdf3b7]/70 group-hover:text-[#fdf3b7] transition-colors">- Registered as Private Limited Company</span>
                                     </div>
                                     <div className="flex items-center gap-4 group">
                                         <div className="w-3 h-3 bg-[#fdf3b7] rounded-full group-hover:scale-125 transition-transform"></div>
-                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#fdf3b7] transition-colors">2025</span>
+                                        <span className="font-semibold text-[#fdf3b7] group-hover:text-[#facc15] transition-colors">2025</span>
                                         <span className="text-[#fdf3b7]/70 group-hover:text-[#fdf3b7] transition-colors">- Expanding Operations & Aiming to be a Global Fortune company by 2030.</span>
                                     </div>
                                 </div>
@@ -318,7 +318,7 @@ export const About = () => {
 
                     {/* STATS */}
                     <div className="mb-12 lg:mb-16">
-                        <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 lg:mb-10 text-[#fdf3b7]">
+                        <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 lg:mb-10 text-[#facc15]">
                             Our Current Stats
                         </h3>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-8 ">
@@ -345,7 +345,7 @@ export const About = () => {
                         viewport={{ once: true }}
                         className="mb-12 lg:mb-20"
                     >
-                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-black text-center mb-6 lg:mb-10 text-[#fdf3b7] uppercase tracking-wider">
+                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-black text-center mb-6 lg:mb-10 text-[#facc15] uppercase tracking-wider">
                             Our 2026 Vision
                         </h3>
                         <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
@@ -382,7 +382,7 @@ export const About = () => {
                         viewport={{ once: true }}
                         className="mb-12 lg:mb-20"
                     >
-                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-black text-center mb-6 lg:mb-10 text-[#fdf3b7] uppercase tracking-wider">
+                        <h3 className="text-2xl md:text-3xl lg:text-3xl font-black text-center mb-6 lg:mb-10 text-[#facc15] uppercase tracking-wider">
                             MMS Core Values
                         </h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -417,7 +417,7 @@ export const About = () => {
                         viewport={{ once: true }}
                         className="mb-12 lg:mb-16"
                     >
-                        <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 lg:mb-10 text-[#fdf3b7]">
+                        <h3 className="text-2xl lg:text-3xl font-bold text-center mb-6 lg:mb-10 text-[#facc15]">
                             Our Strategy of Work
                         </h3>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -590,3 +590,4 @@ export const About = () => {
         </section>
     );
 };
+

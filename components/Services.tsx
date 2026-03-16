@@ -156,7 +156,7 @@ export const Services = () => {
                         <div
                             key={index}
                             onClick={() => router.push(service.href)}
-                            className="service-card group relative p-12 rounded-[3.5rem] bg-[#fff8eb] border border-[#652b32]/5 hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 overflow-hidden cursor-pointer"
+                            className="service-card group relative p-12 rounded-[3.5rem] bg-[#fff8eb] hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 overflow-hidden cursor-pointer"
                         >
                             {/* Service Background Image - Bottom Right */}
                             <div
@@ -223,3 +223,4 @@ export const Services = () => {
         </section>
     );
 };
+

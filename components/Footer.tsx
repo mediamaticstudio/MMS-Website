@@ -43,10 +43,11 @@ const serviceLinks = [
     { label: "Content Management", href: "/services/contentmanagement/" },
     { label: "Website & App Development", href: "/services/website-development-agency/" },
     { label: "Designing", href: "/services/designing/" },
-    { label: "Search Engine Optimization (SEO)", href: "/search-engine-optimization-company/" },
-    { label: "Social Media Optimization (SMO)", href: "/social-media-optimization-company/" },
-    { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
-    { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
+    { label: "Digital Marketing", href: "/services/digital-marketing-agency/" },
+    // { label: "Search Engine Optimization (SEO)", href: "/search-engine-optimization-company/" },
+    // { label: "Social Media Optimization (SMO)", href: "/social-media-optimization-company/" },
+    // { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
+    // { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
     { label: "Web Hosting Service", href: "/services/webhosting/" },
 ];
 
@@ -183,3 +184,4 @@ export const Footer = () => {
         </footer>
     );
 };
+

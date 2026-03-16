@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { SMMServicesClient } from "@/components/SMMServicesClient";
+import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
     title: "Best Social Media Marketing Company in Coimbatore | Grow Your Reach",
@@ -16,5 +17,22 @@ export const metadata: Metadata = {
 };
 
 export default function SMMServicesPage() {
-    return <SMMServicesClient />;
+    const serviceSchema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Social Media Marketing",
+        "description": "Expert social media marketing services in Coimbatore to boost brand engagement and growth.",
+        "provider": {
+            "@type": "Organization",
+            "name": "MediaMatic Studio",
+            "url": "https://mediamaticstudio.com"
+        }
+    };
+
+    return (
+        <>
+            <StructuredData data={serviceSchema} />
+            <SMMServicesClient />
+        </>
+    );
 }
