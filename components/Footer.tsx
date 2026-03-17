@@ -39,17 +39,14 @@ const usefulLinks = [
 ];
 
 const serviceLinks = [
-    { label: "2D & 3D Animation Videos", href: "/services/animation/" },
-    { label: "Content Management", href: "/services/contentmanagement/" },
-    { label: "Website & App Development", href: "/services/website-development-agency/" },
-    { label: "Designing", href: "/services/designing/" },
-    { label: "Digital Marketing", href: "/services/digital-marketing-agency/" },
-    // { label: "Search Engine Optimization (SEO)", href: "/search-engine-optimization-company/" },
-    // { label: "Social Media Optimization (SMO)", href: "/social-media-optimization-company/" },
-    // { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
-    // { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
-    { label: "Web Hosting Service", href: "/services/webhosting/" },
+    { label: "2D & 3D Animation Videos", href: "/animation-videos-company/" },
+    { label: "Content Management", href: "/content-management/" },
+    { label: "Website & App Development", href: "/website-development-agency/" },
+    { label: "Designing", href: "/designing/" },
+    { label: "Digital Marketing", href: "/digital-marketing-agency/" },
+    { label: "Web Hosting Service", href: "/web-hosting/" },
 ];
+
 
 /* ================= COMPONENT ================= */
 
@@ -57,6 +54,7 @@ export const Footer = () => {
     const footerRef = useRef<HTMLElement>(null);
     const router = useRouter();
     const pathname = usePathname();
+    const isAdPage = pathname?.includes("adpage") || pathname?.includes("branding-agency-in-houston");
 
 
     /* SAME NAV LOGIC AS HEADER */
@@ -92,7 +90,7 @@ export const Footer = () => {
             className="pt-8 pb-4 bg-[#652b32] text-[#faf3e0]"
         >
             <div className="container mx-auto px-6">
-                <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-8 pb-6 items-start">
+                <div className={`grid ${isAdPage ? "grid-cols-1" : "lg:grid-cols-3 md:grid-cols-1"} gap-8 pb-6 items-start`}>
 
                     {/* LOGO + BRANDING + SOCIAL */}
                     <div className="flex flex-col items-center space-y-4">
@@ -129,46 +127,50 @@ export const Footer = () => {
                     </div>
 
                     {/* USEFUL LINKS */}
-                    <div className="text-center flex flex-col items-center pt-2">
-                        <h4 className="font-black text-sm uppercase tracking-widest mb-4 relative after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#faf3e0]/30">Useful Links</h4>
-                        <ul className="space-y-3 opacity-90 text-[13px] font-medium">
-                            {usefulLinks.map((link) => (
-                                <li key={link.label}>
-                                    <a
-                                        href={link.href}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavClick(link.href);
-                                        }}
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        {link.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {!isAdPage && (
+                        <div className="text-center flex flex-col items-center pt-2">
+                            <h4 className="font-black text-sm uppercase tracking-widest mb-4 relative after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#faf3e0]/30">Useful Links</h4>
+                            <ul className="space-y-3 opacity-90 text-[13px] font-medium">
+                                {usefulLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <a
+                                            href={link.href}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handleNavClick(link.href);
+                                            }}
+                                            className="hover:text-white transition-colors"
+                                        >
+                                            {link.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
 
                     {/* OUR SERVICES */}
-                    <div className="text-center flex flex-col items-center pt-2">
-                        <h4 className="font-black text-sm uppercase tracking-widest mb-4 relative after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#faf3e0]/30">Our Services</h4>
-                        <ul className="space-y-3 opacity-90 text-[13px] font-medium">
-                            {serviceLinks.map((service) => (
-                                <li key={service.label}>
-                                    <a
-                                        href={service.href}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavClick(service.href, true);
-                                        }}
-                                        className="hover:text-white transition-colors"
-                                    >
-                                        {service.label}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {!isAdPage && (
+                        <div className="text-center flex flex-col items-center pt-2">
+                            <h4 className="font-black text-sm uppercase tracking-widest mb-4 relative after:absolute after:bottom-[-8px] after:left-1/2 after:-translate-x-1/2 after:w-8 after:h-0.5 after:bg-[#faf3e0]/30">Our Services</h4>
+                            <ul className="space-y-3 opacity-90 text-[13px] font-medium">
+                                {serviceLinks.map((service) => (
+                                    <li key={service.label}>
+                                        <a
+                                            href={service.href}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handleNavClick(service.href, true);
+                                            }}
+                                            className="hover:text-white transition-colors"
+                                        >
+                                            {service.label}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
             </div>
 

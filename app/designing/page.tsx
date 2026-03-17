@@ -83,13 +83,13 @@ const Designing = () => {
             <SEO
                 title="Designing Services | MediaMatic Studio"
                 description="Design That Tells Your Story. Logos, branding, and marketing visuals crafted to speak directly to your audience. Professional logo design, brand identity, and creative marketing materials."
-                canonical="/services/designing/"
+                canonical="/designing/"
                 keywords="graphic design, logo design, brand identity, marketing visuals, social media graphics, print media design, brand guidelines, creative design, MediaMatic Studio"
                 structuredData={[
                     generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
                         { name: "Services", url: "/services/" },
-                        { name: "Designing", url: "/services/designing/" }
+                        { name: "Designing", url: "/designing/" }
                     ]),
                     generateServiceSchema({
                         name: "Graphic Design Services",

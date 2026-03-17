@@ -84,13 +84,13 @@ const Animation = () => {
             <SEO
                 title="2D & 3D Animation Services | MediaMatic Studio"
                 description="Creative studio transforming business ideas into compelling visual stories through 2D & 3D animation. Expert explainer videos, branding videos, and custom animation solutions."
-                canonical="/services/animation/"
+                canonical="/animation-videos-company/"
                 keywords="2D animation, 3D animation, explainer videos, branding videos, animated videos, storyboarding, video production, animation studio, MediaMatic Studio"
                 structuredData={[
                     generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
                         { name: "Services", url: "/services/" },
-                        { name: "Animation", url: "/services/animation/" }
+                        { name: "Animation", url: "/animation-videos-company/" }
                     ]),
                     generateServiceSchema({
                         name: "Animation Services",

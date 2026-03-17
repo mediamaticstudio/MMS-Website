@@ -17,18 +17,18 @@ const navLinks = [
     { label: "Home", href: "#home", id: "home" },
     { label: "About Us", href: "#about", id: "about" },
     { label: "Services", href: "/services/", id: "services", hasDropdown: true, isSubPage: true },
-    { label: "Digital Marketing", href: "/services/digital-marketing-agency/", id: "digital-marketing", hasDropdown: true, isSubPage: true },
+    { label: "Digital Marketing", href: "/digital-marketing-agency/", id: "digital-marketing", hasDropdown: true, isSubPage: true },
     { label: "STUDIO HUB", href: "#", id: "studio", hasDropdown: true },
     { label: "Blog", href: "/blog/", isSubPage: true },
     { label: "Contact Us", href: "/contact-us/", isSubPage: true, id: "contact" },
 ];
 
 const serviceLinks = [
-    { label: "2D & 3D Animation Videos", href: "/services/animation/" },
-    { label: "Content Management", href: "/services/contentmanagement/" },
-    { label: "Website & App Development", href: "/services/website-development-agency/" },
-    { label: "Designing", href: "/services/designing/" },
-    { label: "VPS Web Hosting Service", href: "/services/webhosting/" },
+    { label: "2D & 3D Animation Videos", href: "/animation-videos-company/" },
+    { label: "Content Management", href: "/content-management/" },
+    { label: "Website & App Development", href: "/website-development-agency/" },
+    { label: "Designing", href: "/designing/" },
+    { label: "VPS Web Hosting Service", href: "/web-hosting/" },
 ];
 
 const digitalMarketingLinks = [
@@ -37,6 +37,7 @@ const digitalMarketingLinks = [
     { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
     { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
 ];
+
 
 /* ================= COMPONENT ================= */
 
@@ -59,6 +60,7 @@ export const Header = () => {
 
     const router = useRouter();
     const pathname = usePathname();
+    const isAdPage = pathname?.startsWith("/adpage") || pathname?.includes("branding-agency-in-houston");
     const isScrollSpyPage = pathname === "/" || pathname === "/about-us/";
 
     /* Header entry animation */
@@ -239,7 +241,8 @@ export const Header = () => {
                         </a>
 
                         {/* Desktop Nav */}
-                        <div className="hidden xl:flex items-center gap-6 xxl:gap-8">
+                        {!isAdPage && (
+                            <div className="hidden xl:flex items-center gap-6 xxl:gap-8">
                             {navLinks.map((link) =>
                                 link.hasDropdown ? (
                                     <div
@@ -265,7 +268,20 @@ export const Header = () => {
                                                 e.preventDefault();
                                                 handleNavClick(link.href, (link as any).isSubPage);
                                             }}
-                                            className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-[#652b32] transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${(activeSection === link.id || (link.id === "services" && pathname.startsWith("/services/") && !pathname.includes("digital-marketing-agency") && !(pathname.includes("-company") && !pathname.includes("website-development-agency"))) || (link.id === "digital-marketing" && (pathname.includes("digital-marketing-agency") || pathname.includes("-company"))) || (link.id === "studio" && pathname.includes("podcast-recording-studio-in-Coimbatore/"))) ? "after:w-full text-[#652b32] font-bold" : "after:w-0"}`}
+                                            className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-[#652b32] transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${
+                                                activeSection === link.id ||
+                                                (link.id === "services" && (
+                                                    pathname === "/services/" ||
+                                                    serviceLinks.some(s => pathname === s.href)
+                                                )) ||
+                                                (link.id === "digital-marketing" && (
+                                                    pathname === "/digital-marketing-agency/" ||
+                                                    digitalMarketingLinks.some(s => pathname === s.href)
+                                                )) ||
+                                                (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
+                                                ? "after:w-full text-[#652b32] font-bold"
+                                                : "after:w-0"
+                                            }`}
                                         >
                                             {link.label} <ChevronDown size={14} />
                                         </a>
@@ -359,11 +375,36 @@ export const Header = () => {
                                 PAY NOW
                             </a>
                         </div>
+                        )}
+
+                        {isAdPage && (
+                            <div className="hidden xl:flex items-center gap-6">
+                                <a
+                                    href="#"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        window.dispatchEvent(new CustomEvent('open-contact-modal'));
+                                    }}
+                                    className="px-9 py-3.5 rounded-xl font-black text-[#faf3e0] bg-[#652b32] hover:bg-[#652b32]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 inline-block text-center text-[12px] uppercase tracking-[0.15em] whitespace-nowrap cursor-pointer"
+                                >
+                                    GET QUOTE
+                                </a>
+                            </div>
+                        )}
 
                         {/* Mobile Toggle */}
-                        <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden p-2">
-                            {isOpen ? <X /> : <Menu />}
-                        </button>
+                        {!isAdPage ? (
+                            <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden p-2">
+                                {isOpen ? <X /> : <Menu />}
+                            </button>
+                        ) : (
+                            <button 
+                                onClick={() => window.dispatchEvent(new CustomEvent('open-contact-modal'))}
+                                className="xl:hidden px-4 py-2 rounded-lg font-black text-[#faf3e0] bg-[#652b32] text-[10px] uppercase tracking-wider"
+                            >
+                                Get Quote
+                            </button>
+                        )}
                     </nav>
                 </div >
             </header >
@@ -386,7 +427,20 @@ export const Header = () => {
                                                     e.preventDefault();
                                                     handleNavClick(link.href, (link as any).isSubPage);
                                                 }}
-                                                className={`text-2xl transition-all duration-300 ${(activeSection === link.id || (link.id === "services" && pathname.startsWith("/services/")) || (link.id === "digital-marketing" && (pathname.includes("digital-marketing-agency") || pathname.includes("-company"))) || (link.id === "studio" && pathname.includes("podcast-recording-studio-in-Coimbatore/"))) ? "text-yellow-400 font-bold" : "opacity-80 hover:opacity-100"}`}
+                                                className={`text-2xl transition-all duration-300 ${
+                                                    activeSection === link.id ||
+                                                    (link.id === "services" && (
+                                                        pathname === "/services/" ||
+                                                        serviceLinks.some(s => pathname === s.href)
+                                                    )) ||
+                                                    (link.id === "digital-marketing" && (
+                                                        pathname === "/digital-marketing-agency/" ||
+                                                        digitalMarketingLinks.some(s => pathname === s.href)
+                                                    )) ||
+                                                    (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
+                                                    ? "text-yellow-400 font-bold"
+                                                    : "opacity-80 hover:opacity-100"
+                                                }`}
                                             >
                                                 {link.label}
                                             </a>

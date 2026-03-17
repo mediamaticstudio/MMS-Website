@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     keywords:
         "web development, app development, mobile apps, website design, e-commerce, custom web applications, UI/UX design, responsive design, MediaMatic Studio",
     alternates: {
-        canonical: "/services/website-development-agency",
+        canonical: "/website-development-agency",
     },
     openGraph: {
         title: "Web & App Development Services | MediaMatic Studio",
         description:
             "Your one-stop digital partner for cutting-edge web and mobile experiences. Expert mobile app development, website development, e-commerce solutions, and custom web applications.",
-        url: "/services/website-development-agency",
+        url: "/website-development-agency",
     },
 };
 
@@ -27,7 +27,7 @@ const structuredData = [
         itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: "https://mediamaticstudio.com/" },
             { "@type": "ListItem", position: 2, name: "Services", item: "https://mediamaticstudio.com/services/" },
-            { "@type": "ListItem", position: 3, name: "Web Development", item: "https://mediamaticstudio.com/services/website-development-agency/" },
+            { "@type": "ListItem", position: 3, name: "Web Development", item: "https://mediamaticstudio.com/website-development-agency/" },
         ],
     },
     {

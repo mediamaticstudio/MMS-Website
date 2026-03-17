@@ -12,21 +12,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         "/get-quote",
         "/blog",
         "/podcast-recording-studio-in-Coimbatore",
+        "/animation-videos-company",
+        "/content-management",
+        "/website-development-agency",
+        "/designing",
+        "/digital-marketing-agency",
+        "/web-hosting",
         "/search-engine-marketing-company",
         "/search-engine-optimization-company",
         "/social-media-marketing-company",
         "/social-media-optimization-company",
         "/services",
-        "/services/animation",
-        "/services/contentmanagement",
-        "/services/designing",
-        "/services/digital-marketing-agency",
-        "/services/search-engine-marketing-company",
-        "/services/search-engine-optimization-company",
-        "/services/social-media-optimization-company",
-        "/services/webhosting",
-        "/services/website-development-agency",
     ];
+
 
     const routes = staticPages.map((page) => ({
         url: `${baseUrl}${page}`,

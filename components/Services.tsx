@@ -26,7 +26,7 @@ const services = [
         tagline: "A creative studio that helps you move forward.",
         description: "Transform your business ideas into compelling visual stories with high-quality 2D & 3D animation, explainer videos, and branding videos.",
         features: ["Explainer Videos", "Brand Videos", "Motion Graphics", "VFX"],
-        href: "/services/animation/",
+        href: "/animation-videos-company/",
     },
     {
         icon: FileText,
@@ -35,7 +35,7 @@ const services = [
         tagline: "Expert content writers delivering high-quality content.",
         description: "SEO-friendly content, web copywriting, engaging social media content, technical writing, and brand-building content that connects with your audience.",
         features: ["Blog Posts", "SEO Articles", "Technical Docs", "Social Media"],
-        href: "/services/contentmanagement/",
+        href: "/content-management/",
     },
     {
         icon: MonitorSmartphone,
@@ -44,7 +44,7 @@ const services = [
         tagline: "Your go-to digital partner.",
         description: " Websites that don't just look good but bring in customers. Mobile apps your customers can't stop using.Clean, responsive design.",
         features: ["Mobile Apps", "Websites", "E-Commerce", "Custom Solutions"],
-        href: "/services/website-development-agency/",
+        href: "/website-development-agency/",
     },
     {
         icon: Palette,
@@ -53,7 +53,7 @@ const services = [
         tagline: "Design That Tells Your Story.",
         description: "Logos, branding, and marketing visuals crafted to speak directly to your audience. We build visual identities that resonate.",
         features: ["Logo Design", "Branding", "Marketing Visuals", "Social Media"],
-        href: "/services/designing/",
+        href: "/designing/",
     },
     {
         icon: Megaphone,
@@ -62,7 +62,7 @@ const services = [
         tagline: "Expand your reach with MediaMatic Studio.",
         description: "SEO, SMO, SEM, SMM expertise. Data-driven digital marketing solutions that increase conversions, engagement, and visibility.",
         features: ["SEO", "Social Media", "Email Marketing", "Google Ads", "Meta Ads"],
-        href: "/services/digital-marketing-agency/",
+        href: "/digital-marketing-agency/",
     },
     {
         icon: Globe,
@@ -71,9 +71,10 @@ const services = [
         tagline: "Your trusted hosting partner.",
         description: "Top-notch web hosting and domain services. 24/7 support, 99.9% uptime guarantee, cPanel access, and business email accounts.",
         features: ["Shared Hosting", "Dedicated", "Domain", "Email"],
-        href: "/services/webhosting/",
+        href: "/web-hosting/",
     },
 ];
+
 
 export const Services = () => {
     const sectionRef = useRef<HTMLElement>(null);

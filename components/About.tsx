@@ -277,7 +277,7 @@ export const About = () => {
                                         MediaMatic Studio, incorporated in 2017 – one of India's eminent startup branding firms, supporting various industries in the field of branding services.
                                     </p>
                                     <p className="leading-relaxed">
-                                        MediaMatic Studio is a leading 2D & 3D Animation, Corporate Shoot, Website / App Development & Designing , Digital Marketing, and Content Management company In Coimbatore,India. we also serve clients in USA, Canada, UK, Europe, Middle East, Australia, and India.
+                                        MediaMatic Studio is a leading 2D & 3D Animation, Corporate Shoot, Website / App Development & Designing , Digital Marketing, and Content Management company In Coimbatore, India. we also serve clients in USA, Canada, UK, Europe, Middle East, Australia, and India.
                                     </p>
                                 </div>
                             </div>

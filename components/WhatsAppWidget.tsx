@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, X, MessageSquare, Phone } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 interface Message {
     id: string;
@@ -18,6 +19,9 @@ export const WhatsAppWidget = () => {
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const phoneNumber = "919629593615";
+    const pathname = usePathname();
+
+    if (pathname?.startsWith("/adpage")) return null;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

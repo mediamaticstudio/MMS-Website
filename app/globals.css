@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    
     /* User provided colors */
     --primary-dark: #652b32;
     /* Updated to match text/theme */
@@ -34,7 +35,6 @@
     /* Mapped system colors */
     --background: var(--cream-bg);
     --foreground: var(--text-dark);
-
     --card: var(--card-bg);
     --card-foreground: var(--text-dark);
 

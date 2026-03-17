@@ -71,13 +71,13 @@ const ContentManagement = () => {
             <SEO
                 title="Content Management Services | MediaMatic Studio"
                 description="Expert content writing services including SEO-friendly content, web copywriting, social media content, and technical documentation that connects your brand with audiences."
-                canonical="/services/contentmanagement/"
+                canonical="/content-management/"
                 keywords="content writing, content management, SEO content, web copywriting, social media content, technical documentation, blog posts, content marketing, MediaMatic Studio"
                 structuredData={[
                     generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
                         { name: "Services", url: "/services/" },
-                        { name: "Content Management", url: "/services/contentmanagement/" }
+                        { name: "Content Management", url: "/content-management/" }
                     ]),
                     generateServiceSchema({
                         name: "Content Management Services",
