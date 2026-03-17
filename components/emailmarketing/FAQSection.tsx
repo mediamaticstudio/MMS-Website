@@ -32,20 +32,22 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-    <section id="faq" className="section-padding bg-muted">
-        <div className="max-w-3xl mx-auto">
+    <section id="faq" className="section-padding py-32 bg-[#faf3e0]/50">
+        <div className="max-w-4xl mx-auto px-4">
             <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mb-12 text-center"
+                transition={{ duration: 0.8 }}
+                className="mb-20 text-center"
             >
-                <span className="label-text text-accent flex items-center justify-center gap-2 mb-4">
-                    <span className="gold-pip" /> Frequently Asked Questions
+                <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
+                    Frequently Asked Questions
                 </span>
 
-                <h2 className="display-heading text-3xl md:text-5xl">
-                    Got Questions?
+                <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
+                    Got <br />
+                    <span className="text-[#FACC15]">Questions?</span>
                 </h2>
             </motion.div>
 
@@ -53,16 +55,17 @@ const FAQSection = () => (
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="bg-white p-6 md:p-10 rounded-[2rem] shadow-2xl border border-white/20"
             >
-                <Accordion type="single" collapsible className="w-full">
+                <Accordion type="single" collapsible className="w-full space-y-2">
                     {faqs.map((faq, i) => (
-                        <AccordionItem key={i} value={`item-${i}`} className="border-border">
-                            <AccordionTrigger className="font-sans font-semibold text-left text-foreground hover:text-primary text-base py-6">
+                        <AccordionItem key={i} value={`item-${i}`} className="border-b border-[#652b32]/10 last:border-0 px-2">
+                            <AccordionTrigger className="text-xl font-black text-[#652b32] group-hover:text-[#FACC15] transition-colors font-heading leading-tight uppercase tracking-tight py-8">
                                 {faq.q}
                             </AccordionTrigger>
 
-                            <AccordionContent className="body-text text-muted-foreground pb-6">
+                            <AccordionContent className="text-[#652b32]/60 text-sm leading-relaxed mb-8 font-medium">
                                 {faq.a}
                             </AccordionContent>
                         </AccordionItem>

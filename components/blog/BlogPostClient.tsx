@@ -105,7 +105,7 @@ const BlogPostClient = ({ slug }: BlogPostClientProps) => {
     const displayFaqs = post?.faqs || [];
 
     const processedContent = useMemo(() => {
-        if (!post?.content) return "";
+        if (!post?.content || typeof document === "undefined") return post?.content || "";
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = post.content;
 
@@ -139,7 +139,7 @@ const BlogPostClient = ({ slug }: BlogPostClientProps) => {
     }, [post?.content]);
 
     const { introContent, remainingContent } = useMemo(() => {
-        if (!processedContent) return { introContent: "", remainingContent: processedContent };
+        if (!processedContent || typeof document === "undefined") return { introContent: "", remainingContent: processedContent };
         const tempDiv = document.createElement("div");
         tempDiv.innerHTML = processedContent;
         const firstParagraph = tempDiv.querySelector("p");

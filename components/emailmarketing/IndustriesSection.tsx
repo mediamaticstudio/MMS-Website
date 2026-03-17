@@ -33,15 +33,16 @@ const IndustriesSection = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <span className="label-text text-accent flex items-center gap-2 mb-4">
-                        <span className="gold-pip" /> Sectors We Serve
+                    <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
+                        Sectors We Serve
                     </span>
 
-                    <h2 className="display-heading text-3xl md:text-5xl max-w-2xl">
-                        Industries We Power with Email Marketing
+                    <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
+                        Industries <br />
+                        <span className="text-[#FACC15]">We Power</span>
                     </h2>
 
-                    <p className="body-text text-muted-foreground mt-4 max-w-xl">
+                    <p className="text-lg text-[#652b32]/60 max-w-2xl leading-relaxed font-medium">
                         Targeted email strategies designed for the unique communication patterns of every industry.
                     </p>
                 </motion.div>
@@ -75,7 +76,9 @@ const IndustriesSection = () => {
                                 </motion.span>
                             )}
 
-                            <span className="font-sans font-medium text-sm">{ind}</span>
+                            <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 bg-[#652b32]/5 rounded-full text-[#652b32]/60 font-black">
+                                {ind}
+                            </span>
                         </motion.div>
                     ))}
                 </motion.div>

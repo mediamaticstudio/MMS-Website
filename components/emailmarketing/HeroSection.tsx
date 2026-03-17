@@ -18,7 +18,7 @@ const HeroSection = () => {
 
     return (
         <section
-            className="section-padding pt-32 md:pt-40 min-h-screen flex items-center"
+            className="section-padding pt-32 md:pt-40 min-h-screen flex items-center relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(101,43,50,0.05),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(154,90,42,0.05),transparent_50%)]"
             onMouseMove={handleMouseMove}
         >
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
@@ -28,70 +28,74 @@ const HeroSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <span className="label-text text-accent mb-4 inline-flex items-center gap-2">
-                        <span className="gold-pip" />
+                    <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
                         Best Email Marketing Service
                     </span>
 
-                    <h1 className="display-heading text-4xl md:text-5xl lg:text-6xl mt-4 mb-6">
-                        Best Email Marketing Service for High-Converting Business Campaigns
+                    <h1 className="display-heading text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase text-[#652b32]">
+                        High-converting <br /> campaigns
                     </h1>
 
-                    <p className="body-text text-muted-foreground text-lg md:text-xl max-w-lg mb-8">
-                        The Best email marketing service will support the brands to deliver one-on-one messages, automate the communication process and ensure that the customer is interested in the process. A credible email marketing system helps the firm to create targeted advertisements that transform subscribers into regular consumers besides increasing brand awareness.
+                    <p className="body-text text-lg md:text-xl text-[#652b32]/60 max-w-2xl mt-8 mb-10 leading-relaxed font-medium">
+                        One-on-one messaging, automated. Built on a Django-Gmail backbone. We build the list. We segment the data. You see the ROI.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <a href="#cta" className="btn-primary text-center">
+                    <div className="flex flex-col sm:flex-row gap-6 mb-20">
+                        <a 
+                            href="#cta" 
+                            className="bg-[#652b32] text-white px-10 py-5 rounded-[2rem] font-black tracking-[0.1em] hover:bg-[#4d2126] transition-all text-center uppercase text-xs"
+                        >
                             Start Your Campaign
                         </a>
 
                         <a
                             href="#services"
-                            className="label-text text-primary border border-primary px-8 py-4 rounded-sm hover:bg-primary hover:text-primary-foreground transition-all text-center"
+                            className="border-2 border-[#652b32] text-[#652b32] px-10 py-5 rounded-[2rem] font-black tracking-[0.1em] hover:bg-[#652b32] hover:text-white transition-all text-center uppercase text-xs"
                         >
                             Our Services
                         </a>
                     </div>
 
                     <div className="flex gap-8 mt-12">
+                    <div className="flex gap-8 mt-12">
                         {[
-                            { value: "42.8%", label: "Avg Open Rate" },
-                            { value: "500+", label: "Campaigns Sent" },
-                            { value: "13x", label: "Avg ROI" },
+                            { value: "42.8%", label: "AVG OPEN RATE" },
+                            { value: "500+", label: "CAMPAIGNS SENT" },
+                            { value: "13x", label: "AVG ROI" },
                         ].map((stat) => (
                             <div key={stat.label}>
-                                <p className="display-heading text-2xl md:text-3xl text-primary tabular-nums">
+                                <p className="font-heading text-2xl md:text-3xl font-black text-[#652b32] tabular-nums">
                                     {stat.value}
                                 </p>
-                                <p className="label-text text-muted-foreground mt-1">
+                                <p className="text-[10px] uppercase tracking-widest text-[#652b32]/40 font-black mt-1">
                                     {stat.label}
                                 </p>
                             </div>
                         ))}
+                    </div>
                     </div>
                 </motion.div>
 
                 {/* Right */}
                 <motion.div
                     className="flex justify-center lg:justify-end"
-                    style={{ rotateX, rotateY, perspective: 1000 }}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    style={{ rotateX, rotateY, perspective: 1200 }}
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 >
                     <div 
-                        className="card-matte p-6 md:p-8 overflow-hidden max-w-md w-full flex flex-col gap-6 shadow-2xl relative border-l border-t border-border/50 bg-background/5" 
+                        className="card-matte p-8 md:p-10 overflow-hidden max-w-lg w-full flex flex-col gap-8 shadow-2xl relative border border-white/20 bg-white/40 backdrop-blur-xl rounded-[2rem]" 
                         aria-label="best email marketing service campaign strategy dashboard" 
                         role="img"
                     >
                         {/* Header */}
                         <div className="flex justify-between items-center mb-2 z-10 relative">
                             <div>
-                                <h3 className="text-primary font-sans font-semibold text-xl tracking-tight">Campaign Strategy</h3>
-                                <p className="text-sm text-muted-foreground mt-1">Live Dashboard Overview</p>
+                                <h3 className="text-[#652b32] font-black text-2xl leading-[0.9] tracking-tighter uppercase">Campaign Strategy</h3>
+                                <p className="text-sm text-[#652b32]/60 mt-1 font-medium italic">Live Dashboard Overview</p>
                             </div>
-                            <div className="bg-accent/10 px-3 py-1.5 rounded-sm text-accent text-xs font-bold uppercase tracking-wider border border-accent/20">
+                            <div className="bg-[#ccbc29]/20 px-4 py-2 rounded-full text-[#9a5a2a] text-xs font-black uppercase tracking-widest border border-[#cc29]/30">
                                 Active
                             </div>
                         </div>
@@ -101,12 +105,12 @@ const HeroSection = () => {
                             <div className="bg-muted/80 backdrop-blur-sm p-5 rounded-sm text-left border border-border/50 hover:border-accent/50 transition-colors">
                                 <Mail className="text-accent mb-3" size={24} strokeWidth={1.5} />
                                 <div className="text-3xl font-bold text-primary mb-1">45.2%</div>
-                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Open Rate</div>
+                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-black">Open Rate</div>
                             </div>
                             <div className="bg-muted/80 backdrop-blur-sm p-5 rounded-sm text-left border border-border/50 hover:border-primary/50 transition-colors">
                                 <Send className="text-primary mb-3" size={24} strokeWidth={1.5} />
                                 <div className="text-3xl font-bold text-primary mb-1">12.5%</div>
-                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Click Rate</div>
+                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-black">Click Rate</div>
                             </div>
                         </div>
 
@@ -114,7 +118,7 @@ const HeroSection = () => {
                         <div className="space-y-5 mt-2 z-10 relative bg-muted/40 p-5 rounded-sm border border-border/30">
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center text-sm">
-                                    <div className="flex items-center gap-2 text-muted-foreground font-medium">
+                                    <div className="flex items-center gap-2 text-muted-foreground font-black">
                                         <Users size={16} className="text-primary" /> Active Subscribers
                                     </div>
                                     <div className="font-semibold text-primary">12,450</div>

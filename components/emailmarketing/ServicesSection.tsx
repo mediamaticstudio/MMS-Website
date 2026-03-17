@@ -47,51 +47,50 @@ const item = {
 };
 
 const ServicesSection = () => (
-    <section id="services" className="section-padding bg-muted">
+    <section id="services" className="section-padding relative overflow-hidden bg-white/30">
         <div className="max-w-7xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-16"
+                transition={{ duration: 0.8 }}
+                className="mb-20 text-center"
             >
-                <span className="label-text text-accent flex items-center gap-2 mb-4">
-                    <span className="gold-pip" /> What We Offer
+                <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
+                    What We Offer
                 </span>
 
-                <h2 className="display-heading text-3xl md:text-5xl max-w-2xl">
-                    Email Marketing Services & Campaign Types
+                <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-8 tracking-tighter uppercase leading-[0.9]">
+                    Email  <br />
+                    <span className="text-[#FACC15]">Marketing</span>
                 </h2>
             </motion.div>
 
             <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 variants={container}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true }}
             >
                 {services.map((s) => (
-                    <motion.div key={s.title} variants={item} className="card-matte group relative overflow-hidden">
-                        {/* Yellow corner pip */}
-                        <div className="absolute top-0 right-0 w-1 h-1 bg-accent" />
+                    <motion.div 
+                        key={s.title} 
+                        variants={item} 
+                        className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-border/10 group cursor-default relative overflow-hidden"
+                    >
+                        {/* Hover accent */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#652b32] to-[#9a5a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        
+                        <div className="w-14 h-14 bg-[#652b32]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#652b32] transition-colors duration-500">
+                            <s.icon className="text-[#652b32] group-hover:text-white transition-colors duration-500" size={28} strokeWidth={1.5} />
+                        </div>
 
-                        {/* Hover progress bar */}
-                        <motion.div
-                            className="absolute top-0 left-0 h-0.5 bg-accent"
-                            initial={{ width: "0%" }}
-                            whileHover={{ width: "100%" }}
-                            transition={{ duration: 0.4 }}
-                        />
-
-                        <s.icon className="text-primary mb-6" size={28} strokeWidth={1.5} />
-
-                        <h3 className="font-sans font-semibold text-primary text-lg mb-3">
+                        <h3 className="text-2xl font-black text-[#652b32] mb-3 group-hover:text-white transition-colors font-heading leading-tight uppercase tracking-tight">
                             {s.title}
                         </h3>
 
-                        <p className="body-text text-muted-foreground text-sm">
+                        <p className="text-[#652b32]/60 text-sm leading-relaxed mb-8 group-hover:text-white/70 transition-colors font-medium">
                             {s.desc}
                         </p>
                     </motion.div>

@@ -6,6 +6,8 @@ interface PageProps {
   };
 }
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const res = await fetch(
     "https://blog.mediamaticstudio.com/wp-json/wp/v2/posts",

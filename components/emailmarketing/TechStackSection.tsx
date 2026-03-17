@@ -29,15 +29,16 @@ const TechStackSection = () => (
                 transition={{ duration: 0.6 }}
                 className="mb-16"
             >
-                <span className="label-text text-accent flex items-center gap-2 mb-4">
-                    <span className="gold-pip" /> Under The Hood
+                <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
+                    Under The Hood
                 </span>
 
-                <h2 className="display-heading text-3xl md:text-5xl max-w-2xl">
-                    The Technical Stack
+                <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
+                    Technical <br />
+                    <span className="text-[#FACC15]">Stack</span>
                 </h2>
 
-                <p className="body-text text-muted-foreground mt-4 max-w-xl">
+                <p className="text-lg text-[#652b32]/60 max-w-2xl leading-relaxed font-medium">
                     Built on proven infrastructure for reliable, secure email delivery at scale.
                 </p>
             </motion.div>
@@ -71,8 +72,8 @@ const TechStackSection = () => (
                     className="card-matte p-0 overflow-hidden"
                 >
                     <div className="px-8 py-6 border-b border-border">
-                        <h3 className="font-sans font-semibold text-primary text-lg">
-                            Tools & Technologies
+                        <h3 className="text-2xl font-black text-[#652b32] group-hover:text-white transition-colors font-heading leading-tight uppercase tracking-tight">
+                            Tools & Tech
                         </h3>
                     </div>
 
@@ -82,7 +83,7 @@ const TechStackSection = () => (
                             className={`flex items-center justify-between px-8 py-4 ${i < tools.length - 1 ? "border-b border-border" : ""
                                 }`}
                         >
-                            <span className="font-sans font-medium text-foreground">
+                            <span className="text-lg font-black text-[#652b32] group-hover:text-white transition-colors font-heading leading-tight uppercase tracking-tight">
                                 {t.name}
                             </span>
 
