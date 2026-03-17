@@ -61,7 +61,7 @@ const services = [
         icon: "/assets/digital/email-marketing.png",
         title: "Email Marketing",
         desc: "Our email marketing plans foster leads and customer loyalty. Our customized campaigns will attract repeat business and relationships. It is also one of the cheapest digital marketing services to grow a small business.",
-        link: "/services/digital-marketing/email-marketing/"
+        link: "/email-marketing-company/"
     },
     {
         icon: "/assets/digital/logotype.png",

@@ -23,7 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2, ChevronDown, Search, Check } from "lucide-react";
-import { sendQuoteRequest } from "@/lib/api";
+import { sendMarketingAuditRequest } from "@/lib/api";
 import { createPortal } from "react-dom";
 import ReactCountryFlag from "react-country-flag";
 import { SuccessPopup } from "@/components/SuccessPopup";
@@ -360,7 +360,7 @@ export const MarketingAuditDialog: React.FC<MarketingAuditDialogProps> = ({
         setIsSubmitting(true);
         try {
             const fullPhone = selectedCountry.dial_code + values.phone;
-            await sendQuoteRequest({
+            await sendMarketingAuditRequest({
                 ...values,
                 phone: fullPhone,
                 source: "Digital Marketing Audit",

@@ -1,46 +1,54 @@
 import { MetadataRoute } from "next";
-import { fetchAllBlogPostSlugs } from "@/lib/api";
+
+const BASE_URL = "https://mediamaticstudio.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = "https://mediamaticstudio.com";
-
-    // Absolute list of identified static routes from the app directory
-    const staticPages = [
+    const routes = [
         "",
         "/about-us",
         "/contact-us",
+        "/services",
         "/get-quote",
         "/blog",
-        "/podcast-recording-studio-in-Coimbatore",
         "/animation-videos-company",
         "/content-management",
-        "/website-development-agency",
         "/designing",
         "/digital-marketing-agency",
-        "/web-hosting",
+        "/email-marketing-company",
+        "/podcast-recording-studio-in-coimbatore",
         "/search-engine-marketing-company",
         "/search-engine-optimization-company",
         "/social-media-marketing-company",
         "/social-media-optimization-company",
-        "/services",
+        "/web-hosting",
+        "/website-development-agency",
     ];
 
-
-    const routes = staticPages.map((page) => ({
-        url: `${baseUrl}${page}`,
+    const staticPages = routes.map((route) => ({
+        url: `${BASE_URL}${route}`,
         lastModified: new Date(),
         changeFrequency: "weekly" as const,
-        priority: page === "" ? 1 : 0.8,
+        priority: route === "" ? 1 : 0.8,
     }));
 
-    // Dynamic Blog Posts
-    const blogSlugs = await fetchAllBlogPostSlugs().catch(() => []);
-    const blogPosts = blogSlugs.map((slug) => ({
-        url: `${baseUrl}/blog/${slug}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-    }));
+    // 🔥 BLOG POSTS (WordPress)
+    let blogPages: MetadataRoute.Sitemap = [];
 
-    return [...routes, ...blogPosts];
+    try {
+        const res = await fetch(
+            "https://blog.mediamaticstudio.com/wp-json/wp/v2/posts"
+        );
+        const posts = await res.json();
+
+        blogPages = posts.map((post: any) => ({
+            url: `${BASE_URL}/blog/${post.slug}`,
+            lastModified: new Date(post.modified),
+            changeFrequency: "weekly" as const,
+            priority: 0.7,
+        }));
+    } catch (err) {
+        console.error("Blog fetch error:", err);
+    }
+
+    return [...staticPages, ...blogPages];
 }

@@ -10,8 +10,8 @@ export interface Country {
     code: string;
     name: string;
     dial_code: string;
+    flag: string;
 }
-
 // ✅ FULL COUNTRY LIST (cleaned)
 const countries: Country[] = [
     { code: "AF", name: "Afghanistan", dial_code: "+93", flag: "🇦🇫" },

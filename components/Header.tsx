@@ -36,6 +36,7 @@ const digitalMarketingLinks = [
     { label: "Social Media Optimization (SMO)", href: "/social-media-optimization-company/" },
     { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
     { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
+    // { label: "Email Marketing", href: "/email-marketing-company/" },
 ];
 
 
@@ -77,7 +78,7 @@ export const Header = () => {
 
     useEffect(() => {
         const sections = navLinks.filter(link => link.id).map(link => link.id!);
-        
+
         const observerOptions = {
             root: null,
             rootMargin: '-20% 0px -70% 0px',
@@ -93,7 +94,7 @@ export const Header = () => {
         };
 
         const observer = new IntersectionObserver(observerCallback, observerOptions);
-        
+
         sections.forEach(id => {
             const section = document.getElementById(id);
             if (section) observer.observe(section);
@@ -116,7 +117,7 @@ export const Header = () => {
 
         onScroll();
         window.addEventListener("scroll", onScroll, { passive: true });
-        
+
         return () => {
             observer.disconnect();
             window.removeEventListener("scroll", onScroll);
@@ -243,138 +244,137 @@ export const Header = () => {
                         {/* Desktop Nav */}
                         {!isAdPage && (
                             <div className="hidden xl:flex items-center gap-6 xxl:gap-8">
-                            {navLinks.map((link) =>
-                                link.hasDropdown ? (
-                                    <div
-                                        key={link.label}
-                                        className="relative"
-                                        onMouseEnter={() => {
-                                            if (timeoutRef.current) clearTimeout(timeoutRef.current);
-                                            setServiceOpen(link.id === "services");
-                                            setDigitalMarketingOpen(link.id === "digital-marketing");
-                                            setStudioOpen(link.id === "studio");
-                                        }}
-                                        onMouseLeave={() => {
-                                            timeoutRef.current = setTimeout(() => {
-                                                setServiceOpen(false);
-                                                setDigitalMarketingOpen(false);
-                                                setStudioOpen(false);
-                                            }, 200);
-                                        }}
-                                    >
+                                {navLinks.map((link) =>
+                                    link.hasDropdown ? (
+                                        <div
+                                            key={link.label}
+                                            className="relative"
+                                            onMouseEnter={() => {
+                                                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                                                setServiceOpen(link.id === "services");
+                                                setDigitalMarketingOpen(link.id === "digital-marketing");
+                                                setStudioOpen(link.id === "studio");
+                                            }}
+                                            onMouseLeave={() => {
+                                                timeoutRef.current = setTimeout(() => {
+                                                    setServiceOpen(false);
+                                                    setDigitalMarketingOpen(false);
+                                                    setStudioOpen(false);
+                                                }, 200);
+                                            }}
+                                        >
+                                            <a
+                                                href={link.href}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    handleNavClick(link.href, (link as any).isSubPage);
+                                                }}
+                                                className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-[#652b32] transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${activeSection === link.id ||
+                                                        (link.id === "services" && (
+                                                            pathname === "/services/" ||
+                                                            serviceLinks.some(s => pathname === s.href)
+                                                        )) ||
+                                                        (link.id === "digital-marketing" && (
+                                                            pathname === "/digital-marketing-agency/" ||
+                                                            digitalMarketingLinks.some(s => pathname === s.href)
+                                                        )) ||
+                                                        (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
+                                                        ? "after:w-full text-[#652b32] font-bold"
+                                                        : "after:w-0"
+                                                    }`}
+                                            >
+                                                {link.label} <ChevronDown size={14} />
+                                            </a>
+
+                                            {link.id === "services" && serviceOpen && (
+                                                <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
+                                                    {serviceLinks.map((s) => (
+                                                        <a
+                                                            key={s.label}
+                                                            href={s.href}
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setServiceOpen(false);
+                                                                handleNavClick(s.href, true);
+                                                            }}
+                                                            className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
+                                                        >
+                                                            {s.label}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {link.id === "digital-marketing" && digitalMarketingOpen && (
+                                                <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
+                                                    {digitalMarketingLinks.map((s) => (
+                                                        <a
+                                                            key={s.label}
+                                                            href={s.href}
+                                                            onClick={(e) => {
+                                                                e.preventDefault();
+                                                                setDigitalMarketingOpen(false);
+                                                                handleNavClick(s.href, true);
+                                                            }}
+                                                            className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
+                                                        >
+                                                            {s.label}
+                                                        </a>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            {link.id === "studio" && studioOpen && (
+                                                <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
+                                                    <a
+                                                        href="/podcast-recording-studio-in-Coimbatore/"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setStudioOpen(false);
+                                                            handleNavClick("/podcast-recording-studio-in-Coimbatore/", true);
+                                                        }}
+                                                        className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
+                                                    >
+                                                        Coimbatore Branch
+                                                    </a>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ) : (
                                         <a
+                                            key={link.label}
                                             href={link.href}
                                             onClick={(e) => {
                                                 e.preventDefault();
                                                 handleNavClick(link.href, (link as any).isSubPage);
                                             }}
-                                            className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-[#652b32] transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${
-                                                activeSection === link.id ||
-                                                (link.id === "services" && (
-                                                    pathname === "/services/" ||
-                                                    serviceLinks.some(s => pathname === s.href)
-                                                )) ||
-                                                (link.id === "digital-marketing" && (
-                                                    pathname === "/digital-marketing-agency/" ||
-                                                    digitalMarketingLinks.some(s => pathname === s.href)
-                                                )) ||
-                                                (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
-                                                ? "after:w-full text-[#652b32] font-bold"
-                                                : "after:w-0"
-                                            }`}
+                                            className={`relative text-[12px] xl:text-[13px] uppercase tracking-wider whitespace-nowrap after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full ${(link.id && activeSection === link.id) || (!isScrollSpyPage && link.isSubPage && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)))) ? "after:w-full text-[#652b32] font-bold" : "after:w-0"}`}
                                         >
-                                            {link.label} <ChevronDown size={14} />
+                                            {link.label}
                                         </a>
+                                    )
+                                )}
 
-                                        {link.id === "services" && serviceOpen && (
-                                            <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
-                                                {serviceLinks.map((s) => (
-                                                    <a
-                                                        key={s.label}
-                                                        href={s.href}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            setServiceOpen(false);
-                                                            handleNavClick(s.href, true);
-                                                        }}
-                                                        className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
-                                                    >
-                                                        {s.label}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        )}
+                                {/* GET QUOTE Button */}
+                                <a
+                                    href="/get-quote/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ml-4 px-6 xl:px-9 py-3.5 rounded-xl font-black text-[#faf3e0] bg-[#652b32] hover:bg-[#652b32]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 inline-block text-center text-[10px] xl:text-[12px] uppercase tracking-[0.15em] whitespace-nowrap cursor-pointer"
+                                >
+                                    GET QUOTE
+                                </a>
 
-                                        {link.id === "digital-marketing" && digitalMarketingOpen && (
-                                            <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
-                                                {digitalMarketingLinks.map((s) => (
-                                                    <a
-                                                        key={s.label}
-                                                        href={s.href}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            setDigitalMarketingOpen(false);
-                                                            handleNavClick(s.href, true);
-                                                        }}
-                                                        className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
-                                                    >
-                                                        {s.label}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {link.id === "studio" && studioOpen && (
-                                            <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
-                                                <a
-                                                    href="/podcast-recording-studio-in-Coimbatore/"
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        setStudioOpen(false);
-                                                        handleNavClick("/podcast-recording-studio-in-Coimbatore/", true);
-                                                    }}
-                                                    className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
-                                                >
-                                                    Coimbatore Branch
-                                                </a>
-                                            </div>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <a
-                                        key={link.label}
-                                        href={link.href}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavClick(link.href, (link as any).isSubPage);
-                                        }}
-                                        className={`relative text-[12px] xl:text-[13px] uppercase tracking-wider whitespace-nowrap after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all hover:after:w-full ${(link.id && activeSection === link.id) || (!isScrollSpyPage && link.isSubPage && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)))) ? "after:w-full text-[#652b32] font-bold" : "after:w-0"}`}
-                                    >
-                                        {link.label}
-                                    </a>
-                                )
-                            )}
-
-                            {/* GET QUOTE Button */}
-                            <a
-                                href="/get-quote/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="ml-4 px-6 xl:px-9 py-3.5 rounded-xl font-black text-[#faf3e0] bg-[#652b32] hover:bg-[#652b32]/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 inline-block text-center text-[10px] xl:text-[12px] uppercase tracking-[0.15em] whitespace-nowrap cursor-pointer"
-                            >
-                                GET QUOTE
-                            </a>
-
-                            {/* PAY NOW Button */}
-                            <a
-                                href="https://www.paypal.com/ncp/payment/Q54LAB9Y3BBLS"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="ml-2 xl:ml-4 px-6 xl:px-9 py-3.5 rounded-xl font-black text-[#652b32] bg-yellow-400 hover:bg-yellow-300 transition-all duration-300 shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] hover:scale-105 active:scale-95 inline-block text-center text-[10px] xl:text-[12px] uppercase tracking-[0.15em]"
-                            >
-                                PAY NOW
-                            </a>
-                        </div>
+                                {/* PAY NOW Button */}
+                                <a
+                                    href="https://www.paypal.com/ncp/payment/Q54LAB9Y3BBLS"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="ml-2 xl:ml-4 px-6 xl:px-9 py-3.5 rounded-xl font-black text-[#652b32] bg-yellow-400 hover:bg-yellow-300 transition-all duration-300 shadow-[0_0_20px_rgba(250,204,21,0.3)] hover:shadow-[0_0_30px_rgba(250,204,21,0.5)] hover:scale-105 active:scale-95 inline-block text-center text-[10px] xl:text-[12px] uppercase tracking-[0.15em]"
+                                >
+                                    PAY NOW
+                                </a>
+                            </div>
                         )}
 
                         {isAdPage && (
@@ -398,7 +398,7 @@ export const Header = () => {
                                 {isOpen ? <X /> : <Menu />}
                             </button>
                         ) : (
-                            <button 
+                            <button
                                 onClick={() => window.dispatchEvent(new CustomEvent('open-contact-modal'))}
                                 className="xl:hidden px-4 py-2 rounded-lg font-black text-[#faf3e0] bg-[#652b32] text-[10px] uppercase tracking-wider"
                             >
@@ -427,20 +427,19 @@ export const Header = () => {
                                                     e.preventDefault();
                                                     handleNavClick(link.href, (link as any).isSubPage);
                                                 }}
-                                                className={`text-2xl transition-all duration-300 ${
-                                                    activeSection === link.id ||
-                                                    (link.id === "services" && (
-                                                        pathname === "/services/" ||
-                                                        serviceLinks.some(s => pathname === s.href)
-                                                    )) ||
-                                                    (link.id === "digital-marketing" && (
-                                                        pathname === "/digital-marketing-agency/" ||
-                                                        digitalMarketingLinks.some(s => pathname === s.href)
-                                                    )) ||
-                                                    (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
-                                                    ? "text-yellow-400 font-bold"
-                                                    : "opacity-80 hover:opacity-100"
-                                                }`}
+                                                className={`text-2xl transition-all duration-300 ${activeSection === link.id ||
+                                                        (link.id === "services" && (
+                                                            pathname === "/services/" ||
+                                                            serviceLinks.some(s => pathname === s.href)
+                                                        )) ||
+                                                        (link.id === "digital-marketing" && (
+                                                            pathname === "/digital-marketing-agency/" ||
+                                                            digitalMarketingLinks.some(s => pathname === s.href)
+                                                        )) ||
+                                                        (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
+                                                        ? "text-yellow-400 font-bold"
+                                                        : "opacity-80 hover:opacity-100"
+                                                    }`}
                                             >
                                                 {link.label}
                                             </a>

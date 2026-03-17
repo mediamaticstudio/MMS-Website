@@ -21,7 +21,7 @@ export const WhatsAppWidget = () => {
     const phoneNumber = "919629593615";
     const pathname = usePathname();
 
-    if (pathname?.startsWith("/adpage")) return null;
+    if (pathname?.startsWith("/adpage") || pathname?.startsWith("/branding-agency-in-houston")) return null;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -53,9 +53,12 @@ export default function HeroSection() {
 
     return (
         <section style={{
-            background: `linear-gradient(140deg, ${C.burgD} 0%, ${C.burg} 60%, ${C.burgL} 100%)`,
-            padding: "64px 0 88px",
-            position: "relative", overflow: "hidden",
+            backgroundImage: `linear-gradient(140deg, ${C.burgD}ea 0%, ${C.burg}e6 60%, ${C.burgL}cc 100%), url('/assets/adimage/bg%20image.jpeg')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            padding: "120px 0 88px", // Increased top padding from 64px to 120px for more space below nav
+            position: "relative",
+            overflow: "hidden",
             clipPath: "polygon(0 0, 100% 0, 100% 93%, 0 100%)",
         }}>
             <div style={{ position: "absolute", top: -100, right: -100, width: 500, height: 500, borderRadius: "50%", background: "rgba(245,197,24,0.06)", pointerEvents: "none" }} />
@@ -109,14 +112,14 @@ export default function HeroSection() {
                 </div>
 
                 <div>
-                    <div style={{ background: C.cream, border: `1.5px solid ${C.crD}`, borderRadius: 22, padding: "36px 32px", boxShadow: "0 12px 48px rgba(101,43,50,0.08)" }}>
+                    <div style={{ background: C.cream, border: `1.5px solid ${C.crD}`, borderRadius: 22, padding: "18px 22px", boxShadow: "0 12px 48px rgba(101,43,50,0.08)" }}>
                         {/* Form header */}
-                        <div style={{ paddingBottom: 22, borderBottom: `1.5px solid ${C.crD}`, marginBottom: 24 }}>
-                            <p style={{ fontFamily: F.acc, fontSize: 18, color: C.burg, fontWeight: 700, marginBottom: 6 }}>Free Consultation</p>
-                            <h3 style={{ fontFamily: F.disp, fontSize: 26, fontWeight: 900, color: C.text, letterSpacing: -0.4, lineHeight: 1.2 }}>
+                        <div style={{ paddingBottom: "12px", borderBottom: `1.5px solid ${C.crD}`, marginBottom: "12px" }}>
+                            <p style={{ fontFamily: F.acc, fontSize: 14, color: C.burg, fontWeight: 700, marginBottom: 2 }}>Free Consultation</p>
+                            <h3 style={{ fontFamily: F.disp, fontSize: 18, fontWeight: 900, color: C.text, letterSpacing: -0.3, lineHeight: 1.2 }}>
                                 Get a Free Strategy<br />Call With Our Team
                             </h3>
-                            <div style={{ width: 36, height: 3, background: C.yel, borderRadius: 2, marginTop: 12 }} />
+                            <div style={{ width: 30, height: 2.5, background: C.yel, borderRadius: 2, marginTop: 6 }} />
                         </div>
 
                         <FormField
@@ -179,26 +182,26 @@ export default function HeroSection() {
                                 width: "100%",
                                 background: C.burg,
                                 color: C.wh,
-                                padding: "16px",
-                                borderRadius: 10,
+                                padding: "12px",
+                                borderRadius: 8,
                                 fontFamily: F.body,
                                 fontWeight: 800,
-                                fontSize: 15,
-                                letterSpacing: 0.3,
+                                fontSize: 13,
+                                letterSpacing: 0.2,
                                 transition: "all 0.2s",
-                                boxShadow: "0 6px 20px rgba(101,43,50,0.3)",
+                                boxShadow: "0 4px 12px rgba(101,43,50,0.25)",
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "center",
-                                gap: 8,
+                                gap: 6,
                                 opacity: loading ? 0.7 : 1,
                                 cursor: loading ? "not-allowed" : "pointer"
                             }}
                         >
-                            {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Get Free Strategy Call →"}
+                            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Get Free Strategy Call →"}
                         </button>
 
-                        <p style={{ fontFamily: F.body, fontSize: 12, color: C.mut, textAlign: "center", marginTop: 14 }}>
+                        <p style={{ fontFamily: F.body, fontSize: 10, color: C.mut, textAlign: "center", marginTop: "10px" }}>
                             No spam · 100% free · Response within 24 hours
                         </p>
                     </div>

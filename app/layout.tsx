@@ -42,9 +42,6 @@ export const metadata: Metadata = {
         address: false,
         telephone: false,
     },
-    alternates: {
-        canonical: "/",
-    },
     openGraph: {
         type: "website",
         locale: "en_IN",
@@ -145,8 +142,8 @@ export default function RootLayout({
     };
 
     const productSchema = {
-        "@context": "http://schema.org",
-        "@type": "product",
+        "@context": "https://schema.org",
+        "@type": "Product",
         "name": "Mediamaticstudio - Creative Branding & Digital Excellence",
         "url": "https://www.mediamaticstudio.com/",
         "image": "https://www.mediamaticstudio.com/assets/lOGO-TiRhUzz3.webp",
