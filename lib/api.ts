@@ -73,6 +73,34 @@ export async function sendQuoteRequest(data: any): Promise<any> {
     return response.json();
 }
 
+export async function sendMarketingAuditRequest(data: any): Promise<any> {
+    const response = await fetch(`${API_URL}/contact/marketing-audit/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Error: ${response.statusText}`);
+    }
+    return response.json();
+}
+
+export async function sendPodcastBookingRequest(data: any): Promise<any> {
+    const response = await fetch(`${API_URL}/contact/podcast-booking/`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.message || `Error: ${response.statusText}`);
+    }
+    return response.json();
+}
+
 export async function fetchAllBlogPostSlugs(): Promise<string[]> {
     const response = await fetch(
         `${WP_URL}/posts?per_page=100&_fields=slug&t=${Date.now()}`,

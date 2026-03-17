@@ -23,7 +23,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
-import { sendQuoteRequest } from "@/lib/api";
+import { sendPodcastBookingRequest } from "@/lib/api";
 
 const formSchema = z.object({
     firstName: z.string().min(1, "First name is required"),
@@ -65,7 +65,7 @@ export const PodcastBookingDialog: React.FC<PodcastBookingDialogProps> = ({
     const onSubmit = async (values: FormValues) => {
         setIsSubmitting(true);
         try {
-            await sendQuoteRequest({
+            await sendPodcastBookingRequest({
                 ...values,
                 phone: dialCode + values.phone,
                 type: "Podcast Studio Session",
