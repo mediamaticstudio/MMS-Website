@@ -61,8 +61,8 @@ const ServicesSection = () => (
                 </span>
 
                 <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-8 tracking-tighter uppercase leading-[0.9]">
-                    Email  <br />
-                    <span className="text-[#FACC15]">Marketing</span>
+                    Email Marketing <br />
+                    <span className="text-[#FACC15]">Services</span>
                 </h2>
             </motion.div>
 
@@ -77,12 +77,12 @@ const ServicesSection = () => (
                     <motion.div 
                         key={s.title} 
                         variants={item} 
-                        className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-border/10 group cursor-default relative overflow-hidden"
+                        className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 border border-border/10 group cursor-default relative overflow-hidden"
                     >
                         {/* Hover accent */}
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#652b32] to-[#9a5a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         
-                        <div className="w-14 h-14 bg-[#652b32]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-[#652b32] transition-colors duration-500">
+                        <div className="w-14 h-14 bg-[#652b32]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors duration-500">
                             <s.icon className="text-[#652b32] group-hover:text-white transition-colors duration-500" size={28} strokeWidth={1.5} />
                         </div>
 

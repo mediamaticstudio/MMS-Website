@@ -2,15 +2,15 @@ import { Metadata } from "next";
 import { DigitalMarketingClient } from "@/components/DigitalMarketingClient";
 
 export const metadata: Metadata = {
-    title: "Top Digital Marketing Agency for Brands - Contact Now",
-    description: "Partner with a top digital marketing agency that turns clicks into customers and grows traffic, leads, and sales—book a free call now!",
+    title: "Digital Marketing Agency in Coimbatore | MediaMatic Studio",
+    description: "MediaMatic Studio is a results-driven digital marketing agency in Coimbatore specializing in SEO, SMM, and online growth strategies through data-backed marketing.",
     alternates: {
         canonical: "/digital-marketing-agency/",
     },
-    keywords: ["digital marketing agency", "marketing agency for small business", "affordable digital marketing", "SEO", "SMM", "SEM", "growth marketing", "Coimbatore digital agency"],
+    keywords: ["digital marketing agency in Coimbatore", "marketing company in Coimbatore", "SEO services Coimbatore", "SMM Coimbatore", "MediaMatic Studio"],
     openGraph: {
-        title: "Top Digital Marketing Agency | Mediamatic Studio",
-        description: "Grow your business with data-driven digital marketing strategies.",
+        title: "Digital Marketing Agency in Coimbatore | MediaMatic Studio",
+        description: "Grow your business with data-driven digital marketing strategies from MediaMatic Studio in Coimbatore.",
         url: "https://mediamaticstudio.com/digital-marketing-agency",
     },
 };

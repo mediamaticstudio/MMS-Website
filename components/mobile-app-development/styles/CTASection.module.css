@@ -1,0 +1,214 @@
+.section {
+  background: var(--burg-d);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Tag ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(245, 197, 24, 0.15);
+  color: var(--yel);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 30px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(245, 197, 24, 0.2);
+}
+
+/* ── Title ── */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 900;
+  color: var(--ow);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+
+.title span {
+  color: var(--yel);
+}
+
+.sub {
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(250, 243, 224, 0.65);
+  margin-bottom: 28px;
+}
+
+/* ── Checks ── */
+.checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(250, 243, 224, 0.85);
+}
+
+.check svg {
+  stroke: var(--yel);
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* ── Buttons ── */
+.btns {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--yel);
+  color: var(--burg-d);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 16px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 8px 28px rgba(245, 197, 24, 0.25);
+}
+
+.btn1:hover {
+  background: var(--yel-l);
+  transform: translateY(-2px);
+}
+
+.btn2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--ow);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 15px 28px;
+  border-radius: 30px;
+  border: 2px solid rgba(250, 243, 224, 0.25);
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.btn2:hover {
+  border-color: var(--ow);
+  background: rgba(250, 243, 224, 0.08);
+}
+
+/* ── Contact cards ── */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  background: rgba(250, 243, 224, 0.06);
+  border: 1px solid rgba(245, 197, 24, 0.15);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s;
+}
+
+.card:hover {
+  background: rgba(250, 243, 224, 0.1);
+  transform: translateX(4px);
+}
+
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(245, 197, 24, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--yel);
+}
+
+.cardLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(250, 243, 224, 0.4);
+  margin-bottom: 4px;
+}
+
+.cardVal {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ow);
+}
+
+/* ── Footer bar ── */
+.footer {
+  border-top: 1px solid rgba(245, 197, 24, 0.08);
+  text-align: center;
+  padding: 20px 5%;
+  font-size: 12px;
+  color: rgba(250, 243, 224, 0.35);
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 540px) {
+  .checks {
+    grid-template-columns: 1fr;
+  }
+}

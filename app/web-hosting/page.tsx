@@ -3,19 +3,26 @@ import { WebHostingClient } from "@/components/WebHostingClient";
 
 // ─── SEO Metadata (replaces <SEO> component) ───────────────────────────────
 export const metadata: Metadata = {
-    title: "Web Hosting Services | MediaMatic Studio",
-    description:
-        "Top-notch web hosting and domain services with 24/7 support, 99.9% uptime guarantee, cPanel access, and business email accounts. Reliable shared and dedicated hosting solutions.",
-    keywords:
-        "web hosting, domain registration, shared hosting, dedicated hosting, cPanel, business email, domain transfer, hosting services, MediaMatic Studio",
+    title: "Web Hosting Services in Coimbatore | MediaMatic Studio",
+    description: "Reliable and high-performance web hosting services in Coimbatore. Secure your business's online presence with MediaMatic Studio's fast and stable hosting solutions.",
+    keywords: "web hosting Coimbatore, high-performance hosting, secure web hosting, business hosting services, MediaMatic Studio",
     alternates: {
-        canonical: "/web-hosting",
+        canonical: "/web-hosting/",
     },
     openGraph: {
-        title: "Web Hosting Services | MediaMatic Studio",
-        description:
-            "Top-notch web hosting and domain services with 24/7 support, 99.9% uptime guarantee, cPanel access, and business email accounts.",
-        url: "/web-hosting",
+        title: "Web Hosting Services in Coimbatore | MediaMatic Studio",
+        description: "Reliable and high-performance web hosting services in Coimbatore.",
+        url: "https://mediamaticstudio.com/web-hosting/",
+        siteName: "MediaMatic Studio",
+        images: [
+            {
+                url: "https://mediamaticstudio.com/og-image.png",
+                width: 1200,
+                height: 630,
+            },
+        ],
+        locale: "en_US",
+        type: "website",
     },
 };
 

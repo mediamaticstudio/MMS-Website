@@ -24,6 +24,10 @@ const navLinks = [
 ];
 
 const serviceLinks = [
+    { label: "Mobile App Development", href: "/mobile-app-development-company" },
+    { label: "Android App Development", href: "/android-app-development-company" },
+    { label: "iOS App Development", href: "/ios-app-development-company" },
+    { label: "Flutter App Development", href: "/flutter-app-development-company" },
     { label: "2D & 3D Animation Videos", href: "/animation-videos-company/" },
     { label: "Content Management", href: "/content-management/" },
     { label: "Website & App Development", href: "/website-development-agency/" },
@@ -36,7 +40,8 @@ const digitalMarketingLinks = [
     { label: "Social Media Optimization (SMO)", href: "/social-media-optimization-company/" },
     { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
     { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
-    // { label: "Email Marketing", href: "/email-marketing-company/" },
+    { label: "Email Marketing", href: "/email-marketing-company/" },
+    { label: "Google Ads Services", href: "/google-ads-services/" },
 ];
 
 

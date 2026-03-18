@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import { Services } from "@/components/Services";
 
 export const metadata: Metadata = {
-    title: "Our Services | MediaMatic Studio",
-    description: "Explore our range of digital services including 2D & 3D animation, content management, web development, designing, and digital marketing.",
+    title: "Our Digital Services in Coimbatore | MediaMatic Studio",
+    description: "Explore our wide range of premium digital services in Coimbatore including 2D & 3D animation, content management, web development, designing, and digital marketing.",
     alternates: {
         canonical: "/services/",
     },

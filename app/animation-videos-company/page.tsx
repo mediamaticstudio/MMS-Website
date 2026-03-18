@@ -82,10 +82,10 @@ const Animation = () => {
     return (
         <>
             <SEO
-                title="2D & 3D Animation Services | MediaMatic Studio"
-                description="Creative studio transforming business ideas into compelling visual stories through 2D & 3D animation. Expert explainer videos, branding videos, and custom animation solutions."
+                title="Animation Video Production Company in Coimbatore | MediaMatic Studio"
+                description="MediaMatic Studio is a premier animation video production company in Coimbatore. We specialize in 2D & 3D animation, explainer videos, and branding videos that captivate your audience."
                 canonical="/animation-videos-company/"
-                keywords="2D animation, 3D animation, explainer videos, branding videos, animated videos, storyboarding, video production, animation studio, MediaMatic Studio"
+                keywords="animation video production company in Coimbatore, 2d animation Coimbatore, 3d animation Coimbatore, explainer videos Coimbatore, MediaMatic Studio"
                 structuredData={[
                     generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
@@ -93,8 +93,8 @@ const Animation = () => {
                         { name: "Animation", url: "/animation-videos-company/" }
                     ]),
                     generateServiceSchema({
-                        name: "Animation Services",
-                        description: "Professional 2D and 3D animation services including explainer videos, branding animations, and video production."
+                        name: "Animation Video Production in Coimbatore",
+                        description: "Professional 2D and 3D animation services in Coimbatore including explainer videos, branding animations, and video production."
                     }),
                     generateOrganizationSchema()
                 ]}

@@ -33,11 +33,11 @@ const HeroSection = () => {
                     </span>
 
                     <h1 className="display-heading text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase text-[#652b32]">
-                        High-converting <br /> campaigns
+                        High-converting <br /> <span className="text-[#FACC15]">Email Systems</span>
                     </h1>
 
                     <p className="body-text text-lg md:text-xl text-[#652b32]/60 max-w-2xl mt-8 mb-10 leading-relaxed font-medium">
-                        One-on-one messaging, automated. Built on a Django-Gmail backbone. We build the list. We segment the data. You see the ROI.
+                        Scale your business with the best email marketing service. We build high-converting automated campaigns, segment your data, and deliver measurable growth.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 mb-20">
@@ -57,7 +57,6 @@ const HeroSection = () => {
                     </div>
 
                     <div className="flex gap-8 mt-12">
-                    <div className="flex gap-8 mt-12">
                         {[
                             { value: "42.8%", label: "AVG OPEN RATE" },
                             { value: "500+", label: "CAMPAIGNS SENT" },
@@ -72,7 +71,6 @@ const HeroSection = () => {
                                 </p>
                             </div>
                         ))}
-                    </div>
                     </div>
                 </motion.div>
 

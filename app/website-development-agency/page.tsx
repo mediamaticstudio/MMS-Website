@@ -3,18 +3,18 @@ import { WebDevelopmentClient } from "@/components/WebDevelopmentClient";
 
 // ─── SEO Metadata (replaces <SEO> component) ─────────────────────────────────
 export const metadata: Metadata = {
-    title: "Web & App Development Services | MediaMatic Studio",
+    title: "Website Development Agency in Coimbatore | MediaMatic Studio",
     description:
-        "Your one-stop digital partner for cutting-edge web and mobile experiences. Expert mobile app development, website development, e-commerce solutions, and custom web applications.",
+        "MediaMatic Studio is a leading website development agency in Coimbatore. We create high-performance, responsive websites and custom web applications tailored for your business growth.",
     keywords:
-        "web development, app development, mobile apps, website design, e-commerce, custom web applications, UI/UX design, responsive design, MediaMatic Studio",
+        "website development agency in Coimbatore, web development company in Coimbatore, custom website design, responsive web design, MediaMatic Studio",
     alternates: {
         canonical: "/website-development-agency",
     },
     openGraph: {
-        title: "Web & App Development Services | MediaMatic Studio",
+        title: "Website Development Agency in Coimbatore | MediaMatic Studio",
         description:
-            "Your one-stop digital partner for cutting-edge web and mobile experiences. Expert mobile app development, website development, e-commerce solutions, and custom web applications.",
+            "MediaMatic Studio is a leading website development agency in Coimbatore. We create high-performance, responsive websites and custom web applications tailored for your business growth.",
         url: "/website-development-agency",
     },
 };

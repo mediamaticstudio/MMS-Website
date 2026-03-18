@@ -2,16 +2,19 @@ import { Metadata } from "next";
 import { SEOServicesClient } from "@/components/SEOServicesClient";
 
 export const metadata: Metadata = {
-    title: "Best SEO Services Company in Coimbatore | Experts & Audits",
-    description: "Transform your online presence with the best SEO services company in Coimbatore. We offer bespoke SEO strategies to drive higher search rankings and quality lead generation.",
+    title: "Search Engine Optimization (SEO) Company in Coimbatore | MediaMatic Studio",
+    description:
+        "MediaMatic Studio is the best SEO company in Coimbatore. Boost your organic visibility, rankings, and traffic with our expert SEO strategies and data-driven techniques.",
+    keywords:
+        "SEO company in Coimbatore, SEO services in Coimbatore, best SEO agency Coimbatore, search engine optimization Coimbatore, MediaMatic Studio",
     alternates: {
-        canonical: "/search-engine-optimization-company/",
+        canonical: "/search-engine-optimization-company",
     },
-    keywords: ["SEO services Coimbatore", "search engine optimization", "local SEO", "ecommerce SEO", "WordPress SEO", "SEO audit", "MediaMatic Studio"],
     openGraph: {
-        title: "SEO Services Company Coimbatore | Search Engine Optimization",
-        description: "Rank #1 on Google with MediaMatic Studio's expert SEO strategies. Local, national, and global SEO solutions.",
-        url: "https://mediamaticstudio.com/search-engine-optimization-company",
+        title: "SEO Company in Coimbatore | MediaMatic Studio",
+        description:
+            "MediaMatic Studio is the best SEO company in Coimbatore. Boost your organic visibility, rankings, and traffic with our expert SEO strategies.",
+        url: "/search-engine-optimization-company",
         type: "website",
     },
     twitter: {

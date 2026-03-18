@@ -50,15 +50,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     return {
-        title: `${subService.name} | ${service.name} | MediaMatic Studio`,
-        description: subService.description,
-        keywords: `${service.name}, ${subService.name}, ${subService.shortName}, MediaMatic Studio`,
+        title: `${subService.name} in Coimbatore | ${service.name} | MediaMatic Studio`,
+        description: `${subService.description} in Coimbatore from MediaMatic Studio. Professional ${subService.shortName} services tailored for your business growth.`,
+        keywords: `${subService.name} Coimbatore, ${subService.shortName} Coimbatore, ${service.name} services Coimbatore, MediaMatic Studio`,
         alternates: {
             canonical: `https://mediamaticstudio.com/services/${serviceSlug}/${subSlug}/`,
         },
         openGraph: {
-            title: `${subService.name} | ${service.name} | MediaMatic Studio`,
-            description: subService.description,
+            title: `${subService.name} in Coimbatore | MediaMatic Studio`,
+            description: `${subService.description} in Coimbatore.`,
             url: `https://mediamaticstudio.com/services/${serviceSlug}/${subSlug}/`,
             siteName: "MediaMatic Studio",
             images: [

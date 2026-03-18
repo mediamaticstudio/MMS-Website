@@ -69,10 +69,10 @@ const ContentManagement = () => {
     return (
         <>
             <SEO
-                title="Content Management Services | MediaMatic Studio"
-                description="Expert content writing services including SEO-friendly content, web copywriting, social media content, and technical documentation that connects your brand with audiences."
+                title="Content Management Services in Coimbatore | MediaMatic Studio"
+                description="Expert content writing services in Coimbatore including SEO-friendly content, web copywriting, and technical documentation. Connect your brand with audiences today."
                 canonical="/content-management/"
-                keywords="content writing, content management, SEO content, web copywriting, social media content, technical documentation, blog posts, content marketing, MediaMatic Studio"
+                keywords="content writing Coimbatore, content management services, SEO content, web copywriting, MediaMatic Studio"
                 structuredData={[
                     generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
@@ -80,8 +80,8 @@ const ContentManagement = () => {
                         { name: "Content Management", url: "/content-management/" }
                     ]),
                     generateServiceSchema({
-                        name: "Content Management Services",
-                        description: "Professional content creation including SEO writing, copywriting, blog posts, and social media content."
+                        name: "Content Management Services in Coimbatore",
+                        description: "Professional content creation services in Coimbatore including SEO writing, copywriting, blog posts, and social media content."
                     }),
                     generateOrganizationSchema()
                 ]}

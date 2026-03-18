@@ -1,0 +1,146 @@
+.section {
+  padding: 100px 0;
+  background: var(--ow);
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  right: -200px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 197, 24, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.features {
+  margin-top: 40px;
+}
+
+.feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(101, 43, 50, 0.1);
+}
+
+.feat:first-child {
+  border-top: 1px solid rgba(101, 43, 50, 0.1);
+}
+
+.featIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--yel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--burg-d);
+}
+
+.featTitle {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--burg);
+  margin-bottom: 6px;
+}
+
+.featDesc {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Numbers grid */
+.numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.numCard {
+  background: white;
+  border: 1px solid rgba(101, 43, 50, 0.08);
+  border-radius: 20px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.numCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--yel);
+}
+
+.numCard:hover {
+  box-shadow: 0 16px 48px rgba(101, 43, 50, 0.12);
+  transform: translateY(-4px);
+}
+
+.dark {
+  background: var(--burg);
+}
+
+.dark .num {
+  color: var(--yel);
+}
+
+.dark .numLbl {
+  color: rgba(250, 243, 224, 0.6);
+}
+
+.dark .numIcon {
+  color: var(--yel);
+}
+
+.numIcon {
+  margin-bottom: 16px;
+  color: var(--burg);
+}
+
+.num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--burg);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.numLbl {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}

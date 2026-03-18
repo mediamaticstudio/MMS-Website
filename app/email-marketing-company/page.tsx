@@ -8,14 +8,14 @@ import TechStackSection from "@/components/emailmarketing/TechStackSection";
 import HeroSection from "@/components/emailmarketing/HeroSection";
 
 export const metadata: Metadata = {
-    title: "Best Email Marketing Service for Business Growth | Get Started",
-    description: "Choose the best email marketing service to nurture leads, increase engagement, and drive conversions with automated campaigns. Grow your business today!",
+    title: "Best Email Marketing Company in Coimbatore | MediaMatic Studio",
+    description: "MediaMatic Studio is a top-rated email marketing company in Coimbatore. Nurture leads, increase engagement, and drive conversions with our automated campaigns.",
     alternates: {
         canonical: "https://mediamaticstudio.com/email-marketing-company/",
     },
     openGraph: {
-        title: "Best Email Marketing Service for Business Growth | Get Started",
-        description: "Choose the best email marketing service to nurture leads, increase engagement, and drive conversions with automated campaigns. Grow your business today!",
+        title: "Best Email Marketing Company in Coimbatore | MediaMatic Studio",
+        description: "Choose the best email marketing service in Coimbatore to nurture leads, increase engagement, and drive conversions with automated campaigns.",
         url: "https://mediamaticstudio.com/email-marketing-company/",
         siteName: "Mediamatic Studio",
         type: "website",

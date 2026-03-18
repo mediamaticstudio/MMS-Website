@@ -39,11 +39,11 @@ const IndustriesSection = () => {
 
                     <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
                         Industries <br />
-                        <span className="text-[#FACC15]">We Power</span>
+                        <span className="text-[#FACC15]">We Serve</span>
                     </h2>
 
                     <p className="text-lg text-[#652b32]/60 max-w-2xl leading-relaxed font-medium">
-                        Targeted email strategies designed for the unique communication patterns of every industry.
+                        Targeted email marketing strategies designed for the unique communication patterns of every industry we serve.
                     </p>
                 </motion.div>
 

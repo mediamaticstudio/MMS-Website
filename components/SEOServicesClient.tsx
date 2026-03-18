@@ -164,20 +164,22 @@ const ServicesSection = () => (
                 ].map((s, i) => (
                     <motion.div
                         key={s.title}
-                        className="p-10 rounded-[3rem] bg-[#fff8eb] border border-[#652b32]/5 hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 group cursor-pointer"
+                        className="relative p-10 rounded-[3rem] bg-[#fff8eb] hover:bg-[#652b32] shadow-xl hover:shadow-2xl transition-all duration-500 group cursor-pointer overflow-hidden"
                         custom={i}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
                         variants={cardVariants}
                     >
-                        <div className="w-16 h-16 rounded-2xl bg-[#652b32]/5 flex items-center justify-center mb-8 group-hover:bg-[#faf3e0]/10 transition-colors">
-                            <s.icon size={28} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
+                        {/* Hover accent bar */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#652b32] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="w-16 h-16 rounded-2xl bg-[#652b32]/5 flex items-center justify-center mb-8 group-hover:bg-white/10 transition-colors duration-500">
+                            <s.icon size={28} className="text-[#FACC15] group-hover:text-white transition-colors duration-500" />
                         </div>
-                        <h3 className="text-2xl font-black text-black mb-4 font-heading group-hover:text-white leading-tight uppercase tracking-tight">
+                        <h3 className="text-2xl font-black text-[#652b32] mb-4 font-heading group-hover:text-white leading-tight uppercase tracking-tight transition-colors duration-500">
                             {s.title}
                         </h3>
-                        <p className="text-black/60 leading-relaxed text-sm group-hover:text-white/80 font-medium">
+                        <p className="text-[#652b32]/60 leading-relaxed text-sm group-hover:text-white/70 font-medium transition-colors duration-500">
                             {s.desc}
                         </p>
                     </motion.div>
@@ -214,19 +216,21 @@ const StrategiesSection = () => (
                 ].map((s, i) => (
                     <motion.div
                         key={s.title}
-                        className="text-center p-8 rounded-2xl bg-[#faf3e0] border border-border hover:shadow-lg hover:bg-[#652b32] transition-all duration-300 group"
+                        className="relative text-center p-8 rounded-2xl bg-[#faf3e0] hover:bg-[#652b32] shadow-xl hover:shadow-2xl transition-all duration-500 group overflow-hidden"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.15, duration: 0.6 }}
                     >
-                        <div className="w-16 h-16 rounded-full bg-[#652b32]/5 group-hover:bg-[#faf3e0]/10 flex items-center justify-center mx-auto mb-6 transition-colors">
-                            <s.icon size={32} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
+                        {/* Hover accent bar */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#652b32] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="w-16 h-16 rounded-full bg-[#652b32]/5 group-hover:bg-white/10 flex items-center justify-center mx-auto mb-6 transition-colors duration-500">
+                            <s.icon size={32} className="text-[#FACC15] group-hover:text-white transition-colors duration-500" />
                         </div>
-                        <h3 className="text-xl font-bold mb-3 text-black group-hover:text-[#faf3e0] font-display">
+                        <h3 className="text-xl font-bold mb-3 text-[#652b32] group-hover:text-white font-display transition-colors duration-500">
                             {s.title}
                         </h3>
-                        <p className="text-black/70 group-hover:text-[#faf3e0]/80 leading-relaxed text-sm">{s.desc}</p>
+                        <p className="text-[#652b32]/70 group-hover:text-white/80 leading-relaxed text-sm transition-colors duration-500">{s.desc}</p>
                     </motion.div>
                 ))}
             </div>
@@ -265,19 +269,21 @@ const ProcessSection = () => (
                 ].map((p, i) => (
                     <motion.div
                         key={p.title}
-                        className="p-8 rounded-2xl bg-[#faf3e0] border border-border hover:shadow-xl hover:bg-[#652b32] transition-all duration-300 group"
+                        className="relative p-8 rounded-2xl bg-[#faf3e0] hover:bg-[#652b32] shadow-xl hover:shadow-2xl transition-all duration-500 group overflow-hidden"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.08, duration: 0.5 }}
                     >
-                        <div className="w-12 h-12 rounded-lg bg-[#652b32]/5 flex items-center justify-center mb-4 group-hover:bg-[#FACC15]/20 transition-colors">
-                            <p.icon size={24} className="text-black group-hover:text-[#FACC15]" />
+                        {/* Hover accent bar */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#652b32] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="w-12 h-12 rounded-lg bg-[#652b32]/5 flex items-center justify-center mb-4 group-hover:bg-white/10 transition-colors duration-500">
+                            <p.icon size={24} className="text-[#652b32] group-hover:text-white transition-colors duration-500" />
                         </div>
-                        <h3 className="text-lg font-bold text-black mb-2 font-display group-hover:text-[#faf3e0]">
+                        <h3 className="text-lg font-bold text-[#652b32] mb-2 font-display group-hover:text-white transition-colors duration-500">
                             {p.title}
                         </h3>
-                        <p className="text-black/70 text-sm leading-relaxed group-hover:text-[#faf3e0]/80">{p.desc}</p>
+                        <p className="text-[#652b32]/70 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-500">{p.desc}</p>
                     </motion.div>
                 ))}
             </div>
@@ -322,20 +328,22 @@ const IndustriesSection = () => (
                 ].map((ind, i) => (
                     <motion.div
                         key={ind.title}
-                        className="flex items-start gap-4 p-5 rounded-xl bg-[#fff8eb] border border-[#652b32]/10 hover:shadow-md hover:bg-[#652b32] hover:text-[#fff8eb] hover:border-[#652b32]/40 transition-all duration-300 group"
+                        className="relative flex items-start gap-4 p-5 rounded-xl bg-[#fff8eb] hover:bg-[#652b32] shadow-md hover:shadow-xl transition-all duration-500 group overflow-hidden"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.05, duration: 0.4 }}
                     >
-                        <div className="w-10 h-10 rounded-lg bg-[#652b32]/5 flex items-center justify-center shrink-0 group-hover:bg-[#faf3e0]/10 transition-colors">
-                            <ind.icon size={20} className="text-[#FACC15] group-hover:text-[#faf3e0]" />
+                        {/* Hover accent bar */}
+                        <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#652b32] to-[#FACC15] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="w-10 h-10 rounded-lg bg-[#652b32]/5 flex items-center justify-center shrink-0 group-hover:bg-white/10 transition-colors duration-500">
+                            <ind.icon size={20} className="text-[#FACC15] group-hover:text-white transition-colors duration-500" />
                         </div>
                         <div>
-                            <h3 className="font-bold text-black group-hover:text-white mb-1 font-display">
+                            <h3 className="font-bold text-[#652b32] group-hover:text-white mb-1 font-display transition-colors duration-500">
                                 {ind.title}
                             </h3>
-                            <p className="text-black/70 group-hover:text-white/80 text-[10px] leading-relaxed">{ind.desc}</p>
+                            <p className="text-[#652b32]/70 group-hover:text-white/80 text-[10px] leading-relaxed transition-colors duration-500">{ind.desc}</p>
                         </div>
                     </motion.div>
                 ))}

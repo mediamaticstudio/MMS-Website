@@ -1,0 +1,130 @@
+.section {
+  padding: 100px 0;
+  background: white;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ── Left ── */
+.left h2 {
+  margin-bottom: 16px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ow);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 32px;
+}
+
+.contactIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--yel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--burg-d);
+}
+
+.contact strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--burg);
+}
+
+.contact span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── Accordion ── */
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  border-bottom: 1px solid rgba(101, 43, 50, 0.1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.item:first-child {
+  border-top: 1px solid rgba(101, 43, 50, 0.1);
+}
+
+.question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--burg);
+  transition: color 0.2s;
+}
+
+.toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(101, 43, 50, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s;
+  color: var(--burg);
+}
+
+.open .toggle {
+  background: var(--yel);
+  color: var(--burg-d);
+}
+
+.answer {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  padding-bottom: 22px;
+  padding-right: 48px;
+  animation: fadeSlide 0.2s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 540px) {
+  .answer {
+    padding-right: 0;
+  }
+}

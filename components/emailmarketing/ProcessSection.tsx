@@ -21,12 +21,12 @@ const ProcessSection = () => (
                 className="mb-24 text-center"
             >
                 <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
-                    Our Process
+                    Step-by-Step Execution
                 </span>
 
                 <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
-                    Our <br />
-                    <span className="text-[#FACC15]">Process</span>
+                    Our Strategic <br />
+                    <span className="text-[#FACC15]">Workflow</span>
                 </h2>
             </motion.div>
 

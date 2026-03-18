@@ -81,10 +81,10 @@ const Designing = () => {
     return (
         <>
             <SEO
-                title="Designing Services | MediaMatic Studio"
-                description="Design That Tells Your Story. Logos, branding, and marketing visuals crafted to speak directly to your audience. Professional logo design, brand identity, and creative marketing materials."
+                title="Best Branding & Designing Agency in Coimbatore | MediaMatic Studio"
+                description="Elevate your brand with the best branding & designing agency in Coimbatore. Professional logos, brand identity, and marketing visuals crafted to speak to your audience."
                 canonical="/designing/"
-                keywords="graphic design, logo design, brand identity, marketing visuals, social media graphics, print media design, brand guidelines, creative design, MediaMatic Studio"
+                keywords="branding agency Coimbatore, graphic design Coimbatore, logo design, brand identity, marketing visuals, social media graphics, MediaMatic Studio"
                 structuredData={[
                     generateBreadcrumbSchema([
                         { name: "Home", url: "/" },
@@ -92,8 +92,8 @@ const Designing = () => {
                         { name: "Designing", url: "/designing/" }
                     ]),
                     generateServiceSchema({
-                        name: "Graphic Design Services",
-                        description: "Professional graphic design including logos, brand identity, marketing visuals, and print design."
+                        name: "Branding & Designing Services in Coimbatore",
+                        description: "Professional graphic design and branding services in Coimbatore including logos, brand identity, marketing visuals, and print design."
                     }),
                     generateOrganizationSchema()
                 ]}
