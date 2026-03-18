@@ -1,90 +1,120 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
-
 const industries = [
-    "Real Estate", "Travel & Tourism", "Manufacturing", "Automotive",
-    "Sports & Fitness", "Energy & Utilities", "Agriculture & AgriTech", "Construction",
-    "Legal & Law Firms", "Media & Publishing", "Event Management", "Beauty & Wellness",
-    "Logistics & Warehouse", "E-Commerce", "Healthcare", "Education",
+    { icon: "🏠", name: "Real Estate", desc: "Property listings, market analysis, and investment opportunities." },
+    { icon: "✈️", name: "Travel & Tourism", desc: "Destinations, seasonal packages, and custom travel offers." },
+    { icon: "🏭", name: "Manufacturing", desc: "Product features, market innovations, and distributor ventures." },
+    { icon: "🚗", name: "Automotive", desc: "New vehicles, service reminders, and special promotions." },
+    { icon: "💪", name: "Sports & Fitness", desc: "Memberships, training courses, and fitness programs." },
+    { icon: "⚡", name: "Energy & Utilities", desc: "Services, sustainability efforts, and industry updates." },
+    { icon: "🌾", name: "Agriculture & AgriTech", desc: "Tech achievements, innovations, and industry knowledge." },
+    { icon: "🏗️", name: "Construction", desc: "Project updates, partnerships, and service offers." },
+    { icon: "⚖️", name: "Legal & Law Firms", desc: "Client education, legal updates, and professional credibility." },
+    { icon: "📰", name: "Media & Publishing", desc: "Newsletters, content updates, and subscription offers." },
+    { icon: "🎪", name: "Event Management", desc: "Event promotion, registration management, and reminders." },
+    { icon: "💄", name: "Beauty & Wellness", desc: "Product launches, individual offers, and promotions." },
+    { icon: "🚚", name: "Logistics & Warehouse", desc: "Service changes, supply chain info, and partnerships." },
 ];
 
-const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.05 } },
-};
-
-const item = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] as const } },
-};
-
-const IndustriesSection = () => {
-    const [hovered, setHovered] = useState<string | null>(null);
-
+export default function IndustriesSection() {
     return (
-        <section id="industries" className="section-padding">
-            <div className="max-w-7xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16"
-                >
-                    <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
-                        Sectors We Serve
-                    </span>
+        <section className="industries-section">
+            <div className="industries-container">
+                <div className="section-label">Industries We Serve</div>
+                <h2 className="section-heading">Email Marketing Across Every Sector</h2>
+                <p className="section-sub">
+                    Our email marketing services are designed to assist companies in various sectors —
+                    building better audience relationships, driving conversions, and enhancing customer loyalty.
+                </p>
 
-                    <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
-                        Industries <br />
-                        <span className="text-[#FACC15]">We Serve</span>
-                    </h2>
-
-                    <p className="text-lg text-[#652b32]/60 max-w-2xl leading-relaxed font-medium">
-                        Targeted email marketing strategies designed for the unique communication patterns of every industry we serve.
-                    </p>
-                </motion.div>
-
-                <motion.div
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 border-t border-l border-border"
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true }}
-                >
-                    {industries.map((ind) => (
-                        <motion.div
-                            key={ind}
-                            variants={item}
-                            className="border-b border-r border-border px-6 py-5 cursor-default transition-colors duration-200 flex items-center gap-2"
-                            onMouseEnter={() => setHovered(ind)}
-                            onMouseLeave={() => setHovered(null)}
-                            style={{
-                                color: hovered === ind ? "hsl(var(--primary))" : "hsl(var(--foreground))",
-                            }}
-                        >
-                            {hovered === ind && (
-                                <motion.span
-                                    className="text-accent font-bold"
-                                    initial={{ opacity: 0, x: -8 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    →
-                                </motion.span>
-                            )}
-
-                            <span className="text-[10px] uppercase tracking-widest px-3 py-1.5 bg-[#652b32]/5 rounded-full text-[#652b32]/60 font-black">
-                                {ind}
-                            </span>
-                        </motion.div>
+                <div className="industries-grid">
+                    {industries.map((ind, i) => (
+                        <div className="industry-card" key={i}>
+                            <div className="industry-icon">{ind.icon}</div>
+                            <div className="industry-info">
+                                <h3 className="industry-name">{ind.name}</h3>
+                                <p className="industry-desc">{ind.desc}</p>
+                            </div>
+                        </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
+
+            <style jsx>{`
+        .industries-section {
+          background: #faf3e0;
+          padding: 96px 24px;
+        }
+        .industries-container {
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+        .section-label {
+          text-align: center;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #652b32;
+          margin-bottom: 12px;
+        }
+        .section-heading {
+          font-family: 'Georgia', serif;
+          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+          font-weight: 700;
+          color: #652b32;
+          text-align: center;
+          margin-bottom: 16px;
+        }
+        .section-sub {
+          text-align: center;
+          color: #6b4a2a;
+          font-size: 1.05rem;
+          max-width: 620px;
+          margin: 0 auto 56px;
+          line-height: 1.7;
+        }
+        .industries-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          gap: 20px;
+        }
+        .industry-card {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          background: #fff;
+          border: 1px solid rgba(101,43,50,0.1);
+          border-radius: 14px;
+          padding: 22px 20px;
+          transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+        }
+        .industry-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 28px rgba(101,43,50,0.1);
+          border-color: #f5c518;
+        }
+        .industry-icon {
+          font-size: 1.6rem;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+        .industry-info {
+          flex: 1;
+        }
+        .industry-name {
+          font-family: 'Georgia', serif;
+          font-size: 0.97rem;
+          font-weight: 700;
+          color: #652b32;
+          margin-bottom: 5px;
+        }
+        .industry-desc {
+          font-size: 0.85rem;
+          color: #7a5555;
+          line-height: 1.55;
+        }
+      `}</style>
         </section>
     );
-};
-
-export default IndustriesSection;
+}

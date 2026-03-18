@@ -78,10 +78,6 @@ export default function CTASection() {
           ))}
         </div>
       </div>
-
-      <div className={styles.footer}>
-        © 2025 MediaMatic. All rights reserved. | India&apos;s Leading Mobile App Development Company
-      </div>
     </section>
   )
 }

@@ -5,7 +5,7 @@ import ProcessSection from '@/components/mobile-app-development/components/Proce
 import IndustriesSection from '@/components/mobile-app-development/components/IndustriesSection'
 import TechStackSection from '@/components/mobile-app-development/components/TechStackSection'
 import FAQSection from '@/components/mobile-app-development/components/FAQSection'
-import CTASection from '@/components/mobile-app-development/components/CTASection'
+// import CTASection from '@/components/mobile-app-development/components/CTASection'
 
 export const metadata = {
   title: 'Mobile App Development Company In Coimbatore | MediaMatic Studio',
@@ -24,7 +24,7 @@ export default function MobileAppDevelopmentPage() {
         <IndustriesSection />
         <TechStackSection />
         <FAQSection />
-        <CTASection />
+        {/* <CTASection /> */}
       </main>
     </>
   )

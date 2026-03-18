@@ -1,103 +1,138 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Search, CalendarDays, Palette, Zap, Clock, BarChart3 } from "lucide-react";
-
 const services = [
     {
-        icon: Search,
+        icon: "🎯",
         title: "Audience Research & Goal Alignment",
-        desc: "We identify customer behavior, preferences and engagement patterns to align every campaign with your growth plans.",
+        desc: "We identify customer behavior, preferences and engagement patterns, aligning every campaign with your core business objectives.",
     },
     {
-        icon: CalendarDays,
-        title: "Campaign Strategy & Planning",
-        desc: "A systematic roadmap establishing campaign purpose, content themes, frequency, and segmentation approach.",
+        icon: "🗺️",
+        title: "Email Campaign Strategy & Planning",
+        desc: "A systematic roadmap establishing campaign purpose, content themes, frequency, and segmentation approach for long-term engagement.",
     },
     {
-        icon: Palette,
+        icon: "🎨",
         title: "Email Design & Content Creation",
-        desc: "Mobile-friendly designs, catchy subject lines and quality messages that represent your brand with conviction.",
+        desc: "Mobile-friendly templates, catchy subject lines, and quality messaging that represent your brand and inspire action.",
     },
     {
-        icon: Zap,
-        title: "Email Automation & Workflows",
-        desc: "Welcome sequences, abandoned cart messages, lead follow-ups, and re-engagement flows — all automated.",
+        icon: "⚙️",
+        title: "Email Automation & Workflow Setup",
+        desc: "Welcome sequences, abandoned cart messages, lead follow-ups, and re-engagement flows — all running without manual effort.",
     },
     {
-        icon: Clock,
-        title: "Smart Scheduling & Execution",
-        desc: "Emails delivered at optimal times based on audience behavior to maximize open rates and engagement.",
+        icon: "📅",
+        title: "Campaign Execution & Smart Scheduling",
+        desc: "Emails delivered at optimal times based on audience behavior, maximizing open rates and subscriber engagement.",
     },
     {
-        icon: BarChart3,
+        icon: "📊",
         title: "Performance Optimization & Reporting",
-        desc: "Detailed metrics on open rates, click-through rates, and conversions to continuously refine campaigns.",
+        desc: "Continuous analysis of open rates, click-through rates, and conversions to refine messaging and improve overall ROI.",
     },
 ];
 
-const container = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.1 } },
-};
-
-const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
-};
-
-const ServicesSection = () => (
-    <section id="services" className="section-padding relative overflow-hidden bg-white/30">
-        <div className="max-w-7xl mx-auto">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="mb-20 text-center"
-            >
-                <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
-                    What We Offer
-                </span>
-
-                <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-8 tracking-tighter uppercase leading-[0.9]">
-                    Email Marketing <br />
-                    <span className="text-[#FACC15]">Services</span>
-                </h2>
-            </motion.div>
-
-            <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                variants={container}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-            >
-                {services.map((s) => (
-                    <motion.div 
-                        key={s.title} 
-                        variants={item} 
-                        className="bg-white p-8 rounded-3xl shadow-xl hover:shadow-2xl hover:bg-[#652b32] transition-all duration-500 border border-border/10 group cursor-default relative overflow-hidden"
-                    >
-                        {/* Hover accent */}
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#652b32] to-[#9a5a2a] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        
-                        <div className="w-14 h-14 bg-[#652b32]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors duration-500">
-                            <s.icon className="text-[#652b32] group-hover:text-white transition-colors duration-500" size={28} strokeWidth={1.5} />
+export default function ServicesSection() {
+    return (
+        <section className="services-section">
+            <div className="services-container">
+                <div className="section-label">What We Offer</div>
+                <h2 className="section-heading">Email Marketing Services & Campaign Types</h2>
+                <p className="section-sub">
+                    From research and planning to execution and optimization — each campaign is crafted in
+                    detail, adjusted to your business objectives.
+                </p>
+                <div className="services-grid">
+                    {services.map((s, i) => (
+                        <div className="service-card" key={i}>
+                            <div className="service-icon">{s.icon}</div>
+                            <h3 className="service-title">{s.title}</h3>
+                            <p className="service-desc">{s.desc}</p>
                         </div>
+                    ))}
+                </div>
+            </div>
 
-                        <h3 className="text-2xl font-black text-[#652b32] mb-3 group-hover:text-white transition-colors font-heading leading-tight uppercase tracking-tight">
-                            {s.title}
-                        </h3>
-
-                        <p className="text-[#652b32]/60 text-sm leading-relaxed mb-8 group-hover:text-white/70 transition-colors font-medium">
-                            {s.desc}
-                        </p>
-                    </motion.div>
-                ))}
-            </motion.div>
-        </div>
-    </section>
-);
-
-export default ServicesSection;
+            <style jsx>{`
+        .services-section {
+          background: #faf3e0;
+          padding: 96px 24px;
+        }
+        .services-container {
+          max-width: 1100px;
+          margin: 0 auto;
+        }
+        .section-label {
+          text-align: center;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #652b32;
+          margin-bottom: 12px;
+        }
+        .section-heading {
+          font-family: 'Georgia', serif;
+          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+          font-weight: 700;
+          color: #652b32;
+          text-align: center;
+          margin-bottom: 16px;
+        }
+        .section-sub {
+          text-align: center;
+          color: #6b4a2a;
+          font-size: 1.05rem;
+          max-width: 600px;
+          margin: 0 auto 56px;
+          line-height: 1.7;
+        }
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 24px;
+        }
+        .service-card {
+          background: #fff;
+          border: 1px solid rgba(101,43,50,0.1);
+          border-radius: 16px;
+          padding: 32px 28px;
+          transition: transform 0.25s, box-shadow 0.25s;
+          position: relative;
+          overflow: hidden;
+        }
+        .service-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: #f5c518;
+          border-radius: 4px 0 0 4px;
+        }
+        .service-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 16px 40px rgba(101,43,50,0.12);
+        }
+        .service-icon {
+          font-size: 2rem;
+          margin-bottom: 16px;
+        }
+        .service-title {
+          font-family: 'Georgia', serif;
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #652b32;
+          margin-bottom: 10px;
+        }
+        .service-desc {
+          font-size: 0.93rem;
+          color: #5a4040;
+          line-height: 1.7;
+        }
+      `}</style>
+        </section>
+    );
+}

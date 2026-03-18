@@ -1,101 +1,159 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const config = [
-    { key: "EMAIL_BACKEND", value: '"django.core.mail.backends.smtp.EmailBackend"' },
-    { key: "EMAIL_HOST", value: '"smtp.gmail.com"' },
-    { key: "EMAIL_PORT", value: "587" },
-    { key: "EMAIL_USE_TLS", value: "True" },
-    { key: "EMAIL_HOST_USER", value: '"campaigns@yourdomain.com"' },
-    { key: "EMAIL_HOST_PASSWORD", value: '"••••••••••••••••"' },
-];
-
 const tools = [
-    { name: "Gmail", purpose: "Email service provider" },
-    { name: "SMTP", purpose: "Protocol for sending emails" },
-    { name: "Gmail App Password", purpose: "Secure authentication" },
-    { name: "Django Email Backend", purpose: "Email sending integration" },
-    { name: "TLS Encryption", purpose: "Secure email communication" },
+    { name: "Mailchimp", category: "ESP", icon: "🐒" },
+    { name: "Klaviyo", category: "Automation", icon: "📧" },
+    { name: "HubSpot", category: "CRM + Email", icon: "🔗" },
+    { name: "ActiveCampaign", category: "Automation", icon: "⚡" },
+    { name: "Brevo (Sendinblue)", category: "All-in-One", icon: "📬" },
+    { name: "Constant Contact", category: "Small Business", icon: "📮" },
+    { name: "ConvertKit", category: "Creators", icon: "✍️" },
+    { name: "Campaign Monitor", category: "Design-First", icon: "🎨" },
+    { name: "Drip", category: "eCommerce", icon: "🛍️" },
 ];
 
-const TechStackSection = () => (
-    <section id="stack" className="section-padding blueprint-bg">
-        <div className="max-w-7xl mx-auto">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-16"
-            >
-                <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
-                    Under The Hood
-                </span>
+const features = [
+    { label: "A/B Testing", icon: "🔬" },
+    { label: "Dynamic Segmentation", icon: "🗂️" },
+    { label: "Behavioral Triggers", icon: "🎯" },
+    { label: "Analytics & Reporting", icon: "📈" },
+    { label: "GDPR Compliance", icon: "🔒" },
+    { label: "Deliverability Monitoring", icon: "📡" },
+];
 
-                <h2 className="services-heading font-heading text-5xl md:text-8xl font-black text-[#652b32] text-balance mb-12 tracking-tighter uppercase leading-[0.9]">
-                    Technical <br />
-                    <span className="text-[#FACC15]">Stack</span>
-                </h2>
-
-                <p className="text-lg text-[#652b32]/60 max-w-2xl leading-relaxed font-medium">
-                    Built on proven infrastructure for reliable, secure email delivery at scale.
+export default function TechStackSection() {
+    return (
+        <section className="tech-section">
+            <div className="tech-bg" />
+            <div className="tech-container">
+                <div className="section-label">Platforms & Capabilities</div>
+                <h2 className="section-heading">Our Email Marketing Tech Stack</h2>
+                <p className="section-sub">
+                    We work with industry-leading platforms and tools to ensure maximum deliverability,
+                    automation power, and performance tracking for every campaign.
                 </p>
-            </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Code snippet */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="card-matte p-8 font-mono text-sm"
-                >
-                    <p className="text-muted-foreground mb-4"># settings.py</p>
-
-                    {config.map((c) => (
-                        <div key={c.key} className="mb-1">
-                            <span className="text-primary">{c.key}</span>
-                            <span className="text-muted-foreground"> = </span>
-                            <span className="text-accent">{c.value}</span>
+                <div className="tools-grid">
+                    {tools.map((tool, i) => (
+                        <div className="tool-card" key={i}>
+                            <span className="tool-icon">{tool.icon}</span>
+                            <span className="tool-name">{tool.name}</span>
+                            <span className="tool-category">{tool.category}</span>
                         </div>
                     ))}
-                </motion.div>
+                </div>
 
-                {/* Tools table */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="card-matte p-0 overflow-hidden"
-                >
-                    <div className="px-8 py-6 border-b border-border">
-                        <h3 className="text-2xl font-black text-[#652b32] group-hover:text-white transition-colors font-heading leading-tight uppercase tracking-tight">
-                            Tools & Tech
-                        </h3>
-                    </div>
-
-                    {tools.map((t, i) => (
-                        <div
-                            key={t.name}
-                            className={`flex items-center justify-between px-8 py-4 ${i < tools.length - 1 ? "border-b border-border" : ""
-                                }`}
-                        >
-                            <span className="text-lg font-black text-[#652b32] group-hover:text-white transition-colors font-heading leading-tight uppercase tracking-tight">
-                                {t.name}
-                            </span>
-
-                            <span className="body-text text-muted-foreground text-sm">
-                                {t.purpose}
-                            </span>
+                <div className="features-row">
+                    {features.map((f, i) => (
+                        <div className="feature-pill" key={i}>
+                            <span>{f.icon}</span>
+                            <span>{f.label}</span>
                         </div>
                     ))}
-                </motion.div>
+                </div>
             </div>
-        </div>
-    </section>
-);
 
-export default TechStackSection;
+            <style jsx>{`
+        .tech-section {
+          background: #652b32;
+          padding: 96px 24px;
+          position: relative;
+          overflow: hidden;
+        }
+        .tech-bg {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(ellipse at 10% 80%, rgba(245,197,24,0.08) 0%, transparent 55%);
+          pointer-events: none;
+        }
+        .tech-container {
+          max-width: 1100px;
+          margin: 0 auto;
+          position: relative;
+          z-index: 2;
+        }
+        .section-label {
+          text-align: center;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #f5c518;
+          margin-bottom: 12px;
+        }
+        .section-heading {
+          font-family: 'Georgia', serif;
+          font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+          font-weight: 700;
+          color: #faf3e0;
+          text-align: center;
+          margin-bottom: 16px;
+        }
+        .section-sub {
+          text-align: center;
+          color: rgba(250,243,224,0.7);
+          font-size: 1.05rem;
+          max-width: 580px;
+          margin: 0 auto 56px;
+          line-height: 1.7;
+        }
+        .tools-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+          gap: 16px;
+          margin-bottom: 40px;
+        }
+        .tool-card {
+          background: rgba(250,243,224,0.06);
+          border: 1px solid rgba(250,243,224,0.15);
+          border-radius: 14px;
+          padding: 24px 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 8px;
+          text-align: center;
+          transition: background 0.22s, border-color 0.22s;
+        }
+        .tool-card:hover {
+          background: rgba(245,197,24,0.1);
+          border-color: rgba(245,197,24,0.4);
+        }
+        .tool-icon {
+          font-size: 1.8rem;
+        }
+        .tool-name {
+          font-family: 'Georgia', serif;
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #faf3e0;
+        }
+        .tool-category {
+          font-size: 0.78rem;
+          color: #f5c518;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+        .features-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+        }
+        .feature-pill {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          background: rgba(245,197,24,0.15);
+          border: 1px solid rgba(245,197,24,0.3);
+          color: #faf3e0;
+          padding: 10px 20px;
+          border-radius: 999px;
+          font-size: 0.88rem;
+          font-weight: 600;
+        }
+      `}</style>
+        </section>
+    );
+}

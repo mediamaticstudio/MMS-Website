@@ -1,163 +1,197 @@
 "use client";
+import { useEffect, useRef } from "react";
 
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Mail, Send, Users, BarChart } from "lucide-react";
+export default function HeroSection() {
+    const headingRef = useRef<HTMLHeadingElement>(null);
 
-const HeroSection = () => {
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const rotateX = useTransform(mouseY, [-300, 300], [5, -5]);
-    const rotateY = useTransform(mouseX, [-300, 300], [-5, 5]);
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const rect = e.currentTarget.getBoundingClientRect();
-        mouseX.set(e.clientX - rect.left - rect.width / 2);
-        mouseY.set(e.clientY - rect.top - rect.height / 2);
-    };
+    useEffect(() => {
+        const el = headingRef.current;
+        if (!el) return;
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        setTimeout(() => {
+            el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+        }, 100);
+    }, []);
 
     return (
-        <section
-            className="section-padding pt-32 md:pt-40 min-h-screen flex items-center relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(101,43,50,0.05),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(154,90,42,0.05),transparent_50%)]"
-            onMouseMove={handleMouseMove}
-        >
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center w-full">
-                {/* Left */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    <span className="block text-base font-black tracking-[0.25em] text-[#652b32]/40 mb-6 uppercase">
-                        Best Email Marketing Service
-                    </span>
-
-                    <h1 className="display-heading text-5xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase text-[#652b32]">
-                        High-converting <br /> <span className="text-[#FACC15]">Email Systems</span>
-                    </h1>
-
-                    <p className="body-text text-lg md:text-xl text-[#652b32]/60 max-w-2xl mt-8 mb-10 leading-relaxed font-medium">
-                        Scale your business with the best email marketing service. We build high-converting automated campaigns, segment your data, and deliver measurable growth.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-6 mb-20">
-                        <a 
-                            href="#cta" 
-                            className="bg-[#652b32] text-white px-10 py-5 rounded-[2rem] font-black tracking-[0.1em] hover:bg-[#4d2126] transition-all text-center uppercase text-xs"
-                        >
-                            Start Your Campaign
-                        </a>
-
-                        <a
-                            href="#services"
-                            className="border-2 border-[#652b32] text-[#652b32] px-10 py-5 rounded-[2rem] font-black tracking-[0.1em] hover:bg-[#652b32] hover:text-white transition-all text-center uppercase text-xs"
-                        >
-                            Our Services
-                        </a>
+        <section className="hero-section">
+            <div className="hero-bg-pattern" />
+            <div className="hero-container">
+                <div className="hero-badge">✉ Professional Email Marketing</div>
+                <h1 ref={headingRef} className="hero-heading">
+                    Best Email Marketing Service for{" "}
+                    <span className="hero-highlight">High-Converting</span> Business Campaigns
+                </h1>
+                <p className="hero-subtext">
+                    Email marketing remains one of the most powerful channels of contact with customers,
+                    feeding leads, and promoting stable business growth. Our data-driven approach ensures
+                    every campaign delivers measurable ROI.
+                </p>
+                <div className="hero-actions">
+                    <button className="btn-primary">Start Your Campaign</button>
+                    <button className="btn-outline">Learn More</button>
+                </div>
+                <div className="hero-stats">
+                    <div className="stat-item">
+                        <span className="stat-num">98%</span>
+                        <span className="stat-label">Deliverability Rate</span>
                     </div>
-
-                    <div className="flex gap-8 mt-12">
-                        {[
-                            { value: "42.8%", label: "AVG OPEN RATE" },
-                            { value: "500+", label: "CAMPAIGNS SENT" },
-                            { value: "13x", label: "AVG ROI" },
-                        ].map((stat) => (
-                            <div key={stat.label}>
-                                <p className="font-heading text-2xl md:text-3xl font-black text-[#652b32] tabular-nums">
-                                    {stat.value}
-                                </p>
-                                <p className="text-[10px] uppercase tracking-widest text-[#652b32]/40 font-black mt-1">
-                                    {stat.label}
-                                </p>
-                            </div>
-                        ))}
+                    <div className="stat-divider" />
+                    <div className="stat-item">
+                        <span className="stat-num">3.5x</span>
+                        <span className="stat-label">Average ROI</span>
                     </div>
-                </motion.div>
-
-                {/* Right */}
-                <motion.div
-                    className="flex justify-center lg:justify-end"
-                    style={{ rotateX, rotateY, perspective: 1200 }}
-                    initial={{ opacity: 0, x: 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                >
-                    <div 
-                        className="card-matte p-8 md:p-10 overflow-hidden max-w-lg w-full flex flex-col gap-8 shadow-2xl relative border border-white/20 bg-white/40 backdrop-blur-xl rounded-[2rem]" 
-                        aria-label="best email marketing service campaign strategy dashboard" 
-                        role="img"
-                    >
-                        {/* Header */}
-                        <div className="flex justify-between items-center mb-2 z-10 relative">
-                            <div>
-                                <h3 className="text-[#652b32] font-black text-2xl leading-[0.9] tracking-tighter uppercase">Campaign Strategy</h3>
-                                <p className="text-sm text-[#652b32]/60 mt-1 font-medium italic">Live Dashboard Overview</p>
-                            </div>
-                            <div className="bg-[#ccbc29]/20 px-4 py-2 rounded-full text-[#9a5a2a] text-xs font-black uppercase tracking-widest border border-[#cc29]/30">
-                                Active
-                            </div>
-                        </div>
-
-                        {/* Top Stats */}
-                        <div className="grid grid-cols-2 gap-4 mb-2 z-10 relative">
-                            <div className="bg-muted/80 backdrop-blur-sm p-5 rounded-sm text-left border border-border/50 hover:border-accent/50 transition-colors">
-                                <Mail className="text-accent mb-3" size={24} strokeWidth={1.5} />
-                                <div className="text-3xl font-bold text-primary mb-1">45.2%</div>
-                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-black">Open Rate</div>
-                            </div>
-                            <div className="bg-muted/80 backdrop-blur-sm p-5 rounded-sm text-left border border-border/50 hover:border-primary/50 transition-colors">
-                                <Send className="text-primary mb-3" size={24} strokeWidth={1.5} />
-                                <div className="text-3xl font-bold text-primary mb-1">12.5%</div>
-                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-black">Click Rate</div>
-                            </div>
-                        </div>
-
-                        {/* Journey/Progress Bars */}
-                        <div className="space-y-5 mt-2 z-10 relative bg-muted/40 p-5 rounded-sm border border-border/30">
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center text-sm">
-                                    <div className="flex items-center gap-2 text-muted-foreground font-black">
-                                        <Users size={16} className="text-primary" /> Active Subscribers
-                                    </div>
-                                    <div className="font-semibold text-primary">12,450</div>
-                                </div>
-                                <div className="w-full bg-background/50 rounded-full h-2 overflow-hidden border border-border/50">
-                                    <motion.div 
-                                        initial={{ width: 0 }}
-                                        animate={{ width: "75%" }}
-                                        transition={{ duration: 1.5, delay: 0.5 }}
-                                        className="bg-primary h-2 rounded-full"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="space-y-2">
-                                <div className="flex justify-between items-center text-sm">
-                                    <div className="flex items-center gap-2 text-muted-foreground font-medium">
-                                        <BarChart size={16} className="text-accent" /> Conversion Rate
-                                    </div>
-                                    <div className="font-semibold text-primary">6.8%</div>
-                                </div>
-                                <div className="w-full bg-background/50 rounded-full h-2 overflow-hidden border border-border/50">
-                                    <motion.div 
-                                        initial={{ width: 0 }}
-                                        animate={{ width: "60%" }}
-                                        transition={{ duration: 1.5, delay: 0.7 }}
-                                        className="bg-accent h-2 rounded-full"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Faded Background Graph Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 via-transparent to-primary/5 opacity-50 pointer-events-none rounded-inherit"></div>
-                        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/20 blur-[60px] rounded-full pointer-events-none"></div>
-                        <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 blur-[60px] rounded-full pointer-events-none"></div>
+                    <div className="stat-divider" />
+                    <div className="stat-item">
+                        <span className="stat-num">500+</span>
+                        <span className="stat-label">Brands Served</span>
                     </div>
-                </motion.div>
+                </div>
             </div>
+
+            <style jsx>{`
+        .hero-section {
+          position: relative;
+          background: #652b32;
+          min-height: 92vh;
+          display: flex;
+          align-items: center;
+          overflow: hidden;
+          padding: 80px 24px;
+        }
+        .hero-bg-pattern {
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(circle at 20% 50%, rgba(245,197,24,0.12) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(250,243,224,0.06) 0%, transparent 40%);
+          pointer-events: none;
+        }
+        .hero-bg-pattern::after {
+          content: "";
+          position: absolute;
+          right: -80px;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 520px;
+          height: 520px;
+          border-radius: 50%;
+          border: 60px solid rgba(245,197,24,0.08);
+        }
+        .hero-container {
+          max-width: 820px;
+          margin: 0 auto;
+          text-align: center;
+          position: relative;
+          z-index: 2;
+        }
+        .hero-badge {
+          display: inline-block;
+          background: rgba(245,197,24,0.18);
+          color: #f5c518;
+          border: 1px solid rgba(245,197,24,0.35);
+          padding: 8px 20px;
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 28px;
+        }
+        .hero-heading {
+          font-family: 'Georgia', serif;
+          font-size: clamp(2.2rem, 5vw, 3.6rem);
+          font-weight: 700;
+          color: #faf3e0;
+          line-height: 1.2;
+          margin-bottom: 24px;
+        }
+        .hero-highlight {
+          color: #f5c518;
+          position: relative;
+        }
+        .hero-subtext {
+          font-size: 1.1rem;
+          color: rgba(250,243,224,0.75);
+          line-height: 1.75;
+          max-width: 640px;
+          margin: 0 auto 40px;
+        }
+        .hero-actions {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 56px;
+        }
+        .btn-primary {
+          background: #f5c518;
+          color: #652b32;
+          border: none;
+          padding: 14px 32px;
+          font-size: 15px;
+          font-weight: 700;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: transform 0.2s, box-shadow 0.2s;
+          letter-spacing: 0.03em;
+        }
+        .btn-primary:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(245,197,24,0.35);
+        }
+        .btn-outline {
+          background: transparent;
+          color: #faf3e0;
+          border: 2px solid rgba(250,243,224,0.4);
+          padding: 14px 32px;
+          font-size: 15px;
+          font-weight: 600;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: border-color 0.2s, color 0.2s;
+        }
+        .btn-outline:hover {
+          border-color: #faf3e0;
+          color: #fff;
+        }
+        .hero-stats {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+        }
+        .stat-num {
+          font-family: 'Georgia', serif;
+          font-size: 2rem;
+          font-weight: 700;
+          color: #f5c518;
+        }
+        .stat-label {
+          font-size: 12px;
+          color: rgba(250,243,224,0.6);
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+        }
+        .stat-divider {
+          width: 1px;
+          height: 48px;
+          background: rgba(250,243,224,0.2);
+        }
+        @media (max-width: 600px) {
+          .stat-divider { display: none; }
+          .hero-stats { gap: 24px; }
+        }
+      `}</style>
         </section>
     );
-};
-
-export default HeroSection;
+}
