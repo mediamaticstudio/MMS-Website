@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { createPortal } from "react-dom";
 import ReactCountryFlag from "react-country-flag";
 import { SuccessPopup } from "@/components/SuccessPopup";
+import { sendContactMail } from "@/services/api";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -514,22 +515,11 @@ export const Contact = () => {
 
         // API call
         try {
-            const response = await fetch(
-                "https://mediamaticstudio.com/api/contact/send/",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(submissionData),
-                }
-            );
+            await sendContactMail({
+                ...submissionData,
+                source: "Main Page Contact Section"
+            });
 
-            const data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(data.message || "Failed to send message");
-            }
 
             toast.success("Message sent successfully!", {
                 description: "We'll get back to you soon.",

@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
+import { sendContactMail } from "@/services/api";
 import { C, F } from "@/app/branding-agency-in-houston/Tokens";
 import { FormField, PhoneField, TextAreaField } from "@/components/adpage/AdFormElements";
-import { sendQuoteRequest } from "@/lib/api";
 import { SuccessPopup } from "@/components/SuccessPopup";
 import { toast } from "sonner";
 import { Loader2, X } from "lucide-react";
@@ -41,12 +41,13 @@ export const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
 
         setLoading(true);
         try {
-            await sendQuoteRequest({
+            await sendContactMail({
                 ...form,
                 phone: `${form.dialCode}${form.phone}`,
                 source: "Ad Page - Modal"
             });
             setSent(true);
+
         } catch (error: any) {
             toast.error(error.message || "Failed to send request");
         } finally {

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { sendContactMail } from "@/services/api";
 import { C, F, Eyebrow, YellowBar } from "@/app/branding-agency-in-houston/Tokens";
 import { FormField, PhoneField, TextAreaField } from "@/components/adpage/AdFormElements";
 import { sendQuoteRequest } from "@/lib/api";
@@ -31,34 +32,32 @@ export default function ContactSection() {
     const handleSubmit = async () => {
         const newErrors: any = {};
         if (!form.name) newErrors.name = "Name is required";
-        if (!form.email) newErrors.email = "Email is required";
+        if (!form.email) {
+            newErrors.email = "Email is required";
+        } else if (!/^\S+@\S+\.\S+$/.test(form.email)) {
+            newErrors.email = "Please enter a valid email";
+        }
         if (!form.phone) newErrors.phone = "Phone is required";
         if (!form.message || form.message.length < 10) newErrors.message = "Message must be at least 10 characters";
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-            toast.error("Please fill in all required fields");
+            const firstError = Object.values(newErrors)[0] as string;
+            toast.error(firstError);
             return;
         }
 
         setLoading(true);
         try {
-            const response = await fetch("https://mediamaticstudio.com/api/contact/send/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: form.name,
-                    email: form.email,
-                    phone: `${form.dialCode}${form.phone}`,
-                    biz: form.biz,
-                    message: form.message,
-                    source: "Ad Page - Bottom Contact"
-                })
+            await sendContactMail({
+                name: form.name,
+                email: form.email,
+                phone: `${form.dialCode}${form.phone}`,
+                biz: form.biz,
+                message: form.message,
+                source: "Ad Page - Bottom Contact"
             });
-            if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.message || `Error: ${response.statusText}`);
-            }
+
             setSent(true);
             toast.success("Project inquiry sent!");
         } catch (error: any) {
@@ -89,9 +88,8 @@ export default function ContactSection() {
 
                     {/* ✅ CHANGED: Grid instead of column */}
                     <div
+                        className="grid-3"
                         style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(3, 1fr)",
                             gap: "32px",
                             marginTop: "32px",
                         }}
@@ -99,15 +97,15 @@ export default function ContactSection() {
                         {[
                             {
                                 text: "Mediamatic Studio completely transformed our brand identity and digital presence. Their creative team delivered outstanding results that exceeded every expectation.",
-                                author: "CEO, Houston-based Business",
+                                author: "Ashaley Young",
                             },
                             {
                                 text: "The strategic approach and technical precision provided have been a game-changer. They didn't just build a site; they architected a digital ecosystem that reflects our vision.",
-                                author: "Director, UK-based Tech Firm",
+                                author: "Madison Brown",
                             },
                             {
                                 text: "Partnering with this team was the best decision for our rebranding. Their ability to blend high-end aesthetics with seamless functionality resulted in a professional identity.",
-                                author: "Founder, Dubai-based Creative Agency",
+                                author: "Andrew Thomas",
                             },
                         ].map((item, index) => (
                             <div
@@ -349,9 +347,40 @@ export default function ContactSection() {
                             </p>
 
                             {[
-                                { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.58 2.72h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.13a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.28 16.92z" /></svg>, label: "Call Us", val: "Toll Free · +1 (888) 219-5755" },
-                                // { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>, label: "Free Consultation", val: "No commitment required" },
-                                // { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>, label: "Location", val: "Houston, TX — Global clients" },
+                                { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.61 4.9 2 2 0 0 1 3.58 2.72h3a2 2 0 0 1-2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.13a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.28 16.92z" /></svg>, label: "Call Us", val: "+1 (888) 219-5755" },
+                                // { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>, label: "Consultation", val: "Response within 24h" },
+                                // { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>, label: "Studio Location", val: "Houston, TX · Global" },
+                                {
+                                    icon: (
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                            <circle cx="12" cy="10" r="3" />
+                                        </svg>
+                                    ),
+                                    label: "Corporate Office",
+                                    val: (
+                                        <>
+                                            COVAI TECH PARK, Site No: 90,<br />
+                                            Kalapatty Village,<br />
+                                            Coimbatore – 641 014
+                                        </>
+                                    )
+                                },
+                                {
+                                    icon: (
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={C.burg} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                            <circle cx="12" cy="10" r="3" />
+                                        </svg>
+                                    ),
+                                    label: "Bengaluru",
+                                    val: (
+                                        <>
+                                            Koramangala,<br />
+                                            Bengaluru – 560 047
+                                        </>
+                                    )
+                                }
                             ].map(ci => (
                                 <div key={ci.label} style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 12, background: C.cream, border: `1.5px solid ${C.crD}`, borderRadius: 14, padding: "14px 18px" }}>
                                     <div style={{ width: 46, height: 46, background: `${C.burg}14`, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{ci.icon}</div>

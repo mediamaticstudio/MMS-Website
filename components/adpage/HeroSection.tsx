@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
+import { sendContactMail } from "@/services/api";
 import { C, F } from "@/app/branding-agency-in-houston/Tokens";
 import { FormField, PhoneField, TextAreaField } from "@/components/adpage/AdFormElements";
-import { sendQuoteRequest } from "@/lib/api";
 import { SuccessPopup } from "@/components/SuccessPopup";
 import { ContactModal } from "@/components/adpage/ContactModal";
 import { toast } from "sonner";
@@ -37,11 +37,13 @@ export default function HeroSection() {
 
         setLoading(true);
         try {
-            await sendQuoteRequest({
+            await sendContactMail({
                 ...form,
                 phone: `${form.dialCode}${form.phone}`,
                 source: "Ad Page - Hero"
             });
+
+
             setSent(true);
             toast.success("Consultation request sent!");
         } catch (error: any) {

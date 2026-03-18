@@ -3,10 +3,12 @@ import React from "react";
 import { C, F, ILL, Eyebrow } from "@/app/branding-agency-in-houston/Tokens";
 
 const FREE_SVCS = [
-    "Free logo concepts",
-    "Free brand audit",
-    "Free social media templates",
-    "Free brand strategy consultation",
+    "2D & 3D Animation Videos",
+    "Content Management",
+    "Website & App Development",
+    "Designing",
+    "Digital Marketing",
+    "VPS Web Hosting Service",
 ];
 
 export default function PromoSection() {

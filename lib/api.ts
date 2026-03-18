@@ -51,7 +51,7 @@ export async function fetchBlogPostBySlug(slug: string): Promise<any> {
 }
 
 export async function sendContactMail(data: any): Promise<any> {
-    const response = await fetch(`${API_URL}/contact/`, {
+    const response = await fetch(`${API_URL}/contact/send/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -60,10 +60,14 @@ export async function sendContactMail(data: any): Promise<any> {
 }
 
 export async function sendQuoteRequest(data: any): Promise<any> {
-    const response = await fetch(`${API_URL}/contact/quote/`, {
+    const response = await fetch(`${API_URL}/contact/send/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+            ...data,
+            name: `${data.firstName || ""} ${data.lastName || ""}`.trim(),
+            source: data.source || "Get Quote Page"
+        }),
     });
 
     if (!response.ok) {

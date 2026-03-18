@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
+import { sendContactMail } from "@/services/api";
 import { Loader2, Send, User, Mail, Phone, MessageSquare } from "lucide-react";
 import styles from "@/app/blog/Blog.module.css";
 
@@ -26,12 +27,11 @@ const BlogContactForm = ({ variant = "card" }: BlogContactFormProps) => {
         e.preventDefault();
         setIsSending(true);
         try {
-            const response = await fetch("https://mediamaticstudio.com/api/contact/send/", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+            await sendContactMail({
+                ...formData,
+                source: "Blog Sidebar Contact"
             });
-            if (!response.ok) throw new Error("Failed to send message");
+
             toast.success("Message sent successfully!");
             setFormData({ name: "", email: "", phone: "", message: "" });
         } catch (error) {
