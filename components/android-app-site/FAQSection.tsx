@@ -58,7 +58,7 @@ export default function FAQSection() {
             >
               Frequently
               <br />
-              <span style={{ color: "var(--gold)" }}>Asked</span>
+              <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "var(--gold)" }}>Asked</span>
               <br />
               Questions
             </h2>

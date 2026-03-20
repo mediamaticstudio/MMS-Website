@@ -1,166 +1,44 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 export default function CTASection() {
+    const router = useRouter();
+
     return (
-        <section id="contact" className="cta-section">
-            <div className="cta-bg" />
-            <div className="cta-inner">
-                <div className="cta-badge">📣 Ready to Grow Faster?</div>
-                <h2 className="cta-title">
-                    Grow Faster with Professional
-                    <br />
-                    <span>Google Ads Marketing Services</span>
-                </h2>
-                <p className="cta-sub">
-                    Need more leads and more online sales? We help businesses find their
-                    targeted audience, optimize campaigns, and achieve growth that can be
-                    measured — starting today.
-                </p>
-                <div className="cta-actions">
-                    <a href="mailto:hello@mediamaticstudio.com" className="btn-primary">
-                        Start Your Google Ads Campaign
-                    </a>
-                    <a href="tel:+91XXXXXXXXXX" className="btn-outline">
-                        📞 Talk to a Specialist
-                    </a>
-                </div>
-                <div className="cta-chips">
-                    {[
-                        "Free Campaign Audit",
-                        "No Long-Term Lock-In",
-                        "Dedicated Account Manager",
-                        "Weekly Performance Reports",
-                    ].map((chip) => (
-                        <div key={chip} className="chip">
-                            <span className="chip-check">✓</span>
-                            {chip}
+        <section className="py-20 md:py-32 bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="pt-20 border-t border-[#652b32]/10">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[#652b32] p-8 md:p-12 rounded-[2rem] text-[#faf3e0]">
+                        <div className="max-w-xl text-center md:text-left">
+                            <h2 className="text-3xl md:text-5xl font-black mb-4 font-heading leading-tight tracking-tight text-white">Grow Faster with Professional <span className="text-[#FACC15]">Google Ads Services</span></h2>
+                            <p className="text-[#faf3e0]/70 text-lg md:text-xl font-medium">Let's develop strong tactics that will transform clicks into customers and grow your business.</p>
                         </div>
-                    ))}
+                        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                            <button
+                                onClick={() => router.push("/#contact")}
+                                className="inline-flex items-center justify-center gap-2 bg-[#FACC15] text-[#652b32] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1"
+                            >
+                                Start Your Campaign <ArrowRight size={18} />
+                            </button>
+                            <Link
+                                href="/services"
+                                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all transform hover:-translate-y-1"
+                            >
+                                All Services
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-8 mt-12">
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ Free Campaign Audit</span>
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ No Long-Term Lock-In</span>
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ Dedicated Account Manager</span>
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ Weekly Performance Reports</span>
+                    </div>
                 </div>
             </div>
-
-            <style jsx>{`
-        .cta-section {
-          background: #652b32;
-          padding: 6rem 2rem;
-          position: relative;
-          overflow: hidden;
-          text-align: center;
-        }
-        .cta-bg {
-          position: absolute;
-          inset: 0;
-          background:
-            radial-gradient(ellipse at 70% 80%, rgba(245,197,24,0.08) 0%, transparent 55%),
-            radial-gradient(ellipse at 20% 20%, rgba(250,243,224,0.04) 0%, transparent 45%);
-          pointer-events: none;
-        }
-        .cta-inner {
-          max-width: 720px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 1;
-        }
-        .cta-badge {
-          display: inline-block;
-          background: rgba(245,197,24,0.15);
-          border: 1px solid rgba(245,197,24,0.3);
-          color: #f5c518;
-          padding: 0.4rem 1.2rem;
-          border-radius: 50px;
-          font-size: 0.84rem;
-          font-weight: 700;
-          margin-bottom: 1.5rem;
-          letter-spacing: 0.04em;
-        }
-        .cta-title {
-          font-family: 'Playfair Display', Georgia, serif;
-          font-size: clamp(2.2rem, 5vw, 3.4rem);
-          font-weight: 800;
-          color: #faf3e0;
-          line-height: 1.18;
-          margin-bottom: 1.5rem;
-        }
-        .cta-title span { color: #f5c518; }
-        .cta-sub {
-          color: rgba(250,243,224,0.68);
-          font-size: 1.05rem;
-          line-height: 1.72;
-          margin-bottom: 2.5rem;
-          max-width: 580px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        .cta-actions {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-          flex-wrap: wrap;
-          margin-bottom: 2.5rem;
-        }
-        .btn-primary {
-          display: inline-block;
-          background: #f5c518;
-          color: #652b32;
-          padding: 1rem 2.4rem;
-          border-radius: 8px;
-          font-weight: 700;
-          font-size: 1rem;
-          text-decoration: none;
-          box-shadow: 0 6px 24px rgba(245,197,24,0.25);
-          transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .btn-primary:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 12px 36px rgba(245,197,24,0.4);
-        }
-        .btn-outline {
-          display: inline-block;
-          border: 2px solid rgba(250,243,224,0.35);
-          color: #faf3e0;
-          padding: 1rem 2.4rem;
-          border-radius: 8px;
-          font-weight: 600;
-          font-size: 1rem;
-          text-decoration: none;
-          transition: border-color 0.2s, background 0.2s;
-        }
-        .btn-outline:hover {
-          border-color: #f5c518;
-          background: rgba(245,197,24,0.07);
-        }
-        .cta-chips {
-          display: flex;
-          gap: 1rem;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        .chip {
-          display: flex;
-          align-items: center;
-          gap: 0.4rem;
-          background: rgba(250,243,224,0.07);
-          border: 1px solid rgba(250,243,224,0.12);
-          padding: 0.45rem 1rem;
-          border-radius: 50px;
-          font-size: 0.83rem;
-          color: rgba(250,243,224,0.8);
-          font-weight: 500;
-        }
-        .chip-check {
-          width: 16px;
-          height: 16px;
-          background: #f5c518;
-          color: #652b32;
-          border-radius: 50%;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 0.65rem;
-          font-weight: 900;
-          flex-shrink: 0;
-        }
-      `}</style>
         </section>
     );
 }

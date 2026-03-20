@@ -1,33 +1,35 @@
 "use client";
+import { Palette, Settings, FlaskConical, Wrench, RefreshCw, Plug } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const services = [
+const services: { Icon: LucideIcon; title: string; desc: string }[] = [
     {
-        icon: "🎨",
+        Icon: Palette,
         title: "UI/UX & Prototyping",
         desc: "User-friendly, interactive, and visually appealing interfaces using Flutter's rich widget set.",
     },
     {
-        icon: "⚙️",
+        Icon: Settings,
         title: "Custom App Development",
         desc: "High-performance Flutter apps from one codebase targeting web, desktop, iOS, and Android.",
     },
     {
-        icon: "🧪",
+        Icon: FlaskConical,
         title: "QA & Testing",
         desc: "Thorough inspection and debugging to ensure minimal errors and peak performance.",
     },
     {
-        icon: "🔧",
+        Icon: Wrench,
         title: "App Maintenance",
         desc: "Ongoing bug fixes, OS upgrades, performance improvements, and new feature additions.",
     },
     {
-        icon: "🔄",
+        Icon: RefreshCw,
         title: "App Modernization",
         desc: "Migrate your Flutter app to the latest version for better security and performance.",
     },
     {
-        icon: "🔌",
+        Icon: Plug,
         title: "API Integration",
         desc: "Seamlessly integrate third-party APIs and services to expand your app's functionality.",
     },
@@ -47,7 +49,7 @@ export default function ServicesSection() {
                 <div className="services-grid">
                     {services.map((s, i) => (
                         <div key={i} className="service-card" style={{ animationDelay: `${i * 0.1}s` }}>
-                            <div className="service-icon">{s.icon}</div>
+                            <div className="service-icon"><s.Icon size={30} strokeWidth={1.8} /></div>
                             <h3 className="service-title">{s.title}</h3>
                             <p className="service-desc">{s.desc}</p>
                             <div className="service-arrow">→</div>
@@ -86,8 +88,21 @@ export default function ServicesSection() {
           line-height: 1.2;
         }
         .section-title span {
-          color: #f5c518;
-          -webkit-text-stroke: 1px #652b32;
+          color: #652b32;
+          position: relative;
+          z-index: 1;
+        }
+        .section-title span::after {
+          content: '';
+          position: absolute;
+          bottom: 8%;
+          left: -2px;
+          right: -2px;
+          height: 28%;
+          background: #f5c518;
+          opacity: 0.4;
+          z-index: -1;
+          border-radius: 4px;
         }
         .section-sub {
           color: rgba(101,43,50,0.65);
@@ -127,7 +142,7 @@ export default function ServicesSection() {
           border-color: rgba(101,43,50,0.2);
         }
         .service-icon {
-          font-size: 2.2rem;
+          color: #652b32;
           margin-bottom: 1rem;
           display: block;
         }

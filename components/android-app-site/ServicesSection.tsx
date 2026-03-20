@@ -73,15 +73,17 @@ export default function ServicesSection() {
             >
               Android App
               <br />
-              <span
+              {/* <span
                 style={{
                   WebkitTextStroke: "2px var(--burgundy)",
                   color: "transparent",
                 }}
-              >
-                Development
-              </span>{" "}
-              <span style={{ color: "var(--gold)" }}>Services</span>
+              > */}
+              Development
+              {/* </span>{" "} */}
+              <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "var(--gold)" }}>
+                Services
+              </span>
             </h2>
           </div>
           <p
@@ -177,7 +179,7 @@ export default function ServicesSection() {
               </p>
 
               {/* Learn more */}
-              <div
+              {/* <div
                 className="flex items-center gap-2 text-[13px] font-bold tracking-[0.5px] transition-colors duration-300"
                 style={{
                   color: hovered === i ? "var(--gold)" : "var(--burgundy)",
@@ -192,7 +194,7 @@ export default function ServicesSection() {
                       hovered === i ? "var(--gold)" : "var(--burgundy)",
                   }}
                 />
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

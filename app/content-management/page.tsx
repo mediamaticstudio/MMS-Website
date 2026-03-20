@@ -199,19 +199,37 @@ const ContentManagement = () => {
                                         </div>
                                     </div>
 
-                                    <button
-                                        onClick={() => {
-                                            router.push("/");
-                                            setTimeout(() => {
-                                                document
-                                                    .getElementById("contact")
-                                                    ?.scrollIntoView({ behavior: "smooth" });
-                                            }, 150);
-                                        }}
-                                        className="inline-flex items-center gap-2 bg-primary text-[#faf3e0] px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-colors"
-                                    >
-                                        Get Started <ArrowRight size={18} />
-                                    </button>
+                        <div className="container mx-auto px-6 mt-20">
+                            <div className="pt-20 border-t border-[#652b32]/10 content-block">
+                                <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[#652b32] p-8 md:p-12 rounded-[2rem] text-white">
+                                    <div className="max-w-xl text-center md:text-left">
+                                        <h2 className="text-3xl md:text-4xl font-bold mb-4 font-display text-white">Need compelling content?</h2>
+                                        <p className="text-white/70 text-lg">Let's discuss how our expert writers can help you tell your story and grow your brand.</p>
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                                        <button
+                                            onClick={() => {
+                                                const contactSection = document.getElementById("contact");
+                                                if (contactSection) {
+                                                    contactSection.scrollIntoView({ behavior: "smooth" });
+                                                } else {
+                                                    router.push("/#contact");
+                                                }
+                                            }}
+                                            className="inline-flex items-center justify-center gap-2 bg-[#FACC15] text-[#652b32] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1"
+                                        >
+                                            Start Your Project <ArrowRight size={18} />
+                                        </button>
+                                        <Link
+                                            href="/services"
+                                            className="inline-flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all transform hover:-translate-y-1"
+                                        >
+                                            All Services
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                                 </div>
                             </div>
                         </div>

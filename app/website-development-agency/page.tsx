@@ -9,13 +9,13 @@ export const metadata: Metadata = {
     keywords:
         "website development agency in Coimbatore, web development company in Coimbatore, custom website design, responsive web design, MediaMatic Studio",
     alternates: {
-        canonical: "/website-development-agency",
+        canonical: "/website-development-agency/",
     },
     openGraph: {
         title: "Website Development Agency in Coimbatore | MediaMatic Studio",
         description:
             "MediaMatic Studio is a leading website development agency in Coimbatore. We create high-performance, responsive websites and custom web applications tailored for your business growth.",
-        url: "/website-development-agency",
+        url: "https://mediamaticstudio.com/website-development-agency/",
     },
 };
 

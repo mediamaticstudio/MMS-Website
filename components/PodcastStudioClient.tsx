@@ -361,7 +361,7 @@ export function PodcastStudioClient() {
                                 className="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-[2.5rem] p-8 bg-[#652b32] text-[#faf3e0] shadow-2xl flex flex-col justify-end"
                             >
                                 <div className="absolute inset-0 z-0">
-                                    <Image src="/assets/cbe podcast/Podcast Recording.webp" alt="" fill className="object-cover opacity-30 transition-transform group-hover:scale-110 duration-700" />
+                                    <Image src="/assets/cbe podcast/Podcast Recording.webp" alt="Professional podcast recording session at MediaMatic Studio" fill className="object-cover opacity-30 transition-transform group-hover:scale-110 duration-700" />
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#652b32] via-[#652b32]/40 to-transparent" />
                                 </div>
                                 <div className="z-10 relative">
@@ -418,7 +418,7 @@ export function PodcastStudioClient() {
                                 className="md:col-span-1 md:row-span-2 relative group overflow-hidden rounded-[2.5rem] p-8 bg-gradient-to-br from-[#652b32] to-[#80353e] text-[#faf3e0] shadow-xl flex flex-col justify-end transition-all duration-150"
                             >
                                 <div className="absolute inset-0 z-0">
-                                    <Image src="/assets/cbe podcast/Individual Branding.webp" alt="" fill className="object-cover opacity-30 group-hover:scale-105 transition-transform duration-700" />
+                                    <Image src="/assets/cbe podcast/Individual Branding.webp" alt="Individual branding photography and podcast services" fill className="object-cover opacity-30 group-hover:scale-105 transition-transform duration-700" />
                                 </div>
                                 <div className="relative z-10">
                                     <h3 className="text-2xl font-bold mb-6">{services[3].title}</h3>
@@ -440,7 +440,7 @@ export function PodcastStudioClient() {
                                 className="md:col-span-2 md:row-span-1 relative group overflow-hidden rounded-[2.5rem] p-8 bg-[#faf3e0] border-2 border-[#652b32]/10 flex flex-col md:flex-row md:items-center gap-6 hover:bg-[#652b32] transition-all duration-150"
                             >
                                 <div className="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition-opacity">
-                                    <Image src="/assets/cbe podcast/Podcast Launch Support.webp" alt="" fill className="object-cover" />
+                                    <Image src="/assets/cbe podcast/Podcast Launch Support.webp" alt="Comprehensive podcast launch support services in Coimbatore" fill className="object-cover" />
                                 </div>
                                 <div className="w-20 h-20 rounded-3xl bg-[#652b32] group-hover:bg-white/20 flex items-center justify-center shrink-0 shadow-lg relative z-10 transition-colors">
                                     <Rocket className="w-10 h-10 text-[#faf3e0] group-hover:text-white transition-colors" />
@@ -481,7 +481,7 @@ export function PodcastStudioClient() {
                                 className="md:col-span-1 md:row-span-1 relative group overflow-hidden rounded-3xl p-6 bg-[#652b32]/5 border-2 border-[#652b32]/10 flex flex-col justify-between hover:bg-[#652b32] transition-all duration-150"
                             >
                                 <div className="absolute inset-0 z-0 opacity-10 group-hover:opacity-5 transition-opacity">
-                                    <Image src="/assets/cbe podcast/Distribution & Platform Management.webp" alt="" fill className="object-cover" />
+                                    <Image src="/assets/cbe podcast/Distribution & Platform Management.webp" alt="Podcast distribution and platform management services" fill className="object-cover" />
                                 </div>
                                 <Settings className="w-12 h-12 text-[#652b32] group-hover:text-[#faf3e0] transition-colors relative z-10" />
                                 <div className="relative z-10">

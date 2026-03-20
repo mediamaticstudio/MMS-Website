@@ -1,19 +1,27 @@
 "use client";
 import { useState } from "react";
+import { HeartPulse, CreditCard, ShoppingBag, Plane, MessageCircle, BookOpen, Truck, Film, Home, PlaneTakeoff, Fuel, Factory } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const industries = [
-    { icon: "🏥", name: "Healthcare", desc: "HIPAA-compliant apps for patient care, telemedicine, and health management." },
-    { icon: "💳", name: "Finance & Banking", desc: "Secure fintech apps for transactions, compliance, and financial automation." },
-    { icon: "🛍️", name: "eCommerce", desc: "High-converting shopping apps with seamless checkout experiences." },
-    { icon: "✈️", name: "Travel", desc: "Smart booking, real-time updates, and itinerary management apps." },
-    { icon: "💬", name: "Social Networks", desc: "Real-time messaging, content sharing, and community-building platforms." },
-    { icon: "📚", name: "Education", desc: "Interactive eLearning apps with engagement tools for students and educators." },
-    { icon: "🚛", name: "Logistics", desc: "Fleet tracking, route optimization, and supply chain management solutions." },
-    { icon: "🎬", name: "Entertainment", desc: "OTT platforms, streaming apps, and digital content experiences." },
-    { icon: "🏠", name: "Real Estate", desc: "AI-driven property apps with virtual tours and predictive analytics." },
-    { icon: "✈️", name: "Air Transportation", desc: "Reliable aviation ops and maintenance apps built to safety standards." },
-    { icon: "⛽", name: "Oil & Gas", desc: "Rugged mobile solutions for asset monitoring in harsh environments." },
-    { icon: "🏭", name: "Manufacturing", desc: "Equipment monitoring, quality control, and supply chain tracking apps." },
+interface Industry {
+    Icon: LucideIcon;
+    name: string;
+    desc: string;
+}
+
+const industries: Industry[] = [
+    { Icon: HeartPulse, name: "Healthcare", desc: "HIPAA-compliant apps for patient care, telemedicine, and health management." },
+    { Icon: CreditCard, name: "Finance & Banking", desc: "Secure fintech apps for transactions, compliance, and financial automation." },
+    { Icon: ShoppingBag, name: "eCommerce", desc: "High-converting shopping apps with seamless checkout experiences." },
+    { Icon: Plane, name: "Travel", desc: "Smart booking, real-time updates, and itinerary management apps." },
+    { Icon: MessageCircle, name: "Social Networks", desc: "Real-time messaging, content sharing, and community-building platforms." },
+    { Icon: BookOpen, name: "Education", desc: "Interactive eLearning apps with engagement tools for students and educators." },
+    { Icon: Truck, name: "Logistics", desc: "Fleet tracking, route optimization, and supply chain management solutions." },
+    { Icon: Film, name: "Entertainment", desc: "OTT platforms, streaming apps, and digital content experiences." },
+    { Icon: Home, name: "Real Estate", desc: "AI-driven property apps with virtual tours and predictive analytics." },
+    { Icon: PlaneTakeoff, name: "Air Transportation", desc: "Reliable aviation ops and maintenance apps built to safety standards." },
+    { Icon: Fuel, name: "Oil & Gas", desc: "Rugged mobile solutions for asset monitoring in harsh environments." },
+    { Icon: Factory, name: "Manufacturing", desc: "Equipment monitoring, quality control, and supply chain tracking apps." },
 ];
 
 export default function IndustriesSection() {
@@ -78,7 +86,9 @@ export default function IndustriesSection() {
                                 transform: hovered === i ? "translateY(-4px)" : "translateY(0)",
                             }}
                         >
-                            <span style={{ fontSize: "36px", display: "block", marginBottom: "16px" }}>{ind.icon}</span>
+                            <span style={{ display: "block", marginBottom: "16px", color: hovered === i ? "#652b32" : "#f5c518" }}>
+                                <ind.Icon size={36} strokeWidth={1.5} />
+                            </span>
                             <h3 style={{
                                 fontSize: "17px", fontWeight: "700",
                                 color: hovered === i ? "#652b32" : "#faf3e0",

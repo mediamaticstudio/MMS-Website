@@ -29,7 +29,7 @@ export default function TechStackSection() {
         <section id="tech" className="tech-section">
             <div className="tech-inner">
                 <div className="why-col">
-                    <div className="section-label">Why MediaMatic</div>
+                    <div className="service-pill" style={{ marginBottom: "1rem" }}><span>💡</span><span>Why MediaMatic</span></div>
                     <h2 className="section-title">
                         What Sets Us <span>Apart</span>
                     </h2>
@@ -50,7 +50,7 @@ export default function TechStackSection() {
                     </div>
                 </div>
                 <div className="stack-col">
-                    <div className="section-label dark">Tech Stack</div>
+                    <div className="service-pill" style={{ marginBottom: "1rem" }}><span>🛠️</span><span>Tech Stack</span></div>
                     <h2 className="section-title dark">
                         Tools &amp; <span>Technologies</span>
                     </h2>
@@ -82,22 +82,7 @@ export default function TechStackSection() {
         @media (max-width: 900px) {
           .tech-inner { grid-template-columns: 1fr; gap: 3rem; }
         }
-        .section-label {
-          display: inline-block;
-          background: rgba(101,43,50,0.08);
-          color: #652b32;
-          padding: 0.3rem 1rem;
-          border-radius: 50px;
-          font-size: 0.8rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: 1rem;
-        }
-        .section-label.dark {
-          background: #652b32;
-          color: #f5c518;
-        }
+
         .section-title {
           font-family: 'Playfair Display', Georgia, serif;
           font-size: clamp(1.8rem, 3vw, 2.5rem);

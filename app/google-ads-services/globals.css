@@ -18,7 +18,6 @@ html {
 }
 
 body {
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     background: var(--off-white);
     color: var(--burgundy);
     -webkit-font-smoothing: antialiased;

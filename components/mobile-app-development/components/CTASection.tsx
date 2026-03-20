@@ -19,7 +19,7 @@ const checks = [
 
 const contacts = [
   { icon: <Phone size={22} strokeWidth={2} />, label: 'Phone', value: '+91 XX XXXX XXXX' },
-  { icon: <Mail size={22} strokeWidth={2} />, label: 'Email', value: 'hello@mediamatic.in' },
+  { icon: <Mail size={22} strokeWidth={2} />, label: 'Email', value: 'support@mediamaticstudio.com' },
   { icon: <MapPin size={22} strokeWidth={2} />, label: 'Location', value: 'India — Serving Globally' },
   { icon: <Clock size={22} strokeWidth={2} />, label: 'Response Time', value: 'Within 24 Hours' },
 ]
@@ -53,7 +53,7 @@ export default function CTASection() {
             ))}
           </div>
 
-          <div className={styles.btns}>
+          {/* <div className={styles.btns}>
             <Link href="tel:+91XXXXXXXXXX" className={styles.btn1}>
               <PhoneCall size={16} strokeWidth={2.5} />
               Call Us Now
@@ -62,7 +62,7 @@ export default function CTASection() {
               <Mail size={16} strokeWidth={2.5} />
               Send an Email
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* RIGHT – contact cards */}

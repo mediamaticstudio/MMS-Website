@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -23,7 +23,38 @@ const navLinks = [
     { label: "Contact Us", href: "/contact-us/", isSubPage: true, id: "contact" },
 ];
 
+// Top-level service categories (items without sub-menus stay as-is)
+const serviceCategories = [
+    {
+        label: "App Development",
+        hasSubMenu: true,
+        subLinks: [
+            { label: "Mobile App Development", href: "/mobile-app-development-company" },
+            { label: "Android App Development", href: "/android-app-development-company" },
+            { label: "iOS App Development", href: "/ios-app-development-company" },
+            { label: "Flutter App Development", href: "/flutter-app-development-company" },
+        ],
+    },
+    {
+        label: "Software Development",
+        hasSubMenu: true,
+        subLinks: [
+            { label: "Website Development", href: "/Website-Design-Development-company/" },
+            { label: "WordPress Website Development", href: "/Wordpress-Website-Dev-Company/" },
+            { label: "E-Commerce Development", href: "/e-Commerce-Website-Dev/" },
+            { label: "React JS Website Development", href: "/reactJS-Web-Dev-Company/" },
+        ],
+    },
+    { label: "2D & 3D Animation Videos", href: "/animation-videos-company/", hasSubMenu: false },
+    { label: "Content Management", href: "/content-management/", hasSubMenu: false },
+    { label: "Designing", href: "/designing/", hasSubMenu: false },
+    { label: "VPS Web Hosting Service", href: "/web-hosting/", hasSubMenu: false },
+];
+
+// Legacy flat list kept for pathname matching
 const serviceLinks = [
+    { label: "Website Development", href: "/Website-Design-Development-company/" },
+    { label: "WordPress Website Development", href: "/Wordpress-Website-Dev-Company/" },
     { label: "Mobile App Development", href: "/mobile-app-development-company" },
     { label: "Android App Development", href: "/android-app-development-company" },
     { label: "iOS App Development", href: "/ios-app-development-company" },
@@ -53,12 +84,19 @@ export const Header = () => {
     const [serviceOpen, setServiceOpen] = useState(false);
     const [digitalMarketingOpen, setDigitalMarketingOpen] = useState(false);
     const [studioOpen, setStudioOpen] = useState(false);
+    const [activeServiceSubMenu, setActiveServiceSubMenu] = useState<string | null>(null);
+
+    // Mobile accordion states
     const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
     const [mobileDigitalMarketingOpen, setMobileDigitalMarketingOpen] = useState(false);
     const [mobileStudioOpen, setMobileStudioOpen] = useState(false);
+    const [mobileAppDevOpen, setMobileAppDevOpen] = useState(false);
+    const [mobileSoftwareDevOpen, setMobileSoftwareDevOpen] = useState(false);
+
     const [activeSection, setActiveSection] = useState("home");
     const lastScrollY = useRef(0);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const subMenuTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const headerRef = useRef<HTMLElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
@@ -78,7 +116,6 @@ export const Header = () => {
         );
     }, []);
 
-    /* Scroll logic for visibility and background */
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
@@ -109,7 +146,6 @@ export const Header = () => {
             const currentScrollY = window.scrollY;
             const isHomePage = pathname === "/";
 
-            // Determine direction for hiding
             if (isScrollSpyPage && currentScrollY > lastScrollY.current && currentScrollY > 100) {
                 setIsVisible(false);
             } else {
@@ -153,20 +189,18 @@ export const Header = () => {
         setMobileStudioOpen(false);
         setServiceOpen(false);
         setStudioOpen(false);
+        setActiveServiceSubMenu(null);
 
-        // External links
         if (href.startsWith("http")) {
             window.open(href, "_blank", "noopener,noreferrer");
             return;
         }
 
-        // If we're already on that page and it's a sub-page link, do nothing
         if (isSubPage && pathname === href) {
             window.scrollTo({ top: 0, behavior: "smooth" });
             return;
         }
 
-        // Internal sub-pages (Services, etc.)
         if (isSubPage || href.startsWith("/")) {
             router.push(href);
             return;
@@ -174,7 +208,6 @@ export const Header = () => {
 
         if (href === "#") return;
 
-        // Anchor links
         if (pathname !== "/") {
             router.push("/");
             setTimeout(() => {
@@ -183,22 +216,15 @@ export const Header = () => {
                     const offset = 80;
                     const elementPosition = el.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.pageYOffset - offset;
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                    });
+                    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                 } else {
-                    // Fallback if element not found immediately (e.g. lazy loaded)
                     setTimeout(() => {
                         const elRetry = document.querySelector(href);
                         if (elRetry) {
                             const offset = 80;
                             const elementPosition = elRetry.getBoundingClientRect().top;
                             const offsetPosition = elementPosition + window.pageYOffset - offset;
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
+                            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
                         }
                     }, 500);
                 }
@@ -211,11 +237,44 @@ export const Header = () => {
             const offset = 80;
             const elementPosition = el.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - offset;
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
+            window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
+    };
+
+    /* ---- Helpers for desktop nested hover ---- */
+    const handleServiceMouseEnter = () => {
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        setServiceOpen(true);
+        setDigitalMarketingOpen(false);
+        setStudioOpen(false);
+    };
+
+    const handleServiceMouseLeave = () => {
+        timeoutRef.current = setTimeout(() => {
+            setServiceOpen(false);
+            setActiveServiceSubMenu(null);
+        }, 200);
+    };
+
+    const handleSubCategoryEnter = (label: string) => {
+        if (subMenuTimeoutRef.current) clearTimeout(subMenuTimeoutRef.current);
+        setActiveServiceSubMenu(label);
+    };
+
+    const handleSubCategoryLeave = () => {
+        subMenuTimeoutRef.current = setTimeout(() => {
+            setActiveServiceSubMenu(null);
+        }, 150);
+    };
+
+    const handleSubMenuEnter = () => {
+        if (subMenuTimeoutRef.current) clearTimeout(subMenuTimeoutRef.current);
+    };
+
+    const handleSubMenuLeave = () => {
+        subMenuTimeoutRef.current = setTimeout(() => {
+            setActiveServiceSubMenu(null);
+        }, 150);
     };
 
     return (
@@ -228,7 +287,7 @@ export const Header = () => {
             >
                 <div className="container mx-auto px-6 text-[#652b32]">
                     <nav className="flex items-center justify-between h-20">
-                        {/* Logo ONLY */}
+                        {/* Logo */}
                         <a
                             href="#home"
                             onClick={(e) => {
@@ -256,16 +315,24 @@ export const Header = () => {
                                             className="relative"
                                             onMouseEnter={() => {
                                                 if (timeoutRef.current) clearTimeout(timeoutRef.current);
-                                                setServiceOpen(link.id === "services");
-                                                setDigitalMarketingOpen(link.id === "digital-marketing");
-                                                setStudioOpen(link.id === "studio");
+                                                if (link.id === "services") {
+                                                    handleServiceMouseEnter();
+                                                } else {
+                                                    setServiceOpen(false);
+                                                    setActiveServiceSubMenu(null);
+                                                    setDigitalMarketingOpen(link.id === "digital-marketing");
+                                                    setStudioOpen(link.id === "studio");
+                                                }
                                             }}
                                             onMouseLeave={() => {
-                                                timeoutRef.current = setTimeout(() => {
-                                                    setServiceOpen(false);
-                                                    setDigitalMarketingOpen(false);
-                                                    setStudioOpen(false);
-                                                }, 200);
+                                                if (link.id === "services") {
+                                                    handleServiceMouseLeave();
+                                                } else {
+                                                    timeoutRef.current = setTimeout(() => {
+                                                        setDigitalMarketingOpen(false);
+                                                        setStudioOpen(false);
+                                                    }, 200);
+                                                }
                                             }}
                                         >
                                             <a
@@ -275,41 +342,88 @@ export const Header = () => {
                                                     handleNavClick(link.href, (link as any).isSubPage);
                                                 }}
                                                 className={`flex items-center gap-1 text-[12px] xl:text-[13px] uppercase tracking-wider hover:text-[#652b32] transition whitespace-nowrap relative after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:bg-primary after:transition-all ${activeSection === link.id ||
-                                                        (link.id === "services" && (
-                                                            pathname === "/services/" ||
-                                                            serviceLinks.some(s => pathname === s.href)
-                                                        )) ||
-                                                        (link.id === "digital-marketing" && (
-                                                            pathname === "/digital-marketing-agency/" ||
-                                                            digitalMarketingLinks.some(s => pathname === s.href)
-                                                        )) ||
-                                                        (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
-                                                        ? "after:w-full text-[#652b32] font-bold"
-                                                        : "after:w-0"
+                                                    (link.id === "services" && (
+                                                        pathname === "/services/" ||
+                                                        serviceLinks.some(s => pathname === s.href)
+                                                    )) ||
+                                                    (link.id === "digital-marketing" && (
+                                                        pathname === "/digital-marketing-agency/" ||
+                                                        digitalMarketingLinks.some(s => pathname === s.href)
+                                                    )) ||
+                                                    (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
+                                                    ? "after:w-full text-[#652b32] font-bold"
+                                                    : "after:w-0"
                                                     }`}
                                             >
                                                 {link.label} <ChevronDown size={14} />
                                             </a>
 
+                                            {/* ---- SERVICES dropdown with nested sub-menus ---- */}
                                             {link.id === "services" && serviceOpen && (
-                                                <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
-                                                    {serviceLinks.map((s) => (
-                                                        <a
-                                                            key={s.label}
-                                                            href={s.href}
-                                                            onClick={(e) => {
-                                                                e.preventDefault();
-                                                                setServiceOpen(false);
-                                                                handleNavClick(s.href, true);
-                                                            }}
-                                                            className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
-                                                        >
-                                                            {s.label}
-                                                        </a>
-                                                    ))}
+                                                <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-64 overflow-visible z-10 border border-[#652b32]/10">
+                                                    {serviceCategories.map((cat) =>
+                                                        cat.hasSubMenu ? (
+                                                            <div
+                                                                key={cat.label}
+                                                                className="relative group/cat"
+                                                                onMouseEnter={() => handleSubCategoryEnter(cat.label)}
+                                                                onMouseLeave={handleSubCategoryLeave}
+                                                            >
+                                                                <div
+                                                                    className={`flex items-center justify-between px-5 py-3 text-sm font-semibold cursor-default transition-all duration-200 
+                                                                        ${activeServiceSubMenu === cat.label
+                                                                            ? "bg-[#652b32] text-[#faf3e0]"
+                                                                            : "text-[#652b32] hover:bg-[#652b32]/10"
+                                                                        }`}
+                                                                >
+                                                                    <span>{cat.label}</span>
+                                                                    <ChevronRight size={14} className="opacity-60 flex-shrink-0" />
+                                                                </div>
+
+                                                                {/* Fly-out sub-menu */}
+                                                                {activeServiceSubMenu === cat.label && (
+                                                                    <div
+                                                                        className="absolute left-full top-0 ml-1 bg-[#fff8eb] shadow-xl rounded-xl w-64 overflow-hidden z-20 border border-[#652b32]/10"
+                                                                        onMouseEnter={handleSubMenuEnter}
+                                                                        onMouseLeave={handleSubMenuLeave}
+                                                                    >
+                                                                        {cat.subLinks!.map((s) => (
+                                                                            <a
+                                                                                key={s.label}
+                                                                                href={s.href}
+                                                                                onClick={(e) => {
+                                                                                    e.preventDefault();
+                                                                                    setServiceOpen(false);
+                                                                                    setActiveServiceSubMenu(null);
+                                                                                    handleNavClick(s.href, true);
+                                                                                }}
+                                                                                className="block px-5 py-3 text-sm transition-all duration-200 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
+                                                                            >
+                                                                                {s.label}
+                                                                            </a>
+                                                                        ))}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        ) : (
+                                                            <a
+                                                                key={cat.label}
+                                                                href={(cat as any).href}
+                                                                onClick={(e) => {
+                                                                    e.preventDefault();
+                                                                    setServiceOpen(false);
+                                                                    handleNavClick((cat as any).href, true);
+                                                                }}
+                                                                className="block px-5 py-3 text-sm transition-all duration-300 hover:bg-[#652b32] hover:text-[#faf3e0] text-[#652b32]/70 font-medium"
+                                                            >
+                                                                {cat.label}
+                                                            </a>
+                                                        )
+                                                    )}
                                                 </div>
                                             )}
 
+                                            {/* Digital Marketing dropdown */}
                                             {link.id === "digital-marketing" && digitalMarketingOpen && (
                                                 <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
                                                     {digitalMarketingLinks.map((s) => (
@@ -329,6 +443,7 @@ export const Header = () => {
                                                 </div>
                                             )}
 
+                                            {/* Studio dropdown */}
                                             {link.id === "studio" && studioOpen && (
                                                 <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
                                                     <a
@@ -411,144 +526,177 @@ export const Header = () => {
                             </button>
                         )}
                     </nav>
-                </div >
-            </header >
+                </div>
+            </header>
 
             {/* Mobile Menu */}
-            {
-                isOpen && (
-                    <div ref={menuRef} className="fixed inset-0 z-40 bg-primary text-white">
-                        <div
-                            ref={linksRef}
-                            className="h-full flex flex-col items-center justify-center gap-6"
-                        >
-                            {navLinks.map((link) =>
-                                link.hasDropdown ? (
-                                    <div key={link.label} className="text-center w-full px-6">
-                                        <div className="flex items-center justify-center gap-4">
-                                            <a
-                                                href={link.href}
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    handleNavClick(link.href, (link as any).isSubPage);
-                                                }}
-                                                className={`text-2xl transition-all duration-300 ${activeSection === link.id ||
-                                                        (link.id === "services" && (
-                                                            pathname === "/services/" ||
-                                                            serviceLinks.some(s => pathname === s.href)
-                                                        )) ||
-                                                        (link.id === "digital-marketing" && (
-                                                            pathname === "/digital-marketing-agency/" ||
-                                                            digitalMarketingLinks.some(s => pathname === s.href)
-                                                        )) ||
-                                                        (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
-                                                        ? "text-yellow-400 font-bold"
-                                                        : "opacity-80 hover:opacity-100"
-                                                    }`}
-                                            >
-                                                {link.label}
-                                            </a>
-                                            <button
-                                                onClick={() => {
-                                                    if (link.id === "services") setMobileServiceOpen(!mobileServiceOpen);
-                                                    else if (link.id === "digital-marketing") setMobileDigitalMarketingOpen(!mobileDigitalMarketingOpen);
-                                                    else if (link.id === "studio") setMobileStudioOpen(!mobileStudioOpen);
-                                                }}
-                                                className="p-1 rounded-full bg-white/10"
-                                            >
-                                                <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${(link.id === "services" ? mobileServiceOpen : link.id === "digital-marketing" ? mobileDigitalMarketingOpen : mobileStudioOpen) ? 'rotate-180' : ''}`} />
-                                            </button>
+            {isOpen && (
+                <div ref={menuRef} className="fixed inset-0 z-40 bg-primary text-white overflow-y-auto">
+                    <div
+                        ref={linksRef}
+                        className="min-h-full flex flex-col items-center justify-center gap-6 py-20"
+                    >
+                        {navLinks.map((link) =>
+                            link.hasDropdown ? (
+                                <div key={link.label} className="text-center w-full px-6">
+                                    <div className="flex items-center justify-center gap-4">
+                                        <a
+                                            href={link.href}
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                handleNavClick(link.href, (link as any).isSubPage);
+                                            }}
+                                            className={`text-2xl transition-all duration-300 ${activeSection === link.id ||
+                                                (link.id === "services" && (
+                                                    pathname === "/services/" ||
+                                                    serviceLinks.some(s => pathname === s.href)
+                                                )) ||
+                                                (link.id === "digital-marketing" && (
+                                                    pathname === "/digital-marketing-agency/" ||
+                                                    digitalMarketingLinks.some(s => pathname === s.href)
+                                                )) ||
+                                                (link.id === "studio" && pathname === "/podcast-recording-studio-in-Coimbatore/")
+                                                ? "text-yellow-400 font-bold"
+                                                : "opacity-80 hover:opacity-100"
+                                                }`}
+                                        >
+                                            {link.label}
+                                        </a>
+                                        <button
+                                            onClick={() => {
+                                                if (link.id === "services") setMobileServiceOpen(!mobileServiceOpen);
+                                                else if (link.id === "digital-marketing") setMobileDigitalMarketingOpen(!mobileDigitalMarketingOpen);
+                                                else if (link.id === "studio") setMobileStudioOpen(!mobileStudioOpen);
+                                            }}
+                                            className="p-1 rounded-full bg-white/10"
+                                        >
+                                            <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${(link.id === "services" ? mobileServiceOpen : link.id === "digital-marketing" ? mobileDigitalMarketingOpen : mobileStudioOpen) ? 'rotate-180' : ''}`} />
+                                        </button>
+                                    </div>
+
+                                    {/* ---- SERVICES mobile accordion with nested categories ---- */}
+                                    {link.id === "services" && mobileServiceOpen && (
+                                        <div className="mt-4 space-y-2 w-full pl-4 border-l-2 border-white/20">
+                                            {serviceCategories.map((cat) =>
+                                                cat.hasSubMenu ? (
+                                                    <div key={cat.label}>
+                                                        <button
+                                                            onClick={() => {
+                                                                if (cat.label === "App Development") setMobileAppDevOpen(!mobileAppDevOpen);
+                                                                else if (cat.label === "Software Development") setMobileSoftwareDevOpen(!mobileSoftwareDevOpen);
+                                                            }}
+                                                            className="w-full flex items-center justify-between py-3 px-6 rounded-xl text-lg opacity-90 hover:opacity-100 hover:bg-white/10 transition-all duration-300"
+                                                        >
+                                                            <span>{cat.label}</span>
+                                                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${(cat.label === "App Development" ? mobileAppDevOpen : mobileSoftwareDevOpen) ? 'rotate-180' : ''}`} />
+                                                        </button>
+
+                                                        {/* Nested items */}
+                                                        {((cat.label === "App Development" && mobileAppDevOpen) ||
+                                                            (cat.label === "Software Development" && mobileSoftwareDevOpen)) && (
+                                                                <div className="ml-4 mt-1 space-y-1 border-l-2 border-yellow-400/40">
+                                                                    {cat.subLinks!.map((s) => (
+                                                                        <a
+                                                                            key={s.label}
+                                                                            href={s.href}
+                                                                            onClick={(e) => {
+                                                                                e.preventDefault();
+                                                                                handleNavClick(s.href, true);
+                                                                            }}
+                                                                            className="block py-2.5 px-5 rounded-lg text-base opacity-80 hover:opacity-100 hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300"
+                                                                        >
+                                                                            {s.label}
+                                                                        </a>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                    </div>
+                                                ) : (
+                                                    <a
+                                                        key={cat.label}
+                                                        href={(cat as any).href}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            handleNavClick((cat as any).href, true);
+                                                        }}
+                                                        className="block py-3 px-6 rounded-xl text-lg opacity-80 hover:opacity-100 hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300"
+                                                    >
+                                                        {cat.label}
+                                                    </a>
+                                                )
+                                            )}
                                         </div>
+                                    )}
 
-                                        {link.id === "services" && mobileServiceOpen && (
-                                            <div className="mt-4 space-y-2 w-full pl-4 border-l-2 border-primary/20">
-                                                {serviceLinks.map((s) => (
-                                                    <a
-                                                        key={s.label}
-                                                        href={s.href}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            handleNavClick(s.href, true);
-                                                        }}
-                                                        className="block py-3 px-6 rounded-xl text-lg opacity-80 hover:opacity-100 hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300"
-                                                    >
-                                                        {s.label}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {link.id === "digital-marketing" && mobileDigitalMarketingOpen && (
-                                            <div className="mt-4 space-y-2 w-full pl-4 border-l-2 border-primary/20">
-                                                {digitalMarketingLinks.map((s) => (
-                                                    <a
-                                                        key={s.label}
-                                                        href={s.href}
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            handleNavClick(s.href, true);
-                                                        }}
-                                                        className="block py-3 px-6 rounded-xl text-lg opacity-80 hover:opacity-100 hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300"
-                                                    >
-                                                        {s.label}
-                                                    </a>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {link.id === "studio" && mobileStudioOpen && (
-                                            <div className="mt-4 space-y-2 w-full">
+                                    {link.id === "digital-marketing" && mobileDigitalMarketingOpen && (
+                                        <div className="mt-4 space-y-2 w-full pl-4 border-l-2 border-white/20">
+                                            {digitalMarketingLinks.map((s) => (
                                                 <a
-                                                    href="/podcast-recording-studio-in-Coimbatore/"
+                                                    key={s.label}
+                                                    href={s.href}
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        handleNavClick("/podcast-recording-studio-in-Coimbatore/", true);
+                                                        handleNavClick(s.href, true);
                                                     }}
                                                     className="block py-3 px-6 rounded-xl text-lg opacity-80 hover:opacity-100 hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300"
                                                 >
-                                                    Coimbatore Branch
+                                                    {s.label}
                                                 </a>
-                                            </div>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <a
-                                        key={link.label}
-                                        href={link.href}
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            handleNavClick(link.href, (link as any).isSubPage);
-                                        }}
-                                        className={`text-2xl transition-all duration-300 ${(link.id && activeSection === link.id) || (!isScrollSpyPage && link.isSubPage && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)))) ? "text-yellow-400 font-bold" : "opacity-80 hover:opacity-100"}`}
-                                    >
-                                        {link.label}
-                                    </a>
-                                )
-                            )}
+                                            ))}
+                                        </div>
+                                    )}
 
-                            <a
-                                href="/get-quote/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => setIsOpen(false)}
-                                className="mt-4 px-10 py-5 rounded-2xl bg-[#652b32] text-[#faf3e0] font-black text-xl uppercase tracking-widest shadow-2xl hover:bg-[#652b32]/90 transition-all active:scale-95 cursor-pointer"
-                            >
-                                GET QUOTE
-                            </a>
+                                    {link.id === "studio" && mobileStudioOpen && (
+                                        <div className="mt-4 space-y-2 w-full">
+                                            <a
+                                                href="/podcast-recording-studio-in-Coimbatore/"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    handleNavClick("/podcast-recording-studio-in-Coimbatore/", true);
+                                                }}
+                                                className="block py-3 px-6 rounded-xl text-lg opacity-80 hover:opacity-100 hover:bg-[#652b32] hover:text-[#faf3e0] transition-all duration-300"
+                                            >
+                                                Coimbatore Branch
+                                            </a>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <a
+                                    key={link.label}
+                                    href={link.href}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleNavClick(link.href, (link as any).isSubPage);
+                                    }}
+                                    className={`text-2xl transition-all duration-300 ${(link.id && activeSection === link.id) || (!isScrollSpyPage && link.isSubPage && (pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)))) ? "text-yellow-400 font-bold" : "opacity-80 hover:opacity-100"}`}
+                                >
+                                    {link.label}
+                                </a>
+                            )
+                        )}
 
-                            <a
-                                href="https://www.paypal.com/ncp/payment/Q54LAB9Y3BBLS"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-8 px-10 py-5 rounded-2xl bg-yellow-400 text-[#652b32] font-black text-xl uppercase tracking-widest shadow-2xl hover:bg-yellow-300 transition-all active:scale-95"
-                            >
-                                PAY NOW
-                            </a>
-                        </div>
+                        <a
+                            href="/get-quote/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsOpen(false)}
+                            className="mt-4 px-10 py-5 rounded-2xl bg-[#652b32] text-[#faf3e0] font-black text-xl uppercase tracking-widest shadow-2xl hover:bg-[#652b32]/90 transition-all active:scale-95 cursor-pointer"
+                        >
+                            GET QUOTE
+                        </a>
+
+                        <a
+                            href="https://www.paypal.com/ncp/payment/Q54LAB9Y3BBLS"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-8 px-10 py-5 rounded-2xl bg-yellow-400 text-[#652b32] font-black text-xl uppercase tracking-widest shadow-2xl hover:bg-yellow-300 transition-all active:scale-95"
+                        >
+                            PAY NOW
+                        </a>
                     </div>
-                )
-            }
+                </div>
+            )}
         </>
     );
 };
-

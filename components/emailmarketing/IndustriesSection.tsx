@@ -1,19 +1,21 @@
 "use client";
+import { Home, Plane, Factory, Car, Dumbbell, Zap, Wheat, HardHat, Scale, Newspaper, PartyPopper, Sparkles, Truck } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const industries = [
-    { icon: "🏠", name: "Real Estate", desc: "Property listings, market analysis, and investment opportunities." },
-    { icon: "✈️", name: "Travel & Tourism", desc: "Destinations, seasonal packages, and custom travel offers." },
-    { icon: "🏭", name: "Manufacturing", desc: "Product features, market innovations, and distributor ventures." },
-    { icon: "🚗", name: "Automotive", desc: "New vehicles, service reminders, and special promotions." },
-    { icon: "💪", name: "Sports & Fitness", desc: "Memberships, training courses, and fitness programs." },
-    { icon: "⚡", name: "Energy & Utilities", desc: "Services, sustainability efforts, and industry updates." },
-    { icon: "🌾", name: "Agriculture & AgriTech", desc: "Tech achievements, innovations, and industry knowledge." },
-    { icon: "🏗️", name: "Construction", desc: "Project updates, partnerships, and service offers." },
-    { icon: "⚖️", name: "Legal & Law Firms", desc: "Client education, legal updates, and professional credibility." },
-    { icon: "📰", name: "Media & Publishing", desc: "Newsletters, content updates, and subscription offers." },
-    { icon: "🎪", name: "Event Management", desc: "Event promotion, registration management, and reminders." },
-    { icon: "💄", name: "Beauty & Wellness", desc: "Product launches, individual offers, and promotions." },
-    { icon: "🚚", name: "Logistics & Warehouse", desc: "Service changes, supply chain info, and partnerships." },
+const industries: { Icon: LucideIcon; name: string; desc: string }[] = [
+    { Icon: Home, name: "Real Estate", desc: "Property listings, market analysis, and investment opportunities." },
+    { Icon: Plane, name: "Travel & Tourism", desc: "Destinations, seasonal packages, and custom travel offers." },
+    { Icon: Factory, name: "Manufacturing", desc: "Product features, market innovations, and distributor ventures." },
+    { Icon: Car, name: "Automotive", desc: "New vehicles, service reminders, and special promotions." },
+    { Icon: Dumbbell, name: "Sports & Fitness", desc: "Memberships, training courses, and fitness programs." },
+    { Icon: Zap, name: "Energy & Utilities", desc: "Services, sustainability efforts, and industry updates." },
+    { Icon: Wheat, name: "Agriculture & AgriTech", desc: "Tech achievements, innovations, and industry knowledge." },
+    { Icon: HardHat, name: "Construction", desc: "Project updates, partnerships, and service offers." },
+    { Icon: Scale, name: "Legal & Law Firms", desc: "Client education, legal updates, and professional credibility." },
+    { Icon: Newspaper, name: "Media & Publishing", desc: "Newsletters, content updates, and subscription offers." },
+    { Icon: PartyPopper, name: "Event Management", desc: "Event promotion, registration management, and reminders." },
+    { Icon: Sparkles, name: "Beauty & Wellness", desc: "Product launches, individual offers, and promotions." },
+    { Icon: Truck, name: "Logistics & Warehouse", desc: "Service changes, supply chain info, and partnerships." },
 ];
 
 export default function IndustriesSection() {
@@ -30,7 +32,7 @@ export default function IndustriesSection() {
                 <div className="industries-grid">
                     {industries.map((ind, i) => (
                         <div className="industry-card" key={i}>
-                            <div className="industry-icon">{ind.icon}</div>
+                            <div className="industry-icon"><ind.Icon size={22} strokeWidth={1.8} /></div>
                             <div className="industry-info">
                                 <h3 className="industry-name">{ind.name}</h3>
                                 <p className="industry-desc">{ind.desc}</p>
@@ -95,7 +97,7 @@ export default function IndustriesSection() {
           border-color: #f5c518;
         }
         .industry-icon {
-          font-size: 1.6rem;
+          color: #652b32;
           flex-shrink: 0;
           margin-top: 2px;
         }

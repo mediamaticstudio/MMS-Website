@@ -43,12 +43,12 @@ export function generateOrganizationSchema() {
         "name": "MediaMatic Studio",
         "url": "https://mediamaticstudio.com",
         "description": "Award-winning digital marketing, web development, design, and animation agency.",
-        "logo": "https://mediamaticstudio.com/logo.png",
+        "logo": "https://mediamaticstudio.com/assets/lOGO-TiRhUzz3.webp",
         "sameAs": [
-            "https://www.facebook.com/mediamaticstudio",
-            "https://www.linkedin.com/company/mediamaticstudio",
-            "https://twitter.com/mediamaticstudio",
-            "https://www.instagram.com/mediamaticstudio"
+            "https://www.facebook.com/mediamatic.studio1/",
+            "https://www.linkedin.com/company/mediamatic-studio/",
+            "https://x.com/_media_matic",
+            "https://www.instagram.com/mediamatic.studio/"
         ],
         "contact": {
             "@type": "ContactPoint",
@@ -135,7 +135,7 @@ export function generateBlogPostingSchema(post: BlogPostData) {
             "name": "MediaMatic Studio",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://mediamaticstudio.com/logo.png"
+                "url": "https://mediamaticstudio.com/assets/lOGO-TiRhUzz3.webp"
             }
         },
         "mainEntityOfPage": {
@@ -185,13 +185,28 @@ export function generateLocalBusinessSchema() {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": "MediaMatic Studio",
-        "image": "https://mediamaticstudio.com/logo.png",
+        "image": "https://mediamaticstudio.com/assets/lOGO-TiRhUzz3.webp",
         "description": "Award-winning digital marketing, web development, design, and animation agency.",
         "url": "https://mediamaticstudio.com",
         "sameAs": [
-            "https://www.facebook.com/mediamaticstudio",
-            "https://www.linkedin.com/company/mediamaticstudio",
-            "https://twitter.com/mediamaticstudio"
-        ]
+            "https://www.facebook.com/mediamatic.studio1/",
+            "https://www.linkedin.com/company/mediamatic-studio/",
+            "https://x.com/_media_matic",
+            "https://www.instagram.com/mediamatic.studio/"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Coimbatore",
+            "addressRegion": "Tamil Nadu",
+            "addressCountry": "IN"
+        },
+        "areaServed": {
+            "@type": "GeoCircle",
+            "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": 11.0168,
+                "longitude": 76.9558
+            }
+        }
     };
 }

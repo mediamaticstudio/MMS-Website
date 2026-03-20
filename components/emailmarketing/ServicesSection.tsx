@@ -1,33 +1,35 @@
 "use client";
+import { Target, Map, Palette, Settings, CalendarDays, BarChart3 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const services = [
+const services: { Icon: LucideIcon; title: string; desc: string }[] = [
     {
-        icon: "🎯",
+        Icon: Target,
         title: "Audience Research & Goal Alignment",
         desc: "We identify customer behavior, preferences and engagement patterns, aligning every campaign with your core business objectives.",
     },
     {
-        icon: "🗺️",
+        Icon: Map,
         title: "Email Campaign Strategy & Planning",
         desc: "A systematic roadmap establishing campaign purpose, content themes, frequency, and segmentation approach for long-term engagement.",
     },
     {
-        icon: "🎨",
+        Icon: Palette,
         title: "Email Design & Content Creation",
         desc: "Mobile-friendly templates, catchy subject lines, and quality messaging that represent your brand and inspire action.",
     },
     {
-        icon: "⚙️",
+        Icon: Settings,
         title: "Email Automation & Workflow Setup",
         desc: "Welcome sequences, abandoned cart messages, lead follow-ups, and re-engagement flows — all running without manual effort.",
     },
     {
-        icon: "📅",
+        Icon: CalendarDays,
         title: "Campaign Execution & Smart Scheduling",
         desc: "Emails delivered at optimal times based on audience behavior, maximizing open rates and subscriber engagement.",
     },
     {
-        icon: "📊",
+        Icon: BarChart3,
         title: "Performance Optimization & Reporting",
         desc: "Continuous analysis of open rates, click-through rates, and conversions to refine messaging and improve overall ROI.",
     },
@@ -46,7 +48,7 @@ export default function ServicesSection() {
                 <div className="services-grid">
                     {services.map((s, i) => (
                         <div className="service-card" key={i}>
-                            <div className="service-icon">{s.icon}</div>
+                            <div className="service-icon"><s.Icon size={28} strokeWidth={1.8} /></div>
                             <h3 className="service-title">{s.title}</h3>
                             <p className="service-desc">{s.desc}</p>
                         </div>
@@ -117,7 +119,7 @@ export default function ServicesSection() {
           box-shadow: 0 16px 40px rgba(101,43,50,0.12);
         }
         .service-icon {
-          font-size: 2rem;
+          color: #652b32;
           margin-bottom: 16px;
         }
         .service-title {

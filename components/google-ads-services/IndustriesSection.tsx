@@ -1,124 +1,153 @@
 "use client";
 
-const industries = [
-    { icon: "🏠", title: "Real Estate", desc: "Target buyers and property investors via location and keyword searches." },
-    { icon: "✈️", title: "Travel & Tourism", desc: "Reach customers actively searching for vacations, destinations, and bookings." },
-    { icon: "🏭", title: "Manufacturing", desc: "Generate B2B leads and reach distributors and buyers globally." },
-    { icon: "🚗", title: "Automotive", desc: "Advertise vehicles, auto parts, and repair services to ready-to-buy customers." },
-    { icon: "💪", title: "Sports & Fitness", desc: "Interest new members and promote training programs for gyms and fitness brands." },
-    { icon: "⚡", title: "Energy & Utilities", desc: "Advertise renewable energy and utility solutions to interested audiences." },
-    { icon: "🌾", title: "Agriculture & AgriTech", desc: "Sell equipment, technologies, and agri-solutions to farmers and industrialists." },
-    { icon: "🏗️", title: "Construction", desc: "Generate project leads from developers, businesses, and homeowners." },
-    { icon: "📰", title: "Media & Publishing", desc: "Promote digital content, subscriptions, and advertising services at scale." },
-    { icon: "🎪", title: "Event Management", desc: "Market conferences, weddings, exhibitions, and corporate events." },
-    { icon: "💄", title: "Beauty & Wellness", desc: "Reach customers via local and service-related searches for salons and spas." },
-    { icon: "🚚", title: "Logistics & Warehousing", desc: "Promote transportation and warehousing services to businesses seeking suppliers." },
+import { useState } from "react";
+import {
+  HeartPulse,
+  Landmark,
+  ShoppingCart,
+  Plane,
+  Users,
+  GraduationCap,
+  Truck,
+  Film,
+  Home,
+  Gamepad2,
+  Droplets,
+  Car,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+interface Industry {
+  Icon: LucideIcon;
+  name: string;
+  desc: string;
+}
+
+const industries: Industry[] = [
+  { Icon: HeartPulse, name: "Healthcare", desc: "Automate processes, analyze data, and improve patient satisfaction." },
+  { Icon: Landmark, name: "Finance", desc: "Mobile banking apps with the latest fintech technology." },
+  { Icon: ShoppingCart, name: "eCommerce", desc: "Custom apps integrated with your commerce infrastructure." },
+  { Icon: Plane, name: "Travel", desc: "Hospitality solutions for small and large-scale enterprises." },
+  { Icon: Users, name: "Social Media", desc: "Custom social platforms bringing businesses closer to customers." },
+  { Icon: GraduationCap, name: "Education", desc: "e-Learning apps with exciting, informative experiences." },
+  { Icon: Truck, name: "Logistics", desc: "Custom logistics platforms with tracking and auto-dispatching." },
+  { Icon: Film, name: "Entertainment", desc: "Innovative, trend-focused media and entertainment solutions." },
+  { Icon: Home, name: "Real Estate", desc: "Flawless property listings, search, and user interfaces." },
+  { Icon: Gamepad2, name: "Gaming", desc: "Top-rated gaming platforms for desktop, web, and mobile." },
+  { Icon: Droplets, name: "Oil & Gas", desc: "Software solutions for business process automation." },
+  { Icon: Car, name: "Automotive", desc: "Superior transport and automotive app solutions." },
 ];
 
 export default function IndustriesSection() {
-    return (
-        <section id="industries" className="industries-section">
-            <div className="ind-inner">
-                <div className="ind-header">
-                    <div className="section-label">Industries We Serve</div>
-                    <h2 className="section-title">
-                        Google Ads for <span>Every Industry</span>
-                    </h2>
-                    <p className="section-sub">
-                        Our Google Ads marketing services help companies across diverse sectors
-                        attract their target audience and generate a steady stream of leads.
-                    </p>
-                </div>
-                <div className="ind-grid">
-                    {industries.map((ind, i) => (
-                        <div key={i} className="ind-card" style={{ animationDelay: `${i * 0.05}s` }}>
-                            <div className="ind-icon">{ind.icon}</div>
-                            <div>
-                                <h3 className="ind-title">{ind.title}</h3>
-                                <p className="ind-desc">{ind.desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+  const [hovered, setHovered] = useState<number | null>(null);
 
-            <style jsx>{`
-        .industries-section {
-          background: #faf3e0;
-          padding: 6rem 2rem;
-        }
-        .ind-inner { max-width: 1200px; margin: 0 auto; }
-        .ind-header { margin-bottom: 3rem; }
-        .section-label {
-          display: inline-block;
-          background: rgba(101,43,50,0.08);
-          color: #652b32;
-          padding: 0.3rem 1rem;
-          border-radius: 50px;
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: 1rem;
-        }
-        .section-title {
-          font-family: 'Playfair Display', Georgia, serif;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 800;
-          color: #652b32;
-          margin-bottom: 1rem;
-          line-height: 1.2;
-        }
-        .section-title span {
-          color: #f5c518;
-          -webkit-text-stroke: 1px #652b32;
-        }
-        .section-sub {
-          color: rgba(101,43,50,0.6);
-          font-size: 1.05rem;
-          max-width: 540px;
-          line-height: 1.65;
-        }
-        .ind-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-          gap: 1rem;
-        }
-        .ind-card {
-          background: #fff;
-          border: 1px solid rgba(101,43,50,0.1);
-          border-radius: 14px;
-          padding: 1.4rem;
-          display: flex;
-          gap: 1rem;
-          align-items: flex-start;
-          transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-          animation: fadeUp 0.5s ease both;
-          cursor: default;
-        }
-        .ind-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 12px 32px rgba(101,43,50,0.1);
-          border-color: rgba(245,197,24,0.4);
-        }
-        .ind-icon { font-size: 1.75rem; flex-shrink: 0; }
-        .ind-title {
-          font-family: 'Playfair Display', Georgia, serif;
-          font-size: 1rem;
-          font-weight: 700;
-          color: #652b32;
-          margin-bottom: 0.3rem;
-        }
-        .ind-desc {
-          font-size: 0.82rem;
-          color: rgba(101,43,50,0.6);
-          line-height: 1.5;
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(18px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-        </section>
-    );
+  return (
+    <section className="py-28 px-12" style={{ background: "var(--cream)" }}>
+      <div className="max-w-[1260px] mx-auto">
+
+        {/* ── Header ── */}
+        <div className="text-center mb-18">
+          <div className="section-label section-label-light inline-flex mb-5">
+            <span
+              className="inline-block w-4 h-0.5 rounded"
+              style={{ background: "var(--burgundy)" }}
+            />
+            Expertise Across Sectors
+          </div>
+          <h2
+            className="font-display font-black leading-[1.1] tracking-[-1px] mb-4"
+            style={{
+              fontSize: "clamp(34px, 4vw, 54px)",
+              color: "var(--burgundy)",
+            }}
+          >
+            Industries We{" "}
+            <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "var(--gold)" }}>
+              Serve
+              <span
+                className="absolute -bottom-1.5 left-0 right-0 h-1 rounded"
+                style={{ background: "var(--gold)" }}
+              />
+            </span>
+          </h2>
+          <p
+            className="text-base leading-[1.8] max-w-[480px] mx-auto"
+            style={{ color: "#6b4045", fontFamily: "var(--font-dm-sans)" }}
+          >
+            10+ years of mobile app development across 14+ industries worldwide.
+          </p>
+        </div>
+
+        {/* ── Grid ── */}
+        <div className="grid grid-cols-4 gap-[18px]">
+          {industries.map(({ Icon, name, desc }, i) => (
+            <div
+              key={name}
+              className="card-spring rounded-2xl p-7 cursor-pointer relative overflow-hidden"
+              style={{
+                background: hovered === i ? "var(--burgundy)" : "#fff",
+                border: "2px solid",
+                borderColor:
+                  hovered === i ? "var(--burgundy)" : "rgba(101,43,50,0.09)",
+                boxShadow:
+                  hovered === i
+                    ? "0 16px 40px rgba(101,43,50,0.22)"
+                    : "0 2px 8px rgba(101,43,50,0.05)",
+              }}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              {/* Yellow corner on hover */}
+              <div
+                className="absolute top-0 right-0 transition-all duration-300"
+                style={{
+                  width: hovered === i ? "50px" : "0",
+                  height: hovered === i ? "50px" : "0",
+                  background: "var(--gold)",
+                  clipPath: "polygon(100% 0, 0 0, 100% 100%)",
+                }}
+              />
+
+              {/* Icon */}
+              <div
+                className="w-[50px] h-[50px] rounded-[10px] flex items-center justify-center mb-4 transition-colors duration-300"
+                style={{
+                  background:
+                    hovered === i
+                      ? "rgba(245,197,24,0.15)"
+                      : "rgba(101,43,50,0.07)",
+                }}
+              >
+                <Icon
+                  size={22}
+                  strokeWidth={1.8}
+                  color={hovered === i ? "var(--gold)" : "var(--burgundy)"}
+                />
+              </div>
+
+              <h3
+                className="font-display font-bold text-[16px] leading-snug mb-2 transition-colors duration-300"
+                style={{
+                  color: hovered === i ? "var(--gold)" : "var(--burgundy)",
+                }}
+              >
+                {name}
+              </h3>
+              <p
+                className="text-[13px] leading-[1.65] transition-colors duration-300"
+                style={{
+                  color:
+                    hovered === i ? "rgba(250,243,224,0.7)" : "#6b4045",
+                  fontFamily: "var(--font-dm-sans)",
+                }}
+              >
+                {desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
+

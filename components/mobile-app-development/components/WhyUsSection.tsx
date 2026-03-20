@@ -5,30 +5,35 @@ const features = [
   {
     icon: <Target size={22} strokeWidth={2} />,
     title: 'Strategic Approach',
-    desc: 'Established frameworks and parallel development processes that move your idea to execution at speed.',
+    desc: 'We leverage established frameworks and parallel development processes to enable enterprises to go from idea to execution in a fast manner, keeping pace with market demands.',
   },
   {
     icon: <Sliders size={22} strokeWidth={2} />,
     title: 'Custom-Built Solutions',
-    desc: 'Every UI is optimized for screen flexibility and UX, maintaining brand consistency across all mobile environments.',
+    desc: 'Our user interfaces are optimized for screen flexibility and user experience across different mobile devices, ensuring uniformity of enterprise brands.',
   },
   {
     icon: <BarChart2 size={22} strokeWidth={2} />,
     title: 'Performance & Scalability',
-    desc: 'Flexible systems designed to grow with your user base, feature sets, and enterprise integrations over time.',
+    desc: 'Every mobile solution is designed with scalability in mind. We develop flexible systems that scale with increased user counts and integrations.',
   },
   {
     icon: <MessageSquare size={22} strokeWidth={2} />,
     title: 'Transparent Communication',
-    desc: 'Milestone-driven approach with disciplined governance — tight timelines, scope control, and quality throughout.',
+    desc: 'Using our proven processes and disciplined governance, we create timely, tight project timelines and quality during the mobile development lifecycle.',
+  },
+  {
+    icon: <CheckCircle2 size={22} strokeWidth={2} />,
+    title: 'Timely Completion',
+    desc: 'We manage the entire mobile solution lifecycle from discovery to post-deployment, providing consistency and speed to market.',
   },
 ]
 
 const numbers = [
   { icon: <Briefcase size={24} strokeWidth={1.8} />, num: '10+', label: 'Years of Experience', dark: false },
-  { icon: <CheckCircle2 size={24} strokeWidth={1.8} />, num: '200+', label: 'Projects Delivered', dark: true },
+  { icon: <CheckCircle2 size={24} strokeWidth={1.8} />, num: '200+', label: 'Projects Completed', dark: true },
   { icon: <Globe2 size={24} strokeWidth={1.8} />, num: '15+', label: 'Industries Served', dark: true },
-  { icon: <Star size={24} strokeWidth={1.8} />, num: '4.9', label: 'Client Trust Score', dark: false },
+  { icon: <Star size={24} strokeWidth={1.8} />, num: '200+', label: 'Global Projects', dark: false },
 ]
 
 export default function WhyUsSection() {
@@ -38,17 +43,16 @@ export default function WhyUsSection() {
         <div className={styles.inner}>
           {/* LEFT */}
           <div>
-            <span className="sectionTag">
+            {/* <span className="sectionTag">
               <ShieldCheck size={12} strokeWidth={2.5} />
               Why Choose Us
-            </span>
+            </span> */}
             <h2 className="sectionTitle">
-              Why Businesses Trust<br />
-              <span className="pop">MediaMatic</span>
+              Why Businesses Choose<br />
+              <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "#f5c518" }}>MediaMatic Studio</span>
             </h2>
             <p className="sectionSub">
-              We don&apos;t just build apps — we build products that grow your
-              business and stand out in the market.
+              In the present digital age, mobile apps are an integral part of businesses. MediaMatic offers the best mobile app development services for iOS, Android, and hybrid platforms.
             </p>
 
             <div className={styles.features}>

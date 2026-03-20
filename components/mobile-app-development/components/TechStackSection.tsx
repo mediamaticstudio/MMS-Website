@@ -26,7 +26,7 @@ export default function TechStackSection() {
             Technology
           </span>
           <h2 className="sectionTitle">
-            Tech Stack We <span className="pop">Work With</span>
+            Tech Stack We  Work With
           </h2>
           <p className="sectionSub">
             We use the latest, most reliable technologies to build performant,

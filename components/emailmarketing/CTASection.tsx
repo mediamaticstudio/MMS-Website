@@ -1,139 +1,43 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 export default function CTASection() {
+    const router = useRouter();
+
     return (
-        <section className="cta-section">
-            <div className="cta-bg-circle" />
-            <div className="cta-container">
-                <div className="cta-badge">Ready to Grow?</div>
-                <h2 className="cta-heading">
-                    Grow with Strategic Email Marketing
-                </h2>
-                <p className="cta-sub">
-                    Grow brand performance and conversions with an outcomes-based email marketing system.
-                    Our team works on specific campaigns, automated processes, and data-driven strategies
-                    that contribute to achieving the highest ROI and establishing lasting customer relationships.
-                </p>
-                <div className="cta-actions">
-                    <button className="btn-primary">Start Your Campaign</button>
-                    <button className="btn-outline">Talk to an Expert</button>
-                </div>
-                <div className="cta-trust">
-                    <span className="trust-item">✓ No long-term contracts</span>
-                    <span className="trust-item">✓ Dedicated campaign manager</span>
-                    <span className="trust-item">✓ Full performance reporting</span>
+        <section className="py-20 md:py-32 bg-white">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="pt-20 border-t border-[#652b32]/10">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[#652b32] p-8 md:p-12 rounded-[2rem] text-[#faf3e0]">
+                        <div className="max-w-xl text-center md:text-left">
+                            <h2 className="text-3xl md:text-5xl font-black mb-4 font-heading leading-tight tracking-tight text-white">Grow with Strategic <span className="text-[#FACC15]">Email Marketing</span></h2>
+                            <p className="text-[#faf3e0]/70 text-lg md:text-xl font-medium">Let's develop strong tactics that will transform clicks into customers and grow your business.</p>
+                        </div>
+                        <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                            <button
+                                onClick={() => router.push("/#contact")}
+                                className="inline-flex items-center justify-center gap-2 bg-[#FACC15] text-[#652b32] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1"
+                            >
+                                Start Your Campaign <ArrowRight size={18} />
+                            </button>
+                            <Link
+                                href="/services"
+                                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all transform hover:-translate-y-1"
+                            >
+                                All Services
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="flex flex-wrap justify-center gap-8 mt-12">
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ No long-term contracts</span>
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ Dedicated campaign manager</span>
+                        <span className="text-[#652b32]/40 text-sm font-bold uppercase tracking-widest">✓ Full performance reporting</span>
+                    </div>
                 </div>
             </div>
-
-            <style jsx>{`
-        .cta-section {
-          background: #652b32;
-          padding: 100px 24px;
-          text-align: center;
-          position: relative;
-          overflow: hidden;
-        }
-        .cta-bg-circle {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 700px;
-          height: 700px;
-          border-radius: 50%;
-          border: 80px solid rgba(245,197,24,0.07);
-          pointer-events: none;
-        }
-        .cta-bg-circle::after {
-          content: "";
-          position: absolute;
-          inset: 60px;
-          border-radius: 50%;
-          border: 40px solid rgba(245,197,24,0.05);
-        }
-        .cta-container {
-          max-width: 700px;
-          margin: 0 auto;
-          position: relative;
-          z-index: 2;
-        }
-        .cta-badge {
-          display: inline-block;
-          background: rgba(245,197,24,0.18);
-          color: #f5c518;
-          border: 1px solid rgba(245,197,24,0.35);
-          padding: 8px 20px;
-          border-radius: 999px;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          margin-bottom: 24px;
-        }
-        .cta-heading {
-          font-family: 'Georgia', serif;
-          font-size: clamp(2rem, 4vw, 3rem);
-          font-weight: 700;
-          color: #faf3e0;
-          line-height: 1.2;
-          margin-bottom: 20px;
-        }
-        .cta-sub {
-          font-size: 1.05rem;
-          color: rgba(250,243,224,0.72);
-          line-height: 1.75;
-          margin-bottom: 40px;
-        }
-        .cta-actions {
-          display: flex;
-          gap: 16px;
-          justify-content: center;
-          flex-wrap: wrap;
-          margin-bottom: 36px;
-        }
-        .btn-primary {
-          background: #f5c518;
-          color: #652b32;
-          border: none;
-          padding: 15px 36px;
-          font-size: 15px;
-          font-weight: 700;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: transform 0.2s, box-shadow 0.2s;
-          letter-spacing: 0.03em;
-        }
-        .btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 28px rgba(245,197,24,0.4);
-        }
-        .btn-outline {
-          background: transparent;
-          color: #faf3e0;
-          border: 2px solid rgba(250,243,224,0.4);
-          padding: 15px 36px;
-          font-size: 15px;
-          font-weight: 600;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: border-color 0.2s, background 0.2s;
-        }
-        .btn-outline:hover {
-          border-color: #faf3e0;
-          background: rgba(250,243,224,0.06);
-        }
-        .cta-trust {
-          display: flex;
-          gap: 24px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        .trust-item {
-          font-size: 0.88rem;
-          color: rgba(250,243,224,0.6);
-          letter-spacing: 0.02em;
-        }
-      `}</style>
         </section>
     );
 }

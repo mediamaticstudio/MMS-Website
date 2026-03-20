@@ -11,7 +11,7 @@ import CTASection from './components/CTASection'
 export const metadata = {
   title: 'Mobile App Development Company | MediaMatic',
   description:
-    'MediaMatic builds next-gen iOS, Android & Flutter apps powered by AI. 200+ global projects, 10+ years experience. Get a free consultation today.',
+    'Best Mobile App Development Company – MediaMatic specializing in next-generation mobile, web, and software products using AI across iOS, Android and Flutter.',
 }
 
 export default function MobileAppDevelopmentPage() {

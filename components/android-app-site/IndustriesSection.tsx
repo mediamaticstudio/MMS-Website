@@ -25,17 +25,17 @@ interface Industry {
 
 const industries: Industry[] = [
   { Icon: HeartPulse, name: "Healthcare", desc: "Automate processes, analyze data, and improve patient satisfaction." },
-  { Icon: Landmark,   name: "Finance",    desc: "Mobile banking apps with the latest fintech technology." },
+  { Icon: Landmark, name: "Finance", desc: "Mobile banking apps with the latest fintech technology." },
   { Icon: ShoppingCart, name: "eCommerce", desc: "Custom apps integrated with your commerce infrastructure." },
-  { Icon: Plane,      name: "Travel",     desc: "Hospitality solutions for small and large-scale enterprises." },
-  { Icon: Users,      name: "Social Media", desc: "Custom social platforms bringing businesses closer to customers." },
+  { Icon: Plane, name: "Travel", desc: "Hospitality solutions for small and large-scale enterprises." },
+  { Icon: Users, name: "Social Media", desc: "Custom social platforms bringing businesses closer to customers." },
   { Icon: GraduationCap, name: "Education", desc: "e-Learning apps with exciting, informative experiences." },
-  { Icon: Truck,      name: "Logistics",  desc: "Custom logistics platforms with tracking and auto-dispatching." },
-  { Icon: Film,       name: "Entertainment", desc: "Innovative, trend-focused media and entertainment solutions." },
-  { Icon: Home,       name: "Real Estate", desc: "Flawless property listings, search, and user interfaces." },
-  { Icon: Gamepad2,   name: "Gaming",     desc: "Top-rated gaming platforms for desktop, web, and mobile." },
-  { Icon: Droplets,   name: "Oil & Gas",  desc: "Software solutions for business process automation." },
-  { Icon: Car,        name: "Automotive", desc: "Superior transport and automotive app solutions." },
+  { Icon: Truck, name: "Logistics", desc: "Custom logistics platforms with tracking and auto-dispatching." },
+  { Icon: Film, name: "Entertainment", desc: "Innovative, trend-focused media and entertainment solutions." },
+  { Icon: Home, name: "Real Estate", desc: "Flawless property listings, search, and user interfaces." },
+  { Icon: Gamepad2, name: "Gaming", desc: "Top-rated gaming platforms for desktop, web, and mobile." },
+  { Icon: Droplets, name: "Oil & Gas", desc: "Software solutions for business process automation." },
+  { Icon: Car, name: "Automotive", desc: "Superior transport and automotive app solutions." },
 ];
 
 export default function IndustriesSection() {
@@ -62,7 +62,7 @@ export default function IndustriesSection() {
             }}
           >
             Industries We{" "}
-            <span className="relative inline-block" style={{ color: "transparent", WebkitTextStroke: "2.5px var(--burgundy)" }}>
+            <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "var(--gold)" }}>
               Serve
               <span
                 className="absolute -bottom-1.5 left-0 right-0 h-1 rounded"

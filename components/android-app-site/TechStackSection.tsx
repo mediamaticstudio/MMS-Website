@@ -4,12 +4,12 @@ import { Target, Users2, Clipboard, TrendingUp } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const techStack = [
-  { category: "Languages",   items: ["Kotlin", "Java", "TypeScript"] },
-  { category: "Frameworks",  items: ["Jetpack Compose", "Android SDK", "React Native"] },
-  { category: "Architecture",items: ["MVVM", "Clean Arch", "MVI"] },
-  { category: "Backend",     items: ["Node.js", "Firebase", "AWS"] },
-  { category: "Database",    items: ["Room DB", "SQLite", "MongoDB"] },
-  { category: "Tools",       items: ["Android Studio", "Gradle", "Git"] },
+  { category: "Languages", items: ["Kotlin", "Java", "TypeScript"] },
+  { category: "Frameworks", items: ["Jetpack Compose", "Android SDK", "React Native"] },
+  { category: "Architecture", items: ["MVVM", "Clean Arch", "MVI"] },
+  { category: "Backend", items: ["Node.js", "Firebase", "AWS"] },
+  { category: "Database", items: ["Room DB", "SQLite", "MongoDB"] },
+  { category: "Tools", items: ["Android Studio", "Gradle", "Git"] },
 ];
 
 interface Reason {
@@ -51,7 +51,7 @@ export default function TechStackSection() {
 
       <div className="max-w-[1260px] mx-auto relative z-10">
         {/* ── Header ── */}
-        <div className="text-center mb-18">
+        <div className="text-center mb-24">
           <div className="section-label section-label-dark inline-flex mb-5">
             <span
               className="inline-block w-4 h-0.5 rounded"
@@ -67,7 +67,7 @@ export default function TechStackSection() {
             }}
           >
             Tech Stack &{" "}
-            <span style={{ color: "var(--gold)" }}>Why Choose Us</span>
+            <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "#f5c518" }}>Why Choose Us</span>
           </h2>
         </div>
 

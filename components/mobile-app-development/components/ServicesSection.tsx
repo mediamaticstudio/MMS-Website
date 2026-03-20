@@ -5,38 +5,32 @@ const services = [
   {
     icon: <Smartphone size={24} strokeWidth={1.8} />,
     title: 'Android App Development',
-    desc: 'Feature-rich, scalable Android apps with user-friendly interfaces that dominate the Google Play Store.',
-    isNew: true,
+    desc: 'Android has the maximum number of active users. Our app development agency provides the best Android mobile app development services to create feature-rich and scalable Android apps with user-friendly interfaces.',
   },
   {
     icon: <Tablet size={24} strokeWidth={1.8} />,
     title: 'iOS App Development',
-    desc: 'High-security, beautiful iPhone and iPad apps that meet Apple\'s strict guidelines and delight users on every device.',
-    isNew: true,
+    desc: 'Target high-value iOS users with high-security, beautiful, and easy-to-use iPhone and iPad applications, designed while meeting Apple\'s strict guidelines.',
   },
   {
     icon: <Code2 size={24} strokeWidth={1.8} />,
     title: 'Flutter App Development',
-    desc: 'High-performance cross-platform apps with seamless UX across Android, iOS, and web from a single codebase.',
-    isNew: true,
+    desc: 'Develop high-performance and scalable mobile applications that offer smooth performance and a seamless user experience across Android and web platforms.',
   },
   {
     icon: <Rocket size={24} strokeWidth={1.8} />,
     title: 'MVP Development',
-    desc: 'Go from idea to market fast. We build lean, validated MVPs that test your core assumptions quickly and efficiently.',
-    isNew: false,
+    desc: 'Accelerate innovation with AI-led software solutions designed to meet your unique objectives, moving from product strategy to full-scale deployment.',
   },
   {
     icon: <Building2 size={24} strokeWidth={1.8} />,
     title: 'Enterprise Solutions',
-    desc: 'Scalable, secure enterprise mobile platforms built to handle complex workflows and massive user bases.',
-    isNew: false,
+    desc: 'Custom-built software solutions that scale with your business’s needs, ensuring secure and user-centric apps for global enterprises.',
   },
   {
     icon: <Cpu size={24} strokeWidth={1.8} />,
     title: 'AI & ML Integration',
-    desc: 'Embed intelligent AI/ML capabilities — recommendations, chatbots, predictive analytics — into your mobile app.',
-    isNew: false,
+    desc: 'MediaMatic specializes in AI-driven software solutions designed to help businesses grow and scale through intelligent automation and powerful features.',
   },
 ]
 
@@ -50,12 +44,11 @@ export default function ServicesSection() {
             Our Services
           </span>
           <h2 className={`sectionTitle ${styles.title}`}>
-            Mobile App Development<br />
-            <span className="pop">Services We Offer</span>
+            Our Mobile Application<br />
+            <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "#f5c518" }}>Development Services</span>
           </h2>
           <p className="sectionSub">
-            From Android and iOS to cross-platform Flutter apps — crafted for
-            your business goals and your users&apos; real needs.
+            Our app development firm creates and develops high-performance mobile apps that fit your business&apos;s needs and requirements.
           </p>
         </div>
 
@@ -65,7 +58,6 @@ export default function ServicesSection() {
               <div className={styles.iconBox}>{s.icon}</div>
               <div className={styles.cardTitle}>
                 {s.title}
-                {s.isNew && <span className={styles.newBadge}>New</span>}
               </div>
               <p className={styles.cardDesc}>{s.desc}</p>
               <div className={styles.arrow}>

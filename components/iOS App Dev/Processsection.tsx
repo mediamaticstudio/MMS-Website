@@ -107,7 +107,7 @@ export default function ProcessSection() {
                                 }}
                             >
                                 <div style={{
-                                    fontSize: "12px", fontWeight: "700",
+                                    fontSize: "18px", fontWeight: "700",
                                     color: active === i ? "#f5c518" : "rgba(101,43,50,0.35)",
                                     letterSpacing: "2px", minWidth: "28px", paddingTop: "2px",
                                     transition: "color 0.25s",

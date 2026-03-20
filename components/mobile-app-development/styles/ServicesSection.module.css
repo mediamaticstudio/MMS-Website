@@ -85,17 +85,6 @@
   color: var(--ow);
 }
 
-.newBadge {
-  font-family: var(--font-body);
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  background: var(--yel);
-  color: var(--burg-d);
-  padding: 3px 9px;
-  border-radius: 20px;
-}
 
 .cardDesc {
   font-size: 13.5px;

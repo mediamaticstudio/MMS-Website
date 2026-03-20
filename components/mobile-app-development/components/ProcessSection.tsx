@@ -20,7 +20,7 @@ export default function ProcessSection() {
             How We Work
           </span>
           <h2 className={styles.title}>
-            Our Development <span className={styles.pop}>Process</span>
+            Our Development  <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "#f5c518" }}>Process</span>
           </h2>
           <p className={styles.sub}>
             A transparent, client-centric workflow from discovery to deployment

@@ -7,31 +7,31 @@ import styles from '../styles/FAQSection.module.css'
 const faqs = [
   {
     q: 'How does the mobile app development process work?',
-    a: 'We follow a transparent, client-centric process: Discovery & Consultation → UI/UX Design → Agile Development (sprints) → Quality Testing (manual + automated) → Deployment → Continuous Support and upgrades.',
+    a: 'We have a transparent and client-centric process: Discovery & Consultation- Know your vision and aspirations | UI/UX Design – Develop user interfaces | Agile Development – Sprints with publications at intervals | Quality Testing Mass + Computer-Automatized Testing | Deployment-Seamless deployment built-in scalability | Continuous support-continuous upgrades',
   },
   {
     q: 'Why should you partner with us for mobile app development?',
-    a: 'We build apps for iOS, Android, and hybrid platforms using Flutter & React Native. With 10+ years of experience and 200+ global projects, we deliver performance-driven, AI-integrated solutions designed specifically for your audience.',
+    a: 'We make mobile applications that work on both iOS and Android as well as hybrid apps using the Flutter & React Native framework; all of our apps are designed specifically for the Indian audience.',
   },
   {
     q: 'What is the cost of developing a mobile application?',
-    a: 'We offer flexible pricing models — fixed, hourly, or dedicated team — based on project complexity and scope. Contact us for a customized quote tailored to your requirements and budget.',
+    a: 'We have a flexible pricing model for mobile applications that we base upon project type, like fixed, hourly, or dedicated teams. Contact us to know more!',
   },
   {
-    q: 'How long will it take to complete my mobile application?',
-    a: 'Completion time varies by project complexity. On average, most projects are completed within 8–16 weeks, from initial consultation to App Store / Play Store launch.',
+    q: 'How long will it take for your mobile application to be complete?',
+    a: 'The completion time for your mobile application is going to vary depending on the complexity of the project. But the average completion time is approximately 8-16 weeks.',
   },
   {
-    q: 'Should my app be launched on iOS and/or Android?',
-    a: "We recommend launching on both platforms to maximize reach. Our cross-platform expertise means you don't need to compromise on quality or performance on either platform.",
+    q: 'Should my application be launched on iOS and/or Android?',
+    a: 'In order to ensure that all your customers can use your products/services, you must have your app available on both iOS and Android devices.',
   },
   {
-    q: 'What is the difference between a native and cross-platform app?',
-    a: 'Native apps are built specifically for iOS or Android using Swift/Kotlin, offering peak performance. Cross-platform apps (Flutter or React Native) share a codebase across both platforms, reducing development time and cost.',
+    q: 'What is the main difference between a native application and a cross-platform one?',
+    a: 'Native applications are specifically developed for an individual platform, such as iOS or Android. Cross-platform applications share the same code on both platforms and are therefore able to perform equally on both platforms.',
   },
   {
     q: 'Do you implement AI & ML in application development?',
-    a: 'Yes! We integrate AI/ML capabilities including recommendation engines, intelligent chatbots, predictive analytics, and image recognition — to make your app smarter and more competitive.',
+    a: 'Yes. AI and ML enable organizations to identify appropriate technologies and methods for developing APIs.',
   },
 ]
 
@@ -52,14 +52,14 @@ export default function FAQSection() {
             </span>
             <h2 className="sectionTitle">
               Frequently<br />
-              Asked <span className="pop">Questions</span>
+              Asked <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "#f5c518" }}>Questions</span>
             </h2>
             <p className="sectionSub">
               Can&apos;t find your answer? Reach out to us directly — we
               respond within 24 hours.
             </p>
 
-            <div className={styles.contact}>
+            {/* <div className={styles.contact}>
               <div className={styles.contactIcon}>
                 <Mail size={20} strokeWidth={2} />
               </div>
@@ -67,7 +67,7 @@ export default function FAQSection() {
                 <strong>hello@mediamatic.in</strong>
                 <span>We reply within 24 hours</span>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* RIGHT – accordion */}

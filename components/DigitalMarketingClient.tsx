@@ -28,6 +28,7 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -349,20 +350,25 @@ export function DigitalMarketingClient() {
                             <Zap className="w-20 h-20" />
                         </div>
 
-                        <div className="relative z-10">
-                            <h2 className="text-3xl md:text-5xl font-black mb-8 font-heading leading-tight tracking-tight">
-                                Willing to do Business with the{" "}
-                                <span className="text-[#FACC15]">Best Digital Marketing Agency?</span>
-                            </h2>
-                            <p className="text-[#faf3e0]/80 text-xl max-w-3xl mx-auto mb-14 leading-relaxed font-medium">
-                                Collaborate with Mediamatic Studio - the most dedicated digital marketing firm that focuses on growth, visibility, and revenue generation. We should develop strong tactics that will transform clicks into customers and grow your business to a higher level.
-                            </p>
-                            <button
-                                onClick={() => setIsAuditModalOpen(true)}
-                                className="inline-flex items-center gap-4 bg-[#FACC15] text-[#652b32] px-12 py-6 rounded-full font-black uppercase tracking-widest text-sm shadow-2xl hover:bg-white transition-all active:scale-95 group"
-                            >
-                                Get Started Today <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </button>
+                        <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[#652b32] p-8 md:p-12 rounded-[2rem] text-[#faf3e0]">
+                            <div className="max-w-xl text-center md:text-left">
+                                <h2 className="text-3xl md:text-5xl font-black mb-4 font-heading leading-tight tracking-tight text-white">Willing to do Business with the <span className="text-[#FACC15]">Best Digital Marketing Agency?</span></h2>
+                                <p className="text-[#faf3e0]/70 text-lg md:text-xl font-medium">Let's develop strong tactics that will transform clicks into customers and grow your business.</p>
+                            </div>
+                            <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                                <button
+                                    onClick={() => setIsAuditModalOpen(true)}
+                                    className="inline-flex items-center justify-center gap-2 bg-[#FACC15] text-[#652b32] px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white transition-all transform hover:-translate-y-1"
+                                >
+                                    Get Started Today <ArrowRight size={18} />
+                                </button>
+                                <Link
+                                    href="/services"
+                                    className="inline-flex items-center justify-center gap-2 bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest hover:bg-white/20 transition-all transform hover:-translate-y-1"
+                                >
+                                    All Services
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

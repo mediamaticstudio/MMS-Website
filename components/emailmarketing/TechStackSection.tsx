@@ -1,59 +1,61 @@
 "use client";
+import { Mail, Link, Zap, Inbox, MailPlus, PenLine, Palette, ShoppingBag, FlaskConical, FolderKanban, Target, TrendingUp, Lock, Radio } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const tools = [
-    { name: "Mailchimp", category: "ESP", icon: "🐒" },
-    { name: "Klaviyo", category: "Automation", icon: "📧" },
-    { name: "HubSpot", category: "CRM + Email", icon: "🔗" },
-    { name: "ActiveCampaign", category: "Automation", icon: "⚡" },
-    { name: "Brevo (Sendinblue)", category: "All-in-One", icon: "📬" },
-    { name: "Constant Contact", category: "Small Business", icon: "📮" },
-    { name: "ConvertKit", category: "Creators", icon: "✍️" },
-    { name: "Campaign Monitor", category: "Design-First", icon: "🎨" },
-    { name: "Drip", category: "eCommerce", icon: "🛍️" },
+const tools: { name: string; category: string; Icon: LucideIcon }[] = [
+  { name: "Mailchimp", category: "ESP", Icon: Mail },
+  { name: "Klaviyo", category: "Automation", Icon: Inbox },
+  { name: "HubSpot", category: "CRM + Email", Icon: Link },
+  { name: "ActiveCampaign", category: "Automation", Icon: Zap },
+  { name: "Brevo (Sendinblue)", category: "All-in-One", Icon: MailPlus },
+  { name: "Constant Contact", category: "Small Business", Icon: Mail },
+  { name: "ConvertKit", category: "Creators", Icon: PenLine },
+  { name: "Campaign Monitor", category: "Design-First", Icon: Palette },
+  { name: "Drip", category: "eCommerce", Icon: ShoppingBag },
 ];
 
-const features = [
-    { label: "A/B Testing", icon: "🔬" },
-    { label: "Dynamic Segmentation", icon: "🗂️" },
-    { label: "Behavioral Triggers", icon: "🎯" },
-    { label: "Analytics & Reporting", icon: "📈" },
-    { label: "GDPR Compliance", icon: "🔒" },
-    { label: "Deliverability Monitoring", icon: "📡" },
-];
+// const features: { label: string; Icon: LucideIcon }[] = [
+//     { label: "A/B Testing", Icon: FlaskConical },
+//     { label: "Dynamic Segmentation", Icon: FolderKanban },
+//     { label: "Behavioral Triggers", Icon: Target },
+//     { label: "Analytics & Reporting", Icon: TrendingUp },
+//     { label: "GDPR Compliance", Icon: Lock },
+//     { label: "Deliverability Monitoring", Icon: Radio },
+// ];
 
 export default function TechStackSection() {
-    return (
-        <section className="tech-section">
-            <div className="tech-bg" />
-            <div className="tech-container">
-                <div className="section-label">Platforms & Capabilities</div>
-                <h2 className="section-heading">Our Email Marketing Tech Stack</h2>
-                <p className="section-sub">
-                    We work with industry-leading platforms and tools to ensure maximum deliverability,
-                    automation power, and performance tracking for every campaign.
-                </p>
+  return (
+    <section className="tech-section">
+      <div className="tech-bg" />
+      <div className="tech-container">
+        <div className="section-label">Platforms & Capabilities</div>
+        <h2 className="section-heading">Our Email Marketing Tech Stack</h2>
+        <p className="section-sub">
+          We work with industry-leading platforms and tools to ensure maximum deliverability,
+          automation power, and performance tracking for every campaign.
+        </p>
 
-                <div className="tools-grid">
-                    {tools.map((tool, i) => (
-                        <div className="tool-card" key={i}>
-                            <span className="tool-icon">{tool.icon}</span>
-                            <span className="tool-name">{tool.name}</span>
-                            <span className="tool-category">{tool.category}</span>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="features-row">
-                    {features.map((f, i) => (
-                        <div className="feature-pill" key={i}>
-                            <span>{f.icon}</span>
-                            <span>{f.label}</span>
-                        </div>
-                    ))}
-                </div>
+        <div className="tools-grid">
+          {tools.map((tool, i) => (
+            <div className="tool-card" key={i}>
+              <span className="tool-icon"><tool.Icon size={26} strokeWidth={1.8} /></span>
+              <span className="tool-name">{tool.name}</span>
+              <span className="tool-category">{tool.category}</span>
             </div>
+          ))}
+        </div>
 
-            <style jsx>{`
+        {/* <div className="features-row">
+          {features.map((f, i) => (
+            <div className="service-pill" key={i}>
+              <span><f.Icon size={16} strokeWidth={2} /></span>
+              <span>{f.label}</span>
+            </div>
+          ))}
+        </div> */}
+      </div>
+
+      <style jsx>{`
         .tech-section {
           background: #652b32;
           padding: 96px 24px;
@@ -120,7 +122,7 @@ export default function TechStackSection() {
           border-color: rgba(245,197,24,0.4);
         }
         .tool-icon {
-          font-size: 1.8rem;
+          color: #f5c518;
         }
         .tool-name {
           font-family: 'Georgia', serif;
@@ -141,19 +143,8 @@ export default function TechStackSection() {
           gap: 12px;
           justify-content: center;
         }
-        .feature-pill {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(245,197,24,0.15);
-          border: 1px solid rgba(245,197,24,0.3);
-          color: #faf3e0;
-          padding: 10px 20px;
-          border-radius: 999px;
-          font-size: 0.88rem;
-          font-weight: 600;
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 }

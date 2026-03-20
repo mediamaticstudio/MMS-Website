@@ -1,29 +1,31 @@
 "use client";
+import { Map, Palette, Code, Rocket } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const steps = [
+const steps: { num: string; title: string; desc: string; Icon: LucideIcon }[] = [
     {
         num: "01",
         title: "Planning",
         desc: "We begin with an in-depth consultation to understand your business, customers, and objectives — the foundation for architecture and UX.",
-        icon: "🗺️",
+        Icon: Map,
     },
     {
         num: "02",
         title: "Designing",
         desc: "Our designers craft user interfaces that function well, look great, and provide the best possible user experience.",
-        icon: "🎨",
+        Icon: Palette,
     },
     {
         num: "03",
         title: "Development",
         desc: "Expert developers write clean, efficient, and scalable code to build cross-platform apps that are fast, safe, and top-notch.",
-        icon: "💻",
+        Icon: Code,
     },
     {
         num: "04",
         title: "Testing, Launch & Support",
         desc: "We test thoroughly, deploy with care, and stay by your side post-launch with proactive maintenance and support.",
-        icon: "🚀",
+        Icon: Rocket,
     },
 ];
 
@@ -46,7 +48,7 @@ export default function ProcessSection() {
                                 <div className="step-num">{step.num}</div>
                             </div>
                             <div className="step-right">
-                                <div className="step-icon">{step.icon}</div>
+                                <div className="step-icon"><step.Icon size={22} strokeWidth={1.8} /></div>
                                 <h3 className="step-title">{step.title}</h3>
                                 <p className="step-desc">{step.desc}</p>
                             </div>
@@ -85,8 +87,21 @@ export default function ProcessSection() {
           line-height: 1.2;
         }
         .section-title span {
-          color: #f5c518;
-          -webkit-text-stroke: 1px #652b32;
+          color: #652b32;
+          position: relative;
+          z-index: 1;
+        }
+        .section-title span::after {
+          content: '';
+          position: absolute;
+          bottom: 8%;
+          left: -2px;
+          right: -2px;
+          height: 28%;
+          background: #f5c518;
+          opacity: 0.4;
+          z-index: -1;
+          border-radius: 4px;
         }
         .section-sub {
           color: rgba(101,43,50,0.65);
@@ -159,7 +174,7 @@ export default function ProcessSection() {
           box-shadow: 0 12px 32px rgba(101,43,50,0.1);
         }
         .step-icon {
-          font-size: 1.5rem;
+          color: #652b32;
           margin-bottom: 0.5rem;
         }
         .step-title {

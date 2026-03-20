@@ -95,7 +95,7 @@ export default function ProcessSection() {
   return (
     <section
       className="py-28 px-12 relative overflow-hidden"
-      style={{ background: "var(--burgundy-darker)" }}
+      style={{ background: "#652B32" }}
     >
       {/* BG */}
       <div className="absolute inset-0 pointer-events-none">
@@ -134,7 +134,7 @@ export default function ProcessSection() {
             }}
           >
             Our Development{" "}
-            <span style={{ color: "var(--gold)" }}>Process</span>
+            <span style={{ fontSize: "clamp(34px, 4vw, 54px)", color: "var(--gold)" }}>Process</span>
           </h2>
         </div>
 

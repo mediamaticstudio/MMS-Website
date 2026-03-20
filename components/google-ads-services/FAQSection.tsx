@@ -98,8 +98,21 @@ export default function FAQSection() {
           line-height: 1.2;
         }
         .section-title span {
-          color: #f5c518;
-          -webkit-text-stroke: 1px #652b32;
+          color: #652b32;
+          position: relative;
+          z-index: 1;
+        }
+        .section-title span::after {
+          content: '';
+          position: absolute;
+          bottom: 8%;
+          left: -2px;
+          right: -2px;
+          height: 28%;
+          background: #f5c518;
+          opacity: 0.4;
+          z-index: -1;
+          border-radius: 4px;
         }
         .section-sub {
           color: rgba(101,43,50,0.6);

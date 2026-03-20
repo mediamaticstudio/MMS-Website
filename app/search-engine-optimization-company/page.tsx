@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     keywords:
         "SEO company in Coimbatore, SEO services in Coimbatore, best SEO agency Coimbatore, search engine optimization Coimbatore, MediaMatic Studio",
     alternates: {
-        canonical: "/search-engine-optimization-company",
+        canonical: "/search-engine-optimization-company/",
     },
     openGraph: {
         title: "SEO Company in Coimbatore | MediaMatic Studio",
         description:
             "MediaMatic Studio is the best SEO company in Coimbatore. Boost your organic visibility, rankings, and traffic with our expert SEO strategies.",
-        url: "/search-engine-optimization-company",
+        url: "https://mediamaticstudio.com/search-engine-optimization-company/",
         type: "website",
     },
     twitter: {

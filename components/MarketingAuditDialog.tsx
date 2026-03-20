@@ -367,8 +367,10 @@ export const MarketingAuditDialog: React.FC<MarketingAuditDialogProps> = ({
                 type: "Marketing Audit",
             });
 
-            setShowSuccess(true);
+            // ✅ FIX: Close the main dialog first, then show the success popup
+            onOpenChange(false);
             form.reset();
+            setShowSuccess(true);
         } catch (error) {
             toast.error("Failed to send request", {
                 description: "Please try again later or contact us directly.",
@@ -385,8 +387,8 @@ export const MarketingAuditDialog: React.FC<MarketingAuditDialogProps> = ({
             <SuccessPopup
                 isOpen={showSuccess}
                 onClose={() => {
+                    // ✅ FIX: Only close the success popup — main dialog already closed
                     setShowSuccess(false);
-                    onOpenChange(false);
                 }}
                 title="Audit Requested!"
                 message="Thank you for your interest! Our team will review your website and get back to you with a detailed audit shortly."
@@ -608,4 +610,3 @@ export const MarketingAuditDialog: React.FC<MarketingAuditDialogProps> = ({
         </>
     );
 };
-

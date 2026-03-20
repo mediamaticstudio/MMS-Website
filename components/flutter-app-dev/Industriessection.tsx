@@ -1,18 +1,20 @@
 "use client";
+import { HeartPulse, Landmark, ShoppingCart, Plane, GraduationCap, Truck, Film, Home, Fuel, Car, Factory } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
-const industries = [
-    { icon: "🏥", title: "Healthcare", desc: "Remote consultations, EHR, and patient engagement apps." },
-    { icon: "💰", title: "Finance", desc: "Mobile banking, portfolio management, and transaction apps." },
-    { icon: "🛒", title: "eCommerce", desc: "Responsive e-commerce with real-time inventory and payment gateways." },
-    { icon: "✈️", title: "Travel", desc: "Seamless booking systems, personalized customer experiences." },
-    { icon: "🎓", title: "Education", desc: "Interactive e-learning platforms with quizzes and media content." },
-    { icon: "🚚", title: "Logistics", desc: "Fleet management and real-time tracking solutions." },
-    { icon: "🎬", title: "Entertainment", desc: "Enhance customer engagement and reach across media platforms." },
-    { icon: "🏠", title: "Real Estate", desc: "Property listings, virtual tours, and client communication tools." },
-    { icon: "✈️", title: "Aviation", desc: "DevOps/Agile-powered solutions for aviation software needs." },
-    { icon: "⛽", title: "Oil & Gas", desc: "Asset tracking, inspection, and data sharing applications." },
-    { icon: "🚗", title: "Automotive", desc: "Digital transformation apps for competitive automotive businesses." },
-    { icon: "🏭", title: "Manufacturing", desc: "Real-time dashboards, workflow automation, and performance tracking." },
+const industries: { Icon: LucideIcon; title: string; desc: string }[] = [
+    { Icon: HeartPulse, title: "Healthcare", desc: "Remote consultations, EHR, and patient engagement apps." },
+    { Icon: Landmark, title: "Finance", desc: "Mobile banking, portfolio management, and transaction apps." },
+    { Icon: ShoppingCart, title: "eCommerce", desc: "Responsive e-commerce with real-time inventory and payment gateways." },
+    { Icon: Plane, title: "Travel", desc: "Seamless booking systems, personalized customer experiences." },
+    { Icon: GraduationCap, title: "Education", desc: "Interactive e-learning platforms with quizzes and media content." },
+    { Icon: Truck, title: "Logistics", desc: "Fleet management and real-time tracking solutions." },
+    { Icon: Film, title: "Entertainment", desc: "Enhance customer engagement and reach across media platforms." },
+    { Icon: Home, title: "Real Estate", desc: "Property listings, virtual tours, and client communication tools." },
+    { Icon: Plane, title: "Aviation", desc: "DevOps/Agile-powered solutions for aviation software needs." },
+    { Icon: Fuel, title: "Oil & Gas", desc: "Asset tracking, inspection, and data sharing applications." },
+    { Icon: Car, title: "Automotive", desc: "Digital transformation apps for competitive automotive businesses." },
+    { Icon: Factory, title: "Manufacturing", desc: "Real-time dashboards, workflow automation, and performance tracking." },
 ];
 
 export default function IndustriesSection() {
@@ -31,7 +33,7 @@ export default function IndustriesSection() {
                 <div className="ind-grid">
                     {industries.map((ind, i) => (
                         <div key={i} className="ind-card" style={{ animationDelay: `${i * 0.05}s` }}>
-                            <div className="ind-icon">{ind.icon}</div>
+                            <div className="ind-icon"><ind.Icon size={24} strokeWidth={1.8} /></div>
                             <div className="ind-content">
                                 <h3 className="ind-title">{ind.title}</h3>
                                 <p className="ind-desc">{ind.desc}</p>
@@ -119,7 +121,7 @@ export default function IndustriesSection() {
           transform: translateY(-4px);
         }
         .ind-icon {
-          font-size: 1.8rem;
+          color: #f5c518;
           flex-shrink: 0;
         }
         .ind-content {}
