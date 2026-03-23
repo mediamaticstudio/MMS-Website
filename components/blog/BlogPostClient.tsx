@@ -45,7 +45,9 @@ const RecentPostsGrid = ({ currentSlug }: { currentSlug: string }) => {
     const { data: allPosts = [], isLoading } = useQuery({
         queryKey: ["recent-posts"],
         queryFn: () => fetchRecentPosts(4),
-        staleTime: 0,
+        staleTime: 1000 * 60 * 5, // 5 minutes cache
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
     });
 
     const recentPosts = (allPosts as any[]).filter((p) => p.slug !== currentSlug).slice(0, 3);
@@ -69,9 +71,10 @@ const RecentPostsGrid = ({ currentSlug }: { currentSlug: string }) => {
 // ── Main Component ────────────────────────────────────────────────────────────
 interface BlogPostClientProps {
     slug: string;
+    initialPost?: any;
 }
 
-const BlogPostClient = ({ slug }: BlogPostClientProps) => {
+const BlogPostClient = ({ slug, initialPost }: BlogPostClientProps) => {
     const router = useRouter();
     const { scrollYProgress } = useScroll();
     const [isMobile, setIsMobile] = useState(false);
@@ -80,11 +83,12 @@ const BlogPostClient = ({ slug }: BlogPostClientProps) => {
     const { data: post, isLoading: loading, isError, error: fetchError } = useQuery({
         queryKey: ["blog-post", slug],
         queryFn: () => fetchBlogPostBySlug(slug),
+        initialData: initialPost || undefined,
         enabled: !!slug,
-        staleTime: 0,
+        staleTime: 1000 * 60 * 5, // 5 minutes cache
         gcTime: 1000 * 60 * 30,
-        refetchOnWindowFocus: true,
-        refetchOnMount: true,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
     });
 
     const error = isError

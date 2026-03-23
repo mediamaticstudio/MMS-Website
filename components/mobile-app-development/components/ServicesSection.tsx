@@ -60,10 +60,10 @@ export default function ServicesSection() {
                 {s.title}
               </div>
               <p className={styles.cardDesc}>{s.desc}</p>
-              <div className={styles.arrow}>
+              {/* <div className={styles.arrow}>
                 <ArrowRight size={14} strokeWidth={2.5} />
                 Learn More
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

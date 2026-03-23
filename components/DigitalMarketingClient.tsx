@@ -134,7 +134,7 @@ export function DigitalMarketingClient() {
     const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
     const router = useRouter();
 
-    const { data: recentPosts, isLoading } = useQuery({
+    const { data: recentPosts, isLoading, isError } = useQuery({
         queryKey: ["recent-posts-marketing"],
         queryFn: () => fetchRecentPosts(3),
         staleTime: 1000 * 60 * 30,
@@ -431,6 +431,16 @@ export function DigitalMarketingClient() {
                             <div className="flex flex-col items-center justify-center py-32 gap-6">
                                 <Loader2 className="w-12 h-12 text-[#652b32] animate-spin opacity-20" />
                                 <p className="text-[#652b32]/40 font-black uppercase tracking-[0.2em] text-xs">Opening scrolls...</p>
+                            </div>
+                        ) : isError ? (
+                            <div className="text-center py-20 border-2 border-dashed border-[#652b32]/10 rounded-3xl">
+                                <p className="text-[#652b32]/60 font-medium mb-4 uppercase tracking-widest text-[10px]">Failed to load blog posts</p>
+                                <Link 
+                                    href="/blog"
+                                    className="text-[#652b32] font-black uppercase tracking-widest text-[10px] underline decoration-2 underline-offset-4 hover:opacity-70 transition-all font-sans"
+                                >
+                                    Visit the blog directly
+                                </Link>
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

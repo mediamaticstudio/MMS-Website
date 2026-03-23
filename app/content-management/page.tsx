@@ -199,7 +199,7 @@ const ContentManagement = () => {
                                         </div>
                                     </div>
 
-                        <div className="container mx-auto px-6 mt-20">
+                                    {/* <div className="container mx-auto px-6 mt-20">
                             <div className="pt-20 border-t border-[#652b32]/10 content-block">
                                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 bg-[#652b32] p-8 md:p-12 rounded-[2rem] text-white">
                                     <div className="max-w-xl text-center md:text-left">
@@ -229,7 +229,7 @@ const ContentManagement = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                                 </div>
                             </div>
                         </div>

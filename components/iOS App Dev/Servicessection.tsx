@@ -138,7 +138,7 @@ export default function ServicesSection() {
                                 color: hovered === i ? "rgba(250,243,224,0.75)" : "rgba(101,43,50,0.65)",
                                 lineHeight: 1.75, margin: 0, transition: "color 0.28s",
                             }}>{s.desc}</p>
-
+                            {/* 
                             <div style={{
                                 display: "flex", alignItems: "center", gap: "6px",
                                 marginTop: "28px",
@@ -149,7 +149,7 @@ export default function ServicesSection() {
                             }}>
                                 Learn More
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
-                            </div>
+                            </div> */}
                         </div>
                     ))}
                 </div>

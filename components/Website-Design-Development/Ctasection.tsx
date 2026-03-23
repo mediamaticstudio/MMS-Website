@@ -1,9 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import { Globe2, TrendingUp } from "lucide-react";
 
 const ctaItems = [
-    { icon: "🌐", label: "What is Website Design & Development?", desc: "Web application development consists of creating strong and user-focused web applications that provide website design services like fluid user interactions across many devices. Smart front-end design and sturdy back-end architecture of the web application are likely to boost business productivity and consumer interactions." },
-    { icon: "📈", label: "How does a website give success for businesses?", desc: "As a company of website app developers, we specialize in creating dynamic and scalable web applications that are personalized to deliver improved business results for you. From custom portals to interactive eCommerce platforms, our solutions cater to worldwide audiences while meeting your revenue objectives." },
+    { icon: Globe2, label: "What is Website Design & Development?", desc: "Web application development consists of creating strong and user-focused web applications that provide website design services like fluid user interactions across many devices. Smart front-end design and sturdy back-end architecture of the web application are likely to boost business productivity and consumer interactions." },
+    { icon: TrendingUp, label: "How does a website give success for businesses?", desc: "As a company of website app developers, we specialize in creating dynamic and scalable web applications that are personalized to deliver improved business results for you. From custom portals to interactive eCommerce platforms, our solutions cater to worldwide audiences while meeting your revenue objectives." },
 ];
 
 export default function CTASection() {
@@ -20,7 +21,7 @@ export default function CTASection() {
         <section ref={ref} style={{ background: "#faf3e0", padding: "5rem 6vw" }}>
             <div style={{ display: "inline-block", borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
                 <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                    💡 Our Purpose
+                    Our Purpose
                 </span>
             </div>
             <h2 style={{
@@ -44,7 +45,9 @@ export default function CTASection() {
                         transform: visible ? "translateY(0)" : "translateY(30px)",
                         transition: `opacity 0.7s ease ${i * 0.2}s, transform 0.7s ease ${i * 0.2}s`,
                     }}>
-                        <div style={{ fontSize: "2.2rem", marginBottom: "1rem" }}>{item.icon}</div>
+                        <div style={{ fontSize: "2.2rem", marginBottom: "1rem", color: i === 0 ? "#652b32" : "#f5c518" }}>
+                            <item.icon size={36} strokeWidth={1.5} />
+                        </div>
                         <h3 style={{
                             fontFamily: "'Playfair Display', serif",
                             fontSize: "1.25rem", fontWeight: 700,
@@ -88,9 +91,9 @@ export default function CTASection() {
                     fontWeight: 800, fontSize: "0.9rem",
                     letterSpacing: "0.05em", textTransform: "uppercase",
                     cursor: "pointer", fontFamily: "inherit",
-                    flexShrink: 0,
+                    flexShrink: 0, display: "flex", alignItems: "center", gap: "0.5rem",
                 }}>
-                    🤝 Let's Collaborate
+                    Let's Collaborate
                 </button>
             </div>
         </section>

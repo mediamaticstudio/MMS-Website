@@ -8,20 +8,24 @@ import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
 import { generateCollectionPageSchema, generateBreadcrumbSchema } from "@/lib/seo-schemas";
 
-const BlogListContent = () => {
+interface BlogListContentProps {
+    initialData?: { posts: any[]; totalPages: number } | null;
+}
+
+const BlogListContent = ({ initialData }: BlogListContentProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const initialPage = parseInt(searchParams.get("page") || "1", 10);
-    const [page, setPage] = useState(initialPage);
+    const [page, setPage] = useState(1); // Default to 1 for static build
 
     const { data, isLoading, isError, error, isFetching } = useQuery({
         queryKey: ["blog-posts", page],
         queryFn: () => fetchBlogPosts(page),
-        staleTime: 0,
+        initialData: page === 1 ? (initialData || undefined) : undefined,
+        staleTime: 1000 * 60 * 5, // 5 minutes cache to prevent aggressive refetching
         gcTime: 1000 * 60 * 30,
         refetchInterval: false,
-        refetchOnWindowFocus: true,
-        refetchOnMount: true,
+        refetchOnWindowFocus: false,
+        refetchOnMount: false,
     });
 
     const handlePageChange = (newPage: number) => {

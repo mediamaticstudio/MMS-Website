@@ -11,19 +11,34 @@ export async function fetchBlogPosts(page: number = 1): Promise<{ posts: any[], 
         "featured_media", "categories", "tags", "_links", "author", "yoast_head_json", "acf"
     ].join(",");
 
-    const response = await fetch(
-        `${WP_URL}/posts?page=${page}&per_page=9&_embed=wp:featuredmedia,wp:term,author&_fields=${fields},_embedded&t=${Date.now()}`,
-        { cache: "no-store" }
-    );
-    if (!response.ok) {
-        throw new Error(`Error fetching blog posts: ${response.statusText}`);
+    try {
+        const response = await fetch(
+            `${WP_URL}/posts?page=${page}&per_page=9&_embed=wp:featuredmedia,wp:term,author&_fields=${fields},_embedded&t=${Date.now()}`,
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            if (response.status === 403) {
+                console.error("403 Forbidden: WordPress REST API is likely blocked by a security plugin or WAF.");
+            }
+            if (response.status === 404) {
+                console.error("404 Not Found: WordPress REST API endpoint not found. Check if Permalinks are set to 'Post name'.");
+            }
+            throw new Error(`Error fetching blog posts: ${response.status} ${response.statusText}`);
+        }
+
+        const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1", 10);
+        const posts = await response.json();
+        return {
+            posts: posts.map(mapWPPostToBlogPost),
+            totalPages
+        };
+    } catch (error: any) {
+        if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
+            console.error("CORS Error: The browser blocked the request. Please ensure Access-Control-Allow-Origin is configured on the WordPress server.");
+        }
+        throw error;
     }
-    const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1", 10);
-    const posts = await response.json();
-    return {
-        posts: posts.map(mapWPPostToBlogPost),
-        totalPages
-    };
 }
 
 export async function fetchRecentPosts(count: number = 4): Promise<any[]> {

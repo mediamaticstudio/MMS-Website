@@ -35,16 +35,16 @@ const serviceCategories = [
             { label: "Flutter App Development", href: "/flutter-app-development-company" },
         ],
     },
-    {
-        label: "Software Development",
-        hasSubMenu: true,
-        subLinks: [
-            { label: "Website Development", href: "/Website-Design-Development-company/" },
-            { label: "WordPress Website Development", href: "/Wordpress-Website-Dev-Company/" },
-            { label: "E-Commerce Development", href: "/e-Commerce-Website-Dev/" },
-            { label: "React JS Website Development", href: "/reactJS-Web-Dev-Company/" },
-        ],
-    },
+    // {
+    //     label: "Software Development",
+    //     hasSubMenu: true,
+    //     subLinks: [
+    //         { label: "Website Development", href: "/Website-Design-Development-company/" },
+    //         { label: "WordPress Website Development", href: "/Wordpress-Website-Dev-Company/" },
+    //         { label: "E-Commerce Development", href: "/e-Commerce-Website-Dev/" },
+    //         { label: "React JS Website Development", href: "/reactJS-Web-Dev-Company/" },
+    //     ],
+    // },
     { label: "2D & 3D Animation Videos", href: "/animation-videos-company/", hasSubMenu: false },
     { label: "Content Management", href: "/content-management/", hasSubMenu: false },
     { label: "Designing", href: "/designing/", hasSubMenu: false },

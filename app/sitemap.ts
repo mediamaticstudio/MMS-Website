@@ -59,7 +59,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     try {
         const res = await fetch(
-            "https://blog.mediamaticstudio.com/wp-json/wp/v2/posts"
+            "https://blog.mediamaticstudio.com/wp-json/wp/v2/posts?per_page=100"
         );
         const posts = await res.json();
 

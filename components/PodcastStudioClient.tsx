@@ -193,7 +193,7 @@ const faqs = [
 export function PodcastStudioClient() {
     const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-    const { data: recentPosts, isLoading } = useQuery({
+    const { data: recentPosts, isLoading, isError } = useQuery({
         queryKey: ["recent-posts-podcast"],
         queryFn: () => fetchRecentPosts(3),
         staleTime: 1000 * 60 * 30,
@@ -638,6 +638,16 @@ export function PodcastStudioClient() {
                             <div className="flex flex-col items-center justify-center py-20 gap-4">
                                 <Loader2 className="w-10 h-10 text-[#652b32] animate-spin opacity-20" />
                                 <p className="text-[#652b32]/40 font-bold uppercase tracking-widest text-xs">Fetching latest posts...</p>
+                            </div>
+                        ) : isError ? (
+                            <div className="text-center py-20 border-2 border-dashed border-[#652b32]/10 rounded-3xl">
+                                <p className="text-[#652b32]/60 font-medium mb-4 uppercase tracking-widest text-[10px]">Failed to load blog posts</p>
+                                <Link 
+                                    href="/blog"
+                                    className="text-[#652b32] font-black uppercase tracking-widest text-[10px] underline decoration-2 underline-offset-4 hover:opacity-70 transition-all font-sans"
+                                >
+                                    Visit the blog directly
+                                </Link>
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

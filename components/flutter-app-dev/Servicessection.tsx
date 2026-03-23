@@ -3,62 +3,62 @@ import { Palette, Settings, FlaskConical, Wrench, RefreshCw, Plug } from "lucide
 import type { LucideIcon } from "lucide-react";
 
 const services: { Icon: LucideIcon; title: string; desc: string }[] = [
-    {
-        Icon: Palette,
-        title: "UI/UX & Prototyping",
-        desc: "User-friendly, interactive, and visually appealing interfaces using Flutter's rich widget set.",
-    },
-    {
-        Icon: Settings,
-        title: "Custom App Development",
-        desc: "High-performance Flutter apps from one codebase targeting web, desktop, iOS, and Android.",
-    },
-    {
-        Icon: FlaskConical,
-        title: "QA & Testing",
-        desc: "Thorough inspection and debugging to ensure minimal errors and peak performance.",
-    },
-    {
-        Icon: Wrench,
-        title: "App Maintenance",
-        desc: "Ongoing bug fixes, OS upgrades, performance improvements, and new feature additions.",
-    },
-    {
-        Icon: RefreshCw,
-        title: "App Modernization",
-        desc: "Migrate your Flutter app to the latest version for better security and performance.",
-    },
-    {
-        Icon: Plug,
-        title: "API Integration",
-        desc: "Seamlessly integrate third-party APIs and services to expand your app's functionality.",
-    },
+  {
+    Icon: Palette,
+    title: "UI/UX & Prototyping",
+    desc: "User-friendly, interactive, and visually appealing interfaces using Flutter's rich widget set.",
+  },
+  {
+    Icon: Settings,
+    title: "Custom App Development",
+    desc: "High-performance Flutter apps from one codebase targeting web, desktop, iOS, and Android.",
+  },
+  {
+    Icon: FlaskConical,
+    title: "QA & Testing",
+    desc: "Thorough inspection and debugging to ensure minimal errors and peak performance.",
+  },
+  {
+    Icon: Wrench,
+    title: "App Maintenance",
+    desc: "Ongoing bug fixes, OS upgrades, performance improvements, and new feature additions.",
+  },
+  {
+    Icon: RefreshCw,
+    title: "App Modernization",
+    desc: "Migrate your Flutter app to the latest version for better security and performance.",
+  },
+  {
+    Icon: Plug,
+    title: "API Integration",
+    desc: "Seamlessly integrate third-party APIs and services to expand your app's functionality.",
+  },
 ];
 
 export default function ServicesSection() {
-    return (
-        <section id="services" className="services-section">
-            <div className="services-inner">
-                <div className="section-label">What We Offer</div>
-                <h2 className="section-title">
-                    Our Flutter Development <span>Services</span>
-                </h2>
-                <p className="section-sub">
-                    End-to-end Flutter solutions — from design to deployment and beyond.
-                </p>
-                <div className="services-grid">
-                    {services.map((s, i) => (
-                        <div key={i} className="service-card" style={{ animationDelay: `${i * 0.1}s` }}>
-                            <div className="service-icon"><s.Icon size={30} strokeWidth={1.8} /></div>
-                            <h3 className="service-title">{s.title}</h3>
-                            <p className="service-desc">{s.desc}</p>
-                            <div className="service-arrow">→</div>
-                        </div>
-                    ))}
-                </div>
+  return (
+    <section id="services" className="services-section">
+      <div className="services-inner">
+        <div className="section-label">What We Offer</div>
+        <h2 className="section-title">
+          Our Flutter Development <span>Services</span>
+        </h2>
+        <p className="section-sub">
+          End-to-end Flutter solutions — from design to deployment and beyond.
+        </p>
+        <div className="services-grid">
+          {services.map((s, i) => (
+            <div key={i} className="service-card" style={{ animationDelay: `${i * 0.1}s` }}>
+              <div className="service-icon"><s.Icon size={30} strokeWidth={1.8} /></div>
+              <h3 className="service-title">{s.title}</h3>
+              <p className="service-desc">{s.desc}</p>
+              {/* <div className="service-arrow">→</div> */}
             </div>
+          ))}
+        </div>
+      </div>
 
-            <style jsx>{`
+      <style jsx>{`
         .services-section {
           background: #faf3e0;
           padding: 6rem 2rem;
@@ -182,6 +182,6 @@ export default function ServicesSection() {
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
-        </section>
-    );
+    </section>
+  );
 }
