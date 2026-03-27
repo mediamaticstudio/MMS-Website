@@ -51,6 +51,7 @@ const serviceCategories = [
         subLinks: [
             { label: "Logo Design Company", href: "/logo-design-company" },
             { label: "Flyer Design Company", href: "/flyer-design-company" },
+            { label: "UI UX Design Agency", href: "/ui-ux-design-agency" },
         ],
     },
     { label: "2D & 3D Animation Videos", href: "/animation-videos-company/", hasSubMenu: false },
