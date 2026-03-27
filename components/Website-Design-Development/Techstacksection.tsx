@@ -1,92 +1,221 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { Layers, Monitor, Cog, Palette, Layout, ShoppingCart, Atom, Settings } from "lucide-react";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import {
+    Code2,
+    Globe,
+    Database,
+    Palette,
+    Layout,
+    Server,
+    Gauge,
+    Sparkles,
+    CheckCircle2
+} from "lucide-react";
 
 const expertise = [
-    { icon: Layers, title: "Full-Stack Development", desc: "Front-end design skill is combined with back-end database skills, as well as API skill sets that use DevOps, all within one integrated environment. Using contemporary stacks and experience, our bespoke web application development firm guarantees that each layer is designed for performance, scalability, and security." },
-    { icon: Monitor, title: "Static Websites", desc: "We create professional static websites for small businesses and start-ups that are of top-notch quality and reliable. We create attractive and user-friendly websites. These web pages will amaze your website visitors and generate leads and money for your business. Not only do we create static websites, but we also create dynamic websites with CMS and other top-notch technologies." },
-    { icon: Cog, title: "Dynamic Websites", desc: "Dynamic applications are suitable for many types of industries, including education, finance, and gaming. Users will benefit from a unique experience with each instance of access to dynamic applications due to the ability of dynamic applications to generate dynamic content at the time of use. Our applications are able to dynamically generate content." },
-    { icon: Palette, title: "Custom Website Design", desc: "Get the benefits of personalized custom web application development services for your organization. Our web consultants use proven methodologies to create a tailored solution for you online." },
-    { icon: Layout, title: "WordPress Development", desc: "MediaMatic creates custom WordPress sites and does not employ cookie-cutter themes. The website is consistent with your brand and functions as intended. We'll help you set up all the necessary security, simplify any upgrades that may arise, and provide continued assistance. Your website will expand as your business does." },
-    { icon: ShoppingCart, title: "Ecommerce Development", desc: "We can help you create online marketplaces and eCommerce platforms that provide a better user experience and drive more sales. Our eCommerce solutions are not only secure, scalable, and maintainable but also offer features such as payment gateways and product recommendations." },
-    { icon: Atom, title: "React Development", desc: "We are not just a company that develops React web applications; we create applications that are custom to your needs. Therefore, the web application needs to be very highly available, performant, and flexible. Our React development team works with your backend, DevOps, and design teams to ensure integration with your development workflow." },
+    {
+        icon: Code2,
+        title: "Full-Stack Development",
+        items: [
+            "Custom front-end and back-end web applications",
+            "Personalized to meet unique business requirements",
+            "Scalable and high-performance solutions"
+        ]
+    },
+    {
+        icon: Globe,
+        title: "Static Websites",
+        items: [
+            "Fast, efficient, and cost-effective websites",
+            "Suitable for portfolios and small business landing pages",
+            "Highly secure and easy to maintain"
+        ]
+    },
+    {
+        icon: Database,
+        title: "Dynamic Websites",
+        items: [
+            "Complex, interactive, and database-driven sites",
+            "Real-time updates and user interactions",
+            "Perfect for portals and large platforms"
+        ]
+    },
+    {
+        icon: Palette,
+        title: "Custom Website Design",
+        items: [
+            "Unique UI/UX specifically for your brand",
+            "Focus on distinct visual identity",
+            "Better conversion and user engagement"
+        ]
+    },
+    {
+        icon: Layout,
+        title: "WordPress Development",
+        items: [
+            "Custom themes and efficient plugin integration",
+            "Easy-to-use content management systems",
+            "SEO-friendly and responsive design"
+        ]
+    },
+    {
+        icon: Server,
+        title: "Ecommerce Development",
+        items: [
+            "Secure, high-performing online stores",
+            "Seamless payment gateway and order management",
+            "Inventory tracking and customer profiles"
+        ]
+    },
+    {
+        icon: Gauge,
+        title: "React Development",
+        items: [
+            "Modern, fast, and interactive user interfaces",
+            "Component-based architecture for scalability",
+            "Seamless performance with single-page application features"
+        ]
+    }
 ];
 
-export default function TechStackSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
-    const [hovered, setHovered] = useState<number | null>(null);
+const Techstacksection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-    useEffect(() => {
-        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.5, ease: "easeOut" }
+        }
+    };
 
     return (
-        <section ref={ref} style={{ background: "#652b32", padding: "5rem 6vw" }}>
-            <div style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(20px)",
-                transition: "opacity 0.7s ease, transform 0.7s ease",
-            }}>
-                <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
-                    <Settings size={14} style={{ marginRight: "0.5rem", display: "inline-block", verticalAlign: "middle" }} />
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                        What We Build
-                    </span>
-                </div>
-                <h2 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                    fontWeight: 900, color: "#faf3e0",
-                    marginBottom: "0.6rem", lineHeight: 1.15,
-                }}>
-                    Our Expertise in Website Design & Development
-                </h2>
-                <p style={{ fontSize: "0.97rem", color: "rgba(250,243,224,0.6)", maxWidth: "680px", lineHeight: 1.75, marginBottom: "3rem", fontWeight: 300 }}>
-                    From strategy to discovery, mobile interface, and headless architecture, we fulfill all performance, security, and usability benchmarks. Hire our web app developers to suit user and global demands ranging from AI/ML to progressive web apps that are dynamic and responsive.
-                </p>
+        <section
+            ref={sectionRef}
+            className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-background via-background to-primary/5"
+            aria-label="Our expertise in website design and development"
+        >
+            {/* Skip Link */}
+            <a
+                href="#expertise-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg"
+            >
+                Skip to expertise content
+            </a>
+
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[100px]" />
             </div>
 
-            <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-                gap: "2px",
-                background: "rgba(245,197,24,0.12)",
-            }}>
-                {expertise.map((item, i) => (
-                    <div
-                        key={i}
-                        onMouseEnter={() => setHovered(i)}
-                        onMouseLeave={() => setHovered(null)}
-                        style={{
-                            background: hovered === i ? "rgba(245,197,24,0.1)" : "#652b32",
-                            padding: "2.2rem 2rem",
-                            border: "1px solid rgba(245,197,24,0.1)",
-                            cursor: "default",
-                            opacity: visible ? 1 : 0,
-                            transform: visible ? "translateY(0)" : "translateY(30px)",
-                            transition: `background 0.25s ease, opacity 0.6s ease ${i * 0.08}s, transform 0.6s ease ${i * 0.08}s`,
-                        }}
-                    >
-                        <div style={{ fontSize: "1.8rem", marginBottom: "0.8rem", color: "#f5c518" }}>
-                            {item.icon && <item.icon size={32} />}
-                        </div>
-                        <div style={{
-                            fontSize: "0.97rem", fontWeight: 700,
-                            color: hovered === i ? "#f5c518" : "#faf3e0",
-                            marginBottom: "0.6rem",
-                            transition: "color 0.25s ease",
-                        }}>
-                            {item.title}
-                        </div>
-                        <div style={{ fontSize: "0.87rem", lineHeight: 1.72, color: "rgba(250,243,224,0.55)", fontWeight: 300 }}>
-                            {item.desc}
-                        </div>
+            <div id="expertise-content" className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Section Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="text-center max-w-3xl mx-auto mb-16 md:mb-20"
+                >
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                        <Sparkles className="w-4 h-4 text-primary" aria-hidden="true" />
+                        <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+                            Our Expertise
+                        </span>
                     </div>
-                ))}
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+                        Expertise in
+                        <span className="text-primary block mt-2">Website Design & Development</span>
+                    </h2>
+                    <p className="text-lg text-muted-foreground">
+                        Comprehensive solutions tailored to your business needs
+                    </p>
+                </motion.div>
+
+                {/* Expertise Grid - Minimal Card Design */}
+                <motion.div
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate={isInView ? "visible" : "hidden"}
+                    className="flex flex-wrap justify-center gap-x-8 gap-y-12"
+                >
+                    {expertise.map((item, index) => (
+                        <motion.div
+                            key={item.title}
+                            variants={itemVariants}
+                            className="group w-full md:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)]"
+                        >
+                            {/* Icon */}
+                            <div className="mb-4">
+                                <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                                    <item.icon className="w-6 h-6 text-primary" aria-hidden="true" />
+                                </div>
+                            </div>
+
+                            {/* Title */}
+                            <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                                {item.title}
+                            </h3>
+
+                            {/* Features List */}
+                            <ul className="space-y-2">
+                                {item.items.map((point, idx) => (
+                                    <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                        <CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" aria-hidden="true" />
+                                        <span className="leading-relaxed">{point}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    ))}
+                </motion.div>
+
+                {/* CTA Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="mt-20 text-center"
+                >
+                    <div className="inline-flex flex-col items-center">
+                        <div className="w-12 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-6" />
+                        <p className="text-muted-foreground mb-4">
+                            Ready to bring your vision to life?
+                        </p>
+                        <button
+                            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-300"
+                            aria-label="Start your project"
+                        >
+                            Start Your Project
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </div>
+                </motion.div>
+
+                {/* Accessibility */}
+                <div className="sr-only" aria-live="polite" aria-atomic="true">
+                    {isInView ? "Expertise section loaded with 7 service categories" : "Loading expertise section"}
+                </div>
             </div>
         </section>
     );
-}
+};
+
+export default Techstacksection;

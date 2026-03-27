@@ -21,12 +21,16 @@ const BlogListContent = ({ initialData }: BlogListContentProps) => {
         queryKey: ["blog-posts", page],
         queryFn: () => fetchBlogPosts(page),
         initialData: page === 1 ? (initialData || undefined) : undefined,
-        staleTime: 1000 * 60 * 5, // 5 minutes cache to prevent aggressive refetching
+        staleTime: 1000 * 60 * 5,
         gcTime: 1000 * 60 * 30,
         refetchInterval: false,
         refetchOnWindowFocus: false,
         refetchOnMount: false,
     });
+
+    // ✅ SAFE FALLBACKS (ONLY ADDITION)
+    const posts = data?.posts || [];
+    const totalPages = data?.totalPages || 0;
 
     const handlePageChange = (newPage: number) => {
         setPage(newPage);
@@ -44,7 +48,7 @@ const BlogListContent = ({ initialData }: BlogListContentProps) => {
                         name: "MediaMatic Studio Blog",
                         description: "Latest insights and stories about digital marketing, web design, and animation.",
                         url: `/blog/${page > 1 ? `?page=${page}` : ""}`,
-                        itemCount: data?.posts.length
+                        itemCount: posts.length
                     }))
                 }}
             />
@@ -57,6 +61,7 @@ const BlogListContent = ({ initialData }: BlogListContentProps) => {
                     ]))
                 }}
             />
+
             {/* Background Pattern */}
             <div
                 className="absolute inset-0 opacity-[0.025] pointer-events-none"
@@ -116,7 +121,7 @@ const BlogListContent = ({ initialData }: BlogListContentProps) => {
                     <>
                         {/* Posts Grid */}
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-16 relative">
-                            {data?.posts.map((post: any) => (
+                            {posts.map((post: any) => (
                                 <BlogCard key={post.slug} post={post} />
                             ))}
                             {isFetching && !isLoading && (
@@ -127,7 +132,7 @@ const BlogListContent = ({ initialData }: BlogListContentProps) => {
                         </div>
 
                         {/* Pagination */}
-                        {data && data.totalPages > 1 && (
+                        {totalPages > 1 && (
                             <div className="flex justify-center items-center gap-4">
                                 <button
                                     onClick={() => handlePageChange(page - 1)}
@@ -138,11 +143,11 @@ const BlogListContent = ({ initialData }: BlogListContentProps) => {
                                     <ArrowLeft size={20} />
                                 </button>
                                 <span className="text-sm font-bold text-[#652b32] tracking-widest">
-                                    PAGE {page} OF {data.totalPages}
+                                    PAGE {page} OF {totalPages}
                                 </span>
                                 <button
                                     onClick={() => handlePageChange(page + 1)}
-                                    disabled={page >= data.totalPages}
+                                    disabled={page >= totalPages}
                                     className="w-12 h-12 rounded-full border-2 border-[#652b32]/10 flex items-center justify-center text-[#652b32] hover:bg-[#652b32] hover:text-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#652b32] transition-all"
                                     aria-label="Next Page"
                                 >

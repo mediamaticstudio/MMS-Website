@@ -1,123 +1,66 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { Target, Users, Smartphone, Zap, Wrench, Ruler, Puzzle, BarChart, MessageSquare, Clock, Trophy, CheckCircle } from "lucide-react";
 
-const standout = [
-    { icon: Target, title: "Strategic, Business-Driven Web Solutions", desc: "An effective website will allow your company to draw in potential clientele by providing it with a distinct advantage versus other firms, particularly those that operate in the same industry, which can help increase revenue." },
+import { motion } from "framer-motion";
+import { Target, Users, Gauge, Shield, Headphones, Lightbulb } from "lucide-react";
+
+const standOutItems = [
+    { icon: Target, title: "Strategic, Business-Driven Web Solutions", desc: "An effective website draws in potential clientele by providing a distinct advantage versus competitors, helping increase revenue." },
     { icon: Users, title: "Expert Website Design & Development Team", desc: "We are experts at bringing your web app idea to reality. Our skilled developers have the qualifications and knowledge to make it happen." },
-    { icon: Smartphone, title: "User-Centric UI/UX & Responsive Design", desc: "Tailored web development services can assist organizations in creating distinctive designs that set them apart from the competition." },
-    { icon: Zap, title: "High Performance, Speed & Scalability", desc: "When a web development agency creates a scalable website for your business, it will continue to grow with it. Developing a well-designed website will enable a business to operate more efficiently in terms of their processes and save them time and resources." },
-    { icon: Wrench, title: "End-to-End Website Support & Maintenance", desc: "Because custom websites do not require expensive equipment or software, they are more cost-effective. It is a cost-effective choice for enterprises of any size." },
+    { icon: Lightbulb, title: "User-Centric UI/UX & Responsive Design", desc: "Tailored web development services assist organizations in creating distinctive designs that set them apart from the competition." },
+    { icon: Gauge, title: "High Performance, Speed & Scalability", desc: "When we create a scalable website for your business, it will continue to grow with it, saving time and resources." },
+    { icon: Headphones, title: "End-to-End Website Support & Maintenance", desc: "Custom websites are cost-effective, not requiring expensive equipment or software. A great choice for enterprises of any size." },
+    { icon: Shield, title: "Transparent Communication", desc: "We protect all of your information and will not disclose anything about your project without your permission." },
 ];
 
-const whyChoose = [
-    { icon: Ruler, title: "Strategic Approach", desc: "Using our best custom website design company enables businesses to optimize their work practices, cancel unneeded work patterns, and enhance how effective they are at operating as an enterprise." },
-    { icon: Puzzle, title: "Custom-Built Solutions", desc: "You may give your users a more tailored experience based on their behavior, location, or preferences, which is frequently more difficult to accomplish with pre-made themes." },
-    { icon: BarChart, title: "Performance & Scalability", desc: "The needs of businesses, and hence their applications, change as they grow. A custom web application can be developed with scalability in mind, allowing for growth in the future and accommodating changing business needs." },
-    { icon: MessageSquare, title: "Transparent Communication", desc: "When we begin a website development project, we begin by protecting all of your information. We will not disclose any information about your website or web application development project to anyone without your permission." },
-    { icon: Clock, title: "Timely Completion", desc: "We are an established website design agency that utilizes modern technology for developing quality internet applications on time." },
-];
-
-
-function AnimatedSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
-    const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
-    useEffect(() => {
-        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
+const Servicesection = () => {
     return (
-        <div ref={ref} style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(28px)",
-            transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-        }}>
-            {children}
-        </div>
-    );
-}
-
-export default function ServiceSection() {
-    return (
-        <>
-            {/* STAND OUT */}
-            <section style={{ background: "#652b32", padding: "5rem 6vw" }}>
-                <AnimatedSection>
-                    <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
-                        <Trophy size={14} style={{ marginRight: "0.5rem", display: "inline-block", verticalAlign: "middle" }} />
-                        <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                            Why MediaMatic
-                        </span>
-                    </div>
-                    <h2 style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                        fontWeight: 900, color: "#faf3e0",
-                        marginBottom: "0.6rem", lineHeight: 1.15,
-                    }}>
-                        How We Stand Out Among Other<br />Website Development Companies
+        <section className="py-12 md:py-16 lg:py-20 bg-primary/5">
+            <div className="container mx-auto max-w-6xl px-4 sm:px-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-8 md:mb-10"
+                >
+                    <span className="inline-block px-3 py-1 rounded-full bg-secondary/20 text-primary text-xs font-medium mb-3 md:mb-4">
+                        Why We&apos;re Different
+                    </span>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground mb-2">
+                        How We <span className="text-primary">Stand Out</span>
                     </h2>
-                    <p style={{ fontSize: "0.97rem", color: "rgba(250,243,224,0.6)", maxWidth: "580px", lineHeight: 1.7, marginBottom: "3rem" }}>
-                        MediaMatic listens to you, adjusts to you, and collaborates with you to create your own unique website design and development.
+                    <p className="text-muted-foreground max-w-2xl mx-auto text-sm md:text-base">
+                        Among other website development companies
                     </p>
-                </AnimatedSection>
+                </motion.div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2.5rem 3rem" }}>
-                    {standout.map((item, i) => (
-                        <AnimatedSection key={i} delay={i * 0.1}>
-                            <div>
-                                <div style={{ fontWeight: 700, letterSpacing: "0.1em", color: "#f5c518", opacity: 0.4, marginBottom: "0.3rem", fontFamily: "'Playfair Display', serif", fontSize: "2.2rem" }}>
-                                    0{i + 1}
-                                </div>
-                                <div style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#f5c518" }}>
-                                    {item.icon && <item.icon size={28} />}
-                                </div>
-                                <div style={{ fontSize: "0.97rem", fontWeight: 700, color: "#faf3e0", marginBottom: "0.5rem" }}>{item.title}</div>
-                                <div style={{ fontSize: "0.88rem", lineHeight: 1.72, color: "rgba(250,243,224,0.55)", fontWeight: 300 }}>{item.desc}</div>
+                <div className="space-y-0">
+                    {standOutItems.map((item, i) => (
+                        <motion.div
+                            key={item.title}
+                            initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: i * 0.06 }}
+                            className="group flex items-start gap-4 py-5 md:py-6 border-b border-border/40 last:border-b-0 hover:pl-3 transition-all duration-300"
+                        >
+                            <div className="flex-shrink-0 w-11 h-11 md:w-12 md:h-12 rounded-full bg-primary/10 group-hover:bg-secondary group-hover:scale-105 flex items-center justify-center transition-all duration-300">
+                                <item.icon className="w-5 h-5 text-primary group-hover:text-secondary-foreground transition-colors" />
                             </div>
-                        </AnimatedSection>
+                            <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-0.5">
+                                    <span className="text-[10px] font-bold text-secondary tracking-wider uppercase">0{i + 1}</span>
+                                    <div className="h-px flex-1 bg-border/30 max-w-[50px]" />
+                                </div>
+                                <h3 className="text-base md:text-lg font-semibold text-foreground mb-1">{item.title}</h3>
+                                <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-xl">{item.desc}</p>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
-            </section>
-
-            {/* WHY CHOOSE */}
-            <section style={{ background: "#faf3e0", padding: "5rem 6vw" }}>
-                <AnimatedSection>
-                    <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
-                        <CheckCircle size={14} style={{ marginRight: "0.5rem", display: "inline-block", verticalAlign: "middle" }} />
-                        <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                            Our Commitment
-                        </span>
-                    </div>
-                    <h2 style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                        fontWeight: 900, color: "#652b32",
-                        marginBottom: "3rem", lineHeight: 1.15,
-                    }}>
-                        Why Choose Our Website Development Service?
-                    </h2>
-                </AnimatedSection>
-
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "2.5rem 3rem" }}>
-                    {whyChoose.map((item, i) => (
-                        <AnimatedSection key={i} delay={i * 0.1}>
-                            <div>
-                                <div style={{ fontSize: "1.8rem", marginBottom: "0.7rem", color: "#652b32" }}>
-                                    {item.icon && <item.icon size={32} />}
-                                </div>
-                                <div style={{
-                                    width: "36px", height: "3px", background: "#f5c518",
-                                    marginBottom: "0.8rem",
-                                }} />
-                                <div style={{ fontSize: "1rem", fontWeight: 700, color: "#652b32", marginBottom: "0.5rem" }}>{item.title}</div>
-                                <div style={{ fontSize: "0.9rem", lineHeight: 1.75, color: "rgba(101,43,50,0.62)", fontWeight: 300 }}>{item.desc}</div>
-                            </div>
-                        </AnimatedSection>
-                    ))}
-                </div>
-            </section>
-        </>
+            </div>
+        </section>
     );
-}
+};
+
+export default Servicesection;

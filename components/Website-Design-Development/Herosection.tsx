@@ -1,136 +1,92 @@
 "use client";
-import { useEffect, useRef } from "react";
 
-export default function HeroSection() {
-    const words = ["Websites", "Mobile Apps", "eCommerce", "Web Apps"];
-    const wordRef = useRef<HTMLSpanElement>(null);
+import { motion } from "framer-motion";
+import { ArrowRight, Code2, Palette, Rocket, Headphones } from "lucide-react";
 
-    useEffect(() => {
-        let i = 0;
-        const el = wordRef.current;
-        if (!el) return;
-        const rotate = () => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(12px)";
-            setTimeout(() => {
-                i = (i + 1) % words.length;
-                el.textContent = words[i];
-                el.style.opacity = "1";
-                el.style.transform = "translateY(0)";
-            }, 400);
-        };
-        const timer = setInterval(rotate, 2500);
-        return () => clearInterval(timer);
-    }, []);
+const highlights = [
+    { icon: Code2, label: "Full-Stack Dev" },
+    { icon: Palette, label: "UI/UX Design" },
+    { icon: Rocket, label: "Performance" },
+    { icon: Headphones, label: "24/7 Support" },
+];
 
+const Herosection = () => {
     return (
-        <section style={{
-            background: "#652b32",
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            padding: "7rem 6vw 5rem",
-            position: "relative",
-            overflow: "hidden",
-        }}>
-            {/* Decorative circles */}
-            <div style={{
-                position: "absolute", top: "-80px", right: "-80px",
-                width: "500px", height: "500px", borderRadius: "50%",
-                border: "70px solid rgba(245,197,24,0.07)", pointerEvents: "none",
-            }} />
-            <div style={{
-                position: "absolute", bottom: "-60px", left: "8%",
-                width: "280px", height: "280px", borderRadius: "50%",
-                border: "50px solid rgba(245,197,24,0.05)", pointerEvents: "none",
-            }} />
-            {/* Diagonal accent line */}
-            <div style={{
-                position: "absolute", top: 0, right: "25%",
-                width: "2px", height: "100%",
-                background: "rgba(245,197,24,0.08)", transform: "rotate(12deg)",
-                transformOrigin: "top center", pointerEvents: "none",
-            }} />
+        <section className="relative min-h-screen flex items-center section-padding overflow-hidden">
+            <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-secondary/20 blur-3xl" />
+            <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-primary/10 blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-primary/5" />
 
-            <div style={{ maxWidth: "860px", position: "relative", zIndex: 1 }}>
-                <div style={{
-                    display: "inline-flex", alignItems: "center", gap: "0.5rem",
-                    background: "rgba(245,197,24,0.12)", border: "1px solid rgba(245,197,24,0.3)",
-                    padding: "0.4rem 1rem", marginBottom: "2rem",
-                    animation: "fadeSlideDown 0.7s ease forwards",
-                }}>
-                    <span style={{ fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "#f5c518", fontWeight: 700 }}>
-                        🌐 Website Design & Development Company
-                    </span>
+            <div className="container mx-auto max-w-7xl relative z-10">
+                <div className="max-w-3xl text-left">
+                    <motion.span
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6"
+                    >
+                        Website Design & Development
+                    </motion.span>
+
+                    <motion.h1
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 text-foreground"
+                    >
+                        We Build Websites That{" "}
+                        <span className="text-primary">Drive Growth</span> &{" "}
+                        <span className="text-secondary">Results</span>
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                        className="text-lg text-muted-foreground mb-10 max-w-2xl leading-relaxed"
+                    >
+                        MediaMatic is a group of thinkers, experienced designers, and the
+                        best developers who create outstanding websites, mobile applications,
+                        and e-commerce platforms tailored to your brand.
+                    </motion.p>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="flex flex-wrap gap-4 justify-start mb-16"
+                    >
+                        <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 text-base px-8 py-4 rounded-xl font-medium transition-colors">
+                            Get Started <ArrowRight className="w-5 h-5" />
+                        </button>
+                        <button className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary/5 text-base px-8 py-4 rounded-xl font-medium transition-colors">
+                            Our Work
+                        </button>
+                    </motion.div>
                 </div>
 
-                <h1 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(2.8rem, 5.8vw, 5.2rem)",
-                    fontWeight: 900, lineHeight: 1.08,
-                    color: "#faf3e0", marginBottom: "1rem",
-                    animation: "fadeSlideUp 0.8s ease 0.2s both",
-                }}>
-                    We Build Outstanding{" "}
-                    <span
-                        ref={wordRef}
-                        style={{
-                            color: "#f5c518",
-                            display: "inline-block",
-                            transition: "opacity 0.4s ease, transform 0.4s ease",
-                        }}
-                    >
-                        Websites
-                    </span>
-                </h1>
-
-                <p style={{
-                    color: "rgba(250,243,224,0.72)", fontSize: "1.1rem",
-                    lineHeight: 1.78, maxWidth: "620px",
-                    marginBottom: "2.8rem", fontWeight: 300,
-                    animation: "fadeSlideUp 0.8s ease 0.4s both",
-                }}>
-                    MediaMatic is a group of website design & development companies that plan and schedule their time to think ahead of the next big design shift for your digital brand development. We are a bunch of thinkers, experienced website designers, the best website developers, and techies who are always busy developing outstanding websites, mobile applications, and e-commerce websites. MediaMatic listens to you, adjusts to you, and collaborates with you to create your own unique website design and development.
-                </p>
-
-                <div style={{
-                    display: "flex", gap: "1rem", flexWrap: "wrap",
-                    animation: "fadeSlideUp 0.8s ease 0.6s both",
-                }}>
-                    <button style={{
-                        background: "#f5c518", color: "#652b32",
-                        border: "none", padding: "0.9rem 2.2rem",
-                        fontWeight: 800, fontSize: "0.95rem",
-                        letterSpacing: "0.05em", textTransform: "uppercase",
-                        cursor: "pointer", fontFamily: "inherit",
-                        transition: "transform 0.2s, opacity 0.2s",
-                    }}
-                        onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                        onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                    >
-                        🚀 Start Your Project
-                    </button>
-
-                </div>
-
-                {/* Stats row */}
-                <div style={{
-                    display: "flex", gap: "3rem", marginTop: "4rem",
-                    animation: "fadeSlideUp 0.8s ease 0.8s both",
-                }}>
-                    {[["150+", "Projects Delivered"], ["10+", "Years Experience"], ["50+", "Industries Served"]].map(([num, label]) => (
-                        <div key={label}>
-                            <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 900, color: "#f5c518" }}>{num}</div>
-                            <div style={{ fontSize: "0.8rem", color: "rgba(250,243,224,0.5)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{label}</div>
-                        </div>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    className="flex flex-wrap justify-start gap-3"
+                >
+                    {highlights.map((item, i) => (
+                        <motion.div
+                            key={item.label}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.4, delay: 0.8 + i * 0.1 }}
+                            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-background border border-border/60 hover:border-secondary hover:shadow-md transition-all duration-300"
+                        >
+                            <item.icon className="w-4 h-4 text-primary" />
+                            <span className="text-sm font-medium text-foreground">{item.label}</span>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
-
-            <style>{`
-        @keyframes fadeSlideDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes fadeSlideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-      `}</style>
         </section>
     );
-}
+};
+
+export default Herosection;

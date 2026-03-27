@@ -1,93 +1,82 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 
-export default function CTASection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [vis, setVis] = useState(false);
-    useEffect(() => {
-        const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.15 });
-        if (ref.current) o.observe(ref.current);
-        return () => o.disconnect();
-    }, []);
+import { motion } from "framer-motion";
+import { ArrowRight, Calendar } from "lucide-react";
 
-    const anim = (d = 0) => ({
-        opacity: vis ? 1 : 0,
-        transform: vis ? "translateY(0)" : "translateY(28px)",
-        transition: `opacity 0.7s ease ${d}s, transform 0.7s ease ${d}s`,
-    });
-
+const Ctasection = () => {
     return (
-        <section ref={ref} style={{ background: "#faf3e0", padding: "5rem 6vw" }}>
-            <div style={anim(0)}>
-                <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "0.8rem" }}>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                        💡 What We Do
-                    </span>
-                </div>
-                <h2 style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: "clamp(1.8rem,3.5vw,2.8rem)",
-                    fontWeight: 900, color: "#652b32",
-                    marginBottom: "3rem", lineHeight: 1.15,
-                }}>
-                    What is WordPress Website Development?
-                </h2>
-            </div>
+        <section className="relative overflow-hidden bg-primary py-16 md:py-20 lg:py-24">
+            <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-secondary/10 blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-secondary/5 blur-3xl" />
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))", gap: 0 }}>
-                {[
-                    {
-                        icon: "📖", dark: false, title: "What is WordPress Website Development?",
-                        body: "The days of HTML websites have been replaced by the age of WordPress websites. Now, companies prefer using the WordPress platform for creating websites, ranging from start-ups to giant companies. You can develop stunning websites with engaging user experiences that go beyond blogging. You can use the WordPress platform to develop your own e-commerce, entertainment, corporate, or other sort of website. You are free to design your website however you want."
-                    },
-                    {
-                        icon: "📈", dark: true, title: "How WordPress Websites Work for Businesses",
-                        body: "Are you seeking WordPress service providers to help you expand your business? At MediaMatic, we provide tailored WordPress development solutions that meet your needs and exceed your expectations. We provide e-commerce website creation, WordPress CMS development, and quality and testing services."
-                    },
-                ].map((item, i) => (
-                    <div key={i} style={{
-                        padding: "3rem", borderTop: "3px solid #f5c518",
-                        background: item.dark ? "#652b32" : "#faf3e0",
-                        ...anim(i * 0.18),
-                    }}>
-                        <div style={{ fontSize: "2.2rem", marginBottom: "1rem" }}>{item.icon}</div>
-                        <h3 style={{
-                            fontFamily: "'Playfair Display',serif",
-                            fontSize: "1.22rem", fontWeight: 700,
-                            color: item.dark ? "#faf3e0" : "#652b32",
-                            marginBottom: "0.8rem", lineHeight: 1.3,
-                        }}>{item.title}</h3>
-                        <p style={{
-                            fontSize: "0.93rem", lineHeight: 1.78, fontWeight: 300,
-                            color: item.dark ? "rgba(250,243,224,0.65)" : "rgba(101,43,50,0.68)",
-                        }}>{item.body}</p>
-                    </div>
-                ))}
-            </div>
+            <div className="container relative z-10 mx-auto max-w-4xl px-4 sm:px-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center"
+                >
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="mb-4 inline-block"
+                    >
+                        <span className="inline-flex items-center rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary backdrop-blur-sm sm:px-4 sm:py-1.5 sm:text-sm">
+                            Unlock Your WordPress Potential
+                        </span>
+                    </motion.div>
 
-            {/* CTA bar */}
-            <div style={{
-                marginTop: "4rem", background: "#652b32",
-                padding: "2.5rem 3rem",
-                display: "flex", alignItems: "center",
-                justifyContent: "space-between", flexWrap: "wrap", gap: "1.5rem",
-                ...anim(0.5),
-            }}>
-                <div>
-                    <div style={{ fontFamily: "'Playfair Display',serif", fontSize: "1.5rem", fontWeight: 900, color: "#faf3e0" }}>
-                        Ready to build your WordPress website?
+                    <h2 className="mb-4 text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+                        Ready to Build Your{" "}
+                        <span className="relative inline-block">
+                            <span className="relative z-10 text-secondary italic">
+                                WordPress Powerhouse?
+                            </span>
+                            <span className="absolute bottom-1 left-0 right-0 h-2 bg-secondary/30 rounded-full -z-0 sm:bottom-2 md:h-3" />
+                        </span>
+                    </h2>
+
+                    <p className="mx-auto mb-8 max-w-2xl text-sm text-primary-foreground/80 sm:text-base md:mb-10 md:text-lg">
+                        Let's collaborate to create a WordPress experience that not only looks stunning
+                        but delivers unrivaled performance and results. Contact us today.
+                    </p>
+
+                    <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                        <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group inline-flex items-center justify-center gap-2 rounded-lg bg-secondary px-6 py-3 text-sm font-semibold text-secondary-foreground shadow-md transition-all duration-300 hover:bg-secondary/90 hover:shadow-lg sm:px-8 sm:py-3.5 sm:text-base"
+                        >
+                            Start Your Project
+                            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
+                        </motion.button>
+
+                        <motion.button
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="inline-flex items-center justify-center gap-2 rounded-lg border border-primary-foreground/30 bg-transparent px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:bg-primary-foreground/10 hover:border-primary-foreground/50 sm:px-8 sm:py-3.5 sm:text-base"
+                        >
+                            <Calendar className="h-4 w-4 sm:h-5 sm:w-5" />
+                            Schedule a Strategy Call
+                        </motion.button>
                     </div>
-                    <div style={{ fontSize: "0.9rem", color: "rgba(250,243,224,0.5)", marginTop: "0.3rem" }}>
-                        Let's turn your vision into a high-performing WordPress site.
-                    </div>
-                </div>
-                <button style={{
-                    background: "#f5c518", color: "#652b32", border: "none",
-                    padding: "0.9rem 2.2rem", fontWeight: 800, fontSize: "0.9rem",
-                    letterSpacing: "0.05em", textTransform: "uppercase",
-                    cursor: "pointer", fontFamily: "inherit", flexShrink: 0,
-                }}>🤝 Let's Collaborate</button>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        className="mt-8 text-xs text-primary-foreground/50 sm:mt-10 sm:text-sm"
+                    >
+                        No obligation • Free discovery session • 24h response time
+                    </motion.p>
+                </motion.div>
             </div>
         </section>
     );
-}
+};
+
+export default Ctasection;

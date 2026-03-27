@@ -4,62 +4,44 @@
 
 @layer base {
   :root {
+    /* User provided colors in HSL format for Tailwind */
+    --primary: 353 40% 28%;           /* #652b32 burgundy */
+    --primary-foreground: 44 72% 93%;  /* #faf3e0 cream */
     
-    /* User provided colors */
-    --primary-dark: #652b32;
-    /* Updated to match text/theme */
-    --primary-mid: #652b32;
-    --primary-light: #9a5a2a;
+    --secondary: 47 92% 53%;          /* #f5c518 yellow */
+    --secondary-foreground: 353 40% 28%; /* #652b32 burgundy */
+    
+    --background: 44 72% 93%;         /* #faf3e0 cream */
+    --foreground: 353 40% 28%;        /* #652b32 burgundy */
+    
+    --card: 44 72% 96%;               /* slightly lighter cream */
+    --card-foreground: 353 40% 28%;
+    
+    --popover: 44 72% 96%;
+    --popover-foreground: 353 40% 28%;
 
-    --cream-bg: #faf3e0;
-    /* Updated bg */
-    --card-bg: #fff8eb;
-    /* Slightly lighter than bg for contrast */
+    --muted: 44 40% 88%;
+    --muted-foreground: 353 20% 42%;
+    
+    --accent: 47 92% 53%;             /* yellow as accent */
+    --accent-foreground: 353 40% 28%;
 
-    --text-light: #faf3e0;
-    /* Restored to light cream for contrast on dark backgrounds */
-    --text-muted: rgba(101, 43, 50, 0.65);
-    --text-dark: #652b32;
-    /* Updated text */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
     --border: 353 40% 28%;
-    /* #652b32 in HSL */
-    --input-bg: #fff6df;
-    /* Updated input bg */
-
-    --btn-bg: #652b32;
-    --btn-hover: #652b32;
-
-    --shadow-soft: 0 20px 40px rgba(101, 43, 50, 0.15);
-
-    /* Mapped system colors */
-    --background: var(--cream-bg);
-    --foreground: var(--text-dark);
-    --card: var(--card-bg);
-    --card-foreground: var(--text-dark);
-
-    --popover: var(--card-bg);
-    --popover-foreground: var(--text-dark);
-
-    --primary: var(--btn-bg);
-    --primary-foreground: var(--text-light);
-
-    --secondary: var(--primary-light);
-    --secondary-foreground: var(--text-dark);
-
-    --muted: var(--input-bg);
-    --muted-foreground: var(--text-dark);
-
-    --accent: var(--primary-mid);
-    --accent-foreground: var(--text-light);
-
-    --destructive: #ef4444;
-    --destructive-foreground: white;
-
-    --input: var(--input-bg);
-    --ring: var(--primary-dark);
+    --input: 44 72% 93%;
+    --ring: 353 40% 28%;
 
     --radius: 0.75rem;
+
+    /* Original Hex tokens kept for legacy if needed */
+    --primary-dark: #652b32;
+    --primary-mid: #652b32;
+    --primary-light: #f5c518;
+    --cream-bg: #faf3e0;
+    --text-dark: #652b32;
+    --text-light: #faf3e0;
 
     /* Custom tokens */
     --gold: var(--primary-light);
@@ -448,4 +430,66 @@
   border-color: rgba(245, 197, 24, 0.6);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(245, 197, 24, 0.15);
-}
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #652b32 0%, #7d3540 50%, #9b3f4a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .shimmer-text {
+    background: linear-gradient(
+      90deg,
+      #652b32 0%,
+      #f5c518 25%,
+      #652b32 50%,
+      #f5c518 75%,
+      #652b32 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  .btn-primary {
+    @apply bg-[#652b32] text-[#faf3e0] font-semibold px-8 py-4 rounded-full 
+           inline-flex items-center gap-3 transition-all duration-300 
+           hover:bg-[#4a1f25] hover:shadow-2xl hover:scale-105 active:scale-95
+           relative overflow-hidden;
+    box-shadow: 0 4px 24px rgba(101, 43, 50, 0.35);
+  }
+
+  .btn-outline {
+    @apply border-2 border-[#652b32] text-[#652b32] font-semibold px-8 py-4 rounded-full
+           inline-flex items-center gap-3 transition-all duration-300
+           hover:bg-[#652b32] hover:text-[#faf3e0] hover:shadow-xl hover:scale-105 active:scale-95;
+  }
+
+  .section-tag {
+    @apply inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-400/40 
+           text-[#652b32] font-semibold text-sm px-4 py-2 rounded-full mb-6;
+  }
+
+  .icon-wrap {
+    @apply w-14 h-14 rounded-2xl bg-[#652b32]/10 flex items-center justify-center
+           text-[#652b32] transition-all duration-300 group-hover:bg-[#652b32] group-hover:text-yellow-400;
+  }
+
+  .divider-yellow {
+    @apply w-16 h-1 bg-yellow-400 rounded-full my-6;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}

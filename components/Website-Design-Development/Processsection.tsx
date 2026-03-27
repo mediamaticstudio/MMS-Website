@@ -1,88 +1,116 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+
+import { motion } from "framer-motion";
+import { ClipboardList, PenTool, Code2, TestTube2, Rocket, ArrowRight } from "lucide-react";
 
 const steps = [
-    { icon: "🗺️", num: "01", title: "Planning", desc: "We develop the sitemap, navigation, user flows, conversion paths, URL structure, and content strategy to ensure that your site meets your users' intent and performs effectively in search." },
-    { icon: "🎨", num: "02", title: "Designing", desc: "Before any design work begins, wireframes are presented for each page. Once we've agreed on a structure, our team creates desktop and mobile-responsive designs. Every decision is driven by your brand and the user experience." },
-    { icon: "💻", num: "03", title: "Development", desc: "Our web development business creates websites that load quickly and function properly on all devices. We'll take care of your CMS's technical side by integrating technology & products your company uses, so you won't have any headaches when integrating it into your existing system." },
-    { icon: "🔬", num: "04", title: "Testing", desc: "We test your website across all browsers and devices. We test accessibility, load speed, and security, as well as every feature on every page. If we find anything wrong, we will fix it prior to launching it." },
-    { icon: "🚀", num: "05", title: "Launch and Support", desc: "When your new website becomes online, we will show your team how to use the CMS and configure your analytics. We also do not disappear after launch. We are constantly upgrading your site as real traffic arrives and we see how people use it." },
+    {
+        icon: ClipboardList,
+        title: "Strategic Discovery",
+        desc: "We dive deep into your brand's DNA, analyzing market trends and user behavior to architect a roadmap for success.",
+        color: "bg-[#652b32]"
+    },
+    {
+        icon: PenTool,
+        title: "Visual Identity",
+        desc: "Our designers craft immersive, high-fidelity interfaces that balance aesthetic beauty with conversion-focused UX.",
+        color: "bg-[#c13d31]"
+    },
+    {
+        icon: Code2,
+        title: "Agile Engineering",
+        desc: "Clean, performant code meets cutting-edge technology to build a digital engine that powers your business goals.",
+        color: "bg-[#652b32]"
+    },
+    {
+        icon: TestTube2,
+        title: "Rigorous Testing",
+        desc: "A battery of stress tests across all devices and browsers ensures your platform is bulletproof and lightning fast.",
+        color: "bg-[#c13d31]"
+    },
+    {
+        icon: Rocket,
+        title: "Elite Launch",
+        desc: "Beyond deployment—we provide strategic support to ensure your product thrives in the real world from hour one.",
+        color: "bg-[#652b32]"
+    },
 ];
 
-export default function ProcessSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
-
-    useEffect(() => {
-        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
-
+const Processsection = () => {
     return (
-        <section ref={ref} style={{ background: "#faf3e0", padding: "5rem 6vw" }}>
-            <div style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(20px)",
-                transition: "opacity 0.7s ease, transform 0.7s ease",
-            }}>
-                <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                        🔄 How It Works
-                    </span>
-                </div>
-                <h2 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                    fontWeight: 900, color: "#652b32",
-                    marginBottom: "0.6rem", lineHeight: 1.15,
-                }}>
-                    Our Website Development Process
-                </h2>
-                <p style={{ fontSize: "0.97rem", color: "rgba(101,43,50,0.62)", maxWidth: "560px", lineHeight: 1.75, marginBottom: "4rem", fontWeight: 300 }}>
-                    Our design process eliminates the guesswork associated with website design and development. Here's how it works.
-                </p>
-            </div>
+        <section className="section-padding bg-white relative overflow-hidden py-20 md:py-24">
+            {/* Background Texture */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+                style={{ backgroundImage: `radial-gradient(#652b32 0.5px, transparent 0.5px)`, backgroundSize: '30px 30px' }} />
 
-            {/* Horizontal step row */}
-            <div style={{ display: "flex", gap: "0", overflowX: "auto" }}>
-                {steps.map((step, i) => (
-                    <div key={i} style={{
-                        flex: "1 1 200px",
-                        minWidth: "200px",
-                        borderTop: "3px solid #f5c518",
-                        paddingTop: "2rem",
-                        paddingRight: "2rem",
-                        paddingBottom: "1rem",
-                        position: "relative",
-                        opacity: visible ? 1 : 0,
-                        transform: visible ? "translateY(0)" : "translateY(30px)",
-                        transition: `opacity 0.7s ease ${i * 0.15}s, transform 0.7s ease ${i * 0.15}s`,
-                    }}>
-                        {/* Step dot on timeline */}
-                        <div style={{
-                            position: "absolute", top: "-9px", left: 0,
-                            width: "15px", height: "15px",
-                            background: "#f5c518", borderRadius: "50%",
-                        }} />
-                        <div style={{
-                            fontFamily: "'Playfair Display', serif",
-                            fontSize: "2.8rem", fontWeight: 900,
-                            color: "#652b32", opacity: 0.1, lineHeight: 1,
-                            marginBottom: "0.2rem",
-                        }}>
-                            {step.num}
-                        </div>
-                        <div style={{ fontSize: "1.6rem", marginBottom: "0.5rem" }}>{step.icon}</div>
-                        <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", fontWeight: 700, color: "#652b32", marginBottom: "0.6rem" }}>
-                            {step.title}
-                        </div>
-                        <div style={{ fontSize: "0.87rem", lineHeight: 1.72, color: "rgba(101,43,50,0.6)", fontWeight: 300 }}>
-                            {step.desc}
-                        </div>
+            <div className="container mx-auto max-w-7xl px-4 relative z-10">
+                <div className="flex flex-col items-center text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">
+                            Our Methodology
+                        </span>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#652b32] mb-4 leading-tight tracking-tight">
+                            The Path to <span className="text-primary font-serif italic">Digital Dominance</span>
+                        </h2>
+                        <p className="text-[#652b32]/60 max-w-2xl mx-auto text-base md:text-lg font-medium leading-relaxed">
+                            A battle-tested, systematic approach that transforms raw concepts into
+                            unrivaled digital experiences.
+                        </p>
+                    </motion.div>
+                </div>
+
+                <div className="relative">
+                    {/* Connection Line (Desktop) */}
+                    <div className="hidden lg:block absolute top-[90px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-[#652b32]/10 to-transparent" />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        {steps.map((step, i) => (
+                            <motion.div
+                                key={step.title}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
+                                className="relative flex flex-col items-center lg:items-start group"
+                            >
+                                {/* Step Indicator */}
+                                <div className="mb-8 relative flex justify-center lg:justify-start w-full">
+                                    <div className="relative z-10 w-14 h-14 rounded-2xl bg-white border border-[#652b32]/5 shadow-lg shadow-[#652b32]/5 flex items-center justify-center text-[#652b32] group-hover:bg-[#652b32] group-hover:text-white transition-all duration-500 overflow-hidden">
+                                        <step.icon className="w-6 h-6 relative z-10" strokeWidth={1.5} />
+                                        <div className="absolute inset-0 bg-gradient-to-br from-primary to-[#c13d31] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    </div>
+                                    <div className="absolute -top-3 -right-1 lg:right-auto lg:left-10 z-20 w-6 h-6 rounded-full bg-[#c13d31] text-white text-[10px] font-black flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                                        0{i + 1}
+                                    </div>
+                                </div>
+
+                                <motion.div
+                                    whileHover={{ y: -3 }}
+                                    className="p-5 rounded-2xl bg-[#fff8eb]/50 border border-[#652b32]/5 hover:bg-white hover:shadow-xl hover:shadow-[#652b32]/10 transition-all duration-500 w-full"
+                                >
+                                    <h3 className="text-base font-black text-[#652b32] mb-2 tracking-tight group-hover:text-primary transition-colors">
+                                        {step.title}
+                                    </h3>
+                                    <p className="text-xs md:text-sm text-[#652b32]/60 font-medium leading-relaxed mb-4">
+                                        {step.desc}
+                                    </p>
+
+                                    <div className="flex items-center gap-2 text-primary font-bold text-[9px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                                        Phase {i + 1} Complete <ArrowRight className="w-3 h-3" />
+                                    </div>
+                                </motion.div>
+                            </motion.div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
         </section>
     );
-}
+};
+
+export default Processsection;
