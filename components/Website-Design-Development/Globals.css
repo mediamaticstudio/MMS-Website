@@ -1,60 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+@layer base {
+    :root {
+        /* #faf3e0 off-white */
+        --background: 44 72% 93%;
+        /* #652b32 burgundy dark (used as primary foreground/text) */
+        --foreground: 353 40% 28%;
+        /* slightly lighter off-white for cards */
+        --card: 44 72% 96%;
+        --card-foreground: 353 40% 28%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 353 40% 28%;
+        /* #652b32 burgundy */
+        --primary: 353 40% 28%;
+        /* #faf3e0 off-white text on burgundy */
+        --primary-foreground: 44 72% 93%;
+        /* #f5c518 yellow */
+        --secondary: 47 92% 53%;
+        /* #652b32 burgundy text on yellow */
+        --secondary-foreground: 353 40% 28%;
+        --muted: 44 40% 88%;
+        --muted-foreground: 353 20% 42%;
+        --accent: 47 92% 53%;
+        --accent-foreground: 353 40% 18%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 353 20% 85%;
+        --input: 353 20% 85%;
+        --ring: 353 40% 28%;
+        --radius: 0.75rem;
+    }
 }
 
-html {
-    scroll-behavior: smooth;
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-heading;
+    }
 }
 
-body {
-    background: #faf3e0;
-    color: #652b32;
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-}
+@layer utilities {
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    }
 
-a {
-    transition: color 0.2s ease;
-}
+    .section-padding {
+        @apply py-16 md:py-24 px-4 md:px-8;
+    }
 
-a:hover {
-    color: #f5c518 !important;
-}
-
-button {
-    transition: opacity 0.2s ease, transform 0.15s ease;
-}
-
-button:hover {
-    opacity: 0.88;
-}
-
-button:active {
-    transform: scale(0.97);
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: #faf3e0;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #652b32;
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #f5c518;
+    .glass-card {
+        @apply bg-card/80 backdrop-blur-sm border border-border/50 rounded-2xl;
+    }
 }

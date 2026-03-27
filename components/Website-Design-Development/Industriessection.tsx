@@ -1,96 +1,149 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 
-const domains = [
-    { icon: "🛍️", name: "Retail & E-Commerce", desc: "We create scalable and user-friendly online apps for the eCommerce business that increase customer engagement, optimize order administration, and drive revenue development. Our solutions can adjust to changing market trends and consumer preferences." },
-    { icon: "🎓", name: "Education & e-learning", desc: "We provide comprehensive online learning solutions for EdTech organizations, allowing them to enhance their online learning experiences, encouraging users to engage, and supporting users in tracking their resources. Our web applications are intended to fulfill modern educational needs while improving learning results." },
-    { icon: "☁️", name: "SaaS & Digital Platforms", desc: "Unleash the power of connection with our cutting-edge services for developing social media apps. We utilize technology to build unique, usable, and fully secure systems that connect users together, provide opportunities for users to connect, and develop vibrant online communities." },
-    { icon: "🛡️", name: "Insurance", desc: "Get unique insurance software and rely on our digitization services and expertise to increase organizational efficiency, lower costs, and provide a high-quality experience for your customers." },
-    { icon: "🏗️", name: "Construction & Estate", desc: "Our digital solutions for the real estate industry include property management solutions, listing solutions, and real-time market analysis solutions." },
-    { icon: "🚗", name: "Automotive", desc: "Our solutions, including custom automobile software solutions and advanced solutions for developing automobile software applications, are designed to help businesses become more efficient and innovative." },
-    { icon: "🏥", name: "Healthcare & Pharmacy", desc: "Our offerings in the healthcare industry include a large number of web-based applications for many different areas, including practice management systems, EHRs, telemedicine, billing & insurance verification. We are committed to providing you with a safe, efficient, and seamless eHealthcare experience." },
-    { icon: "✈️", name: "Tours & Travel", desc: "The MediaMatic team will provide a strategic plan using a science-based methodology to meet the technology needs of each hospitality client through the highest quality solution available. We held a technical design workshop to develop the first concept for the architecture of the solution." },
-    { icon: "🏦", name: "Banking & Finance", desc: "Through the team at MediaMatic, we will develop secure, scalable web-based applications serving FinTech companies in areas like trading platforms, online banking, loan management, etc. Our value-driven solutions enable financial institutions to remain competitive and develop their businesses." },
-    { icon: "🎬", name: "Media & Entertainment", desc: "Make an ambitious move to offer people the best user experience possible, such as music and video recommendations, streaming, editing, gaming, etc. Because this application necessitates more natural cross-platform interaction, professionally built solutions will be useful in keeping up with the large-scale digital invasions in this business." },
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+    ShoppingBag,
+    GraduationCap,
+    Monitor,
+    Shield,
+    Building2,
+    Car,
+    HeartPulse,
+    Plane,
+    Landmark,
+    Film,
+    Sparkles,
+    ArrowRight
+} from "lucide-react";
+
+const industries = [
+    { icon: ShoppingBag, title: "Retail & E-Commerce", desc: "Scalable online apps that increase engagement, optimize orders, and drive revenue." },
+    { icon: GraduationCap, title: "Education & E-Learning", desc: "Comprehensive online learning solutions with tracking and engagement tools." },
+    { icon: Monitor, title: "SaaS & Digital Platforms", desc: "Cutting-edge, secure systems that connect users and build vibrant communities." },
+    { icon: Shield, title: "Insurance", desc: "Digitization services that increase efficiency, lower costs, and improve customer experience." },
+    { icon: Building2, title: "Construction & Estate", desc: "Property management, listing solutions, and real-time market analysis." },
+    { icon: Car, title: "Automotive", desc: "Custom automobile software solutions designed for efficiency and innovation." },
+    { icon: HeartPulse, title: "Healthcare & Pharmacy", desc: "Practice management, EHRs, telemedicine, billing, and insurance verification." },
+    { icon: Plane, title: "Tours & Travel", desc: "Strategic technology solutions for hospitality clients with proven methodology." },
+    { icon: Landmark, title: "Banking & Finance", desc: "Secure, scalable web apps for trading, online banking, and loan management." },
+    { icon: Film, title: "Media & Entertainment", desc: "Streaming, editing, gaming, and cross-platform experiences for digital audiences." },
 ];
 
-export default function IndustriesSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
-    const [hovered, setHovered] = useState<number | null>(null);
-
-    useEffect(() => {
-        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
+const Industriessection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
     return (
-        <section ref={ref} style={{ background: "#652b32", padding: "5rem 6vw" }}>
-            <div style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(20px)",
-                transition: "opacity 0.7s ease, transform 0.7s ease",
-            }}>
-                <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                        🌍 Industries
-                    </span>
-                </div>
-                <h2 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                    fontWeight: 900, color: "#faf3e0",
-                    marginBottom: "3rem", lineHeight: 1.15,
-                }}>
-                    Business Domains We Serve
-                </h2>
+        <section
+            ref={sectionRef}
+            className="relative py-24 md:py-32 overflow-hidden bg-gradient-to-b from-background via-background to-primary/5"
+            aria-label="Industries we serve"
+        >
+            {/* Skip Link */}
+            <a
+                href="#industries-content"
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:shadow-lg"
+            >
+                Skip to industries content
+            </a>
+
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px]" />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[100px]" />
             </div>
 
-            {/* Grid of domains */}
-            <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-                gap: "1px",
-                background: "rgba(245,197,24,0.18)",
-                marginBottom: "1px",
-            }}>
-                {domains.map((d, i) => (
-                    <div
-                        key={i}
-                        onMouseEnter={() => setHovered(i)}
-                        onMouseLeave={() => setHovered(null)}
-                        style={{
-                            background: hovered === i ? "rgba(245,197,24,0.12)" : "#652b32",
-                            padding: "2rem 1.8rem",
-                            cursor: "default",
-                            opacity: visible ? 1 : 0,
-                            transform: visible ? "translateY(0)" : "translateY(24px)",
-                            transition: `background 0.25s ease, opacity 0.6s ease ${i * 0.06}s, transform 0.6s ease ${i * 0.06}s`,
-                        }}
-                    >
-                        <div style={{ fontSize: "1.8rem", marginBottom: "0.8rem" }}>{d.icon}</div>
-                        <div style={{
-                            fontSize: "0.97rem", fontWeight: 700,
-                            color: hovered === i ? "#f5c518" : "#faf3e0",
-                            marginBottom: "0.5rem",
-                            transition: "color 0.25s ease",
-                        }}>
-                            {d.name}
-                        </div>
-                        <div style={{
-                            fontSize: "0.83rem", lineHeight: 1.68,
-                            color: "rgba(250,243,224,0.5)",
-                            maxHeight: hovered === i ? "200px" : "0px",
-                            overflow: "hidden",
-                            transition: "max-height 0.4s ease",
-                            fontWeight: 300,
-                        }}>
-                            {d.desc}
-                        </div>
+            <div id="industries-content" className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Section Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="text-center max-w-3xl mx-auto mb-12 md:mb-16"
+                >
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                        <Sparkles className="w-4 h-4 text-primary" aria-hidden="true" />
+                        <span className="text-sm font-semibold text-primary uppercase tracking-wider">
+                            Industries We Serve
+                        </span>
                     </div>
-                ))}
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+                        Business Domains
+                        <span className="text-primary block mt-2">We Serve</span>
+                    </h2>
+                    <p className="text-lg text-muted-foreground">
+                        Tailored solutions for diverse industries
+                    </p>
+                </motion.div>
+
+                {/* Industries Flex Container */}
+                <div className="flex flex-wrap justify-center gap-4">
+                    {industries.map((industry, index) => (
+                        <motion.div
+                            key={industry.title}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ duration: 0.4, delay: index * 0.03 }}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onMouseLeave={() => setHoveredIndex(null)}
+                            className="group relative w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1rem)]"
+                        >
+                            <div className="bg-card border border-border rounded-xl p-6 h-full hover:border-primary/30 hover:shadow-lg transition-all duration-300">
+                                {/* Icon */}
+                                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                                    <industry.icon className="w-6 h-6 text-primary" aria-hidden="true" />
+                                </div>
+
+                                {/* Title */}
+                                <h3 className="font-semibold text-foreground text-base mb-2 group-hover:text-primary transition-colors">
+                                    {industry.title}
+                                </h3>
+
+                                {/* Description - Animated */}
+                                <div className={`overflow-hidden transition-all duration-300 ${hoveredIndex === index ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'
+                                    }`}>
+                                    <p className="text-muted-foreground text-xs leading-relaxed pt-2">
+                                        {industry.desc}
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* CTA Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="mt-16 text-center"
+                >
+                    {/* <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl border border-primary/10 p-8">
+                        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+                            Ready to Transform Your Industry Presence?
+                        </h3>
+                        <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                            Let's discuss how our expertise can help your business thrive in the digital landscape
+                        </p>
+                        <button
+                            className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-white font-medium hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-all duration-300"
+                            aria-label="Start your project"
+                        >
+                            Start Your Project
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                        </button>
+                    </div> */}
+                </motion.div>
+
+                {/* Accessibility */}
+                <div className="sr-only" aria-live="polite" aria-atomic="true">
+                    {isInView ? `Industries section loaded with ${industries.length} industries` : "Loading industries section"}
+                </div>
             </div>
         </section>
     );
-}
+};
+
+export default Industriessection;

@@ -7,7 +7,7 @@ interface PageProps {
   };
 }
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const res = await fetch(

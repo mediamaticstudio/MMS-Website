@@ -1,103 +1,128 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { Plus, Minus } from "lucide-react";
 
 const faqs = [
-    { q: "How long does it take to build a website?", a: "The time it takes to develop a web application varies based on the project's complexity, desired features, and team size. Simple software can take 3-4 months to complete, whereas more complicated applications can take 6-12 months or longer." },
-    { q: "Will my website be mobile-friendly and responsive?", a: "Yes! All websites will be designed and built so they work great when viewed using screens that are no more than 2 inches wide!" },
-    { q: "Can you redesign my existing website?", a: "Absolutely. We offer legacy system modernization, performance optimization, and redesign services to help your application meet modern user experience (UX) and user interface (UI) standards, as well as current technology stacks." },
-    { q: "Do you provide SEO services with website development?", a: "We will develop your website using the finest SEO strategies to enhance its visibility and rating on the SERPs." },
-    { q: "Do you offer website maintenance and support after launch?", a: "Yes, we offer continuing support and maintenance services such as regular updates, performance monitoring, bug fixes, and feature additions to guarantee that your web application continues to run well and meets changing business requirements." },
-    { q: "Can you build custom features based on my business needs?", a: "Every business is unique, as are its expectations. Exact control, innovative scalability, and cost-effective tailored solutions will provide complete security for your company's objectives and processes. A web app supplier can help you build a solution that is scalable and current, as well as meet the requirements of your organization." },
+    {
+        question: "What are the common types of website development?",
+        answer:
+            "The most common types include static websites, dynamic websites, e-commerce platforms, and CMS-based websites like WordPress.",
+    },
+    {
+        question: "How long does it typically take to develop a custom website?",
+        answer:
+            "A standard custom website usually takes 4 to 8 weeks depending on complexity, features, and number of pages.",
+    },
+    {
+        question: "Is it essential for my business to have a website?",
+        answer:
+            "Yes, a website builds credibility, helps customers find you, and allows you to market your services globally.",
+    },
+    {
+        question: "How much does it cost to build a business website?",
+        answer:
+            "Costs vary based on design, features, and platform. We provide custom pricing based on your requirements.",
+    },
+    {
+        question: "Will my website be mobile-friendly and responsive?",
+        answer:
+            "Absolutely. We follow a mobile-first approach ensuring perfect performance across all devices.",
+    },
 ];
 
-export default function FaqSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [visible, setVisible] = useState(false);
-    const [open, setOpen] = useState<number | null>(null);
+const FaqSection = () => {
+    const sectionRef = useRef<HTMLElement>(null);
+    const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-    useEffect(() => {
-        const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
-        if (ref.current) obs.observe(ref.current);
-        return () => obs.disconnect();
-    }, []);
+    const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
     return (
-        <section ref={ref} style={{ background: "#faf3e0", padding: "5rem 6vw" }}>
-            <div style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? "translateY(0)" : "translateY(20px)",
-                transition: "opacity 0.7s ease, transform 0.7s ease",
-            }}>
-                <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "1rem" }}>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                        ❓ FAQs
-                    </span>
-                </div>
-                <h2 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
-                    fontWeight: 900, color: "#652b32",
-                    marginBottom: "3rem", lineHeight: 1.15,
-                }}>
-                    Frequently Asked Questions
-                </h2>
-            </div>
+        <section
+            ref={sectionRef}
+            className="relative py-24 md:py-32 bg-background overflow-hidden"
+        >
+            <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-                {faqs.map((item, i) => (
-                    <div
-                        key={i}
-                        style={{
-                            borderTop: "1px solid rgba(101,43,50,0.15)",
-                            ...(i === faqs.length - 1 ? { borderBottom: "1px solid rgba(101,43,50,0.15)" } : {}),
-                            opacity: visible ? 1 : 0,
-                            transition: `opacity 0.6s ease ${i * 0.08}s`,
-                        }}
+                    {/* LEFT SIDE */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.6 }}
+                        className="lg:sticky lg:top-24"
                     >
-                        <div
-                            onClick={() => setOpen(open === i ? null : i)}
-                            style={{
-                                display: "flex", justifyContent: "space-between", alignItems: "center",
-                                padding: "1.5rem 0",
-                                cursor: "pointer",
-                                gap: "1rem",
-                            }}
-                        >
-                            <span style={{ fontSize: "1rem", fontWeight: 600, color: "#652b32", lineHeight: 1.4 }}>
-                                {item.q}
-                            </span>
-                            <span style={{
-                                width: "28px", height: "28px", flexShrink: 0,
-                                background: open === i ? "#652b32" : "#f5c518",
-                                color: open === i ? "#f5c518" : "#652b32",
-                                display: "flex", alignItems: "center", justifyContent: "center",
-                                fontSize: "1.2rem", fontWeight: 700,
-                                transform: open === i ? "rotate(45deg)" : "none",
-                                transition: "transform 0.3s ease, background 0.3s ease, color 0.3s ease",
-                            }}>
-                                +
+                        <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                            <span className="text-sm font-semibold text-primary tracking-wider">
+                                FAQs
                             </span>
                         </div>
 
-                        <div style={{
-                            overflow: "hidden",
-                            maxHeight: open === i ? "300px" : "0px",
-                            transition: "max-height 0.4s ease",
-                        }}>
-                            <div style={{
-                                fontSize: "0.93rem", lineHeight: 1.78,
-                                color: "rgba(101,43,50,0.62)",
-                                paddingBottom: "1.5rem",
-                                fontWeight: 300,
-                            }}>
-                                {item.a}
-                            </div>
-                        </div>
+                        <h2 className="text-5xl md:text-6xl font-extrabold leading-tight text-foreground">
+                            Frequently <br />
+                            Asked <br />
+                            <span className="text-yellow-500">Questions</span>
+                        </h2>
+
+                        <p className="mt-6 text-muted-foreground max-w-md">
+                            Can't find your answer? Reach out to us directly — we respond
+                            within 24 hours.
+                        </p>
+                    </motion.div>
+
+                    {/* RIGHT SIDE */}
+                    <div className="space-y-4">
+                        {faqs.map((faq, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                                className={`border-b pb-4 transition-all duration-300 ${activeIndex === index
+                                        ? "border-primary"
+                                        : "border-border/50 hover:border-primary/40"
+                                    }`}
+                            >
+                                <button
+                                    onClick={() =>
+                                        setActiveIndex(activeIndex === index ? null : index)
+                                    }
+                                    className="w-full flex justify-between items-center text-left"
+                                >
+                                    <span className="text-lg font-medium text-foreground">
+                                        {faq.question}
+                                    </span>
+
+                                    <div
+                                        className={`w-8 h-8 flex items-center justify-center rounded-full border transition-all ${activeIndex === index
+                                                ? "bg-primary text-white"
+                                                : "bg-transparent"
+                                            }`}
+                                    >
+                                        {activeIndex === index ? (
+                                            <Minus className="w-4 h-4" />
+                                        ) : (
+                                            <Plus className="w-4 h-4" />
+                                        )}
+                                    </div>
+                                </button>
+
+                                <div
+                                    className={`overflow-hidden transition-all duration-300 ease-in-out ${activeIndex === index ? "max-h-96 mt-3" : "max-h-0"
+                                        }`}
+                                >
+                                    <p className="text-muted-foreground text-sm leading-relaxed pr-6">
+                                        {faq.answer}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
-
-
         </section>
     );
-}
+};
+
+export default FaqSection;

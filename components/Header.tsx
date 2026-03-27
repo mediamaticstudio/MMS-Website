@@ -35,16 +35,24 @@ const serviceCategories = [
             { label: "Flutter App Development", href: "/flutter-app-development-company" },
         ],
     },
-    // {
-    //     label: "Software Development",
-    //     hasSubMenu: true,
-    //     subLinks: [
-    //         { label: "Website Development", href: "/Website-Design-Development-company/" },
-    //         { label: "WordPress Website Development", href: "/Wordpress-Website-Dev-Company/" },
-    //         { label: "E-Commerce Development", href: "/e-Commerce-Website-Dev/" },
-    //         { label: "React JS Website Development", href: "/reactJS-Web-Dev-Company/" },
-    //     ],
-    // },
+    {
+        label: "Software Development",
+        hasSubMenu: true,
+        subLinks: [
+            { label: "Website Development", href: "/website-design-development-company/" },
+            { label: "WordPress Website Development", href: "/wordpress-website-development-company/" },
+            { label: "E-Commerce Development", href: "/ecommerce-website-development-company/" },
+            { label: "React JS Website Development", href: "/react-js-development-company/" },
+        ],
+    },
+    {
+        label: " Design",
+        hasSubMenu: true,
+        subLinks: [
+            { label: "Logo Design Company", href: "/logo-design-company" },
+            { label: "Flyer Design Company", href: "/flyer-design-company" },
+        ],
+    },
     { label: "2D & 3D Animation Videos", href: "/animation-videos-company/", hasSubMenu: false },
     { label: "Content Management", href: "/content-management/", hasSubMenu: false },
     { label: "Designing", href: "/designing/", hasSubMenu: false },
@@ -53,15 +61,18 @@ const serviceCategories = [
 
 // Legacy flat list kept for pathname matching
 const serviceLinks = [
-    { label: "Website Development", href: "/Website-Design-Development-company/" },
-    { label: "WordPress Website Development", href: "/Wordpress-Website-Dev-Company/" },
+    { label: "Website Development", href: "/website-design-development-company" },
+    { label: "WordPress Website Development", href: "/wordpress-website-development-company" },
+    { label: "E-Commerce Development", href: "/ecommerce-website-development-company" },
+    { label: "React JS Website Development", href: "/react-js-development-company" },
     { label: "Mobile App Development", href: "/mobile-app-development-company" },
     { label: "Android App Development", href: "/android-app-development-company" },
     { label: "iOS App Development", href: "/ios-app-development-company" },
     { label: "Flutter App Development", href: "/flutter-app-development-company" },
+    { label: "Logo Design Company", href: "/logo-design-company" },
+    { label: "Flyer Design Company", href: "/flyer-design-company" },
     { label: "2D & 3D Animation Videos", href: "/animation-videos-company/" },
     { label: "Content Management", href: "/content-management/" },
-    { label: "Website & App Development", href: "/website-development-agency/" },
     { label: "Designing", href: "/designing/" },
     { label: "VPS Web Hosting Service", href: "/web-hosting/" },
 ];
@@ -92,6 +103,8 @@ export const Header = () => {
     const [mobileStudioOpen, setMobileStudioOpen] = useState(false);
     const [mobileAppDevOpen, setMobileAppDevOpen] = useState(false);
     const [mobileSoftwareDevOpen, setMobileSoftwareDevOpen] = useState(false);
+    const [mobileLogoDesignOpen, setMobileLogoDesignOpen] = useState(false);
+    const [mobileFlyerDesignOpen, setMobileFlyerDesignOpen] = useState(false);
 
     const [activeSection, setActiveSection] = useState("home");
     const lastScrollY = useRef(0);
@@ -584,16 +597,18 @@ export const Header = () => {
                                                             onClick={() => {
                                                                 if (cat.label === "App Development") setMobileAppDevOpen(!mobileAppDevOpen);
                                                                 else if (cat.label === "Software Development") setMobileSoftwareDevOpen(!mobileSoftwareDevOpen);
+                                                                else if (cat.label === " Design") setMobileLogoDesignOpen(!mobileLogoDesignOpen);
                                                             }}
                                                             className="w-full flex items-center justify-between py-3 px-6 rounded-xl text-lg opacity-90 hover:opacity-100 hover:bg-white/10 transition-all duration-300"
                                                         >
                                                             <span>{cat.label}</span>
-                                                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${(cat.label === "App Development" ? mobileAppDevOpen : mobileSoftwareDevOpen) ? 'rotate-180' : ''}`} />
+                                                            <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${(cat.label === "App Development" ? mobileAppDevOpen : cat.label === "Software Development" ? mobileSoftwareDevOpen : mobileLogoDesignOpen) ? 'rotate-180' : ''}`} />
                                                         </button>
 
                                                         {/* Nested items */}
                                                         {((cat.label === "App Development" && mobileAppDevOpen) ||
-                                                            (cat.label === "Software Development" && mobileSoftwareDevOpen)) && (
+                                                            (cat.label === "Software Development" && mobileSoftwareDevOpen) ||
+                                                            (cat.label === " Design" && mobileLogoDesignOpen)) && (
                                                                 <div className="ml-4 mt-1 space-y-1 border-l-2 border-yellow-400/40">
                                                                     {cat.subLinks!.map((s) => (
                                                                         <a

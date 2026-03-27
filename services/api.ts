@@ -1,11 +1,10 @@
 import { mapWPPostToBlogPost } from "../utils/wp-mapper";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://mediamaticstudio.com/api";
-// WordPress REST API endpoint
 const WP_URL = process.env.NEXT_PUBLIC_WP_URL || "https://blog.mediamaticstudio.com/wp-json/wp/v2";
 
+// ✅ FIXED: STATIC SAFE
 export async function fetchBlogPosts(page: number = 1): Promise<{ posts: any[], totalPages: number }> {
-    // Request only the fields needed for the card grid view
     const fields = [
         "id", "slug", "title", "excerpt", "date", "content",
         "featured_media", "categories", "tags", "_links", "author", "yoast_head_json", "acf"
@@ -13,60 +12,63 @@ export async function fetchBlogPosts(page: number = 1): Promise<{ posts: any[], 
 
     try {
         const response = await fetch(
-            `${WP_URL}/posts?page=${page}&per_page=9&_embed=wp:featuredmedia,wp:term,author&_fields=${fields},_embedded&t=${Date.now()}`,
-            { cache: "no-store" }
+            `${WP_URL}/posts?page=${page}&per_page=9&_embed=wp:featuredmedia,wp:term,author&_fields=${fields},_embedded`,
+            {
+                cache: "force-cache", // ✅ IMPORTANT
+            }
         );
 
         if (!response.ok) {
-            if (response.status === 403) {
-                console.error("403 Forbidden: WordPress REST API is likely blocked by a security plugin or WAF.");
-            }
-            if (response.status === 404) {
-                console.error("404 Not Found: WordPress REST API endpoint not found. Check if Permalinks are set to 'Post name'.");
-            }
-            throw new Error(`Error fetching blog posts: ${response.status} ${response.statusText}`);
+            throw new Error(`Error fetching blog posts: ${response.status}`);
         }
 
         const totalPages = parseInt(response.headers.get("X-WP-TotalPages") || "1", 10);
         const posts = await response.json();
+
         return {
             posts: posts.map(mapWPPostToBlogPost),
             totalPages
         };
-    } catch (error: any) {
-        if (error.name === 'TypeError' && error.message === 'Failed to fetch') {
-            console.error("CORS Error: The browser blocked the request. Please ensure Access-Control-Allow-Origin is configured on the WordPress server.");
-        }
-        throw error;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return {
+            posts: [],
+            totalPages: 0
+        };
     }
 }
 
+// ✅ FIXED
 export async function fetchRecentPosts(count: number = 4): Promise<any[]> {
-    const fields = [
-        "id", "slug", "title", "excerpt", "date", "featured_media",
-        "categories", "tags", "_links", "author", "yoast_head_json", "acf"
-    ].join(",");
     const response = await fetch(
-        `${WP_URL}/posts?per_page=${count}&_embed=wp:featuredmedia,wp:term,author&_fields=${fields},_embedded&t=${Date.now()}`,
-        { cache: "no-store" }
+        `${WP_URL}/posts?per_page=${count}&_embed`,
+        {
+            cache: "force-cache",
+        }
     );
+
     if (!response.ok) return [];
+
     const posts = await response.json();
     return posts.map(mapWPPostToBlogPost);
 }
 
+// ✅ FIXED
 export async function fetchBlogPostBySlug(slug: string): Promise<any> {
     const response = await fetch(
-        `${WP_URL}/posts?slug=${slug}&_embed&t=${Date.now()}`,
-        { cache: "no-store" }
+        `${WP_URL}/posts?slug=${slug}&_embed`,
+        {
+            cache: "force-cache",
+        }
     );
-    if (!response.ok) {
-        throw new Error(`Error fetching blog post: ${response.statusText}`);
-    }
+
+    if (!response.ok) return null;
+
     const posts = await response.json();
     return posts.length > 0 ? mapWPPostToBlogPost(posts[0]) : null;
 }
 
+// (no change below)
 export async function sendContactMail(data: any): Promise<any> {
     const response = await fetch(`${API_URL}/contact/send/`, {
         method: "POST",

@@ -1,91 +1,109 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { Monitor, Palette, RefreshCw, ShoppingCart, Search, Settings } from "lucide-react";
 
-const expertise = [
+import { motion } from "framer-motion";
+import { 
+    Layers, 
+    Zap, 
+    ShieldCheck, 
+    Code2, 
+    Smartphone, 
+    Globe, 
+    Server, 
+    Database,
+    Cloud,
+    Layout,
+    ShoppingBag,
+    Puzzle
+} from "lucide-react";
+
+const technologies = [
     {
-        icon: Monitor, title: "WordPress Web Design & Development",
-        desc: "Our professional WordPress developer helps brands create fully responsive and personalized websites based on their existing branding and needs. We create unique website layouts and add functionality with custom plugins to create responsive WordPress designs."
+        category: "CMS Core",
+        icon: Layout,
+        items: ["Gutenberg Blocks", "Advanced Custom Fields", "WordPress Multi-site", "Genesis Framework"]
     },
     {
-        icon: Palette, title: "Theme Customization",
-        desc: "Our theme customization service takes your website design to the next level with a unique and professional design that meets your brand requirements. Experienced WordPress developers on our team are available to create custom themes that fit your goals."
+        category: "E-Commerce",
+        icon: ShoppingBag,
+        items: ["WooCommerce", "Stripe API", "PayPal Express", "WP Inventory"]
     },
     {
-        icon: RefreshCw, title: "WordPress Migration",
-        desc: "We know that it can be challenging to use or update websites that were created using other technologies, such as static HTML or proprietary content management systems, which often lack the flexibility and user-friendliness of WordPress. We provide straightforward services for migrating to a new WordPress-based site without changing any of your data."
+        category: "Performance",
+        icon: Zap,
+        items: ["Cloudflare CDN", "WP Rocket", "Redis Cache", "Image Optimization"]
     },
     {
-        icon: ShoppingCart, title: "Ecommerce Customization",
-        desc: "Create highly functional and scalable e-commerce stores using our WordPress e-commerce development service. Our WordPress website agency assists brands in developing e-commerce stores that allow for the simple management of products and enhance the user experience so that bounce-back rates are reduced, ultimately leading to increased sales and customer retention."
+        category: "Functionality",
+        icon: Puzzle,
+        items: ["LMS Integrations", "CRM Sync", "REST API", "Gravity Forms"]
     },
     {
-        icon: Search, title: "WordPress SEO",
-        desc: "All our WordPress development services go through the SEO checklist, which is a set of guidelines to ensure that the project is fully SEO (Search Engine Optimization) compatible and optimized. We use best practices in optimizing WordPress websites to improve their search engine optimization."
+        category: "Security",
+        icon: ShieldCheck,
+        items: ["2-Factor Auth", "SSL Encryption", "Malware Scanning", "Daily Backups"]
     },
+    {
+        category: "Infrastructure",
+        icon: Server,
+        items: ["AWS Hosting", "Google Cloud", "DigitalOcean", "Nginx Config"]
+    }
 ];
 
-export default function TechStackSection() {
-    const ref = useRef<HTMLDivElement>(null);
-    const [vis, setVis] = useState(false);
-    const [hov, setHov] = useState<number | null>(null);
-    useEffect(() => {
-        const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.1 });
-        if (ref.current) o.observe(ref.current);
-        return () => o.disconnect();
-    }, []);
-
+const Techstacksection = () => {
     return (
-        <section ref={ref} style={{ background: "#652b32", padding: "5rem 6vw" }}>
-            <div style={{
-                opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(20px)",
-                transition: "opacity 0.7s ease, transform 0.7s ease",
-            }}>
-                <div style={{ borderLeft: "3px solid #f5c518", paddingLeft: "1rem", marginBottom: "0.8rem" }}>
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                    <Settings size={14} style={{ marginRight: "0.5rem", display: "inline-block", verticalAlign: "middle" }} />
-                    <span style={{ fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "#f5c518" }}>
-                        What We Build
-                    </span>
-                    </span>
+        <section className="py-24 md:py-32 bg-background relative overflow-hidden">
+            <div className="container mx-auto max-w-7xl px-4 relative z-10">
+                <div className="flex flex-col items-center text-center mb-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                    >
+                        <span className="text-secondary text-xs font-black uppercase tracking-[0.4em] mb-4 block">
+                            Our Toolkit
+                        </span>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 leading-tight">
+                            Advanced WordPress <span className="text-primary italic">Ecosystem</span>
+                        </h2>
+                        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                            We use the most robust, high-performance tools within the WordPress landscape to build secure and scalable digital solutions.
+                        </p>
+                    </motion.div>
                 </div>
-                <h2 style={{
-                    fontFamily: "'Playfair Display',serif",
-                    fontSize: "clamp(1.8rem,3.5vw,2.8rem)",
-                    fontWeight: 900, color: "#faf3e0",
-                    marginBottom: "0.6rem", lineHeight: 1.15,
-                }}>Our Expertise in WordPress Website Design & Development</h2>
-                <p style={{ fontSize: "0.97rem", color: "rgba(250,243,224,0.58)", maxWidth: "680px", lineHeight: 1.75, marginBottom: "3rem", fontWeight: 300 }}>
-                    From strategy to discovery, mobile interface, and headless architecture, we fulfill all performance, security, and usability benchmarks for every WordPress project we undertake.
-                </p>
-            </div>
 
-            <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))",
-                gap: "2px", background: "rgba(245,197,24,0.12)",
-            }}>
-                {expertise.map((item, i) => (
-                    <div key={i}
-                        onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)}
-                        style={{
-                            background: hov === i ? "rgba(245,197,24,0.1)" : "#652b32",
-                            padding: "2.2rem 2rem",
-                            border: "1px solid rgba(245,197,24,0.1)",
-                            opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(30px)",
-                            transition: `background 0.25s ease, opacity 0.6s ease ${i * 0.09}s, transform 0.6s ease ${i * 0.09}s`,
-                        }}>
-                        <div style={{ fontSize: "1.8rem", marginBottom: "0.8rem", color: "#f5c518" }}>
-                            <item.icon size={32} />
-                        </div>
-                        <div style={{
-                            fontSize: "0.97rem", fontWeight: 700,
-                            color: hov === i ? "#f5c518" : "#faf3e0",
-                            marginBottom: "0.6rem", transition: "color 0.25s ease",
-                        }}>{item.title}</div>
-                        <div style={{ fontSize: "0.87rem", lineHeight: 1.72, color: "rgba(250,243,224,0.55)", fontWeight: 300 }}>{item.desc}</div>
-                    </div>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {technologies.map((tech, i) => (
+                        <motion.div
+                            key={tech.category}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="bg-card border border-border/50 rounded-3xl p-8 hover:border-primary/30 hover:shadow-xl transition-all duration-300 group"
+                        >
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                                    <tech.icon className="w-6 h-6" strokeWidth={1.5} />
+                                </div>
+                                <h3 className="text-xl font-bold text-foreground">{tech.category}</h3>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                                {tech.items.map((item) => (
+                                    <span 
+                                        key={item}
+                                        className="px-4 py-2 rounded-xl bg-muted/30 text-muted-foreground text-xs font-semibold hover:bg-secondary hover:text-white transition-colors cursor-default"
+                                    >
+                                        {item}
+                                    </span>
+                                ))}
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );
-}
+};
+
+export default Techstacksection;
