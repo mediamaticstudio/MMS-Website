@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: "*",
                 allow: "/",
-                disallow: ["/branding-agency-in-houston/"],
+             
             },
         ],
         sitemap: "https://mediamaticstudio.com/sitemap.xml",
