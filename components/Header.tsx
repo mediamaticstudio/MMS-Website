@@ -17,7 +17,7 @@ const navLinks = [
     { label: "Home", href: "#home", id: "home" },
     { label: "About Us", href: "#about", id: "about" },
     { label: "Services", href: "/services/", id: "services", hasDropdown: true, isSubPage: true },
-    { label: "Digital Marketing", href: "/digital-marketing-agency/", id: "digital-marketing", hasDropdown: true, isSubPage: true },
+    // { label: "Digital Marketing", href: "/digital-marketing-agency/", id: "digital-marketing", hasDropdown: true, isSubPage: true },
     { label: "STUDIO HUB", href: "#", id: "studio", hasDropdown: true },
     { label: "Blog", href: "/blog/", isSubPage: true },
     { label: "Contact Us", href: "/contact-us/", isSubPage: true, id: "contact" },
@@ -25,6 +25,18 @@ const navLinks = [
 
 // Top-level service categories (items without sub-menus stay as-is)
 const serviceCategories = [
+    {
+        label: "Digital Marketing",
+        hasSubMenu: true,
+        subLinks: [
+            { label: "Search Engine Optimization (SEO)", href: "/search-engine-optimization-company/" },
+            { label: "Social Media Optimization (SMO)", href: "/social-media-optimization-company/" },
+            { label: "Social Media Marketing (SMM)", href: "/social-media-marketing-company/" },
+            { label: "Search Engine Marketing (SEM)", href: "/search-engine-marketing-company/" },
+            { label: "Email Marketing", href: "/email-marketing-company/" },
+            { label: "Google Ads Services", href: "/google-ads-services/" },
+        ]
+    },
     {
         label: "App Development",
         hasSubMenu: true,
@@ -438,7 +450,7 @@ export const Header = () => {
                                             )}
 
                                             {/* Digital Marketing dropdown */}
-                                            {link.id === "digital-marketing" && digitalMarketingOpen && (
+                                            {/* {link.id === "digital-marketing" && digitalMarketingOpen && (
                                                 <div className="absolute top-full mt-3 bg-[#fff8eb] shadow-xl rounded-xl w-72 overflow-hidden z-10 border border-[#652b32]/10">
                                                     {digitalMarketingLinks.map((s) => (
                                                         <a
