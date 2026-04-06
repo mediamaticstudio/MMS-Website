@@ -25,6 +25,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://mediamaticstudio.com"),
+    verification: {
+        google: "5MWlSmkPeiBitnaUuOy9UrB4iVZ7nOq6rucZXsp4HHc",
+    },
     title: {
         default: "MediaMatic Studio | Creative Branding & Digital Agency in Coimbatore",
         template: "%s | MediaMatic Studio",
